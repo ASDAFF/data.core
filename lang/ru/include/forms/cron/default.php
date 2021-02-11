@@ -1,5 +1,5 @@
 <?
-$strLang = 'ACRIT_CORE_';
+$strLang = 'DATA_CORE_';
 
 # Headers
 $MESS[$strLang.'CRON_TITLE_WITH_OUTPUT'] = 'Команда с логированием';
@@ -43,11 +43,11 @@ $MESS[$strLang.'CRON_BUTTON_CLEAR'] = 'Отменить задание';
 
 # Command
 $MESS[$strLang.'CRON_COMMAND'] = 'Команда для ручной настройки или ручного запуска';
-	$MESS[$strLang.'CRON_COMMAND_HINT'] = 'В данном поле представлена команда для выполнения планировщиком.<br/><br/>Данная команда сгенерирована по общим правилам, поэтому на некоторых серверах может понадобиться внести в нее небольшие корректировки. Например, может понадобиться указать свой путь к PHP (здесь выводится указанный в настройках модуля путь к PHP) или добавить/убрать из команды настройки mbstring - это можно сделать в <a href="/bitrix/admin/settings.php?lang=ru&mid=acrit.core" target="_blank">настройках модуля ядра Акрит</a>.<br/><br/>Данная команда может быть запущена из SSH, что удобно в некоторых случаях.';
+	$MESS[$strLang.'CRON_COMMAND_HINT'] = 'В данном поле представлена команда для выполнения планировщиком.<br/><br/>Данная команда сгенерирована по общим правилам, поэтому на некоторых серверах может понадобиться внести в нее небольшие корректировки. Например, может понадобиться указать свой путь к PHP (здесь выводится указанный в настройках модуля путь к PHP) или добавить/убрать из команды настройки mbstring - это можно сделать в <a href="/bitrix/admin/settings.php?lang=ru&mid=data.core" target="_blank">настройках модуля ядра Акрит</a>.<br/><br/>Данная команда может быть запущена из SSH, что удобно в некоторых случаях.';
 	$MESS[$strLang.'CRON_COMMAND_WARNING'] = '<span style="color:red"><b>Внимание!</b> Никогда не запускайте скрипты от имени root! Т.к. если в процессе работы создаются какие-либо файлы и папки, они создаются от имени root, и в последующем сайт не сможет корректно работать с этими файлами и папками, будут постоянные ошибки.</span>';
 	$MESS[$strLang.'CRON_COMMAND_COPY'] = 'Копировать';
 	$MESS[$strLang.'CRON_COMMAND_COPY_SUCCESS'] = 'Команда скопирована в буфер обмена!';
-	$MESS[$strLang.'CRON_LINK_ARTICLE_BITRIX_ENV'] = '<a href="https://www.acrit-studio.ru/pantry-programmer/bitrix-bitrix-environment-vm/crond-in-bitrix-vm/" target="_blank">Информация по настройке Cron на виртуальной машине Битрикс</a>';
+	$MESS[$strLang.'CRON_LINK_ARTICLE_BITRIX_ENV'] = '<a href="https://www.data-studio.ru/pantry-programmer/bitrix-bitrix-environment-vm/crond-in-bitrix-vm/" target="_blank">Информация по настройке Cron на виртуальной машине Битрикс</a>';
 
 # Tasks
 $MESS[$strLang.'CRON_TASKS'] = 'Настроенные задания';

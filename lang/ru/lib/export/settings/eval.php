@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_EVAL_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_EVAL_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Произвольный код';
 $MESS[$strMessPrefix.'DESC'] = 'Опция позволяет выполнить произвольный код при обработке значений. Таким образом, имеется возможность реализации собственной логики выгрузки любых полей. Доступны следующие переменные:

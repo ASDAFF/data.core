@@ -1,13 +1,13 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter;
 
 Helper::loadMessages(__FILE__);
 Helper::loadMessages(realpath(__DIR__.'/../subtabs/offers.php'));
-$strLang = 'ACRIT_EXP_POPUP_WIZARD_';
+$strLang = 'DATA_EXP_POPUP_WIZARD_';
 
 $arIBlocks = Helper::getIBlockList(true, false, false, true);
 foreach($arIBlocks as $strIBlockType => $arIBlockType){
@@ -192,34 +192,34 @@ if($bSaveWizardQuickStart){
 }
 
 ?>
-<div class="acrit_exp_wizard_quick_start_steps">
+<div class="data_exp_wizard_quick_start_steps">
 
 	<?# Plugins ?>
-	<div class="acrit_exp_wizard_quick_start_step" data-step="1" 
-		data-callback-in="acrit_exp_wizard_callback_in_plugins"
-		data-callback-out="acrit_exp_wizard_callback_out_plugins">
-		<div class="acrit_exp_wizard_quick_start_step_header"><?=Helper::getMessage($strLang.'PLUGINS_HEADER');?></div>
-		<div class="acrit_exp_wizard_quick_start_filter">
+	<div class="data_exp_wizard_quick_start_step" data-step="1" 
+		data-callback-in="data_exp_wizard_callback_in_plugins"
+		data-callback-out="data_exp_wizard_callback_out_plugins">
+		<div class="data_exp_wizard_quick_start_step_header"><?=Helper::getMessage($strLang.'PLUGINS_HEADER');?></div>
+		<div class="data_exp_wizard_quick_start_filter">
 			<input type="text" placeholder="<?=Helper::getMessage($strLang.'PLUGINS_FILTER_PLACEHOLDER');?>"
-				data-role="acrit_exp_wizard_quick_start_plugins_filter" />
+				data-role="data_exp_wizard_quick_start_plugins_filter" />
 		</div>
-		<div class="acrit_exp_wizard_plugins_wrapper">
-			<div class="acrit_exp_wizard_plugins" data-role="acrit_exp_wizard_quick_start_plugins">
+		<div class="data_exp_wizard_plugins_wrapper">
+			<div class="data_exp_wizard_plugins" data-role="data_exp_wizard_quick_start_plugins">
 				<?foreach($arPlugins as $strPlugin => $arPlugin):?>
-					<div class="acrit_exp_wizard_plugin" data-code="<?=$arPlugin['CODE']?>"
+					<div class="data_exp_wizard_plugin" data-code="<?=$arPlugin['CODE']?>"
 						data-filter="<?=htmlspecialcharsbx($arPlugin['NAME']);?> [<?=$arPlugin['CODE']?>]"
-						data-role="acrit_exp_wizard_quick_start_plugin">
-						<img class="acrit_exp_wizard_plugin_icon" src="<?=$arPlugin['ICON_BASE64']?>"
+						data-role="data_exp_wizard_quick_start_plugin">
+						<img class="data_exp_wizard_plugin_icon" src="<?=$arPlugin['ICON_BASE64']?>"
 							title="<?=htmlspecialcharsbx($arPlugin['NAME']);?>"></img>
-						<div class="acrit_exp_wizard_formats">
+						<div class="data_exp_wizard_formats">
 							<?foreach($arPlugin['FORMATS'] as $strFormat => $arFormat):?>
-								<div class="acrit_exp_wizard_format" data-code="<?=$arFormat['CODE']?>"
+								<div class="data_exp_wizard_format" data-code="<?=$arFormat['CODE']?>"
 									data-filter="<?=htmlspecialcharsbx($arFormat['NAME']);?> [<?=$arFormat['CODE']?>]"
-									data-role="acrit_exp_wizard_quick_start_format">
-									<div class="acrit_exp_wizard_format_name">
+									data-role="data_exp_wizard_quick_start_format">
+									<div class="data_exp_wizard_format_name">
 										<label>
 											<input type="checkbox" name="formats[]" value="<?=$arFormat['CODE']?>"
-												data-role="acrit_exp_wizard_quick_start_plugin_checkbox" />
+												data-role="data_exp_wizard_quick_start_plugin_checkbox" />
 											<?=$arFormat['NAME'];?>
 										</label>
 									</div>
@@ -228,40 +228,40 @@ if($bSaveWizardQuickStart){
 						</div>
 					</div>
 				<?endforeach?>
-				<div class="acrit_exp_wizard_nothing_found" data-role="acrit_exp_wizard_quick_start_plugins_nothing_found">
+				<div class="data_exp_wizard_nothing_found" data-role="data_exp_wizard_quick_start_plugins_nothing_found">
 					<?=Helper::getMessage($strLang.'NOTHING_FOUND');?>
 				</div>
 			</div>
 		</div>
-		<div class="acrit_exp_wizard_quick_start_controls">
-			<div class="acrit_exp_wizard_quick_start_controls_status">
-				<?=Helper::getMessage($strLang.'SELECTED');?>: <span data-role="acrit_exp_wizard_quick_start_selected">0</span>
+		<div class="data_exp_wizard_quick_start_controls">
+			<div class="data_exp_wizard_quick_start_controls_status">
+				<?=Helper::getMessage($strLang.'SELECTED');?>: <span data-role="data_exp_wizard_quick_start_selected">0</span>
 			</div>
 			<label>
-				<input type="checkbox" data-role="acrit_exp_wizard_quick_start_select_all" />
+				<input type="checkbox" data-role="data_exp_wizard_quick_start_select_all" />
 				<?=Helper::getMessage($strLang.'SELECT_ALL');?>
 			</label>
 		</div>
 	</div>
 	
 	<?# IBlocks ?>
-	<div class="acrit_exp_wizard_quick_start_step" data-step="2" 
-		data-callback-in="acrit_exp_wizard_callback_in_iblocks"
-		data-callback-out="acrit_exp_wizard_callback_out_iblocks">
-		<div class="acrit_exp_wizard_quick_start_step_header"><?=Helper::getMessage($strLang.'IBLOCKS_HEADER');?></div>
-		<div class="acrit_exp_wizard_quick_start_filter">
+	<div class="data_exp_wizard_quick_start_step" data-step="2" 
+		data-callback-in="data_exp_wizard_callback_in_iblocks"
+		data-callback-out="data_exp_wizard_callback_out_iblocks">
+		<div class="data_exp_wizard_quick_start_step_header"><?=Helper::getMessage($strLang.'IBLOCKS_HEADER');?></div>
+		<div class="data_exp_wizard_quick_start_filter">
 			<input type="text" placeholder="<?=Helper::getMessage($strLang.'IBLOCKS_FILTER_PLACEHOLDER');?>"
-				data-role="acrit_exp_wizard_quick_start_iblocks_filter" />
+				data-role="data_exp_wizard_quick_start_iblocks_filter" />
 		</div>
-		<div class="acrit_exp_wizard_iblock_types_wrapper">
-			<div class="acrit_exp_wizard_iblock_types" data-role="acrit_exp_wizard_quick_start_iblocks">
+		<div class="data_exp_wizard_iblock_types_wrapper">
+			<div class="data_exp_wizard_iblock_types" data-role="data_exp_wizard_quick_start_iblocks">
 				<?foreach($arIBlocks as $strIBlockType => $arIBlockType):?>
 					<?if(!empty($arIBlockType['ITEMS'])):?>
-						<div class="acrit_exp_wizard_iblock_type" data-code="<?=$arIBlockType['CODE']?>"
+						<div class="data_exp_wizard_iblock_type" data-code="<?=$arIBlockType['CODE']?>"
 							data-filter="<?=htmlspecialcharsbx($arIBlockType['NAME']);?> [<?=$strIBlockType?>]"
-							data-role="acrit_exp_wizard_quick_start_iblock_type">
-							<div class="acrit_exp_wizard_iblock_icon" title="<?=htmlspecialcharsbx($arIBlockType['NAME']);?>"></div>
-							<div class="acrit_exp_wizard_iblocks">
+							data-role="data_exp_wizard_quick_start_iblock_type">
+							<div class="data_exp_wizard_iblock_icon" title="<?=htmlspecialcharsbx($arIBlockType['NAME']);?>"></div>
+							<div class="data_exp_wizard_iblocks">
 								<?foreach($arIBlockType['ITEMS'] as $intIBLockId => $arIBlock):?>
 									<?
 									$bCatalog = !empty($arIBlock['CATALOG']);
@@ -270,13 +270,13 @@ if($bSaveWizardQuickStart){
 										$strTitle .= sprintf(' (%s)', toLower(Helper::getMessage($strLang.'IBLOCKS_CATALOG')));
 									}
 									?>
-									<div class="acrit_exp_wizard_iblock <?if($bCatalog):?> acrit_exp_wizard_iblock_catalog<?endif?>" 
+									<div class="data_exp_wizard_iblock <?if($bCatalog):?> data_exp_wizard_iblock_catalog<?endif?>" 
 										data-code="<?=$arIBlock['CODE']?>" data-filter="<?=htmlspecialcharsbx($strTitle)?>"
-										data-role="acrit_exp_wizard_quick_start_iblock">
-										<div class="acrit_exp_wizard_iblock_name" title="<?=htmlspecialcharsbx($strTitle);?>">
+										data-role="data_exp_wizard_quick_start_iblock">
+										<div class="data_exp_wizard_iblock_name" title="<?=htmlspecialcharsbx($strTitle);?>">
 											<label>
 												<input type="checkbox" name="iblocks[]" value="<?=$arIBlock['ID']?>"
-													data-role="acrit_exp_wizard_quick_start_iblock_checkbox"
+													data-role="data_exp_wizard_quick_start_iblock_checkbox"
 													<?if($bCatalog):?>checked="checked"<?endif?> />
 												<?=$arIBlock['NAME'];?> [<?=$arIBlock['ID'];?>, <?=$arIBlock['CODE'];?>]
 											</label>
@@ -287,34 +287,34 @@ if($bSaveWizardQuickStart){
 						</div>
 					<?endif?>
 				<?endforeach?>
-				<div class="acrit_exp_wizard_nothing_found" data-role="acrit_exp_wizard_quick_start_iblocks_nothing_found">
+				<div class="data_exp_wizard_nothing_found" data-role="data_exp_wizard_quick_start_iblocks_nothing_found">
 					<?=Helper::getMessage($strLang.'NOTHING_FOUND');?>
 				</div>
 			</div>
 		</div>
-		<div class="acrit_exp_wizard_quick_start_controls">
-			<div class="acrit_exp_wizard_quick_start_controls_status">
-				<?=Helper::getMessage($strLang.'SELECTED');?>: <span data-role="acrit_exp_wizard_quick_start_selected">0</span>
+		<div class="data_exp_wizard_quick_start_controls">
+			<div class="data_exp_wizard_quick_start_controls_status">
+				<?=Helper::getMessage($strLang.'SELECTED');?>: <span data-role="data_exp_wizard_quick_start_selected">0</span>
 			</div>
 			<label>
-				<input type="checkbox" data-role="acrit_exp_wizard_quick_start_select_all" />
+				<input type="checkbox" data-role="data_exp_wizard_quick_start_select_all" />
 				<?=Helper::getMessage($strLang.'SELECT_ALL');?>
 			</label>
 		</div>
 	</div>
 	
 	<?# Confirm ?>
-	<div class="acrit_exp_wizard_quick_start_step" data-step="3"
-		data-callback-in="acrit_exp_wizard_callback_in_confirm"
-		data-callback-out="acrit_exp_wizard_callback_out_confirm">
-		<table class="adm-detail-content-table edit-table acrit_exp_wizard_quick_start_confirm_table">
+	<div class="data_exp_wizard_quick_start_step" data-step="3"
+		data-callback-in="data_exp_wizard_callback_in_confirm"
+		data-callback-out="data_exp_wizard_callback_out_confirm">
+		<table class="adm-detail-content-table edit-table data_exp_wizard_quick_start_confirm_table">
 			<tbody>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?=Helper::getMessage($strLang.'SITE');?>:
 					</td>
 					<td width="60%" class="adm-detail-content-cell-r">
-						<select name="site" data-role="acrit_exp_wizard_quick_start_site">
+						<select name="site" data-role="data_exp_wizard_quick_start_site">
 							<?foreach($arSites as $arSite):?>
 								<option value="<?=$arSite['ID'];?>" data-domain="<?=$arSite['SERVER_NAME'];?>"
 									<?if($arProfile['SITE_ID']==$arSite['ID']):?> selected="selected"<?endif?>>
@@ -334,12 +334,12 @@ if($bSaveWizardQuickStart){
 					</td>
 					<td width="60%" class="adm-detail-content-cell-r">
 						<input type="text" name="domain" value="<?=htmlspecialcharsbx(Helper::getCurrentHost())?>"
-							data-role="acrit_exp_wizard_quick_start_domain" />
+							data-role="data_exp_wizard_quick_start_domain" />
 						&nbsp;
-						<span class="acrit_exp_wizard_quick_start_https">
+						<span class="data_exp_wizard_quick_start_https">
 							<label>
 								<input type="checkbox" name="https" value="Y"<?if(Helper::isHttps()):?> checked="checked"<?endif?>
-									data-role="acrit_exp_wizard_quick_start_https" />
+									data-role="data_exp_wizard_quick_start_https" />
 								<?=Helper::getMessage($strLang.'HTTPS');?>
 							</label>
 						</span>
@@ -352,17 +352,17 @@ if($bSaveWizardQuickStart){
 					<td width="60%" class="adm-detail-content-cell-r">
 						<?
 						$arOptions = array(
-							'only' => Helper::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_ONLY'),
-							'all' => Helper::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_ALL'),
-							'none' => Helper::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_NONE'),
-							'offers' => Helper::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_OFFERS'),
+							'only' => Helper::getMessage('DATA_EXP_TAB_OFFERS_MODE_ONLY'),
+							'all' => Helper::getMessage('DATA_EXP_TAB_OFFERS_MODE_ALL'),
+							'none' => Helper::getMessage('DATA_EXP_TAB_OFFERS_MODE_NONE'),
+							'offers' => Helper::getMessage('DATA_EXP_TAB_OFFERS_MODE_OFFERS'),
 						);
 						$arOptions = [
 							'REFERENCE' => array_values($arOptions),
 							'REFERENCE_ID' => array_keys($arOptions),
 						];
 						print SelectBoxFromArray('offers_mode', $arOptions, '', '', 
-							'data-role="acrit_exp_wizard_quick_start_offers_mode"');
+							'data-role="data_exp_wizard_quick_start_offers_mode"');
 						?>
 					</td>
 				</tr>
@@ -371,7 +371,7 @@ if($bSaveWizardQuickStart){
 		<?=Helper::showNote(Helper::getMessage($strLang.'FINISH_NOTE'));?>
 		<div>
 			<label>
-				<input type="checkbox" name="run" value="Y" data-role="acrit_exp_wizard_quick_start_run" />
+				<input type="checkbox" name="run" value="Y" data-role="data_exp_wizard_quick_start_run" />
 				<?=Helper::getMessage($strLang.'RUN');?>
 			</label>
 		</div>

@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	setTimeout(function(){
 		// Check updates
-		var div = $('#acrit-module-update-notifier');
+		var div = $('#data-module-update-notifier');
 		if(div.length){
-			var module = (location.pathname + location.search).match(/acrit[._]{1}[a-z]+/)[0].replace(/_/, '.');
+			var module = (location.pathname + location.search).match(/data[._]{1}[a-z]+/)[0].replace(/_/, '.');
 			$.ajax({
-				url: '/bitrix/admin/acrit_core_check_updates.php',
+				url: '/bitrix/admin/data_core_check_updates.php',
 				type: 'GET',
 				data: {
 					lang: phpVars.LANGUAGE_ID,

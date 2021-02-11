@@ -1,5 +1,5 @@
 <?
-use \Acrit\Core\Helper;
+use \Data\Core\Helper;
 ?>
 <?=Helper::showNote(static::getMessage('NOTE'));?>
 <h2><?=static::getMessage('USEFUL_LINKS');?></h2>

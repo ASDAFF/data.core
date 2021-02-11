@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_WEBMASTER_MUSICVIDEO_';
+$strMessPrefix = 'DATA_EXP_YANDEX_WEBMASTER_MUSICVIDEO_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Яндекс.Вебмастер (музыкальная и видеопродукция)';

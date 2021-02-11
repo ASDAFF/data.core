@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_WEBMASTER_VENDOR_MODEL_';
+$strMessPrefix = 'DATA_EXP_YANDEX_WEBMASTER_VENDOR_MODEL_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Яндекс.Вебмастер (произвольный тип)';

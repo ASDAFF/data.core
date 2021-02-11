@@ -66,7 +66,7 @@ if (!window.yandexMarketPluginInitialized) {
 		}
 	});
 	
-	function acritExpYandexMarketTriggers(){
+	function dataExpYandexMarketTriggers(){
 		$('#row_YANDEX_MARKET_EXPORT_PROMOCODES input[type=checkbox]').trigger('change');
 		$('#row_YANDEX_MARKET_EXPORT_SPECIAL_PRICE input[type=checkbox]').trigger('change');
 		$('#row_YANDEX_MARKET_EXPORT_PROMOCARD input[type=checkbox]').trigger('change');
@@ -79,13 +79,13 @@ if (!window.yandexMarketPluginInitialized) {
 
 // On load
 setTimeout(function(){
-	acritExpYandexMarketTriggers();
+	dataExpYandexMarketTriggers();
 }, 500);
 $(document).ready(function(){
-	acritExpYandexMarketTriggers();
+	dataExpYandexMarketTriggers();
 });
 
 // On current IBlock change
 BX.addCustomEvent('onLoadStructureIBlock', function(a){
-	acritExpYandexMarketTriggers();
+	dataExpYandexMarketTriggers();
 });

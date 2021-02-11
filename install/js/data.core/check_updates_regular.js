@@ -1,7 +1,7 @@
 BX.ready(function(){
 	setTimeout(function(){
 		BX.ajax({
-			url: '/bitrix/admin/acrit_core_check_updates.php?regular=Y&lang='+phpVars.LANGUAGE_ID,
+			url: '/bitrix/admin/data_core_check_updates.php?regular=Y&lang='+phpVars.LANGUAGE_ID,
 			method: 'GET',
 			dataType: 'json',
 			cache: false,
@@ -15,7 +15,7 @@ $(document).ready(function(){
 	setTimeout(function(){
 		// Check updates
 		$.ajax({
-			url: '/bitrix/admin/acrit_core_check_updates.php',
+			url: '/bitrix/admin/data_core_check_updates.php',
 			type: 'GET',
 			data: {
 				lang: phpVars.LANGUAGE_ID,
@@ -26,7 +26,7 @@ $(document).ready(function(){
 				//
 			},
 			error: function(jqXHR, textStatus, errorThrown){
-				console.log('acrit.core update result [check_updates_regular.js]:');
+				console.log('data.core update result [check_updates_regular.js]:');
 				console.log(jqXHR);
 				console.log(textStatus);
 				console.log(errorThrown);

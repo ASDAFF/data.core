@@ -3,12 +3,12 @@
  *    Settings
  */
 
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use Bitrix\Main,
     Bitrix\Main\DB\Exception,
     Bitrix\Main\Config\Option,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class Settings
 {

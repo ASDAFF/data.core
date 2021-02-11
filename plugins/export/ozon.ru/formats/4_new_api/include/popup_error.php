@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Json;
 
 $strJsonRequest = Json::encode($arJsonItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 if(!Helper::isUtf()){
@@ -19,7 +19,7 @@ print Helper::showError($strDisplayMessageTitle);
 ?>
 <div>
 	<div>
-		<a href="#" class="acrit-inline-link" data-role="acrit_ozon_preview_error_json">
+		<a href="#" class="data-inline-link" data-role="data_ozon_preview_error_json">
 			<?=static::getMessage('ERROR_PREVIEW_ARRAY');?>
 		</a>
 	</div>
@@ -29,7 +29,7 @@ print Helper::showError($strDisplayMessageTitle);
 </div>
 <div style="margin-top:8px;">
 	<div>
-		<a href="#" class="acrit-inline-link" data-role="acrit_ozon_preview_error_json">
+		<a href="#" class="data-inline-link" data-role="data_ozon_preview_error_json">
 			<?=static::getMessage('ERROR_PREVIEW_JSON');?>
 		</a>
 	</div>
@@ -39,7 +39,7 @@ print Helper::showError($strDisplayMessageTitle);
 </div>
 <div style="margin-top:8px;">
 	<div>
-		<a href="#" class="acrit-inline-link" data-role="acrit_ozon_preview_error_json">
+		<a href="#" class="data-inline-link" data-role="data_ozon_preview_error_json">
 			<?=static::getMessage('ERROR_PREVIEW_JSON_RAW');?>
 		</a>
 	</div>
@@ -49,7 +49,7 @@ print Helper::showError($strDisplayMessageTitle);
 </div>
 <div style="margin-top:8px;">
 	<div>
-		<a href="#" class="acrit-inline-link" data-role="acrit_ozon_preview_error_json">
+		<a href="#" class="data-inline-link" data-role="data_ozon_preview_error_json">
 			<?=static::getMessage('ERROR_PREVIEW_HEADERS');?>
 		</a>
 	</div>
@@ -58,10 +58,10 @@ print Helper::showError($strDisplayMessageTitle);
 	</div>
 </div>
 <script>
-if(AcritExpPopupExecute.PARTS.CONTENT_DATA.clientWidth < 800){
-	AcritExpPopupExecute.SetSize({width:800});
+if(DataExpPopupExecute.PARTS.CONTENT_DATA.clientWidth < 800){
+	DataExpPopupExecute.SetSize({width:800});
 }
-$('a[data-role="acrit_ozon_preview_error_json"]').bind('click', function(e){
+$('a[data-role="data_ozon_preview_error_json"]').bind('click', function(e){
 	e.preventDefault();
 	$(this).parent().next().toggle();
 });

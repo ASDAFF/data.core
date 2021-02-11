@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 $MESS[$strLang.'LOG_TASKS_HEADING'] = 'История задач выгрузки';
 $MESS[$strLang.'LOG_TASKS_REFRESH'] = 'Обновить';

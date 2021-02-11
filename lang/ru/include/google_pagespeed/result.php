@@ -1,5 +1,5 @@
 <?
-$strLang = 'ACRIT_SEO_GOOGLE_PAGESPEED_';
+$strLang = 'DATA_SEO_GOOGLE_PAGESPEED_';
 
 $MESS[$strLang.'FINAL_URL'] = 'Запрашиваемый URL выполняет переадресацию на следующий URL: <a href="#URL#" target="_blank">#URL#</a>';
 

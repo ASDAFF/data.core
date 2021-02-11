@@ -1,5 +1,5 @@
 <?
-$acrit_core_default_option = array(
+$data_core_default_option = array(
 	'php_path'  => 'php',
 	'php_mbstring'  => 'Y',
 	'php_config'  => '-d short_open_tag=on -d display_errors=on -d error_reporting=22519 -d memory_limit=512M',

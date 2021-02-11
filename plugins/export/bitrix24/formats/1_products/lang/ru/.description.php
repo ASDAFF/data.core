@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_BITRIX24_PRODUCTS_';
+$strMessPrefix = 'DATA_EXP_BITRIX24_PRODUCTS_';
 
 $MESS[$strMessPrefix.'GET_BITRIX24_ACCESS_TITLE'] = 'Получение доступа к данным портала';
 $MESS[$strMessPrefix.'GET_BITRIX24_ACCESS'] = '

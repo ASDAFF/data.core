@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Backup;
+	\Data\Core\Helper,
+	\Data\Core\Export\Backup;
 
 Loc::loadMessages(__FILE__);
 
@@ -12,26 +12,26 @@ $strFormAction = $APPLICATION->GetCurPageParam('ajax_action=backup_restore', arr
 ?>
 
 <style>
-table.acrit-exp-backup-restore {
+table.data-exp-backup-restore {
 	width:100%;
 }
-table.acrit-exp-backup-restore td:first-child{
+table.data-exp-backup-restore td:first-child{
 	padding-right:6px;
 	text-align:right;
 	width:35%;
 }
-table.acrit-exp-backup-restore td:last-child{
+table.data-exp-backup-restore td:last-child{
 	width:65%;
 }
-table.acrit-exp-backup-restore td:only-child{
+table.data-exp-backup-restore td:only-child{
 	text-align:left;
 	width:auto;
 }
-table.acrit-exp-backup-restore td .file_wrapper {
+table.data-exp-backup-restore td .file_wrapper {
 	overflow:hidden;
 	position:relative;
 }
-table.acrit-exp-backup-restore td .file_wrapper input[type=file]{
+table.data-exp-backup-restore td .file_wrapper input[type=file]{
 	cursor:text;
 	height:10000px;
 	left:-1000px;
@@ -40,7 +40,7 @@ table.acrit-exp-backup-restore td .file_wrapper input[type=file]{
 	top:-1000px;
 	width:10000px;
 }
-table.acrit-exp-backup-restore td .file_wrapper input[type=text]{
+table.data-exp-backup-restore td .file_wrapper input[type=text]{
 	width:100%;
 	-webkit-box-sizing:border-box;
 	   -moz-box-sizing:border-box;
@@ -48,27 +48,27 @@ table.acrit-exp-backup-restore td .file_wrapper input[type=text]{
 }
 </style>
 <div style="display:none;">
-	<iframe id="iframe_backup_restore" name="iframe_backup_restore" onload="acritExpRestoreIFrameLoaded(this)"></iframe>
+	<iframe id="iframe_backup_restore" name="iframe_backup_restore" onload="dataExpRestoreIFrameLoaded(this)"></iframe>
 </div>
-<form action="<?=$strFormAction;?>" method="post" enctype="multipart/form-data" target="iframe_backup_restore" id="acrit-exp-form-backup-restore">
-	<table class="acrit-exp-backup-restore">
+<form action="<?=$strFormAction;?>" method="post" enctype="multipart/form-data" target="iframe_backup_restore" id="data-exp-form-backup-restore">
+	<table class="data-exp-backup-restore">
 		<tbody>
 			<tr>
 				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_FILE_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_FILE');?>:
+					<?=Helper::showHint(Loc::getMessage('DATA_EXP_POPUP_RESTORE_FILE_HINT'));?>
+					<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_FILE');?>:
 				</td>
 				<td>
 					<div class="file_wrapper">
 						<input type="file" name="backup" />
-						<input type="text" placeholder="<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_FILE_PLACEHOLDER');?>" />
+						<input type="text" placeholder="<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_FILE_PLACEHOLDER');?>" />
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_MODE_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_MODE');?>:
+					<?=Helper::showHint(Loc::getMessage('DATA_EXP_POPUP_RESTORE_MODE_HINT'));?>
+					<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_MODE');?>:
 				</td>
 				<td>
 					<?
@@ -81,19 +81,19 @@ table.acrit-exp-backup-restore td .file_wrapper input[type=text]{
 					?>
 					&nbsp;
 					<span data-role="backup-restore-exact-warning" style="display:none">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_MODE_WARNING');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_MODE_WARNING');?>
 					</span>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_DELETE_ALL_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_DELETE_ALL');?>:
+					<?=Helper::showHint(Loc::getMessage('DATA_EXP_POPUP_RESTORE_DELETE_ALL_HINT'));?>
+					<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_DELETE_ALL');?>:
 				</td>
 				<td>
-					<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_DELETE_ALL_BUTTON');?>"
+					<input type="button" value="<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_DELETE_ALL_BUTTON');?>"
 						data-role="profiles-delete-all"
-						data-confirm="<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_DELETE_ALL_CONFIRM');?>" />
+						data-confirm="<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_DELETE_ALL_CONFIRM');?>" />
 				</td>
 			</tr>
 			<tr>

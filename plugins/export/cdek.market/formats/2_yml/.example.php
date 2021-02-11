@@ -1,6 +1,6 @@
 <?
 use \Bitrix\Main\Localization\Loc,
-    \Acrit\Core\Helper;
+    \Data\Core\Helper;
 
 $strExample = <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -8,16 +8,16 @@ $strExample = <<< XML
     <shop>
         <name>akrit</name>
         <company>akrittest</company>
-        <platform>1С-Битрикс: Управление сайтом</platform>
+        <platform>1РЎ-Р‘РёС‚СЂРёРєСЃ: РЈРїСЂР°РІР»РµРЅРёРµ СЃР°Р№С‚РѕРј</platform>
         <version>19.0.250</version>
         <url>http://akrittest</url>
         <categories>
-            <category id="14">Одежда, обувь и аксессуары///Аксессуары///Ремни, пояса и подтяжки///Ремни</category>
-            <category id="15">Одежда, обувь и аксессуары///Аксессуары///Ремни, пояса и подтяжки///Ремни</category>
+            <category id="14">РћРґРµР¶РґР°, РѕР±СѓРІСЊ Рё Р°РєСЃРµСЃСЃСѓР°СЂС‹///РђРєСЃРµСЃСЃСѓР°СЂС‹///Р РµРјРЅРё, РїРѕСЏСЃР° Рё РїРѕРґС‚СЏР¶РєРё///Р РµРјРЅРё</category>
+            <category id="15">РћРґРµР¶РґР°, РѕР±СѓРІСЊ Рё Р°РєСЃРµСЃСЃСѓР°СЂС‹///РђРєСЃРµСЃСЃСѓР°СЂС‹///Р РµРјРЅРё, РїРѕСЏСЃР° Рё РїРѕРґС‚СЏР¶РєРё///Р РµРјРЅРё</category>
         </categories>
         <offers>
             <offer id="12346" bid="80">
-                <name>Вафельница First FA-5300</name>
+                <name>Р’Р°С„РµР»СЊРЅРёС†Р° First FA-5300</name>
                 <vendor>First</vendor>
                 <vendorCode>A1234567B</vendorCode>
                 <url>http://best.seller.ru/product_page.asp?pid=12348</url>
@@ -34,12 +34,12 @@ $strExample = <<< XML
                 </delivery-options>
                 <description>
                 <![CDATA[
-                  <p>Отличный подарок для любителей венских вафель.</p>
+                  <p>РћС‚Р»РёС‡РЅС‹Р№ РїРѕРґР°СЂРѕРє РґР»СЏ Р»СЋР±РёС‚РµР»РµР№ РІРµРЅСЃРєРёС… РІР°С„РµР»СЊ.</p>
                 ]]>
                 </description>
-                <sales_notes>Необходима предоплата.</sales_notes>
+                <sales_notes>РќРµРѕР±С…РѕРґРёРјР° РїСЂРµРґРѕРїР»Р°С‚Р°.</sales_notes>
                 <manufacturer_warranty>true</manufacturer_warranty>
-                <country_of_origin>Россия</country_of_origin>
+                <country_of_origin>Р РѕСЃСЃРёСЏ</country_of_origin>
                 <barcode>0156789012</barcode>
             </offer>
         </offers>
@@ -51,11 +51,11 @@ if (!Helper::isUtf())
     $strExample = Helper::convertEncoding($strExample, 'UTF-8', 'CP1251');
 }
 ?>
-<div class="acrit-exp-plugin-example">
+<div class="data-exp-plugin-example">
     <pre><code class="xml"><?= htmlspecialcharsbx($strExample); ?></code></pre>
 </div>
 <script>
-    $('.acrit-exp-plugin-example pre code.xml').each(function (i, block) {
+    $('.data-exp-plugin-example pre code.xml').each(function (i, block) {
         highlighElement(block);
     });
 </script> 

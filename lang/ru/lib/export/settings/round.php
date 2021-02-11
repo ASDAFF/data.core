@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_ROUND_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_ROUND_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Округление';
 $MESS[$strMessPrefix.'DESC'] = 'Отметьте галочку, если необходиммо производить округление числового значения.<br/>

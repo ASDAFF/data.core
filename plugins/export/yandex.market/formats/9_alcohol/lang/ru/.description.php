@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_MARKET_ALCOHOL_';
+$strMessPrefix = 'DATA_EXP_YANDEX_MARKET_ALCOHOL_';
 
 //
 $MESS[$strMessPrefix.'NOTE'] = '<b>Внимание!</b> Чтобы размещать на Маркете алкоголь, необходимо <b>предоставить лицензии и гарантийное письмо</b>.<br/>

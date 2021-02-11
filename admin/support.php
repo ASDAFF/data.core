@@ -1,12 +1,12 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
 	\Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 $strModuleId = $ModuleID = preg_replace('#^.*?/([a-z0-9]+)_([a-z0-9]+).*?$#', '$1.$2', $_SERVER['REQUEST_URI']);
 $strModuleCode = preg_replace('#^(.*?)\.(.*?)$#', '$2', $strModuleId);
 $strModuleUnderscore = preg_replace('#^(.*?)\.(.*?)$#', '$1_$2', $strModuleId);
@@ -29,18 +29,18 @@ $obPost = \Bitrix\Main\Context::getCurrent()->getRequest()->getPostList();
 $arPost = $obPost->toArray();
 
 // Demo
-acritShowDemoExpired($strModuleId);
+dataShowDemoExpired($strModuleId);
 
 // Page title
-$strPageTitle = Loc::getMessage('ACRIT_CORE_PAGE_TITLE_SUPPORT');
+$strPageTitle = Loc::getMessage('DATA_CORE_PAGE_TITLE_SUPPORT');
 
 // Core notice
 if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
-	?><div id="acrit-core-notifier"><?
+	?><div id="data-core-notifier"><?
 		print '<div style="margin-top:15px;"></div>';
 		print \CAdminMessage::ShowMessage(array(
-			'MESSAGE' => \Bitrix\Main\Localization\Loc::getMessage('ACRIT_CORE_NOTICE', [
+			'MESSAGE' => \Bitrix\Main\Localization\Loc::getMessage('DATA_CORE_NOTICE', [
 				'#CORE_ID#' => $strCoreId,
 				'#LANG#' => LANGUAGE_ID,
 			]),
@@ -59,10 +59,10 @@ $strModuleName = Helper::getModuleName($strModuleId);
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
 
 // Demo
-acritShowDemoNotice($strModuleId);
+dataShowDemoNotice($strModuleId);
 
 # Update notifier
-\Acrit\Core\Update::display();
+\Data\Core\Update::display();
 
 // Set page title
 $strPageTitle .= ' &laquo;'.$strModuleName.'&raquo; ('.$strModuleId.')';
@@ -70,7 +70,7 @@ $APPLICATION->SetTitle($strPageTitle);
 
 # Prepare tabs
 $arTabs = [];
-if(in_array($strModuleId, \Acrit\Core\Export\Exporter::getExportModules(true))){
+if(in_array($strModuleId, \Data\Core\Export\Exporter::getExportModules(true))){
 	$strTabsDir = $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/'.$strCoreId.'/include/support/export';
 }
 else{
@@ -84,8 +84,8 @@ if(is_dir($strTabsDir)){
 			$strCode = pathinfo($strFile, PATHINFO_FILENAME);
 			$arTabs[$strCode] = [
 				'DIV' => $strCode,
-				'TAB' => Helper::getMessage(sprintf('ACRIT_CORE_TAB_%s_NAME', toUpper($strCode))),
-				'TITLE' => Helper::getMessage(sprintf('ACRIT_CORE_TAB_%s_DESC', toUpper($strCode))),
+				'TAB' => Helper::getMessage(sprintf('DATA_CORE_TAB_%s_NAME', toUpper($strCode))),
+				'TITLE' => Helper::getMessage(sprintf('DATA_CORE_TAB_%s_DESC', toUpper($strCode))),
 				'FILE' => $strFile,
 			];
 		}
@@ -94,8 +94,8 @@ if(is_dir($strTabsDir)){
 # Add ask tab if it absent
 if(!is_array($arTabs['ask'])){
 	$arTabs['ask'] = [
-		'TAB' => Helper::getMessage('ACRIT_CORE_TAB_ASK_NAME'),
-		'TITLE' => Helper::getMessage('ACRIT_CORE_TAB_ASK_DESC'),
+		'TAB' => Helper::getMessage('DATA_CORE_TAB_ASK_NAME'),
+		'TITLE' => Helper::getMessage('DATA_CORE_TAB_ASK_DESC'),
 		'FILE' => realpath(__DIR__.'/../include/support/ask.php'),
 	];
 }
@@ -112,10 +112,10 @@ foreach($arTabs as $strTab => &$arTab){
 }
 unset($arTab);
 
-?><div id="acrit_core_support"><?
+?><div id="data_core_support"><?
 
 // Start TabControl (via CAdminForm, not CAdminTabControl)
-$obTabControl = new \CAdminForm('AcritExpSupport', $arTabs);
+$obTabControl = new \CAdminForm('DataExpSupport', $arTabs);
 $obTabControl->Begin(array(
 	'FORM_ACTION' => $APPLICATION->getCurPageParam('', array()),
 ));
@@ -138,7 +138,7 @@ $strEncodingMore = sprintf(' ("%s", "%s", "2")', ini_get('default_charset'), ini
 
 ?>
 <div style="display:none">
-	<form action="https://www.acrit-studio.ru/support/?show_wizard=Y" method="post" id="form-ticket" target="_blank" accept-charset="UTF-8">
+	<form action="https://www.data-studio.ru/support/?show_wizard=Y" method="post" id="form-ticket" target="_blank" accept-charset="UTF-8">
 		<input type="hidden" name="send_ticket_from_module" value="Y" />
 		<input type="hidden" name="ticket_email" value="" />
 		<input type="hidden" name="ticket_title" value="" />
@@ -184,18 +184,18 @@ $strEncodingMore = sprintf(' ("%s", "%s", "2")', ini_get('default_charset'), ini
 		textMessage = [
 			textMessage,
 			'\n\n',
-			'<?=Helper::getMessage('ACRIT_CORE_ASK_MODULE_ID');?>: ' + $('input[name="module_id"]', form).val(),
+			'<?=Helper::getMessage('DATA_CORE_ASK_MODULE_ID');?>: ' + $('input[name="module_id"]', form).val(),
 			'\n',
-			'<?=Helper::getMessage('ACRIT_CORE_ASK_MODULE_VERSION');?>: ' + $('input[name="module_version"]', form).val() 
+			'<?=Helper::getMessage('DATA_CORE_ASK_MODULE_VERSION');?>: ' + $('input[name="module_version"]', form).val() 
 				+ ' / ' + $('input[name="core_version"]', form).val(),
 			'\n',
-			'<?=Helper::getMessage('ACRIT_CORE_ASK_BITRIX_VERSION');?>: ' + $('input[name="bitrix_version"]', form).val(),
+			'<?=Helper::getMessage('DATA_CORE_ASK_BITRIX_VERSION');?>: ' + $('input[name="bitrix_version"]', form).val(),
 			'\n',
-			'<?=Helper::getMessage('ACRIT_CORE_ASK_PHP_VERSION');?>: ' + $('input[name="php_version"]', form).val(),
+			'<?=Helper::getMessage('DATA_CORE_ASK_PHP_VERSION');?>: ' + $('input[name="php_version"]', form).val(),
 			'\n',
-			'<?=Helper::getMessage('ACRIT_CORE_ASK_SITE_ENCODING');?>: ' + $('input[name="site_encoding"]', form).val(),
+			'<?=Helper::getMessage('DATA_CORE_ASK_SITE_ENCODING');?>: ' + $('input[name="site_encoding"]', form).val(),
 			'\n',
-			'<?=Helper::getMessage('ACRIT_CORE_ASK_SITE_DOMAIN');?>: ' + $('input[name="site_domain"]', form).val(),
+			'<?=Helper::getMessage('DATA_CORE_ASK_SITE_DOMAIN');?>: ' + $('input[name="site_domain"]', form).val(),
 			'\n'
 		];
 		$('input[name="ticket_email"]', form).val(textEmail);

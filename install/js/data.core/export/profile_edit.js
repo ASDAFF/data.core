@@ -4,7 +4,7 @@
  *	ajaxAction = 'load_structure_iblock';
  *	ajaxAction = ['plugin_ajax_action','get_props_for_additional_fields'];
  */
-function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
+function dataExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
 	var lang = phpVars.LANGUAGE_ID,//$('#param__lang').val(),
 		profileId = $('#param__profile_id').val(),
 		currentPlugin = $('#param__plugin').val(),
@@ -41,7 +41,7 @@ function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hi
 				BX.closeWait();
 			}
 			if(typeof data.ServerTime == 'string'){
-				acritExpRefreshServerTime(data.ServerTime);
+				dataExpRefreshServerTime(data.ServerTime);
 			}
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -59,11 +59,11 @@ function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hi
 /**
  *	Set cookie
  */
-function acritExpCookie(key, value){
+function dataExpCookie(key, value){
 	var params = {path:'/',domain:location.host},
-		moduleId = acritExpGetModuleId(),
+		moduleId = dataExpGetModuleId(),
 		profileId = $('#param__profile_id').val(),
-		cookieId = 'acrit_'+moduleId+'_'+profileId+'_'+key;
+		cookieId = 'data_'+moduleId+'_'+profileId+'_'+key;
 	if(value == undefined){
 		return $.cookie(cookieId);
 	}
@@ -72,11 +72,11 @@ function acritExpCookie(key, value){
 	}
 }
 
-function acritExpGetModuleId(){
-	return location.pathname.replace(/\/bitrix\/admin\/acrit_(.*?)_.*?$/g, '$1');
+function dataExpGetModuleId(){
+	return location.pathname.replace(/\/bitrix\/admin\/data_(.*?)_.*?$/g, '$1');
 }
 
-function acritExpHandleAjaxError(jqXHR, isError){
+function dataExpHandleAjaxError(jqXHR, isError){
 	if(isError) {
 		if(jqXHR){
 			console.log(jqXHR);
@@ -87,25 +87,25 @@ function acritExpHandleAjaxError(jqXHR, isError){
 		console.log('HTTP error: ' + jqXHR.status + ' ' + jqXHR.statusText);
 	}
 	if(jqXHR.responseText && jqXHR.responseText.indexOf('bx-admin-auth-form')!=-1) {
-		alert(BX.message('ACRIT_EXP_AJAX_AUTH_REQUIRED'));
+		alert(BX.message('DATA_EXP_AJAX_AUTH_REQUIRED'));
 	}
 	var exclude = ['export_execute','load_popup_select_field','load_popup_value_settings','load_popup_field_settings',
 		'categories_redefinition_show','categories_redefinition_select','save_last_settings_tab','reload_iblocks',
 		'load_structure_iblock','iblocks_preview','history_refresh'];
 	/*
 	if(jqXHR._ajax_action != 'log_refresh' && exclude.indexOf(jqXHR._ajax_action)==-1) {
-		acritExpUpdateLog();
+		dataExpUpdateLog();
 	}
 	*/
 }
 
-function acritExpScrollToTop(){
+function dataExpScrollToTop(){
 	$('html,body').animate({
-		scrollTop:$('#acrit_exp_form').offset().top - 4
+		scrollTop:$('#data_exp_form').offset().top - 4
 	});
 }
 
-function acritExpSelectNextOption(e){
+function dataExpSelectNextOption(e){
 	if(e.button == 1){
 		e.preventDefault();
 		e.stopPropagation();
@@ -118,38 +118,38 @@ function acritExpSelectNextOption(e){
 	}
 }
 
-function acritExpRefreshServerTime(time){
-	$('[data-role="acrit-core-server-time"]').attr('data-date', time).text(time);
-	acritCoreCronShowServerTime();
+function dataExpRefreshServerTime(time){
+	$('[data-role="data-core-server-time"]').attr('data-date', time).text(time);
+	dataCoreCronShowServerTime();
 }
 
-function acritExpGetFileUrl(){
+function dataExpGetFileUrl(){
 	let
-		useHttps = $('input[data-role="acrit_exp_use_https"]').prop('checked'),
-		domain = $('input[data-role="acrit_exp_domain"]').val(),
+		useHttps = $('input[data-role="data_exp_use_https"]').prop('checked'),
+		domain = $('input[data-role="data_exp_domain"]').val(),
 		filename = $('input[data-role="export-file-name"]').val(),
 		url = (useHttps ? 'https://' : 'http://') + domain + filename;
 	if(domain == undefined || !domain.length){
-		alert(BX.message('ACRIT_EXP_GET_FILE_URL_NO_DOMAIN'));
+		alert(BX.message('DATA_EXP_GET_FILE_URL_NO_DOMAIN'));
 	}
 	else if(filename == undefined || !filename.length){
-		alert(BX.message('ACRIT_EXP_GET_FILE_URL_NO_FILENAME'));
+		alert(BX.message('DATA_EXP_GET_FILE_URL_NO_FILENAME'));
 	}
 	else{
-		prompt(BX.message('ACRIT_EXP_GET_FILE_TITLE'), url);
+		prompt(BX.message('DATA_EXP_GET_FILE_TITLE'), url);
 	}
 }
 
 // Module version in nav chain
 $(document).ready(function(){
-	if(acritExpModuleVersion.length > 0 && acritExpCoreVersion.length > 0) {
-		$('a[id^="bx_admin_chain_item_menu_acrit_"]>span').append(' ('+acritExpModuleVersion+' / '+acritExpCoreVersion+')');
+	if(dataExpModuleVersion.length > 0 && dataExpCoreVersion.length > 0) {
+		$('a[id^="bx_admin_chain_item_menu_data_"]>span').append(' ('+dataExpModuleVersion+' / '+dataExpCoreVersion+')');
 	}
 });
 
 // Add message container to button bar
 $(document).ready(function(){
-	$('#acrit_exp_form .adm-detail-content-btns')
+	$('#data_exp_form .adm-detail-content-btns')
 		.append('&nbsp; <span data-role="iblock-settings-save-progress"></span>')
 		.append('&nbsp; <span data-role="iblock-settings-save-result"></span>');
 });
@@ -158,57 +158,57 @@ $(document).ready(function(){
 $(document).delegate('a[data-role="main-notice-hide"]', 'click', function(e){
 	e.preventDefault();
 	// ajax
-	acritExpAjax('main_notice_hide', '', function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('main_notice_hide', '', function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success){
 			$('div[data-role="main-notice"]').remove();
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, true);
 });
 
 // Sites
-$(document).delegate('#acrit_exp_form #field_SITE_ID', 'change', function(e){
+$(document).delegate('#data_exp_form #field_SITE_ID', 'change', function(e){
 	var domain = $(this).find('option:selected').data('domain'),
 		siteId = $(this).val();
 	if(domain!=undefined && domain.length>0) {
-		$('.acrit_exp_domain_from_site').val(domain).show();
+		$('.data_exp_domain_from_site').val(domain).show();
 	}
 	else {
-		$('.acrit_exp_domain_from_site').val('').hide();
+		$('.data_exp_domain_from_site').val('').hide();
 	}
-	acritExpChangeProfileName();
+	dataExpChangeProfileName();
 	//
-	acritExpAjax('cron_get_command', {site_id: siteId}, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('cron_get_command', {site_id: siteId}, function(JsonResult, textStatus, jqXHR){
 		if(JsonResult){
-			$('#acrit-core-cron-command-copy').text(JsonResult.Command);
+			$('#data-core-cron-command-copy').text(JsonResult.Command);
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, true);
 });
-$(document).delegate('#acrit_exp_form .profile_domain_buttons input[type=button]', 'click', function(e){
+$(document).delegate('#data_exp_form .profile_domain_buttons input[type=button]', 'click', function(e){
 	var domain = $(this).val();
 	if(domain!=undefined) {
 		$('#tr_DOMAIN input[type=text]').val(domain);
 	}
 });
 $(document).ready(function(){
-	$('#acrit_exp_form #field_SITE_ID').trigger('change');
+	$('#data_exp_form #field_SITE_ID').trigger('change');
 });
 
 // Name
 $(document).delegate('input[data-role="profile-name"]', 'change', function(){
 	$(this).attr('data-custom-name', 'true');
 });
-function acritExpChangeProfileName(){
-	if(!window.acritExpCanChangeName){
+function dataExpChangeProfileName(){
+	if(!window.dataExpCanChangeName){
 		return;
 	}
 	var inputName = $('input[data-role="profile-name"]'),
-		format = window.acritExpCurrentPlugin,
+		format = window.dataExpCurrentPlugin,
 		site = $('select[data-role="profile-site"]').val();
 	if(inputName.attr('data-custom-name') != 'true'){
 		var name = format && format.NAME ? format.NAME : inputName.data('default-name');
@@ -217,19 +217,19 @@ function acritExpChangeProfileName(){
 			name = name + ' [' + site + ']';
 		}
 		// ajax
-		acritExpAjax('get_profile_name_index', 'profile_name='+name, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('get_profile_name_index', 'profile_name='+name, function(JsonResult, textStatus, jqXHR){
 			if(JsonResult && JsonResult.NAME.length){
 				inputName.val(JsonResult.NAME);
 			}
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
 }
 $(document).ready(function(){
 	setTimeout(function(){
-		window.acritExpCanChangeName = true;
+		window.dataExpCanChangeName = true;
 	}, 1000);
 	$('input[data-role="profile-name"]').bind('textchange', function(){
 		var textContent = $('#param__page_title').val();
@@ -241,10 +241,10 @@ $(document).ready(function(){
 });
 
 // Plugins
-function acritExpShowPluginData(initial){
-	var currentPluginCode = $('#acrit_exp_form #field_PLUGIN').val(),
-		currentFormatCode = $('#acrit_exp_form #field_FORMAT').val(),
-		currentPlugin = window.acritExpPlugins[currentPluginCode],
+function dataExpShowPluginData(initial){
+	var currentPluginCode = $('#data_exp_form #field_PLUGIN').val(),
+		currentFormatCode = $('#data_exp_form #field_FORMAT').val(),
+		currentPlugin = window.dataExpPlugins[currentPluginCode],
 		current = null;
 	if (currentPlugin){
 		current = currentPlugin;
@@ -260,24 +260,24 @@ function acritExpShowPluginData(initial){
 		if(!initial) {
 			$('#param__plugin').val(currentPluginCode);
 			$('#param__format').val(currentFormatCode);
-			acritExpPluginLoadSettings(false);
+			dataExpPluginLoadSettings(false);
 		}
 	}
-	window.acritExpCurrentPlugin = current;
-	acritExpChangeProfileName();
+	window.dataExpCurrentPlugin = current;
+	dataExpChangeProfileName();
 }
-function acritExpPluginLoadSettings(saveValues) {
+function dataExpPluginLoadSettings(saveValues) {
 	var currentValues = '',
-		trSettings = $('#acrit_exp_form #tr_PLUGIN_SETTINGS'),
-		divSettings = $('#acrit_exp_form #div_PLUGIN_SETTINGS'),
-		rowDescription = $('#acrit_exp_form #tr_PLUGIN_DESCRIPTION_HEADING, #acrit_exp_form #tr_PLUGIN_DESCRIPTION'),
-		rowExample = $('#acrit_exp_form #tr_PLUGIN_EXAMPLE_HEADING, #acrit_exp_form #tr_PLUGIN_EXAMPLE');
+		trSettings = $('#data_exp_form #tr_PLUGIN_SETTINGS'),
+		divSettings = $('#data_exp_form #div_PLUGIN_SETTINGS'),
+		rowDescription = $('#data_exp_form #tr_PLUGIN_DESCRIPTION_HEADING, #data_exp_form #tr_PLUGIN_DESCRIPTION'),
+		rowExample = $('#data_exp_form #tr_PLUGIN_EXAMPLE_HEADING, #data_exp_form #tr_PLUGIN_EXAMPLE');
 	if(saveValues){
-		currentValues = $('#acrit_exp_form #div_PLUGIN_SETTINGS :input').serialize();
+		currentValues = $('#data_exp_form #div_PLUGIN_SETTINGS :input').serialize();
 	}
 	divSettings.html('<table style="width:100%"><tr><td width="40%"></td>'
-		+'<td width="60%">'+BX.message('ACRIT_EXP_POPUP_LOADING')+'</td></tr></table>');
-	acritExpAjax('load_plugin_settings', currentValues, function(JsonResult, textStatus, jqXHR){
+		+'<td width="60%">'+BX.message('DATA_EXP_POPUP_LOADING')+'</td></tr></table>');
+	dataExpAjax('load_plugin_settings', currentValues, function(JsonResult, textStatus, jqXHR){
 		divSettings.html(JsonResult.HTML).find('input[type=checkbox]').each(function(){
 			BX.adminFormTools.modifyCheckbox(this);
 		});
@@ -291,31 +291,31 @@ function acritExpPluginLoadSettings(saveValues) {
 		if(JsonResult.EXAMPLE.length){
 			rowExample.show().not('.heading').children('td').html('<div class="plugin-example">'+JsonResult.EXAMPLE+'</div>');
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, true);
 }
-function acritExpPluginTemplate(state) {
+function dataExpPluginTemplate(state) {
 	if (!state.id) {
 		return state.text;
 	}
 	var html = $('<span class="select2-menuicon"><img src="'+$(state.element).attr('data-icon')+'" /> <span>' + state.text + '</span></span>');
 	return html;
 };
-$(document).delegate('#acrit_exp_form #field_PLUGIN', 'change', function(e, data){
+$(document).delegate('#data_exp_form #field_PLUGIN', 'change', function(e, data){
 	if(!(data && data.initial)){
-		$('.acrit_exp_type_info').hide().not('.heading').children('td').html('');
+		$('.data_exp_type_info').hide().not('.heading').children('td').html('');
 	}
-	if(window.acritExpPlugins == undefined){
+	if(window.dataExpPlugins == undefined){
 		location.reload(); // this can be on immediate after auth in admin section
 	}
-	var selectFormat = $('#acrit_exp_form #field_FORMAT'),
-		currentPlugin = window.acritExpPlugins[$(this).val()],
-		rowFormat = $('#acrit_exp_form #tr_PLUGIN_FORMAT'),
+	var selectFormat = $('#data_exp_form #field_FORMAT'),
+		currentPlugin = window.dataExpPlugins[$(this).val()],
+		rowFormat = $('#data_exp_form #tr_PLUGIN_FORMAT'),
 		//
-		trSettings = $('#acrit_exp_form #tr_PLUGIN_SETTINGS'),
-		divSettings = $('#acrit_exp_form #div_PLUGIN_SETTINGS');
+		trSettings = $('#data_exp_form #tr_PLUGIN_SETTINGS'),
+		divSettings = $('#data_exp_form #div_PLUGIN_SETTINGS');
 	rowFormat.hide();
 	selectFormat.html('');
 	if(currentPlugin) {
@@ -331,43 +331,43 @@ $(document).delegate('#acrit_exp_form #field_PLUGIN', 'change', function(e, data
 			// show formats SELECT
 			if(formatsCount > 1) {
 				rowFormat.show();
-				window.acritExpFormatSelect2Config = {
+				window.dataExpFormatSelect2Config = {
 					dropdownParent: $('#tr_PLUGIN_FORMAT > td > div').first(),
 					dropdownPosition: 'below',
 					language: 'ru'
 				};
-				window.acritExpFormatSelect2Object = $('#field_FORMAT').select2(window.acritExpFormatSelect2Config);
+				window.dataExpFormatSelect2Object = $('#field_FORMAT').select2(window.dataExpFormatSelect2Config);
 			}
 		}
-		acritExpShowPluginData(data && data.initial);
+		dataExpShowPluginData(data && data.initial);
 	}
 	else {
 		divSettings.html('');
 		trSettings.hide();
 	}
 });
-$(document).delegate('#acrit_exp_form #field_FORMAT', 'change', function(e){
-	acritExpShowPluginData();
+$(document).delegate('#data_exp_form #field_FORMAT', 'change', function(e){
+	dataExpShowPluginData();
 });
 $(document).ready(function(){
 	// Select2
-	window.acritExpPluginSelect2Config = {
-		templateResult: acritExpPluginTemplate,
-		templateSelection: acritExpPluginTemplate,
+	window.dataExpPluginSelect2Config = {
+		templateResult: dataExpPluginTemplate,
+		templateSelection: dataExpPluginTemplate,
 		dropdownParent: $('#tr_PLUGIN > td > div').first(),
 		dropdownPosition: 'below',
 		language: 'ru'
 	};
-	window.acritExpPluginSelect2Object = $('#field_PLUGIN').select2(window.acritExpPluginSelect2Config);
+	window.dataExpPluginSelect2Object = $('#field_PLUGIN').select2(window.dataExpPluginSelect2Config);
 	// Refresh select2 on tabs change
 	BX.addCustomEvent('OnAdminTabsChange', function(){
-		if(window.acritExpPluginSelect2Object){
-			window.acritExpPluginSelect2Object.select2(window.acritExpPluginSelect2Config);
+		if(window.dataExpPluginSelect2Object){
+			window.dataExpPluginSelect2Object.select2(window.dataExpPluginSelect2Config);
 		}
-		if(window.acritExpFormatSelect2Object){
-			window.acritExpFormatSelect2Object.select2(window.acritExpFormatSelect2Config);
+		if(window.dataExpFormatSelect2Object){
+			window.dataExpFormatSelect2Object.select2(window.dataExpFormatSelect2Config);
 		}
-		//acritExpIBlocksSelectStylize();
+		//dataExpIBlocksSelectStylize();
 	});
 	// Initial trigger
 	$('#field_PLUGIN').trigger('change', {initial:true});
@@ -390,12 +390,12 @@ $(document).delegate('#input_PLUGIN_activate', 'click', function(e){
 });
 
 // Structure tab
-$(document).delegate('#acrit_exp_form #field_IBLOCK', 'change', function(e, data){
+$(document).delegate('#data_exp_form #field_IBLOCK', 'change', function(e, data){
 	var fieldIBlock = $(this),
 		iblock_id = fieldIBlock.val();
 	fieldIBlock.attr('data-loaded', 'N');
-	acritExpAjax('load_structure_iblock', 'iblock_id='+iblock_id, function(JsonResult, textStatus, jqXHR){
-		var divIBlockContent = $('#acrit_exp_form #field_IBLOCK_content');
+	dataExpAjax('load_structure_iblock', 'iblock_id='+iblock_id, function(JsonResult, textStatus, jqXHR){
+		var divIBlockContent = $('#data_exp_form #field_IBLOCK_content');
 		divIBlockContent.html(JsonResult.HTML).find('input[type=checkbox]').each(function(){
 			BX.adminFormTools.modifyCheckbox(this);
 		});
@@ -411,14 +411,14 @@ $(document).delegate('#acrit_exp_form #field_IBLOCK', 'change', function(e, data
 		$(document).scrollTop($(document).scrollTop()+1);
 		$(document).scrollTop($(document).scrollTop()-1);
 		BX.onCustomEvent('onLoadStructureIBlock', [iblock_id]);
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 });
 // Select2
-function acritExpIBlocksSelectStylize(){
-	var select = $('#acrit_exp_form #field_IBLOCK');
+function dataExpIBlocksSelectStylize(){
+	var select = $('#data_exp_form #field_IBLOCK');
 	select.select2({
 		dropdownAutoWidth: true,
 		dropdownPosition: 'below',
@@ -426,49 +426,49 @@ function acritExpIBlocksSelectStylize(){
 		language: 'ru'
 	});
 }
-function acritExpIBlocksReload(data){
+function dataExpIBlocksReload(data){
 	var oldValue = $('#field_IBLOCK').val();
 	if(typeof data == 'object' && typeof data.IBlocks == 'string'){
 		$('#field_IBLOCK').html(data.IBlocks).val(oldValue);
-		acritExpIBlocksSelectStylize();
+		dataExpIBlocksSelectStylize();
 	}
 	else {
 		if(typeof data != 'string'){
 			data = '';
 		}
-		acritExpAjax('reload_iblocks', data, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('reload_iblocks', data, function(JsonResult, textStatus, jqXHR){
 			$('#field_IBLOCK').html(JsonResult.HTML).val(oldValue);
-			acritExpIBlocksSelectStylize();
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpIBlocksSelectStylize();
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, false);
 	}
 }
 $(document).delegate('input[type=checkbox][data-role="show-just-catalogs"]', 'change', function(e){
-	acritExpIBlocksReload('show_just_catalogs='+($(this).is(':checked')?'Y':'N'));
+	dataExpIBlocksReload('show_just_catalogs='+($(this).is(':checked')?'Y':'N'));
 });
 $(document).ready(function(){
-	acritExpIBlocksSelectStylize();
+	dataExpIBlocksSelectStylize();
 });
 
 // Structure tab - Fields
-$(document).delegate('#acrit_exp_form [data-role="iblock-structure"] [data-role="field-type"]', 'mousedown', acritExpSelectNextOption);
-$(document).delegate('#acrit_exp_form [data-role="iblock-structure"] [data-role="field-type"]', 'change', function(e){
+$(document).delegate('#data_exp_form [data-role="iblock-structure"] [data-role="field-type"]', 'mousedown', dataExpSelectNextOption);
+$(document).delegate('#data_exp_form [data-role="iblock-structure"] [data-role="field-type"]', 'change', function(e){
 	e.preventDefault();
 	var container = $(this).closest('tr').find('[data-role="field-value-cell"]').first(),
-		//iblock_id = $('#acrit_exp_form #field_IBLOCK').val(),
+		//iblock_id = $('#data_exp_form #field_IBLOCK').val(),
 		iblock_id = $(this).closest('div[data-role="iblock-structure"]').attr('data-iblock-id'),
 		field = $(this).closest('tr').data('field'),
 		type = $(this).val(),
 		request = 'iblock_id='+iblock_id+'&iblock_main='+'&field='+field+'&type='+type;
-	acritExpAjax('change_field_type', request, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('change_field_type', request, function(JsonResult, textStatus, jqXHR){
 		container.html(JsonResult.HTML);
 	}, function(jqXHR){
 		container.html(jqXHR.responseText);
 	}, false);
 });
-$(document).delegate('#acrit_exp_form [data-role="iblock-settings-save"]', 'click', function(e, data){
+$(document).delegate('#data_exp_form [data-role="iblock-settings-save"]', 'click', function(e, data){
 	var div = $('#field_IBLOCK_content'),
 		divSaving = $('span[data-role="iblock-settings-save-progress"]'),
 		divResult = $('span[data-role="iblock-settings-save-result"]'),
@@ -480,69 +480,69 @@ $(document).delegate('#acrit_exp_form [data-role="iblock-settings-save"]', 'clic
 	divSaving.html('');
 	divResult.html('');
 	//
-	divSaving.attr('data-saving', 'Y').html(BX.message('ACRIT_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS'));
+	divSaving.attr('data-saving', 'Y').html(BX.message('DATA_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS'));
 	//
-	acritExpAjax('iblock_save_data', formData, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('iblock_save_data', formData, function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.SaveSuccess) {
-			divResult.html(BX.message('ACRIT_EXP_IBLOCK_SETTINGS_SAVE_SUCCESS'));
+			divResult.html(BX.message('DATA_EXP_IBLOCK_SETTINGS_SAVE_SUCCESS'));
 		}
 		else {
-			divResult.html(BX.message('ACRIT_EXP_IBLOCK_SETTINGS_SAVE_ERROR'));
+			divResult.html(BX.message('DATA_EXP_IBLOCK_SETTINGS_SAVE_ERROR'));
 		}
-		if(window.acritExpIblockSettingsSaveTimeout){
-			clearTimeout(window.acritExpIblockSettingsSaveTimeout);
+		if(window.dataExpIblockSettingsSaveTimeout){
+			clearTimeout(window.dataExpIblockSettingsSaveTimeout);
 		}
-		window.acritExpIblockSettingsSaveTimeout = setTimeout(function(){
+		window.dataExpIblockSettingsSaveTimeout = setTimeout(function(){
 			divResult.html('');
 		},3000);
 		$('[data-role="iblock-settings-result"]').html('');
-		acritExpIBlocksReload(JsonResult);
+		dataExpIBlocksReload(JsonResult);
 		/*
 		if(!(typeof data == 'object' && data.hotkey)){
 			setTimeout(function(){
-				acritExpScrollToTop();
+				dataExpScrollToTop();
 			},250);
 		}
 		*/
 		divSaving.removeAttr('data-saving').html('');
-		acritExpHandleIBlocksMultipleNotice(JsonResult.IBlocksMultipleNotice);
+		dataExpHandleIBlocksMultipleNotice(JsonResult.IBlocksMultipleNotice);
 	}, function(jqXHR){
 		$('[data-role="iblock-settings-result"]').html(jqXHR.responseText);
 		divSaving.removeAttr('data-saving').html('');
 	}, true);
 });
-$(document).delegate('#acrit_exp_form [data-role="iblock-settings-clear"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="iblock-settings-clear"]', 'click', function(e){
 	e.preventDefault();
 	var iblockId = $('#field_IBLOCK').val(),
 		iblockName = $('#field_IBLOCK option:selected').attr('data-name');
 	if(iblockId){
-		acritExpClearIBlockData(iblockId, iblockName, true);
+		dataExpClearIBlockData(iblockId, iblockName, true);
 	}
 });
-function acritExpClearIBlockData(iblockId, iblockName, doScroll, callback){
+function dataExpClearIBlockData(iblockId, iblockName, doScroll, callback){
 	if(iblockId > 0) {
-		var message = BX.message('ACRIT_EXP_IBLOCK_SETTINGS_CLEAR_CONFIRM');
+		var message = BX.message('DATA_EXP_IBLOCK_SETTINGS_CLEAR_CONFIRM');
 		message = message.replace(/#ID#/, iblockId);
 		message = message.replace(/#NAME#/, iblockName);
 		if(confirm(message)) {
-			acritExpAjax('iblock_clear_data', '&iblock_id='+iblockId, function(JsonResult, textStatus, jqXHR){
+			dataExpAjax('iblock_clear_data', '&iblock_id='+iblockId, function(JsonResult, textStatus, jqXHR){
 				$('#field_IBLOCK').trigger('change');
 				$('[data-role="iblock-settings-result"]').html('');
-				acritExpIBlocksReload(JsonResult);
+				dataExpIBlocksReload(JsonResult);
 				if(doScroll == true) {
-					acritExpScrollToTop();
+					dataExpScrollToTop();
 				}
 				if (typeof callback == 'function'){
 					callback(iblockId, iblockName, doScroll);
 				}
-				acritExpHandleIBlocksMultipleNotice(JsonResult.IBlocksMultipleNotice);
+				dataExpHandleIBlocksMultipleNotice(JsonResult.IBlocksMultipleNotice);
 			}, function(jqXHR){
 				$('[data-role="iblock-settings-result"]').html(jqXHR.responseText);
 			}, false);
 		}
 	}
 }
-$(document).delegate('#acrit_exp_form [data-role="field--button-params"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field--button-params"]', 'click', function(e){
 	e.preventDefault();
 	var openerLink = $(this),
 		iblockId = $(this).closest('[data-role="iblock-structure"]').attr('data-iblock-id'),
@@ -552,9 +552,9 @@ $(document).delegate('#acrit_exp_form [data-role="field--button-params"]', 'clic
 		fieldType = $('select[data-role="field-type"]', rowField).val(),
 		inputParams = $('input[data-role="field--params"]', rowField);
 	//
-	AcritExpPopupFieldSettings.Open(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName);
+	DataExpPopupFieldSettings.Open(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName);
 });
-function acritExpHandleIBlocksMultipleNotice(IBlocksMultipleNotice){
+function dataExpHandleIBlocksMultipleNotice(IBlocksMultipleNotice){
 	var div = $('div[data-role="multiple-iblocks-note"]');
 	if(div.length){
 		if(typeof IBlocksMultipleNotice == 'string' && IBlocksMultipleNotice.length > 0){
@@ -569,12 +569,12 @@ function acritExpHandleIBlocksMultipleNotice(IBlocksMultipleNotice){
 /**
  *	[field type = SIMPLE]
  */
-$(document).delegate('#acrit_exp_form [data-role="field-simple--value-type"]', 'mousedown', acritExpSelectNextOption);
-$(document).delegate('#acrit_exp_form [data-role="field-simple--value-type"]', 'change', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--value-type"]', 'mousedown', dataExpSelectNextOption);
+$(document).delegate('#data_exp_form [data-role="field-simple--value-type"]', 'change', function(e){
 	$(this).closest('tr').attr('data-type', $(this).val());
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--value-add"]', 'click', function(e){
-	var table = $(this).closest('.acrit-exp-field-value').children('table'),
+$(document).delegate('#data_exp_form [data-role="field-simple--value-add"]', 'click', function(e){
+	var table = $(this).closest('.data-exp-field-value').children('table'),
 		thisRow = $(this).closest('tr'),
 		newRow = $('tr', table).first().clone();
 	$('select option', newRow).prop('selected', false);
@@ -584,20 +584,20 @@ $(document).delegate('#acrit_exp_form [data-role="field-simple--value-add"]', 'c
 	newRow.insertAfter(thisRow);
 	$('select', newRow).trigger('change');
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--value-clear"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--value-clear"]', 'click', function(e){
 	e.preventDefault();
 	var item = $(this).closest('[data-role="field-simple--value-item"]');
 	$('[data-role="field-simple--value-title"]', item).val('');
 	$('[data-role="field-simple--value-value"]', item).val('');
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--value-delete"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--value-delete"]', 'click', function(e){
 	e.preventDefault();
 	$(this).closest('tr').remove();
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--value-title"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--value-title"]', 'click', function(e){
 	$(this).closest('table').find('[data-role="field-simple--button-select-field"]').trigger('click');
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--button-select-field"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--button-select-field"]', 'click', function(e){
 	e.preventDefault();
 	var divIBlock = $(this).closest('[data-role="iblock-structure"]'),
 		divSort = $(this).closest('[data-role="sort-field"]'),
@@ -607,7 +607,7 @@ $(document).delegate('#acrit_exp_form [data-role="field-simple--button-select-fi
 		inputTitle = closestField.find('[data-role="field-simple--value-title"]')
 		currentValue = inputValue.val(),
 		allowIBlockSelect = divSort.length ? 'N' : 'Y';
-	AcritExpPopupSelectField.OnSelectField = function(thisPopup){
+	DataExpPopupSelectField.OnSelectField = function(thisPopup){
 		var selectedOption = $('select[data-role="field-select-list"]:visible option:selected', thisPopup.DIV),
 			selectedOptgroup = selectedOption.closest('optgroup');
 		if(selectedOption.length && selectedOptgroup.length) {
@@ -617,14 +617,14 @@ $(document).delegate('#acrit_exp_form [data-role="field-simple--button-select-fi
 			inputTitle.val(fieldName);
 		}
 	}
-	AcritExpPopupSelectField.Open(IBlockID, currentValue, allowIBlockSelect);
+	DataExpPopupSelectField.Open(IBlockID, currentValue, allowIBlockSelect);
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--button-select-const"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--button-select-const"]', 'click', function(e){
 	e.preventDefault();
 	var divIBlock = $(this).closest('[data-role="iblock-structure"]'),
 		IBlockID = divIBlock.attr('data-iblock-id'),
 		inputArea = $(this).closest('table').find('textarea');
-	AcritExpPopupSelectField.OnSelectField = function(thisPopup){
+	DataExpPopupSelectField.OnSelectField = function(thisPopup){
 		var selectedOption = $('select[data-role="field-select-list"]:visible option:selected', thisPopup.DIV),
 			selectedOptgroup = selectedOption.closest('optgroup');
 		if(selectedOption.length && selectedOptgroup.length) {
@@ -646,9 +646,9 @@ $(document).delegate('#acrit_exp_form [data-role="field-simple--button-select-co
 			inputArea.insertAtCaret(macro);
 		}
 	}
-	AcritExpPopupSelectField.Open(IBlockID);
+	DataExpPopupSelectField.Open(IBlockID);
 });
-$(document).delegate('#acrit_exp_form [data-role="field-simple--button-params"]', 'click', function(e){
+$(document).delegate('#data_exp_form [data-role="field-simple--button-params"]', 'click', function(e){
 	e.preventDefault();
 	var openerLink = $(this),
 		iblockStructure = $(this).closest('[data-role="iblock-structure"]'),
@@ -668,7 +668,7 @@ $(document).delegate('#acrit_exp_form [data-role="field-simple--button-params"]'
 		iblockId = rowSortField.attr('data-iblock-id');
 	}
 	//
-	AcritExpPopupValueSettings.Open(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName, valueType);
+	DataExpPopupValueSettings.Open(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName, valueType);
 });
 
 /**
@@ -680,7 +680,7 @@ $(document).delegate('[data-role="field-multicondition-value-add"]', 'click', fu
 		code = $(this).closest('tr[data-role="field_row"]').attr('data-field'),
 		iblock_id = $(this).closest('div[data-role="iblock-structure"]').attr('data-iblock-id'),
 		data = 'iblock_id='+iblock_id+'&field_code='+code;
-	acritExpAjax('add_multicondition_item', data, function(JsonResult){
+	dataExpAjax('add_multicondition_item', data, function(JsonResult){
 		values.append(JsonResult.HTML);
 	}, function(jqXHR){
 		console.log(jqXHR.responseText);
@@ -695,8 +695,8 @@ $(document).delegate('[data-role="field-multicondition-value-delete"]', 'click',
 /**
  *	Profile IBlock settings subtabs
  */
-function acritExpSettingsChangeTab(tab){
-	if($('#acrit_exp_form #field_IBLOCK').attr('data-loaded')=='Y' && !window.acritExpInitialSettingsTabClick) {
+function dataExpSettingsChangeTab(tab){
+	if($('#data_exp_form #field_IBLOCK').attr('data-loaded')=='Y' && !window.dataExpInitialSettingsTabClick) {
 		var selectedTab = $('#field_IBLOCK_content [data-role="iblock-structure-settings-tabs"] .adm-detail-subtab-active'),
 			tab = $('#field_IBLOCK_content [data-role="iblock-structure-settings-tabs"] .adm-detail-subtab-active').attr('ID'),
 			iblock_id = $('input[data-role="profile-iblock-id"]').val();
@@ -704,26 +704,26 @@ function acritExpSettingsChangeTab(tab){
 		if(tab == 'subtab_console') {
 			return;
 		}
-		acritExpAjax('save_last_settings_tab', 'iblock_id='+iblock_id+'&tab='+tab, null, null, false, true);
+		dataExpAjax('save_last_settings_tab', 'iblock_id='+iblock_id+'&tab='+tab, null, null, false, true);
 	}
 }
 
 /**
  *	POPUP: select field for field values
  */
-var AcritExpPopupSelectField;
+var DataExpPopupSelectField;
 $(document).ready(function(){
-	AcritExpPopupSelectField = new BX.CDialog({
-		ID: 'AcritExpPopupSelectField',
-		title: BX.message('ACRIT_EXP_POPUP_SELECT_FIELD_TITLE'),
+	DataExpPopupSelectField = new BX.CDialog({
+		ID: 'DataExpPopupSelectField',
+		title: BX.message('DATA_EXP_POPUP_SELECT_FIELD_TITLE'),
 		content: '',
 		resizable: true,
 		draggable: true,
 		height: 400,
 		width: 800
 	});
-	AcritExpPopupSelectField.OnSelectField = null;
-	AcritExpPopupSelectField.Open = function(IBlockID, currentValue, allowIBlockSelect){
+	DataExpPopupSelectField.OnSelectField = null;
+	DataExpPopupSelectField.Open = function(IBlockID, currentValue, allowIBlockSelect){
 		this.IBlockID = IBlockID;
 		this.CurrentValue = currentValue;
 		this.AllowIBlockSelect = allowIBlockSelect;
@@ -731,16 +731,16 @@ $(document).ready(function(){
 		this.Show();
 		this.LoadContent();
 	}
-	AcritExpPopupSelectField.LoadContent = function(){
+	DataExpPopupSelectField.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		this.SetNavButtons();
 		//
 		var data = 'iblock_id='+thisPopup.IBlockID+'&current_value='+thisPopup.CurrentValue; // +'&allow_iblock_change='+thisPopup.AllowIBlockSelect
 		//
-		acritExpAjax('load_popup_select_field', data, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('load_popup_select_field', data, function(JsonResult, textStatus, jqXHR){
 			//thisPopup.SetContent(JsonResult.HTML);
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
@@ -756,7 +756,7 @@ $(document).ready(function(){
 				thisPopup.FilterFields();
 			});
 			$('[data-role="field-select-type"]', thisPopup.DIV).bind('change', function(){
-				var table = $(this).closest('.acrit-exp-field-select-table'),
+				var table = $(this).closest('.data-exp-field-select-table'),
 					listElement = $('select[data-role="field-select-list"][data-type="element"]', table),
 					listOffer = $('select[data-role="field-select-list"][data-type="offer"]', table),
 					listParent = $('select[data-role="field-select-list"][data-type="parent"]', table);
@@ -779,20 +779,20 @@ $(document).ready(function(){
 			$('select[data-role="field-select-list"]', thisPopup.DIV).dblclick(function(){
 				$('.bx-core-adm-dialog-buttons input[type=button]', thisPopup.DIV).first().trigger('click');
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, false);
 	}
-	AcritExpPopupSelectField.SetNavButtons = function(){
+	DataExpPopupSelectField.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_POPUP_SAVE'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnSave',
 				'action': function(){
-					if(typeof AcritExpPopupSelectField.OnSelectField == 'function'){
+					if(typeof DataExpPopupSelectField.OnSelectField == 'function'){
 						var thisPopup = this.parentWindow;
 						thisPopup.OnSelectField(thisPopup);
 						thisPopup.Close();
@@ -802,7 +802,7 @@ $(document).ready(function(){
 					}
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_POPUP_CANCEL'),
 				'id': this.PARAMS.ID + '_btnCancel',
 				'action': function(){
 					this.parentWindow.Close();
@@ -810,7 +810,7 @@ $(document).ready(function(){
 			}]
 		)
 	}
-	AcritExpPopupSelectField.FilterFields = function(){
+	DataExpPopupSelectField.FilterFields = function(){
 		var fieldText = $('input[data-role="field-select-search"]', this.DIV),
 			fieldList = $('select[data-role="field-select-list"]', this.DIV),
 			searchText = $.trim(fieldText.val()).toLowerCase();
@@ -845,10 +845,10 @@ $(document).ready(function(){
 /**
  *	POPUP: Value settings
  */
-var AcritExpPopupValueSettings;
+var DataExpPopupValueSettings;
 $(document).ready(function(){
-	AcritExpPopupValueSettings = new BX.CDialog({
-		ID: 'AcritExpPopupValueSettings',
+	DataExpPopupValueSettings = new BX.CDialog({
+		ID: 'DataExpPopupValueSettings',
 		title: '',
 		content: '',
 		resizable: true,
@@ -856,7 +856,7 @@ $(document).ready(function(){
 		height: 400,
 		width: 800
 	});
-	AcritExpPopupValueSettings.Open = function(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName, valueType){
+	DataExpPopupValueSettings.Open = function(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName, valueType){
 		this.openerLink = openerLink;
 		this.inputParams = inputParams;
 		this.iblockId = iblockId;
@@ -866,17 +866,17 @@ $(document).ready(function(){
 		this.valueType = valueType;
 		//
 		this.Show();
-		var popupTitle = BX.message('ACRIT_EXP_POPUP_VALUE_SETTINGS_TITLE') + ' "' + fieldName + '"';
+		var popupTitle = BX.message('DATA_EXP_POPUP_VALUE_SETTINGS_TITLE') + ' "' + fieldName + '"';
 		if(fieldCode.length && fieldCode.substr(0,1) != '_'){
 			popupTitle += ' [' + fieldCode + ']';
 		}
 		this.SetTitle(popupTitle);
 		this.LoadContent();
 	}
-	AcritExpPopupValueSettings.LoadContent = function(){
+	DataExpPopupValueSettings.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
@@ -889,22 +889,22 @@ $(document).ready(function(){
 			postData = '&iblock_id='+iblockId+'&field_code='+code+'&field_type='+type+'&field_name='+name
 				+'&value_type='+thisPopup.valueType+'&current_value='+currentValue+currentParams;
 		//
-		acritExpAjax('load_popup_value_settings', postData, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('load_popup_value_settings', postData, function(JsonResult, textStatus, jqXHR){
 			//thisPopup.SetContent(JsonResult.HTML);
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('input[type=checkbox]', thisPopup.PARTS.CONTENT).not('.no-checkbox-styling').each(function(){
 				BX.adminFormTools.modifyCheckbox(this);
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupValueSettings.SetNavButtons = function(){
+	DataExpPopupValueSettings.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_POPUP_SAVE'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnSave',
 				'action': function(){
@@ -915,7 +915,7 @@ $(document).ready(function(){
 					thisPopup.Close();
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_POPUP_CANCEL'),
 				'id': this.PARAMS.ID + '_btnCancel',
 				'action': function(){
 					this.parentWindow.Close();
@@ -965,10 +965,10 @@ $(document).delegate('table[data-role="value-replaces"] [data-role="replace-use-
 /**
  *	POPUP: Field settings
  */
-var AcritExpPopupFieldSettings;
+var DataExpPopupFieldSettings;
 $(document).ready(function(){
-	AcritExpPopupFieldSettings = new BX.CDialog({
-		ID: 'AcritExpPopupFieldSettings',
+	DataExpPopupFieldSettings = new BX.CDialog({
+		ID: 'DataExpPopupFieldSettings',
 		title: '',
 		content: '',
 		resizable: true,
@@ -976,7 +976,7 @@ $(document).ready(function(){
 		height: 400,
 		width: 800
 	});
-	AcritExpPopupFieldSettings.Open = function(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName){
+	DataExpPopupFieldSettings.Open = function(openerLink, inputParams, iblockId, fieldCode, fieldType, fieldName){
 		this.openerLink = openerLink;
 		this.inputParams = inputParams;
 		this.iblockId = iblockId;
@@ -985,13 +985,13 @@ $(document).ready(function(){
 		this.fieldName = fieldName;
 		//
 		this.Show();
-		this.SetTitle(BX.message('ACRIT_EXP_POPUP_FIELD_SETTINGS_TITLE') + ' "' + fieldName + '" [' + fieldCode + ']');
+		this.SetTitle(BX.message('DATA_EXP_POPUP_FIELD_SETTINGS_TITLE') + ' "' + fieldName + '" [' + fieldCode + ']');
 		this.LoadContent();
 	}
-	AcritExpPopupFieldSettings.LoadContent = function(){
+	DataExpPopupFieldSettings.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
@@ -1003,21 +1003,21 @@ $(document).ready(function(){
 			postData = '&iblock_id='+iblockId+'&field_code='+code+'&field_type='+type+'&field_name='+name
 				+currentParams;
 		//
-		acritExpAjax('load_popup_field_settings', postData, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('load_popup_field_settings', postData, function(JsonResult, textStatus, jqXHR){
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('input[type=checkbox]', thisPopup.PARTS.CONTENT).not('.no-checkbox-styling').each(function(){
 				BX.adminFormTools.modifyCheckbox(this);
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupFieldSettings.SetNavButtons = function(){
+	DataExpPopupFieldSettings.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_POPUP_SAVE'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnSave',
 				'action': function(){
@@ -1028,7 +1028,7 @@ $(document).ready(function(){
 					thisPopup.Close();
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_POPUP_CANCEL'),
 				'id': this.PARAMS.ID + '_btnCancel',
 				'action': function(){
 					this.parentWindow.Close();
@@ -1041,10 +1041,10 @@ $(document).ready(function(){
 /**
  *	POPUP: Additional fields
  */
-var AcritExpPopupAdditionalFields;
+var DataExpPopupAdditionalFields;
 $(document).ready(function(){
-	AcritExpPopupAdditionalFields = new BX.CDialog({
-		ID: 'AcritExpPopupAdditionalFields',
+	DataExpPopupAdditionalFields = new BX.CDialog({
+		ID: 'DataExpPopupAdditionalFields',
 		title: '',
 		content: '',
 		resizable: true,
@@ -1052,25 +1052,25 @@ $(document).ready(function(){
 		height: 300,
 		width: 600
 	});
-	AcritExpPopupAdditionalFields.Open = function(openerLink, iblockId){
+	DataExpPopupAdditionalFields.Open = function(openerLink, iblockId){
 		this.openerLink = openerLink;
 		this.iblockId = iblockId;
 		//
 		this.Show();
-		this.SetTitle(BX.message('ACRIT_EXP_POPUP_ADDITIONAL_FIELDS_TITLE'));
+		this.SetTitle(BX.message('DATA_EXP_POPUP_ADDITIONAL_FIELDS_TITLE'));
 		this.LoadContent();
 	}
-	AcritExpPopupAdditionalFields.LoadContent = function(){
+	DataExpPopupAdditionalFields.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
 		var iblockId = thisPopup.iblockId,
 			postData = 'iblock_id='+iblockId;
 		//
-		acritExpAjax('show_props_for_additional_fields', postData, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('show_props_for_additional_fields', postData, function(JsonResult, textStatus, jqXHR){
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
 				'height': '100%',
@@ -1086,34 +1086,34 @@ $(document).ready(function(){
 			$('select[data-role="select-additional-fields"]', thisPopup.DIV).dblclick(function(){
 				$('.bx-core-adm-dialog-buttons input[type=button]', thisPopup.DIV).first().trigger('click');
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupAdditionalFields.SetNavButtons = function(){
+	DataExpPopupAdditionalFields.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_POPUP_SAVE'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnSave',
 				'action': function(){
 					var thisPopup = this.parentWindow,
 						select = $('select[data-role="select-additional-fields"]', thisPopup.PARTS.CONTENT_DATA),
 						propsId = $('option:selected', select).get().map(function(a){return $(a).val();}).join(',');
-					acritExpAjax('add_additional_fields', 'iblock_id='+thisPopup.iblockId+'&props='+propsId, function(JsonResult, textStatus, jqXHR){
+					dataExpAjax('add_additional_fields', 'iblock_id='+thisPopup.iblockId+'&props='+propsId, function(JsonResult, textStatus, jqXHR){
 						if(JsonResult.Success){
 							$(thisPopup.openerLink).closest('table').children('tbody').append(JsonResult.HTML);
 							thisPopup.Close();
 						}
-						acritExpHandleAjaxError(jqXHR, false);
+						dataExpHandleAjaxError(jqXHR, false);
 					}, function(jqXHR){
-						acritExpHandleAjaxError(jqXHR, true);
+						dataExpHandleAjaxError(jqXHR, true);
 					}, false);
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_POPUP_CANCEL'),
 				'id': this.PARAMS.ID + '_btnCancel',
 				'action': function(){
 					this.parentWindow.Close();
@@ -1128,28 +1128,28 @@ $(document).delegate('[data-role="additional-field-add"]', 'click', function(e){
 	e.preventDefault();
 	var btnAdd = $(this),
 		iblockId = btnAdd.closest('[data-role="iblock-structure"]').attr('data-iblock-id');
-	acritExpAjax('add_additional_field', 'iblock_id='+iblockId, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('add_additional_field', 'iblock_id='+iblockId, function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success){
 			btnAdd.closest('table').children('tbody').append(JsonResult.HTML);
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 });
 // Delete additional field [SINGLE]
 $(document).delegate('[data-role="additional-field-delete"]', 'click', function(e){
 	e.preventDefault();
-	if(confirm(BX.message('ACRIT_EXP_ADDITIONAL_FIELD_DELETE_CONFIRM'))) {
+	if(confirm(BX.message('DATA_EXP_ADDITIONAL_FIELD_DELETE_CONFIRM'))) {
 		var fieldId = $(this).closest('[data-role="field_row"]').attr('data-field-id'),
 			data = 'field_id='+fieldId;
-		acritExpAjax('delete_additional_field', data, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('delete_additional_field', data, function(JsonResult, textStatus, jqXHR){
 			if(JsonResult.Success){
 				$('[data-role="field_row"][data-field="'+JsonResult.Field+'"]').remove();
 			}
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, false);
 	}
 });
@@ -1157,22 +1157,22 @@ $(document).delegate('[data-role="additional-field-delete"]', 'click', function(
 $(document).delegate('[data-role="additional-field-add-multiple"]', 'click', function(e){
 	e.preventDefault();
 	var iblockId = $(this).closest('[data-role="iblock-structure"]').attr('data-iblock-id');
-	AcritExpPopupAdditionalFields.Open(this, iblockId);
+	DataExpPopupAdditionalFields.Open(this, iblockId);
 });
 // Delete all additional fields [MULTIPLE]
 $(document).delegate('[data-role="additional-field-delete-all"]', 'click', function(e){
 	e.preventDefault();
-	if(confirm(BX.message('ACRIT_EXP_ADDITIONAL_FIELDS_DELETE_ALL_CONFIRM'))) {
+	if(confirm(BX.message('DATA_EXP_ADDITIONAL_FIELDS_DELETE_ALL_CONFIRM'))) {
 		var iblockStructure = $(this).closest('[data-role="iblock-structure"]'),
 			iblockId = iblockStructure.attr('data-iblock-id'),
 			data = 'iblock_id='+iblockId;
-		acritExpAjax('delete_additional_fields_all', data, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('delete_additional_fields_all', data, function(JsonResult, textStatus, jqXHR){
 			if(JsonResult.Success){
 				$('tr[data-field-id][data-field-id!="0"]', iblockStructure).remove();
 			}
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, false);
 	}
 });
@@ -1231,7 +1231,7 @@ $(document).delegate('input[data-role="categories-redefinition-button"]', 'click
 		categoriesId = $('input[data-role="categories-id"]', iblockSettings).val(),
 		categoriesMode = $('select[data-role="categories-redefinition-mode"]', iblockSettings).val(),
 		categoriesSource = $('select[data-role="sections-mode"]', iblockSettings).val();
-	AcritExpPopupCategoriesRedefinition.Open(this, iblockId, categoriesId, categoriesMode, categoriesSource);
+	DataExpPopupCategoriesRedefinition.Open(this, iblockId, categoriesId, categoriesMode, categoriesSource);
 });
 $(document).delegate('select[data-role="categories-redefinition-mode"]', 'change', function(){
 	var
@@ -1297,15 +1297,15 @@ $(document).delegate('[data-role="categories-update"]', 'click', function(){
 		data = $('#subtab_categories :input').serialize(),
 		cellMessage = $('td[data-role="categories-update-error"]').html('');
 	thisButton.attr('disabled', 'disabled');
-	acritExpAjax('categories_update', data, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('categories_update', data, function(JsonResult, textStatus, jqXHR){
 		thisButton.removeAttr('disabled');
 		var spanDate = $('[data-role="categories-update-date"] span');
 		if(JsonResult.Success && JsonResult.Date){
 			spanDate.text(JsonResult.Date);
 			setTimeout(function(){
-				AcritExpPopupCategoriesRedefinitionSelect.LoadContent();
+				DataExpPopupCategoriesRedefinitionSelect.LoadContent();
 			}, 100);
-			cellMessage.html(BX.message('ACRIT_EXP_UPDATE_CATEGORIES_SUCCESS'));
+			cellMessage.html(BX.message('DATA_EXP_UPDATE_CATEGORIES_SUCCESS'));
 			setTimeout(function(){
 				cellMessage.html('');
 			}, 4000);
@@ -1316,14 +1316,14 @@ $(document).delegate('[data-role="categories-update"]', 'click', function(){
 				message = JsonResult.Message;
 			}
 			else{
-				message = BX.message('ACRIT_EXP_UPDATE_CATEGORIES_ERROR') + "\n" + jqXHR.responseText;
+				message = BX.message('DATA_EXP_UPDATE_CATEGORIES_ERROR') + "\n" + jqXHR.responseText;
 			}
 			cellMessage.html(message);
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
 		thisButton.removeAttr('disabled');
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, true);
 });
 $(document).ready(function(){
@@ -1334,18 +1334,18 @@ $(document).ready(function(){
 /**
  *	POPUP: Categories redefinition general
  */
-var AcritExpPopupCategoriesRedefinition;
+var DataExpPopupCategoriesRedefinition;
 $(document).ready(function(){
-	AcritExpPopupCategoriesRedefinition = new BX.CDialog({
-		ID: 'AcritExpPopupCategoriesRedefinition',
-		title: BX.message('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_TITLE'),
+	DataExpPopupCategoriesRedefinition = new BX.CDialog({
+		ID: 'DataExpPopupCategoriesRedefinition',
+		title: BX.message('DATA_EXP_POPUP_CATEGORY_REDEFINITION_TITLE'),
 		content: '',
 		resizable: true,
 		draggable: true,
 		height: 450,
 		width: 990
 	});
-	AcritExpPopupCategoriesRedefinition.Open = function(openerLink, iblockId, categoriesId, categoriesMode, categoriesSource){
+	DataExpPopupCategoriesRedefinition.Open = function(openerLink, iblockId, categoriesId, categoriesMode, categoriesSource){
 		this.openerLink = openerLink;
 		this.iblockId = iblockId;
 		this.categoriesId = categoriesId;
@@ -1355,10 +1355,10 @@ $(document).ready(function(){
 		this.Show();
 		this.LoadContent();
 	}
-	AcritExpPopupCategoriesRedefinition.LoadContent = function(){
+	DataExpPopupCategoriesRedefinition.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
@@ -1369,7 +1369,7 @@ $(document).ready(function(){
 			postData = 'iblock_id='+iblockId+'&categories_id='+categoriesId+'&categories_mode='+categoriesMode
 				+'&categories_source='+categoriesSource;
 		//
-		acritExpAjax('categories_redefinition_show', postData, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('categories_redefinition_show', postData, function(JsonResult, textStatus, jqXHR){
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
 				'height': '100%',
@@ -1382,49 +1382,49 @@ $(document).ready(function(){
 			$('input[type=checkbox]', thisPopup.PARTS.CONTENT).not('.no-checkbox-styling').each(function(){
 				BX.adminFormTools.modifyCheckbox(this);
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupCategoriesRedefinition.SetNavButtons = function(){
+	DataExpPopupCategoriesRedefinition.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_POPUP_SAVE'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnSave',
 				'action': function(){
 					var thisPopup = this.parentWindow,
 						postData = 'iblock_id='+thisPopup.iblockId+'&'+$(':input', thisPopup.PARTS.CONTENT_DATA).serialize();
-					acritExpAjax('categories_redefinition_save', postData, function(JsonResult, textStatus, jqXHR){
+					dataExpAjax('categories_redefinition_save', postData, function(JsonResult, textStatus, jqXHR){
 						if(JsonResult.Success){
 							thisPopup.Close();
 						}
-						acritExpHandleAjaxError(jqXHR, false);
+						dataExpHandleAjaxError(jqXHR, false);
 					}, function(jqXHR){
-						acritExpHandleAjaxError(jqXHR, true);
+						dataExpHandleAjaxError(jqXHR, true);
 					}, true);
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_ALL'),
+				'name': BX.message('DATA_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_ALL'),
 				'id': this.PARAMS.ID + '_btnClear',
 				'action': function(){
-					if(confirm(BX.message('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_CONFIRM'))){
+					if(confirm(BX.message('DATA_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_CONFIRM'))){
 						var thisPopup = this.parentWindow,
 							postData = 'iblock_id='+thisPopup.iblockId+'&clear_all=Y';
-						acritExpAjax('categories_redefinition_save', postData, function(JsonResult, textStatus, jqXHR){
+						dataExpAjax('categories_redefinition_save', postData, function(JsonResult, textStatus, jqXHR){
 							if(JsonResult.Success){
 								thisPopup.Close();
 							}
-							acritExpHandleAjaxError(jqXHR, false);
+							dataExpHandleAjaxError(jqXHR, false);
 						}, function(jqXHR){
-							acritExpHandleAjaxError(jqXHR, true);
+							dataExpHandleAjaxError(jqXHR, true);
 						}, true);
 					}
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_POPUP_CANCEL'),
 				'id': this.PARAMS.ID + '_btnCancel',
 				'action': function(){
 					this.parentWindow.Close();
@@ -1437,18 +1437,18 @@ $(document).ready(function(){
 /**
  *	POPUP: Categories redefinition select
  */
-var AcritExpPopupCategoriesRedefinitionSelect;
+var DataExpPopupCategoriesRedefinitionSelect;
 $(document).ready(function(){
-	AcritExpPopupCategoriesRedefinitionSelect = new BX.CDialog({
-		ID: 'AcritExpPopupCategoriesRedefinitionSelect',
-		title: BX.message('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_SELECT_TITLE'),
+	DataExpPopupCategoriesRedefinitionSelect = new BX.CDialog({
+		ID: 'DataExpPopupCategoriesRedefinitionSelect',
+		title: BX.message('DATA_EXP_POPUP_CATEGORY_REDEFINITION_SELECT_TITLE'),
 		content: '',
 		resizable: true,
 		draggable: true,
 		height: 300,
 		width: 1000
 	});
-	AcritExpPopupCategoriesRedefinitionSelect.Open = function(openerLink, iblockId, sectionId, currentValue){
+	DataExpPopupCategoriesRedefinitionSelect.Open = function(openerLink, iblockId, sectionId, currentValue){
 		this.openerLink = openerLink;
 		this.iblockIdLast = this.iblockId;
 		this.iblockId = iblockId;
@@ -1465,10 +1465,10 @@ $(document).ready(function(){
 			input.focus();
 		}
 	}
-	AcritExpPopupCategoriesRedefinitionSelect.LoadContent = function(){
+	DataExpPopupCategoriesRedefinitionSelect.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
@@ -1477,7 +1477,7 @@ $(document).ready(function(){
 			currentValue = thisPopup.currentValue,
 			postData = 'iblock_id='+iblockId+'&section_id='+sectionId+'&current_value='+encodeURIComponent(currentValue);
 		//
-		acritExpAjax('categories_redefinition_select', postData, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('categories_redefinition_select', postData, function(JsonResult, textStatus, jqXHR){
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
 				'height': '100%',
@@ -1492,24 +1492,24 @@ $(document).ready(function(){
 			});
 			thisPopup.FilterFields();
 			$('input[data-role="category-redefinition-search"]', thisPopup.DIV).bind('textchange', function(){
-				clearTimeout(window.acritExpCategoryRedefinitionSearchTimeout);
-				window.acritExpCategoryRedefinitionSearchTimeout = setTimeout(function(){
+				clearTimeout(window.dataExpCategoryRedefinitionSearchTimeout);
+				window.dataExpCategoryRedefinitionSearchTimeout = setTimeout(function(){
 					thisPopup.FilterFields();
 				}, 250);
 			}).focus();
 			$('select[data-role="category-redefinition-select"]', thisPopup.DIV).dblclick(function(){
 				$('.bx-core-adm-dialog-buttons input[type=button]', thisPopup.DIV).first().trigger('click');
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupCategoriesRedefinitionSelect.SetNavButtons = function(){
+	DataExpPopupCategoriesRedefinitionSelect.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_POPUP_SAVE'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnSave',
 				'action': function(){
@@ -1521,7 +1521,7 @@ $(document).ready(function(){
 						nextDepth = null,
 						input = null,
 						skipDepth = null;
-					$(thisPopup.openerLink).trigger('acrit:categoryselect', {category: value});
+					$(thisPopup.openerLink).trigger('data:categoryselect', {category: value});
 					thisRow.find('input[type=text]').val(value).attr('title', value);
 					while(true){
 						// Stop at end
@@ -1554,7 +1554,7 @@ $(document).ready(function(){
 					thisPopup.Close();
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_POPUP_CANCEL'),
 				'id': this.PARAMS.ID + '_btnCancel',
 				'action': function(){
 					this.parentWindow.Close();
@@ -1562,7 +1562,7 @@ $(document).ready(function(){
 			}]
 		)
 	}
-	AcritExpPopupCategoriesRedefinitionSelect.FilterFields = function(){
+	DataExpPopupCategoriesRedefinitionSelect.FilterFields = function(){
 		var fieldText = $('input[data-role="category-redefinition-search"]', this.DIV),
 			fieldList = $('select[data-role="category-redefinition-select"]', this.DIV),
 			searchText = $.trim(fieldText.val()).toLowerCase(),
@@ -1608,40 +1608,40 @@ $(document).delegate('input[data-role="categories-redefinition-button-select"]',
 	var iblockId = $(this).attr('data-iblock-id'),
 		sectionId = $(this).attr('data-section-id'),
 		currentValue = $(this).closest('tr').find('input[type=text]').val();
-	AcritExpPopupCategoriesRedefinitionSelect.Open(this, iblockId, sectionId, currentValue);
+	DataExpPopupCategoriesRedefinitionSelect.Open(this, iblockId, sectionId, currentValue);
 });
 
 /**
  *	POPUP: Export execute
  */
-var AcritExpPopupExecute;
+var DataExpPopupExecute;
 $(document).ready(function(){
-	AcritExpPopupExecute = new BX.CDialog({
-		ID: 'AcritExpPopupExecute',
-		title: BX.message('ACRIT_EXP_POPUP_EXECUTE_TITLE'),
+	DataExpPopupExecute = new BX.CDialog({
+		ID: 'DataExpPopupExecute',
+		title: BX.message('DATA_EXP_POPUP_EXECUTE_TITLE'),
 		content: '',
 		resizable: true,
 		draggable: true,
 		height: 400,
 		width: 500
 	});
-	AcritExpPopupExecute.Open = function(){
-		this.repeatDelay = acritExpExportTimeDelay && acritExpExportTimeDelay>0 ? acritExpExportTimeDelay : 50;
+	DataExpPopupExecute.Open = function(){
+		this.repeatDelay = dataExpExportTimeDelay && dataExpExportTimeDelay>0 ? dataExpExportTimeDelay : 50;
 		this.Stopped = false;
 		//
 		this.Show();
 		this.LoadContent();
 	}
-	AcritExpPopupExecute.LoadContent = function(){
+	DataExpPopupExecute.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
 		thisPopup.EnableControls();
 		//
-		acritExpAjax('load_popup_execute', '', function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('load_popup_execute', '', function(JsonResult, textStatus, jqXHR){
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
 				'height': '100%',
@@ -1656,59 +1656,59 @@ $(document).ready(function(){
 			});
 			var isError = (typeof JsonResult != 'object') || !JsonResult.Success;
 			if(isError) {
-				thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_EXECUTE_ERROR'));
+				thisPopup.SetContent(BX.message('DATA_EXP_POPUP_EXECUTE_ERROR'));
 			}
-			acritExpHandleAjaxError(jqXHR, isError);
+			dataExpHandleAjaxError(jqXHR, isError);
 		}, function(jqXHR){
-			thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_EXECUTE_ERROR'));
-			acritExpHandleAjaxError(jqXHR, true);
+			thisPopup.SetContent(BX.message('DATA_EXP_POPUP_EXECUTE_ERROR'));
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupExecute.SetNavButtons = function(){
+	DataExpPopupExecute.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_EXECUTE_BUTTON_START'),
+				'name': BX.message('DATA_EXP_POPUP_EXECUTE_BUTTON_START'),
 				'className': 'adm-btn-green',
-				'id': 'acrit-exp-popup-execute-button-start',
+				'id': 'data-exp-popup-execute-button-start',
 				'action': function(){
 					var thisPopup = this.parentWindow;
 					thisPopup.Stopped = false;
 					thisPopup.Execute({first:true});
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_EXECUTE_BUTTON_STOP'),
-				'id': 'acrit-exp-popup-execute-button-stop',
+				'name': BX.message('DATA_EXP_POPUP_EXECUTE_BUTTON_STOP'),
+				'id': 'data-exp-popup-execute-button-stop',
 				'action': function(){
 					var thisPopup = this.parentWindow;
 					thisPopup.Stop();
-					thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_EXECUTE_STOPPED'));
+					thisPopup.SetContent(BX.message('DATA_EXP_POPUP_EXECUTE_STOPPED'));
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CLOSE'),
-				'id': 'acrit-exp-popup-execute-button-close',
+				'name': BX.message('DATA_EXP_POPUP_CLOSE'),
+				'id': 'data-exp-popup-execute-button-close',
 				'action': function(){
 					this.parentWindow.Close();
 				}
 			}]
 		)
 	}
-	AcritExpPopupExecute.DisableControls = function(){
-		$('#acrit-exp-popup-execute-button-start', this.DIV).attr('disabled', 'disabled');
-		$('#acrit-exp-popup-execute-button-stop', this.DIV).removeAttr('disabled');
+	DataExpPopupExecute.DisableControls = function(){
+		$('#data-exp-popup-execute-button-start', this.DIV).attr('disabled', 'disabled');
+		$('#data-exp-popup-execute-button-stop', this.DIV).removeAttr('disabled');
 	}
-	AcritExpPopupExecute.EnableControls = function(){
-		$('#acrit-exp-popup-execute-button-start', this.DIV).removeAttr('disabled');
-		$('#acrit-exp-popup-execute-button-stop', this.DIV).attr('disabled', 'disabled');
+	DataExpPopupExecute.EnableControls = function(){
+		$('#data-exp-popup-execute-button-start', this.DIV).removeAttr('disabled');
+		$('#data-exp-popup-execute-button-stop', this.DIV).attr('disabled', 'disabled');
 	}
-	AcritExpPopupExecute.Execute = function(requestData){
+	DataExpPopupExecute.Execute = function(requestData){
 		var thisPopup = this;
 		if(!thisPopup.Stopped) {
 			if(requestData == undefined){
 				requestData = {};
 			}
 			thisPopup.DisableControls();
-			thisPopup.AjaxRequest = acritExpAjax('export_execute', requestData, function(JsonResult, textStatus, jqXHR){
+			thisPopup.AjaxRequest = dataExpAjax('export_execute', requestData, function(JsonResult, textStatus, jqXHR){
 				$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 				$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
 					'height': '100%',
@@ -1727,7 +1727,7 @@ $(document).ready(function(){
 					}
 					else if(JsonResult.Success) {
 						thisPopup.EnableControls();
-						acritExpUpdateLogAndHistory();
+						dataExpUpdateLogAndHistory();
 					}
 					else {
 						if(JsonResult.ShowError==true) {
@@ -1735,35 +1735,35 @@ $(document).ready(function(){
 								thisPopup.SetContent(JsonResult.HTML);
 							}
 							else {
-								thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_EXECUTE_ERROR'));
+								thisPopup.SetContent(BX.message('DATA_EXP_POPUP_EXECUTE_ERROR'));
 							}
 						}
 						thisPopup.EnableControls();
 					}
 				}, thisPopup.repeatDelay);
 				if(JsonResult.LockedHtml != undefined){
-					$('#acrit-exp-lock-notifier').html(JsonResult.LockedHtml);
+					$('#data-exp-lock-notifier').html(JsonResult.LockedHtml);
 				}
-				acritExpHandleAjaxError(jqXHR, false);
+				dataExpHandleAjaxError(jqXHR, false);
 			}, function(jqXHR){
-				thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_EXECUTE_ERROR'));
-				acritExpHandleAjaxError(jqXHR, true);
+				thisPopup.SetContent(BX.message('DATA_EXP_POPUP_EXECUTE_ERROR'));
+				dataExpHandleAjaxError(jqXHR, true);
 				thisPopup.EnableControls();
 			}, true);
 		}
 	}
-	AcritExpPopupExecute.Stop = function(){
+	DataExpPopupExecute.Stop = function(){
 		this.Stopped = true;
 		this.EnableControls();
 		if (this.AjaxRequest && this.AjaxRequest.readyState != 4) {
 			this.AjaxRequest.abort();
 		}
 		// Unlock on stop
-		acritExpAjax('profile_unlock', '', null, null, false, false);
+		dataExpAjax('profile_unlock', '', null, null, false, false);
 	}
 	BX.addCustomEvent('onWindowClose', function(popupWindow){
-		if(popupWindow == AcritExpPopupExecute){
-			AcritExpPopupExecute.Stop();
+		if(popupWindow == DataExpPopupExecute){
+			DataExpPopupExecute.Stop();
 		}
 	});
 });
@@ -1777,21 +1777,21 @@ $(document).delegate('[data-role="profile-unlock"]', 'click', function(e){
 		}
 	}
 	if(canUnlock){
-		acritExpAjax('profile_unlock', '', function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('profile_unlock', '', function(JsonResult, textStatus, jqXHR){
 			if(JsonResult.Success) {
-				if($('#acrit-exp-lock-notifier').length){
-					$('#acrit-exp-lock-notifier').html('');
+				if($('#data-exp-lock-notifier').length){
+					$('#data-exp-lock-notifier').html('');
 				}
-				if(AcritExpPopupExecute.isOpen){
-					AcritExpPopupExecute.LoadContent();
+				if(DataExpPopupExecute.isOpen){
+					DataExpPopupExecute.LoadContent();
 				}
 			}
 			else {
 				console.log(JsonResult);
 			}
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
 });
@@ -1799,32 +1799,32 @@ $(document).delegate('[data-role="profile-unlock"]', 'click', function(e){
 /**
  *	POPUP: iblocks preview
  */
-var AcritExpPopupIBlocksPreview;;
+var DataExpPopupIBlocksPreview;;
 $(document).ready(function(){
-	AcritExpPopupIBlocksPreview = new BX.CDialog({
-		ID: 'AcritExpPopupIBlocksPreview',
-		title: BX.message('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_TITLE'),
+	DataExpPopupIBlocksPreview = new BX.CDialog({
+		ID: 'DataExpPopupIBlocksPreview',
+		title: BX.message('DATA_EXP_POPUP_IBLOCKS_PREVIEW_TITLE'),
 		content: '',
 		resizable: true,
 		draggable: true,
 		height: 350,
 		width: 800
 	});
-	AcritExpPopupIBlocksPreview.Open = function(showJustCatalogs){
+	DataExpPopupIBlocksPreview.Open = function(showJustCatalogs){
 		this.showJustCatalogs = showJustCatalogs;
 		this.Show();
 		this.LoadContent();
 	}
-	AcritExpPopupIBlocksPreview.LoadContent = function(){
+	DataExpPopupIBlocksPreview.LoadContent = function(){
 		var thisPopup = this;
 		//
-		thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
 		var postData = 'show_just_catalogs='+(thisPopup.showJustCatalogs?'Y':'N');
 		//
-		acritExpAjax('iblocks_preview', postData, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('iblocks_preview', postData, function(JsonResult, textStatus, jqXHR){
 			$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 			$('.bx-core-adm-dialog-content-wrap-inner', thisPopup.DIV).css({
 				'height': '100%',
@@ -1837,23 +1837,23 @@ $(document).ready(function(){
 			$('input[type=checkbox]', thisPopup.PARTS.CONTENT).not('.no-checkbox-styling').each(function(){
 				BX.adminFormTools.modifyCheckbox(this);
 			});
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	}
-	AcritExpPopupIBlocksPreview.SetNavButtons = function(){
+	DataExpPopupIBlocksPreview.SetNavButtons = function(){
 		$(this.PARTS.BUTTONS_CONTAINER).html('');
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_REFRESH'),
+				'name': BX.message('DATA_EXP_POPUP_REFRESH'),
 				'className': 'adm-btn-green',
 				'id': this.PARAMS.ID + '_btnRefresh',
 				'action': function(){
-					AcritExpPopupIBlocksPreview.LoadContent();
+					DataExpPopupIBlocksPreview.LoadContent();
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_CLOSE'),
+				'name': BX.message('DATA_EXP_POPUP_CLOSE'),
 				'id': this.PARAMS.ID + '_btnClose',
 				'action': function(){
 					this.parentWindow.Close();
@@ -1864,7 +1864,7 @@ $(document).ready(function(){
 });
 $(document).delegate('input[data-role="preview-iblocks"]', 'click', function(e){
 	var showJustCatalogs = $('input[type=checkbox][data-role="show-just-catalogs"]').is(':checked');
-	AcritExpPopupIBlocksPreview.Open(showJustCatalogs);
+	DataExpPopupIBlocksPreview.Open(showJustCatalogs);
 });
 
 /* Currency */
@@ -1882,7 +1882,7 @@ $(document).ready(function(){
 });
 
 /* Cron */
-function acritExpSetCronStatus(configured){
+function dataExpSetCronStatus(configured){
 	var statusDiv = $('div[data-cron-status][data-profile-id]');
 	statusDiv.attr('data-cron-status', configured ? 'Y' : 'N');
 	if(configured){
@@ -1891,28 +1891,28 @@ function acritExpSetCronStatus(configured){
 	else {
 		$('[data-role="cron-clear"]').attr('disabled', 'disabled');
 	}
-	statusDiv.addClass('acrit-exp-text-blink');
-	clearTimeout(window.acritExpTimeoutCronStatus);
-	window.acritExpTimeoutCronStatus = setTimeout(function(){
-		statusDiv.removeClass('acrit-exp-text-blink');
+	statusDiv.addClass('data-exp-text-blink');
+	clearTimeout(window.dataExpTimeoutCronStatus);
+	window.dataExpTimeoutCronStatus = setTimeout(function(){
+		statusDiv.removeClass('data-exp-text-blink');
 	}, 1000);
 }
-function acritExpCronSetup(schedule){
-	acritExpAjax('cron_setup', 'cron_action=add&schedule='+encodeURIComponent(schedule), function(JsonResult, textStatus, jqXHR){
-		acritExpSetCronStatus(JsonResult.IsConfigured);
+function dataExpCronSetup(schedule){
+	dataExpAjax('cron_setup', 'cron_action=add&schedule='+encodeURIComponent(schedule), function(JsonResult, textStatus, jqXHR){
+		dataExpSetCronStatus(JsonResult.IsConfigured);
 		$('[data-role="cron-current-tasks-wrapper"]').html(JsonResult.CronTasksHtml);
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 }
-function acritExpCronClear(){
-	acritExpAjax('cron_setup', 'cron_action=delete', function(JsonResult, textStatus, jqXHR){
-		acritExpSetCronStatus(JsonResult.IsConfigured);
+function dataExpCronClear(){
+	dataExpAjax('cron_setup', 'cron_action=delete', function(JsonResult, textStatus, jqXHR){
+		dataExpSetCronStatus(JsonResult.IsConfigured);
 		$('[data-role="cron-current-tasks-wrapper"]').html(JsonResult.CronTasksHtml);
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 }
 $(document).delegate('[data-role="cron-example"]', 'click', function(e){
@@ -1927,18 +1927,18 @@ $(document).delegate('[data-role="cron-example"]', 'click', function(e){
 });
 $(document).delegate('[data-role="cron-setup"]', 'click', function(e){
 	e.preventDefault();
-	var schedule = $('.acrit-core-cron-form-schedule input[type=text]').get().map(function(input){
+	var schedule = $('.data-core-cron-form-schedule input[type=text]').get().map(function(input){
 		var value = $.trim($(input).val());
 		if(!value.length){
 			value = '*';
 		}
 		return value;
 	}).join(' ');
-	acritExpCronSetup(schedule);
+	dataExpCronSetup(schedule);
 });
 $(document).delegate('[data-role="cron-clear"]', 'click', function(e){
 	e.preventDefault();
-	acritExpCronClear();
+	dataExpCronClear();
 });
 $(document).delegate('[data-role="cron-current-tasks-toggle"]', 'click', function(e){
 	e.preventDefault();
@@ -1949,24 +1949,24 @@ $(document).delegate('[data-role="cron-current-tasks-toggle"]', 'click', functio
 });
 $(document).delegate('[data-role="run-manual"]', 'click', function(e){
 	e.preventDefault();
-	AcritExpPopupExecute.Open($('#param__profile_id').val());
+	DataExpPopupExecute.Open($('#param__profile_id').val());
 });
 $(document).delegate('[data-role="run-background"]', 'click', function(e){
 	e.preventDefault();
-	acritExpAjax('run_in_background', null, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('run_in_background', null, function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success && JsonResult.SuccessMessage != undefined){
 			if(JsonResult.LockedHtml != undefined){
-				$('#acrit-exp-lock-notifier').html(JsonResult.LockedHtml);
+				$('#data-exp-lock-notifier').html(JsonResult.LockedHtml);
 			}
 			if(JsonResult.SuccessMessage && JsonResult.SuccessMessage.length){
 				var span = $('span[data-role="run-background-status"]')
-					.addClass('acrit-exp-text-blink').html(JsonResult.SuccessMessage);
-				clearTimeout(window.acritExpTimeoutRunInBackground1);
-				window.acritExpTimeoutRunInBackground1 = setTimeout(function(){
-					span.removeClass('acrit-exp-text-blink');
+					.addClass('data-exp-text-blink').html(JsonResult.SuccessMessage);
+				clearTimeout(window.dataExpTimeoutRunInBackground1);
+				window.dataExpTimeoutRunInBackground1 = setTimeout(function(){
+					span.removeClass('data-exp-text-blink');
 				}, 1000);
-				clearTimeout(window.acritExpTimeoutRunInBackground2);
-				window.acritExpTimeoutRunInBackground2 = setTimeout(function(){
+				clearTimeout(window.dataExpTimeoutRunInBackground2);
+				window.dataExpTimeoutRunInBackground2 = setTimeout(function(){
 					span.fadeOut(200, function(){
 						$(this).html('');
 					});
@@ -1976,9 +1976,9 @@ $(document).delegate('[data-role="run-background"]', 'click', function(e){
 		else if (!JsonResult.Success && JsonResult.ErrorMessage != undefined){
 			alert(JsonResult.ErrorMessage);
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 });
 $(document).delegate('input[data-role="cron-one-time"]', 'change', function(e){
@@ -1987,26 +1987,26 @@ $(document).delegate('input[data-role="cron-one-time"]', 'change', function(e){
 		post = {
 			one_time: checkbox.is(':checked') ? 'Y' : 'N'
 		};
-	clearTimeout(window.acritExpCronOneTimeTimeout);
+	clearTimeout(window.dataExpCronOneTimeTimeout);
 	checkbox.attr('disabled', 'disabled');
-	acritExpAjax('cron_set_one_time', post, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('cron_set_one_time', post, function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success){
 			var span = $('span[data-role="cron-one-time-result"]');
 			span.html(JsonResult.SuccessMessage).fadeIn(0);
-			window.acritExpCronOneTimeTimeout = setTimeout(function(){
+			window.dataExpCronOneTimeTimeout = setTimeout(function(){
 				span.fadeOut(200);
 			}, 2500);
 		}
 		checkbox.removeAttr('disabled');
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
 		checkbox.removeAttr('disabled');
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, true);
 });
 
 /* Log and history */
-function acritExpHandleLogTextarea(log){
+function dataExpHandleLogTextarea(log){
 	var textarea = $('textarea[data-role="profile-log"]');
 	if(log==true){
 		log = textarea.val();
@@ -2019,38 +2019,38 @@ function acritExpHandleLogTextarea(log){
 	}
 }
 $(document).delegate('input[data-role="profile-log-clear"]', 'click', function(e){
-	acritExpAjax('log_clear', '', function(JsonResult, textStatus, jqXHR){
-		acritExpHandleLogTextarea(null);
-		acritExpHandleAjaxError(jqXHR, false);
+	dataExpAjax('log_clear', '', function(JsonResult, textStatus, jqXHR){
+		dataExpHandleLogTextarea(null);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleLogTextarea(null);
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleLogTextarea(null);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 });
 $(document).delegate('input[data-role="profile-history-refresh"]', 'click', function(e, params){
-	acritExpAjax('history_refresh', params, function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('history_refresh', params, function(JsonResult, textStatus, jqXHR){
 		$('#tr_HISTORY > td').html(JsonResult.HTML);
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, false);
 });
-function acritExpUpdateLog(){
+function dataExpUpdateLog(){
 	$('a[data-role="log-refresh"]').trigger('click');
 }
-function acritExpUpdateHistory(page, size){
+function dataExpUpdateHistory(page, size){
 	$('input[data-role="profile-history-refresh"]').trigger('click', {
 		page: page,
 		size: size
 	});
 }
-function acritExpUpdateLogAndHistory(){
-	acritExpUpdateLog();
-	acritExpUpdateHistory();
+function dataExpUpdateLogAndHistory(){
+	dataExpUpdateLog();
+	dataExpUpdateHistory();
 }
 $(document).ready(function(){
-	acritExpHandleLogTextarea(true);
-	var span = $('<span data-role="profile-log-export-file-name-tab" class="acrit-exp-profile-log-filename"></span>')
+	dataExpHandleLogTextarea(true);
+	var span = $('<span data-role="profile-log-export-file-name-tab" class="data-exp-profile-log-filename"></span>')
 		.appendTo($('#log .adm-detail-title')),
 		fileName = $('[data-role="profile-log-export-file-name-hidden"]').html();
 		fileName = fileName != undefined ? fileName : '';
@@ -2125,14 +2125,14 @@ $(document).ready(function(){
 	$('input#checkbox_STEP_BY_STEP').trigger('change');
 });
 $(document).delegate('input[data-role="step-export-reset"]', 'click', function(e){
-	acritExpAjax('step_export_reset', '', function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('step_export_reset', '', function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success){
 			$('span[data-role="step-export-index"]').text('0');
 			$('span[data-role="step-export-finished"]').remove();
 		}
-		acritExpHandleAjaxError(jqXHR, false);
+		dataExpHandleAjaxError(jqXHR, false);
 	}, function(jqXHR){
-		acritExpHandleAjaxError(jqXHR, true);
+		dataExpHandleAjaxError(jqXHR, true);
 	}, true);
 });
 
@@ -2143,13 +2143,13 @@ $(document).delegate('input[data-role="step-export-reset"]', 'click', function(e
 $(document).ready(function(){
 	function checkLock(){
 		if(!window.lockChecking){
-			var btnStart = $('#acrit-exp-popup-execute-button-start');
+			var btnStart = $('#data-exp-popup-execute-button-start');
 			if(btnStart.length && btnStart.is('[disabled]')){
 				return;
 			}
 			window.lockChecking = true;
-			acritExpAjax('check_lock', '', function(JsonResult){
-				var notifier = $('#acrit-exp-lock-notifier');
+			dataExpAjax('check_lock', '', function(JsonResult){
+				var notifier = $('#data-exp-lock-notifier');
 				if(JsonResult.HTML && JsonResult.HTML.length){
 					notifier.html(JsonResult.HTML);
 				}
@@ -2165,7 +2165,7 @@ $(document).ready(function(){
 		else{}
 	}
 	// Check lock
-	if($('#acrit-exp-lock-notifier').length){
+	if($('#data-exp-lock-notifier').length){
 		window.lockChecking = false
 		checkLock();
 		setInterval(checkLock, 15000);
@@ -2185,7 +2185,7 @@ $(document).delegate('input[data-role="console-execute"]', 'click', function(e){
 						'&command='+command+
 						'&height='+height+
 						'&text='+text;
-	acritExpAjax('console_execute', data, function(JsonResult){
+	dataExpAjax('console_execute', data, function(JsonResult){
 		if(typeof JsonResult.HTML == 'string'){
 			$('[data-role="console-results"]').html(JsonResult.HTML);
 		}
@@ -2212,12 +2212,12 @@ $(document).delegate('input[data-role="console-fast-command"]', 'click', functio
  */
 $(document).delegate('input[type="text"][data-role="export-file-name"]', 'input', function(e){
 	var exportFilename = $(this).val().trim();
-	clearTimeout(window.acritExpExportFileNameTimeout);
-	window.acritExpExportFileNameTimeout = setTimeout(function(){
+	clearTimeout(window.dataExpExportFileNameTimeout);
+	window.dataExpExportFileNameTimeout = setTimeout(function(){
 		var data = {
 			export_filename: exportFilename
 		};
-		acritExpAjax('check_export_filename_unique', data, function(JsonResult){
+		dataExpAjax('check_export_filename_unique', data, function(JsonResult){
 			if(typeof JsonResult.UniqueMessage == 'string' && JsonResult.UniqueMessage.length){
 				alert(JsonResult.UniqueMessage);
 			}
@@ -2226,9 +2226,9 @@ $(document).delegate('input[type="text"][data-role="export-file-name"]', 'input'
 });
 
 /* Popup settings */
-$(document).delegate('.acrit-exp-field-settings select', 'mousedown', acritExpSelectNextOption);
+$(document).delegate('.data-exp-field-settings select', 'mousedown', dataExpSelectNextOption);
 
 /* Teacher set icon (if has submenu) */
 $(document).ready(function(){
-	$('.adm-detail-toolbar a[onclick*="acritTeacher"]').attr('id', 'acrit-exp-button-teacher');
+	$('.adm-detail-toolbar a[onclick*="dataTeacher"]').attr('id', 'data-exp-button-teacher');
 });

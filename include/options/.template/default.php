@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $strModuleId = &$arVariables['MODULE_ID'];
 $strModuleCodeFull = str_replace('.', '_', $strModuleId);

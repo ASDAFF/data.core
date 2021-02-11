@@ -1,1 +1,1 @@
-<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/acrit.core/admin/feedback.php');?>
+<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/data.core/admin/feedback.php');?>

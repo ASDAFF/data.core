@@ -5,13 +5,13 @@ if(!window.customXmlPluginInitialized){
 	$(document).delegate('a[data-role="custom-xml-check-valid"]', 'click', function(e){
 		e.preventDefault();
 		var xml = $(this).closest('[data-role="xml-structure-wrapper"]').find('textarea').val();
-		acritExpAjax(['plugin_ajax_action','check_xml_valid'], 'xml='+xml, function(JsonResult, textStatus, jqXHR){
+		dataExpAjax(['plugin_ajax_action','check_xml_valid'], 'xml='+xml, function(JsonResult, textStatus, jqXHR){
 			if(JsonResult.Message!=undefined && JsonResult.Message.length){
 				alert(JsonResult.Message);
 			}
-			acritExpHandleAjaxError(jqXHR, false);
+			dataExpHandleAjaxError(jqXHR, false);
 		}, function(jqXHR){
-			acritExpHandleAjaxError(jqXHR, true);
+			dataExpHandleAjaxError(jqXHR, true);
 		}, true);
 	});
 	// XML macros
@@ -37,7 +37,7 @@ $(document).ready(function(){
 	$('[data-role="xml-structure-wrapper"]').each(function(){
 		$('.adm-info-message', this).each(function(){
 			var html = $(this).html();
-			html = html.replace(/(#.*?#)/g, '<a href="#" class="acrit-exp-custom-xml-macro-link" data-role="xml-macro-link" data-macro="$1">$1</a>');
+			html = html.replace(/(#.*?#)/g, '<a href="#" class="data-exp-custom-xml-macro-link" data-role="xml-macro-link" data-macro="$1">$1</a>');
 			$(this).html(html);
 		});
 	});

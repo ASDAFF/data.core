@@ -1,12 +1,12 @@
 <?
 /**
- * Acrit Core: Lengow.com base plugin
+ * Data Core: Lengow.com base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Export\UniversalPlugin;
+	\Data\Core\Export\UniversalPlugin;
 
 abstract class LengowCom extends UniversalPlugin {
 	

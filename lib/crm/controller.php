@@ -3,7 +3,7 @@
  * Controller
  */
 
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 \Bitrix\Main\Loader::includeModule("sale");
 
@@ -13,14 +13,14 @@ use Bitrix\Main,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\SiteTable,
 	Bitrix\Sale,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 class Controller
 {
-	const APP_HANDLER = '/bitrix/acrit_#MODULE_ID#_crm_auth.php';
-	const EVENTS_HANDLER = '/bitrix/acrit_#MODULE_ID#_crm_handler.php';
+	const APP_HANDLER = '/bitrix/data_#MODULE_ID#_crm_auth.php';
+	const EVENTS_HANDLER = '/bitrix/data_#MODULE_ID#_crm_handler.php';
     public static $SERVER_ADDR;
     protected static $MANUAL_RUN = false;
 
@@ -38,7 +38,7 @@ class Controller
 	}
 
 	public static function getAppHandler() {
-		$module_code = str_replace('acrit.', '', self::$MODULE_ID);
+		$module_code = str_replace('data.', '', self::$MODULE_ID);
 		$link = str_replace('#MODULE_ID#', $module_code, self::APP_HANDLER);
 		return $link;
 	}

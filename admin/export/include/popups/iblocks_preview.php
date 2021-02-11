@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\DiscountRecalculation;
+	\Data\Core\Helper,
+	\Data\Core\DiscountRecalculation;
 	
 Loc::loadMessages(__FILE__);
 
@@ -87,7 +87,7 @@ while($arItem = $resItems->fetch()){
 
 ?>
 
-<div class="acrit-exp-table-iblocks-preview">
+<div class="data-exp-table-iblocks-preview">
 	<table class="adm-list-table">
 		<thead>
 			<tr class="adm-list-table-header">
@@ -99,34 +99,34 @@ while($arItem = $resItems->fetch()){
 				</td>
 				<td class="adm-list-table-cell" rowspan="2">
 					<div class="adm-list-table-cell-inner" style="text-align:left">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_NAME');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_NAME');?>
 					</div>
 				</td>
 				<td class="adm-list-table-cell" style="width:40px;" colspan="2">
 					<div class="adm-list-table-cell-inner">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_ELEMENTS');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_ELEMENTS');?>
 					</div>
 				</td>
 				<td class="adm-list-table-cell" style="width:40px;" rowspan="2">
 					<div class="adm-list-table-cell-inner">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_GENERATED');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_GENERATED');?>
 					</div>
 				</td>
 				<td class="adm-list-table-cell" style="width:40px;" rowspan="2">
 					<div class="adm-list-table-cell-inner">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_OFFERS');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_OFFERS');?>
 					</div>
 				</td>
 			</tr>
 			<tr class="adm-list-table-header">
 				<td class="adm-list-table-cell" style="width:50px">
 					<div class="adm-list-table-cell-inner">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_ELEMENTS_COUNT');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_ELEMENTS_COUNT');?>
 					</div>
 				</td>
 				<td class="adm-list-table-cell" style="width:140px">
 					<div class="adm-list-table-cell-inner">
-						<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_ELEMENTS_SUITABLE');?>
+						<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_HEADER_ELEMENTS_SUITABLE');?>
 					</div>
 				</td>
 			</tr>
@@ -145,19 +145,19 @@ while($arItem = $resItems->fetch()){
 									$arMenu = array();
 									/*
 									$arMenu[] = array(
-										'TEXT'	=> Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_COPY_SETTINGS_TO'),
+										'TEXT'	=> Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_COPY_SETTINGS_TO'),
 										'ONCLICK' => 'alert(1);',
 										'GLOBAL_ICON' => 'adm-menu-edit',
 									);
 									*/
 									$arMenu[] = array(
-										'TEXT'	=> Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_CLEAR_SETTINGS'),
-										'ONCLICK' => 'acritExpClearIBlockData('.$arIBlock['ID'].', "'.$arIBlock['NAME'].'", false, function(){AcritExpPopupIBlocksPreview.LoadContent();});',
+										'TEXT'	=> Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_CLEAR_SETTINGS'),
+										'ONCLICK' => 'dataExpClearIBlockData('.$arIBlock['ID'].', "'.$arIBlock['NAME'].'", false, function(){DataExpPopupIBlocksPreview.LoadContent();});',
 										'GLOBAL_ICON' => 'adm-menu-delete',
 									);
 									?>
 									<div class="adm-list-table-popup adm-list-table-popup-active"
-										 title="<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_ACTIONS');?>" 
+										 title="<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_ACTIONS');?>" 
 										 onclick="<?=Helper::showMenuOnClick($arMenu);?>"></div>
 								<?endif?>
 							</td>
@@ -203,7 +203,7 @@ while($arItem = $resItems->fetch()){
 										$arExample = $resExample->GetNext(false,false);
 										?>
 										<?if(is_array($arExample)):?>
-											(<a href="<?=Exporter::getInstance($strModuleId)->getElementPreviewUrl($arExample['ID'], $intProfileID);?>" target="_blank"><?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_EXAMPLE');?></a>)
+											(<a href="<?=Exporter::getInstance($strModuleId)->getElementPreviewUrl($arExample['ID'], $intProfileID);?>" target="_blank"><?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_EXAMPLE');?></a>)
 										<?endif?>
 									<?endif?>
 								<?endif?>
@@ -225,8 +225,8 @@ while($arItem = $resItems->fetch()){
 		</tbody>
 	</table>
 	<hr/>
-	<p><?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_NOTICE_OFFERS');?></p>
+	<p><?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_NOTICE_OFFERS');?></p>
 	<?if(DiscountRecalculation::isEnabled()):?>
-		<p><?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_NOTICE_DISCOUNTS');?></p>
+		<p><?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_NOTICE_DISCOUNTS');?></p>
 	<?endif?>
 </div>

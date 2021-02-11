@@ -1,19 +1,19 @@
 <?
 /**
- * Acrit Core: Bitrix24 plugin
+ * Data Core: Bitrix24 plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\Plugins\Bitrix24Rest as BitrixRest;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\HttpRequest,
+	\Data\Core\Export\Filter,
+	\Data\Core\Log,
+	\Data\Core\Json,
+	\Data\Core\Export\Plugins\Bitrix24Rest as BitrixRest;
 
 Loc::loadMessages(__FILE__);
 
@@ -91,7 +91,7 @@ class Bitrix24 extends Plugin {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
@@ -99,7 +99,7 @@ class Bitrix24 extends Plugin {
 					<?=static::getMessage('SETTINGS_ACCESS_PORTAL');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_PORTAL]" id="acrit_exp_plugin_vk_access_portal" value="<?=$this->arProfile['PARAMS']['ACCESS_PORTAL'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_PORTAL]" id="data_exp_plugin_vk_access_portal" value="<?=$this->arProfile['PARAMS']['ACCESS_PORTAL'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -108,7 +108,7 @@ class Bitrix24 extends Plugin {
 					<?=static::getMessage('SETTINGS_ACCESS_WEBHOOK');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_WEBHOOK]" id="acrit_exp_plugin_vk_access_webhook" value="<?=$this->arProfile['PARAMS']['ACCESS_WEBHOOK'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_WEBHOOK]" id="data_exp_plugin_vk_access_webhook" value="<?=$this->arProfile['PARAMS']['ACCESS_WEBHOOK'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -117,7 +117,7 @@ class Bitrix24 extends Plugin {
 					<?=static::getMessage('SETTINGS_ACCESS_USER_ID');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_USER_ID]" id="acrit_exp_plugin_vk_access_user_id" value="<?=$this->arProfile['PARAMS']['ACCESS_USER_ID'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_USER_ID]" id="data_exp_plugin_vk_access_user_id" value="<?=$this->arProfile['PARAMS']['ACCESS_USER_ID'];?>" size="90" />
 				</td>
 			</tr>
             <tr>
@@ -126,7 +126,7 @@ class Bitrix24 extends Plugin {
 					<?=static::getMessage('SETTINGS_PROCESS_LIMIT');?>:
                 </td>
                 <td width="60%" class="adm-detail-content-cell-r">
-                    <input type="text" name="PROFILE[PARAMS][PROCESS_LIMIT]" id="acrit_exp_plugin_vk_process_run_limit" value="<?=$this->arProfile['PARAMS']['PROCESS_LIMIT']?$this->arProfile['PARAMS']['PROCESS_LIMIT']:0;?>" />
+                    <input type="text" name="PROFILE[PARAMS][PROCESS_LIMIT]" id="data_exp_plugin_vk_process_run_limit" value="<?=$this->arProfile['PARAMS']['PROCESS_LIMIT']?$this->arProfile['PARAMS']['PROCESS_LIMIT']:0;?>" />
                 </td>
             </tr>
             <tr>
@@ -135,9 +135,9 @@ class Bitrix24 extends Plugin {
 					<?=static::getMessage('SETTINGS_PROCESS_NEXT_POS');?>:
                 </td>
                 <td width="60%" class="adm-detail-content-cell-r">
-                    <span style="margin-right: 20px;" id="acrit_exp_plugin_vk_process_next_pos_view"><?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?></span>
-                    <input type="hidden" name="PROFILE[PARAMS][PROCESS_NEXT_POS]" id="acrit_exp_plugin_vk_process_next_pos" value="0" />
-                    <a href="#" class="adm-btn" id="acrit_exp_plugin_vk_process_next_pos_reset"><?=static::getMessage('SETTINGS_PROCESS_NEXT_POS_RESET');?></a>
+                    <span style="margin-right: 20px;" id="data_exp_plugin_vk_process_next_pos_view"><?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?></span>
+                    <input type="hidden" name="PROFILE[PARAMS][PROCESS_NEXT_POS]" id="data_exp_plugin_vk_process_next_pos" value="0" />
+                    <a href="#" class="adm-btn" id="data_exp_plugin_vk_process_next_pos_reset"><?=static::getMessage('SETTINGS_PROCESS_NEXT_POS_RESET');?></a>
                 </td>
             </tr>
 			</tbody>

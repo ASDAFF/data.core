@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_GOODS_RU_SIMPLE_';
+$strMessPrefix = 'DATA_EXP_GOODS_RU_SIMPLE_';
 
 //
 $MESS[$strMessPrefix . 'USEFUL_LINKS'] = 'Полезные ссылки:';

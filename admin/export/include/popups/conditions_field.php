@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -52,30 +52,30 @@ if($intIBlockOffersID){
 <?if(!$intIBlockOffersID):?>
 	<input type="hidden" data-role="entity-select-type-hidden" value="main" />
 <?endif?>
-<table class="acrit-exp-field-select-table">
+<table class="data-exp-field-select-table">
 	<tbody>
 		<tr>
 			<?if($intIBlockOffersID):?>
 				<td>
-					<select class="acrit-exp-field-select-type" data-role="entity-select-type">
+					<select class="data-exp-field-select-type" data-role="entity-select-type">
 						<option value="main"<?if($strIBlockType=='main'):?> selected="selected"<?endif?>>
-							<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_TYPE_MAIN');?>
+							<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_TYPE_MAIN');?>
 						</option>
 						<option value="offers"<?if($strIBlockType=='offers'):?> selected="selected"<?endif?>>
-							<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_TYPE_OFFERS');?>
+							<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_TYPE_OFFERS');?>
 						</option>
 					</select>
 				</td>
 			<?endif?>
 			<td>
-				<input type="text" value="" class="acrit-exp-field-select-text" data-role="entity-select-search" placeholder="<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_TEXT_PLACEHOLDER');?>"/>
+				<input type="text" value="" class="data-exp-field-select-text" data-role="entity-select-search" placeholder="<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_TEXT_PLACEHOLDER');?>"/>
 			</td>
 		</tr>
 		<tr>
 			<td<?if($intIBlockOffersID):?> colspan="2"<?endif?>>
-				<select class="acrit-exp-field-select-list" size="10" data-role="entity-select-item" data-type="main">
+				<select class="data-exp-field-select-list" size="10" data-role="entity-select-item" data-type="main">
 					<option value="" disabled="disabled" data-role="entity-select-item-not-found" style="display:none">
-						<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_NOT_FOUND');?>
+						<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_NOT_FOUND');?>
 					</option>
 					<?foreach($arAvailableElementFields as $strGroup => $arGroup):?>
 						<?if(is_array($arGroup['ITEMS']) && !empty($arGroup['ITEMS'])):?>
@@ -107,9 +107,9 @@ if($intIBlockOffersID){
 					<?endforeach?>
 				</select>
 				<?if($intIBlockOffersID):?>
-					<select class="acrit-exp-field-select-list" size="10" data-role="entity-select-item" data-type="offers" style="display:none">
+					<select class="data-exp-field-select-list" size="10" data-role="entity-select-item" data-type="offers" style="display:none">
 						<option value="" disabled="disabled" data-role="entity-select-item-not-found" style="display:none">
-							<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_NOT_FOUND');?>
+							<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_NOT_FOUND');?>
 						</option>
 						<?foreach($arAvailableOfferFields as $strGroup => $arGroup):?>
 							<?if(is_array($arGroup['ITEMS']) && !empty($arGroup['ITEMS'])):?>

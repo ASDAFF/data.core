@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit Core: beru.ru plugin
+ * Data Core: beru.ru plugin
  * @documentation https://yandex.ru/support/marketplace/catalog/excel.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Json;
 
 class BeruRuExcelCategory extends BeruRu {
 	

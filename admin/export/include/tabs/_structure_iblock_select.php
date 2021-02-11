@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(\Bitrix\Main\Loader::getDocumentRoot().'/bitrix/modules/'.$strCoreId
 	.'/admin/export/include/tabs/structure.php');
@@ -67,7 +67,7 @@ if($bShowJustCatalogs){
 $arCustomizedIBlocksId = [];
 
 ?>
-<option value=""><?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SELECT_EMPTY');?></option>
+<option value=""><?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_SELECT_EMPTY');?></option>
 <?foreach($arIBlocksByType as $IBlockTypeID => $arIBlockType):?>
 	<?if(!empty($arIBlockType['ITEMS'])):?>
 		<optgroup label="<?=$arIBlockType['NAME'];?>">
@@ -83,10 +83,10 @@ $arCustomizedIBlocksId = [];
 					print $arIBlock['NAME'];
 					print ' ['.$arIBlock['ID'].']';
 					if($bShowCount){
-						print ' '.Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_ELEMENT_COUNT', array('#COUNT#'=>IntVal($arIBlock['ELEMENT_CNT'])));
+						print ' '.Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_ELEMENT_COUNT', array('#COUNT#'=>IntVal($arIBlock['ELEMENT_CNT'])));
 					}
 					if($arIBlock['CATALOG']['OFFERS_IBLOCK_ID']){
-						print Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_WITH_OFFERS');
+						print Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_WITH_OFFERS');
 						print ' ['.$arIBlock['CATALOG']['OFFERS_IBLOCK_ID'].']';
 					}
 				?></option>
@@ -98,7 +98,7 @@ $arCustomizedIBlocksId = [];
 <?
 $strIBlocksMultipleNotice = '';
 if(Helper::getOption($strModuleId, 'show_iblock_multiple_notice') == 'Y' && count($arCustomizedIBlocksId) > 1){
-	$strIBlocksMultipleNotice = Helper::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SELECT_MULTIPLE_NOTICE', [
+	$strIBlocksMultipleNotice = Helper::getMessage('DATA_EXP_STRUCTURE_IBLOCK_SELECT_MULTIPLE_NOTICE', [
 		'#COUNT#' => count($arCustomizedIBlocksId),
 		'#LANGUAGE_ID#' => LANGUAGE_ID,
 		'#MODULE_ID#' => $strModuleId,

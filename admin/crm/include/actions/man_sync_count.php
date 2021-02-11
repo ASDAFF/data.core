@@ -1,5 +1,5 @@
 <?
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 // Process
 $filter = [];

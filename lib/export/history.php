@@ -1,16 +1,16 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Log;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class HistoryTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class HistoryTable extends Entity\DataManager {
@@ -38,68 +38,68 @@ abstract class HistoryTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_PROFILE_ID'),
 			)),
 			'DATE_START' => new Entity\DatetimeField('DATE_START', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_DATE_START'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_DATE_START'),
 			)),
 			'DATE_END' => new Entity\DatetimeField('DATE_END', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_DATE_END'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_DATE_END'),
 			)),
 			'ELEMENTS_COUNT' => new Entity\IntegerField('ELEMENTS_COUNT', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_ELEMENTS_COUNT'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_ELEMENTS_COUNT'),
 			)),
 			'ELEMENTS_Y' => new Entity\IntegerField('ELEMENTS_Y', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_ELEMENTS_Y'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_ELEMENTS_Y'),
 			)),
 			'ELEMENTS_N' => new Entity\IntegerField('ELEMENTS_N', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_ELEMENTS_N'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_ELEMENTS_N'),
 			)),
 			'OFFERS_Y' => new Entity\IntegerField('OFFERS_Y', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_OFFERS_Y'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_OFFERS_Y'),
 			)),
 			'OFFERS_N' => new Entity\IntegerField('OFFERS_N', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_OFFERS_N'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_OFFERS_N'),
 			)),
 			'TIME_GENERATED' => new Entity\IntegerField('TIME_GENERATED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_TIME_GENERATED'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_TIME_GENERATED'),
 			)),
 			'TIME_TOTAL' => new Entity\IntegerField('TIME_TOTAL', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_TIME_TOTAL'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_TIME_TOTAL'),
 			)),
 			'AUTO' => new Entity\StringField('AUTO', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_AUTO'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_AUTO'),
 			)),
 			'COMMAND' => new Entity\StringField('COMMAND', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_COMMAND'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_COMMAND'),
 			)),
 			'PID' => new Entity\StringField('PID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_PID'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_PID'),
 			)),
 			'MULTITHREADING' => new Entity\StringField('MULTITHREADING', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_MULTITHREADING'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_MULTITHREADING'),
 			)),
 			'THREADS' => new Entity\IntegerField('THREADS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_THREADS'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_THREADS'),
 			)),
 			'ELEMENTS_PER_THREAD' => new Entity\IntegerField('ELEMENTS_PER_THREAD', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_ELEMENTS_PER_THREAD'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_ELEMENTS_PER_THREAD'),
 			)),
 			'STOPPED' => new Entity\StringField('STOPPED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_STOPPED'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_STOPPED'),
 			)),
 			'USER_ID' => new Entity\IntegerField('USER_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_USER_ID'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_USER_ID'),
 			)),
 			'IP' => new Entity\StringField('IP', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_IP'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_IP'),
 			)),
 			'VERSION' => new Entity\StringField('VERSION', array(
-				'title' => Loc::getMessage('ACRIT_EXP_HISTORY_FIELD_VERSION'),
+				'title' => Loc::getMessage('DATA_EXP_HISTORY_FIELD_VERSION'),
 			)),
 		);
 	}

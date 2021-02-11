@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 
@@ -22,26 +22,26 @@ if(!is_array($arCurrentEncodeOptions)){
 $arEncodeOptions = $obPlugin->getSupportedEncodeOptions();
 
 // JSON structure
-$obTabControl->BeginCustomField('PROFILE[JSON_STRUCTURE]', Helper::getMessage('ACRIT_EXP_JSON_STRUCTURE'));
+$obTabControl->BeginCustomField('PROFILE[JSON_STRUCTURE]', Helper::getMessage('DATA_EXP_JSON_STRUCTURE'));
 ?>
 	<tr class="heading">
 		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
 	</tr>
 	<tr id="tr_JSON_ELEMENT_FIELDS">
 		<td width="40%" style="padding-top:10px; vertical-align:top;">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_STRUCTURE_GENERAL_HINT'));?>
-			<label for="acrit-exp-json-add-header"><?=Helper::getMessage('ACRIT_EXP_JSON_STRUCTURE_GENERAL');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_STRUCTURE_GENERAL_HINT'));?>
+			<label for="data-exp-json-add-header"><?=Helper::getMessage('DATA_EXP_JSON_STRUCTURE_GENERAL');?>:</label>
 		</td>
 		<td width="60%">
 			<div data-role="json-structure-wrapper">
 				<?
 					$strStructure = $arProfile['PARAMS']['JSON_STRUCTURE'];
 					if(!strlen($strStructure)){
-						$strStructure = Helper::getMessage('ACRIT_EXP_JSON_STRUCTURE_EXAMPLE');
+						$strStructure = Helper::getMessage('DATA_EXP_JSON_STRUCTURE_EXAMPLE');
 					}
 				?>
-				<textarea class="acrit-exp-custom-json-structure" name="PROFILE[PARAMS][JSON_STRUCTURE]"
-					placeholder="<?=Helper::getMessage('ACRIT_EXP_JSON_STRUCTURE_PLACEHOLDER');?>" spellcheck="false"><?
+				<textarea class="data-exp-custom-json-structure" name="PROFILE[PARAMS][JSON_STRUCTURE]"
+					placeholder="<?=Helper::getMessage('DATA_EXP_JSON_STRUCTURE_PLACEHOLDER');?>" spellcheck="false"><?
 					print htmlspecialcharsbx($strStructure);
 				?></textarea>
 			</div>
@@ -50,7 +50,7 @@ $obTabControl->BeginCustomField('PROFILE[JSON_STRUCTURE]', Helper::getMessage('A
 	<tr id="tr_JSON_STRUCTURE_NOTICE">
 		<td width="40%"></td>
 		<td width="60%">
-			<?=Helper::showNote(Helper::getMessage('ACRIT_EXP_JSON_STRUCTURE_NOTICE'), true);?>
+			<?=Helper::showNote(Helper::getMessage('DATA_EXP_JSON_STRUCTURE_NOTICE'), true);?>
 		</td>
 	</tr>
 <?
@@ -58,20 +58,20 @@ $obTabControl->EndCustomField('PROFILE[JSON_STRUCTURE]');
 ?>
 
 <?// JSON fields
-$obTabControl->BeginCustomField('PROFILE[JSON_FIELDS]', Helper::getMessage('ACRIT_EXP_JSON_FIELDS'));
+$obTabControl->BeginCustomField('PROFILE[JSON_FIELDS]', Helper::getMessage('DATA_EXP_JSON_FIELDS'));
 ?>
 	<tr class="heading">
 		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
 	</tr>
 	<tr id="tr_JSON_ELEMENT_FIELDS">
 		<td width="40%" style="padding-top:10px; vertical-align:top;">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_ELEMENT_FIELDS_HINT'));?>
-			<label for="acrit-exp-json-add-header"><?=Helper::getMessage('ACRIT_EXP_JSON_ELEMENT_FIELDS');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_ELEMENT_FIELDS_HINT'));?>
+			<label for="data-exp-json-add-header"><?=Helper::getMessage('DATA_EXP_JSON_ELEMENT_FIELDS');?>:</label>
 		</td>
 		<td width="60%">
 			<div data-role="json-fields-wrapper">
-				<textarea class="acrit-exp-custom-json-fields" name="PROFILE[PARAMS][JSON_ELEMENT_FIELDS]"
-					placeholder="<?=Helper::getMessage('ACRIT_EXP_JSON_FIELD_PLACEHOLDER', [
+				<textarea class="data-exp-custom-json-fields" name="PROFILE[PARAMS][JSON_ELEMENT_FIELDS]"
+					placeholder="<?=Helper::getMessage('DATA_EXP_JSON_FIELD_PLACEHOLDER', [
 						'#EXAMPLE#' => implode(PHP_EOL, $arDefaultElementFields),
 					]);?>" spellcheck="false"><?
 					print htmlspecialcharsbx($arProfile['PARAMS']['JSON_ELEMENT_FIELDS']);
@@ -81,15 +81,15 @@ $obTabControl->BeginCustomField('PROFILE[JSON_FIELDS]', Helper::getMessage('ACRI
 	</tr>
 	<tr id="tr_JSON_OFFER_FIELDS">
 		<td width="40%" style="padding-top:10px; vertical-align:top;">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_OFFER_FIELDS_HINT'));?>
-			<label for="acrit-exp-json-add-header"><?=Helper::getMessage('ACRIT_EXP_JSON_OFFER_FIELDS');?>:<br/>
-			<?=Helper::getMessage('ACRIT_EXP_JSON_OFFER_FIELDS_NOTICE');?>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_OFFER_FIELDS_HINT'));?>
+			<label for="data-exp-json-add-header"><?=Helper::getMessage('DATA_EXP_JSON_OFFER_FIELDS');?>:<br/>
+			<?=Helper::getMessage('DATA_EXP_JSON_OFFER_FIELDS_NOTICE');?>
 			</label>
 		</td>
 		<td width="60%">
 			<div data-role="json-fields-wrapper">
-				<textarea class="acrit-exp-custom-json-fields" name="PROFILE[PARAMS][JSON_OFFER_FIELDS]"
-					placeholder="<?=Helper::getMessage('ACRIT_EXP_JSON_FIELD_PLACEHOLDER', [
+				<textarea class="data-exp-custom-json-fields" name="PROFILE[PARAMS][JSON_OFFER_FIELDS]"
+					placeholder="<?=Helper::getMessage('DATA_EXP_JSON_FIELD_PLACEHOLDER', [
 						'#EXAMPLE#' => implode(PHP_EOL, $arDefaultOfferFields),
 					]);?>" spellcheck="false"><?
 					print htmlspecialcharsbx($arProfile['PARAMS']['JSON_OFFER_FIELDS']);
@@ -100,7 +100,7 @@ $obTabControl->BeginCustomField('PROFILE[JSON_FIELDS]', Helper::getMessage('ACRI
 	<tr id="tr_JSON_FIELDS_NOTICE">
 		<td width="40%"></td>
 		<td width="60%">
-			<?=Helper::showNote(Helper::getMessage('ACRIT_EXP_JSON_FIELDS_NOTICE'), true);?>
+			<?=Helper::showNote(Helper::getMessage('DATA_EXP_JSON_FIELDS_NOTICE'), true);?>
 		</td>
 	</tr>
 <?
@@ -108,80 +108,80 @@ $obTabControl->EndCustomField('PROFILE[JSON_FIELDS]');
 ?>
 
 <?// JSON settings
-$obTabControl->BeginCustomField('PROFILE[JSON_SETTINGS]', Helper::getMessage('ACRIT_EXP_JSON_SETTINGS'));
+$obTabControl->BeginCustomField('PROFILE[JSON_SETTINGS]', Helper::getMessage('DATA_EXP_JSON_SETTINGS'));
 ?>
 	<tr class="heading">
 		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
 	</tr>
 	<tr id="tr_JSON_ADD_UTM">
 		<td width="40%">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_ADD_UTM_HINT'));?>
-			<label for="acrit-exp-json-add-utm"><?=Helper::getMessage('ACRIT_EXP_JSON_ADD_UTM');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_ADD_UTM_HINT'));?>
+			<label for="data-exp-json-add-utm"><?=Helper::getMessage('DATA_EXP_JSON_ADD_UTM');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="hidden" value="N" name="PROFILE[PARAMS][JSON_ADD_UTM]" />
-			<input type="checkbox" value="Y" name="PROFILE[PARAMS][JSON_ADD_UTM]" id="acrit-exp-json-add-utm"
+			<input type="checkbox" value="Y" name="PROFILE[PARAMS][JSON_ADD_UTM]" id="data-exp-json-add-utm"
 				<?if($arProfile['PARAMS']['JSON_ADD_UTM']=='Y'):?>checked="checked"<?endif?> 
 				data-role="custom-json-add-utm" />
 		</td>
 	</tr>
 	<tr id="tr_JSON_UTM_FIELD" style="display:none;">
 		<td width="40%">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_UTM_FIELD_HINT'));?>
-			<label for="acrit-exp-json-offers-preprocess-field"><?=Helper::getMessage('ACRIT_EXP_JSON_UTM_FIELD');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_UTM_FIELD_HINT'));?>
+			<label for="data-exp-json-offers-preprocess-field"><?=Helper::getMessage('DATA_EXP_JSON_UTM_FIELD');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="text" name="PROFILE[PARAMS][JSON_UTM_FIELD]"
 				value="<?=htmlspecialcharsbx($arProfile['PARAMS']['JSON_UTM_FIELD']);?>"
-				id="acrit-exp-json-utm-field" />
+				id="data-exp-json-utm-field" />
 		</td>
 	</tr>
 	<tr id="tr_OFFERS_PREPROCESS">
 		<td width="40%">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_OFFERS_PREPROCESS_HINT'));?>
-			<label for="acrit-exp-json-offers-preprocess"><?=Helper::getMessage('ACRIT_EXP_JSON_OFFERS_PREPROCESS');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_OFFERS_PREPROCESS_HINT'));?>
+			<label for="data-exp-json-offers-preprocess"><?=Helper::getMessage('DATA_EXP_JSON_OFFERS_PREPROCESS');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="hidden" value="N" name="PROFILE[PARAMS][JSON_OFFERS_PREPROCESS]" />
 			<input type="checkbox" value="Y" name="PROFILE[PARAMS][JSON_OFFERS_PREPROCESS]"
 				<?if($arProfile['PARAMS']['JSON_OFFERS_PREPROCESS']=='Y'):?>checked="checked"<?endif?>
-				id="acrit-exp-json-offers-preprocess" data-role="custom-json-offers-preprocess" />
+				id="data-exp-json-offers-preprocess" data-role="custom-json-offers-preprocess" />
 		</td>
 	</tr>
 	<tr id="tr_OFFERS_PREPROCESS_FIELD" style="display:none;">
 		<td width="40%">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_OFFERS_PREPROCESS_FIELD_HINT'));?>
-			<label for="acrit-exp-json-offers-preprocess-field"><?=Helper::getMessage('ACRIT_EXP_JSON_OFFERS_PREPROCESS_FIELD');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_OFFERS_PREPROCESS_FIELD_HINT'));?>
+			<label for="data-exp-json-offers-preprocess-field"><?=Helper::getMessage('DATA_EXP_JSON_OFFERS_PREPROCESS_FIELD');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="text" name="PROFILE[PARAMS][JSON_OFFERS_PREPROCESS_FIELD]"
 				value="<?=htmlspecialcharsbx($arProfile['PARAMS']['JSON_OFFERS_PREPROCESS_FIELD']);?>"
-				id="acrit-exp-json-offers-preprocess-field" />
+				id="data-exp-json-offers-preprocess-field" />
 		</td>
 	</tr>
 	<tr id="tr_TRANSFORM_FIELDS">
 		<td width="40%">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_TRANSFORM_FIELDS_HINT'));?>
-			<label for="acrit-exp-json-transform-fields"><?=Helper::getMessage('ACRIT_EXP_JSON_TRANSFORM_FIELDS');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_TRANSFORM_FIELDS_HINT'));?>
+			<label for="data-exp-json-transform-fields"><?=Helper::getMessage('DATA_EXP_JSON_TRANSFORM_FIELDS');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="text" name="PROFILE[PARAMS][JSON_TRANSFORM_FIELDS]" size="50"
 				value="<?=htmlspecialcharsbx($arProfile['PARAMS']['JSON_TRANSFORM_FIELDS']);?>"
-				id="acrit-exp-json-transform-fields" style="max-width:96%;" />
+				id="data-exp-json-transform-fields" style="max-width:96%;" />
 		</td>
 	</tr>
 	<tr id="tr_ENCODE_OPTIONS">
 		<td width="40%">
-			<?=Helper::showHint(Helper::getMessage('ACRIT_EXP_JSON_ENCODE_OPTIONS_HINT'));?>
-			<label for="acrit-exp-json-encode-options"><?=Helper::getMessage('ACRIT_EXP_JSON_ENCODE_OPTIONS');?>:</label>
+			<?=Helper::showHint(Helper::getMessage('DATA_EXP_JSON_ENCODE_OPTIONS_HINT'));?>
+			<label for="data-exp-json-encode-options"><?=Helper::getMessage('DATA_EXP_JSON_ENCODE_OPTIONS');?>:</label>
 		</td>
-		<td width="60%" class="acrit-exp-custom-json-encode-options">
+		<td width="60%" class="data-exp-custom-json-encode-options">
 			<?foreach($obPlugin->getSupportedEncodeOptions() as $strOption):?>
-				<div class="acrit-exp-custom-json-encode-option">
+				<div class="data-exp-custom-json-encode-option">
 					<label>
 						<input type="checkbox" name="PROFILE[PARAMS][JSON_ENCODE_OPTIONS][]" value="<?=$strOption;?>"
 							<?if(in_array($strOption, $arCurrentEncodeOptions)):?> checked="checked"<?endif?>/>
-						<span><?=Helper::getMessage('ACRIT_EXP_JSON_ENCODE_OPTION_'.$strOption)?>
+						<span><?=Helper::getMessage('DATA_EXP_JSON_ENCODE_OPTION_'.$strOption)?>
 							<code>[<?=$strOption;?>]</code></span>
 					</label>
 				</div>

@@ -1,4 +1,4 @@
-function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
+function dataExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
 	var lang = phpVars.LANGUAGE_ID,
 		mid = location.search.match(/mid=([a-z0-9-_\.]+)/)[1];
 	//
@@ -42,7 +42,7 @@ function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hi
 }
 
 /* Log */
-function acritExpOptionsHandleLogTextarea(log){
+function dataExpOptionsHandleLogTextarea(log){
 	var textarea = $('textarea[data-role="module-log"]');
 	if(log==true){
 		log = textarea.val();
@@ -55,31 +55,31 @@ function acritExpOptionsHandleLogTextarea(log){
 	}
 }
 $(document).delegate('input[data-role="module-log-refresh"]', 'click', function(e){
-	acritExpAjax('log_refresh', '', function(JsonResult, textStatus, jqXHR){
+	dataExpAjax('log_refresh', '', function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success){
-			acritExpOptionsHandleLogTextarea(JsonResult.Log);
+			dataExpOptionsHandleLogTextarea(JsonResult.Log);
 		}
 		else {
-			acritExpOptionsHandleLogTextarea(null);
+			dataExpOptionsHandleLogTextarea(null);
 		}
 		if(JsonResult.LogSize != undefined){
 			$('[data-role="log-full-size"]').html(JsonResult.LogSize);
 		}
 	}, function(jqXHR){
-		acritExpOptionsHandleLogTextarea(null);
+		dataExpOptionsHandleLogTextarea(null);
 	}, false);
 });
 $(document).delegate('input[data-role="module-log-clear"]', 'click', function(e){
-	acritExpAjax('log_clear', '', function(JsonResult, textStatus, jqXHR){
-		acritExpOptionsHandleLogTextarea(null);
+	dataExpAjax('log_clear', '', function(JsonResult, textStatus, jqXHR){
+		dataExpOptionsHandleLogTextarea(null);
 	}, function(jqXHR){
-		acritExpOptionsHandleLogTextarea(null);
+		dataExpOptionsHandleLogTextarea(null);
 	}, false);
 });
 $(document).delegate('input[data-role="check-php-path"]', 'click', function(e){
-	var phpPath = $('#acrit_exportproplus_option_php_path').val();
+	var phpPath = $('#data_exportproplus_option_php_path').val();
 	if(phpPath.length) {
-		acritExpAjax('check_php_path', 'php_path='+encodeURIComponent(phpPath), function(JsonResult, textStatus, jqXHR){
+		dataExpAjax('check_php_path', 'php_path='+encodeURIComponent(phpPath), function(JsonResult, textStatus, jqXHR){
 			if(JsonResult.Success){
 				alert(JsonResult.Message);
 			}
@@ -91,19 +91,19 @@ $(document).delegate('input[data-role="check-php-path"]', 'click', function(e){
 		}, false);
 	}
 });
-$(document).delegate('tr#acrit_exp_option_multithreaded input[type=checkbox]', 'change', function(e){
-	$('tr#acrit_exp_option_threads').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-	$('tr#acrit_exp_option_elements_per_thread_cron').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-	$('tr#acrit_exp_option_elements_per_thread_manual').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+$(document).delegate('tr#data_exp_option_multithreaded input[type=checkbox]', 'change', function(e){
+	$('tr#data_exp_option_threads').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+	$('tr#data_exp_option_elements_per_thread_cron').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+	$('tr#data_exp_option_elements_per_thread_manual').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
 });
-$(document).delegate('tr#acrit_exp_option_discount_recalculation_enabled input[type=checkbox]', 'change', function(e){
-	$('tr#acrit_exp_option_discount_recalculation_calc_value').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-	$('tr#acrit_exp_option_discount_recalculation_calc_discount').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-	$('tr#acrit_exp_option_discount_recalculation_calc_percent').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
-	$('tr#acrit_exp_option_discount_recalculation_prices').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+$(document).delegate('tr#data_exp_option_discount_recalculation_enabled input[type=checkbox]', 'change', function(e){
+	$('tr#data_exp_option_discount_recalculation_calc_value').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+	$('tr#data_exp_option_discount_recalculation_calc_discount').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+	$('tr#data_exp_option_discount_recalculation_calc_percent').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
+	$('tr#data_exp_option_discount_recalculation_prices').toggle($(this).is(':checked') && !$(this).is('[disabled]'));
 });
 $(document).ready(function(){
-	acritExpOptionsHandleLogTextarea(true);
-	$('tr#acrit_exp_option_multithreaded input[type=checkbox]').trigger('change');
-	$('tr#acrit_exp_option_discount_recalculation_enabled input[type=checkbox]').trigger('change');
+	dataExpOptionsHandleLogTextarea(true);
+	$('tr#data_exp_option_multithreaded input[type=checkbox]').trigger('change');
+	$('tr#data_exp_option_discount_recalculation_enabled input[type=checkbox]').trigger('change');
 });

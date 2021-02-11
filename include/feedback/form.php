@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 if(!strlen($strEmailAdmin) || !check_email($strEmailAdmin)){
 	$strEmailAdmin = reset(explode(',', \Bitrix\Main\Config\Option::get('main', 'email_from')));
@@ -20,74 +20,74 @@ $arTech = [
 ];
 $arTechTmp = [];
 foreach($arTech as $key => $value){
-	$arTechTmp[] = Helper::getMessage('ACRIT_CORE_FEEDBACK_TECH_'.$key).': '.$value;
+	$arTechTmp[] = Helper::getMessage('DATA_CORE_FEEDBACK_TECH_'.$key).': '.$value;
 }
 $strTech = implode("\r\n", $arTechTmp);
 
 ?>
-<div id="acrit-core-feedback-form">
-	<input type="hidden" value="<?=$strModuleId;?>" id="acrit-core-feedback-form-module" />
-	<input type="hidden" value="<?=$strEmailAdmin;?>" id="acrit-core-feedback-form-email-admin" />
-	<input type="hidden" value="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_SUBJECT', [
+<div id="data-core-feedback-form">
+	<input type="hidden" value="<?=$strModuleId;?>" id="data-core-feedback-form-module" />
+	<input type="hidden" value="<?=$strEmailAdmin;?>" id="data-core-feedback-form-email-admin" />
+	<input type="hidden" value="<?=Helper::getMessage('DATA_CORE_FEEDBACK_SUBJECT', [
 		'#MODULE_ID#' => $strModuleId,
-	]);?>" id="acrit-core-feedback-form-subject" />
+	]);?>" id="data-core-feedback-form-subject" />
 	<table>
 		<tbody>
 			<tr>
 				<td>
-					<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_PROBLEM');?>:
+					<?=Helper::getMessage('DATA_CORE_FEEDBACK_PROBLEM');?>:
 				</td>
 				<td>
 					<textarea cols="50" rows="5"
-						id="acrit-core-feedback-form-problem"
-						placeholder="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_PROBLEM_PLACEHOLDER');?>"></textarea>
+						id="data-core-feedback-form-problem"
+						placeholder="<?=Helper::getMessage('DATA_CORE_FEEDBACK_PROBLEM_PLACEHOLDER');?>"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_NAME');?>:
+					<?=Helper::getMessage('DATA_CORE_FEEDBACK_NAME');?>:
 				</td>
 				<td>
 					<input type="text" size="50" maxlength="250" value="<?=$GLOBALS['USER']->getFullName();?>"
-						id="acrit-core-feedback-form-name"
-						placeholder="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_NAME_PLACEHOLDER');?>" />
+						id="data-core-feedback-form-name"
+						placeholder="<?=Helper::getMessage('DATA_CORE_FEEDBACK_NAME_PLACEHOLDER');?>" />
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_EMAIL');?>:
+					<?=Helper::getMessage('DATA_CORE_FEEDBACK_EMAIL');?>:
 				</td>
 				<td>
 					<input type="text" size="50" maxlength="250" value="<?=$GLOBALS['USER']->getEmail();?>"
-						id="acrit-core-feedback-form-email-user"
-						placeholder="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_EMAIL_PLACEHOLDER');?>" />
+						id="data-core-feedback-form-email-user"
+						placeholder="<?=Helper::getMessage('DATA_CORE_FEEDBACK_EMAIL_PLACEHOLDER');?>" />
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<div id="acrit-core-feedback-form-agree">
-						<input type="checkbox" id="acrit-core-feedback-form-agree-checkbox" checked="checked" />
-						<label for="acrit-core-feedback-form-agree-checkbox">
-							<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_AGREE');?>
+					<div id="data-core-feedback-form-agree">
+						<input type="checkbox" id="data-core-feedback-form-agree-checkbox" checked="checked" />
+						<label for="data-core-feedback-form-agree-checkbox">
+							<?=Helper::getMessage('DATA_CORE_FEEDBACK_AGREE');?>
 						</label>
 					</div>
-					<table id="acrit-core-feedback-form-buttons">
+					<table id="data-core-feedback-form-buttons">
 						<tbody>
 							<tr>
 								<td>
-									<a href="javascript:void(0);" class="adm-btn adm-btn-green" id="acrit-core-feedback-form-submit"
-										data-success="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_SUCCESS');?>"
-										data-error="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_ERROR');?>"
-										data-agree="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_MUST_AGREE');?>"
-										onclick="return acritCoreFeedbackFormSubmit();">
-										<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_SUBMIT');?>
+									<a href="javascript:void(0);" class="adm-btn adm-btn-green" id="data-core-feedback-form-submit"
+										data-success="<?=Helper::getMessage('DATA_CORE_FEEDBACK_SUCCESS');?>"
+										data-error="<?=Helper::getMessage('DATA_CORE_FEEDBACK_ERROR');?>"
+										data-agree="<?=Helper::getMessage('DATA_CORE_FEEDBACK_MUST_AGREE');?>"
+										onclick="return dataCoreFeedbackFormSubmit();">
+										<?=Helper::getMessage('DATA_CORE_FEEDBACK_SUBMIT');?>
 									</a>
 								</td>
 								<td>
-									<a href="javascript:void(0);" id="acrit-core-feedback-form-transmit"
-										onclick="return acritCoreFeedbackFormTransmit();">
-										<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_TRANSMIT');?>
+									<a href="javascript:void(0);" id="data-core-feedback-form-transmit"
+										onclick="return dataCoreFeedbackFormTransmit();">
+										<?=Helper::getMessage('DATA_CORE_FEEDBACK_TRANSMIT');?>
 									</a>
 								</td>
 							</tr>
@@ -95,39 +95,39 @@ $strTech = implode("\r\n", $arTechTmp);
 					</table>
 				</td>
 			</tr>
-			<tr id="acrit-core-feedback-form-tech">
+			<tr id="data-core-feedback-form-tech">
 				<td>
-					<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_TECH');?>:
+					<?=Helper::getMessage('DATA_CORE_FEEDBACK_TECH');?>:
 				</td>
 				<td>
 					<textarea cols="50" rows="<?=count($arTechTmp);?>" readonly="readonly"
-						id="acrit-core-feedback-form-tech-data"
-						placeholder="<?=Helper::getMessage('ACRIT_CORE_FEEDBACK_TECH_PLACEHOLDER');?>"><?=$strTech;?></textarea>
+						id="data-core-feedback-form-tech-data"
+						placeholder="<?=Helper::getMessage('DATA_CORE_FEEDBACK_TECH_PLACEHOLDER');?>"><?=$strTech;?></textarea>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 <style>
-	#acrit-core-feedback-form {
+	#data-core-feedback-form {
 		max-width:600px;
 	}
-	#acrit-core-feedback-form table {
+	#data-core-feedback-form table {
 		width:100%;
 	}
-	#acrit-core-feedback-form table td {
+	#data-core-feedback-form table td {
 		vertical-align:top;
 	}
-	#acrit-core-feedback-form table td:first-child {
+	#data-core-feedback-form table td:first-child {
 		padding-right:5px;
 		padding-top:5px;
 		text-align:right;
 		width:35%;
 	}
-	#acrit-core-feedback-form table td[colspan] {
+	#data-core-feedback-form table td[colspan] {
 		width:auto;
 	}
-	#acrit-core-feedback-form table td textarea {
+	#data-core-feedback-form table td textarea {
 		max-height:500px;
 		min-height:100px;
 		resize:vertical;
@@ -136,7 +136,7 @@ $strTech = implode("\r\n", $arTechTmp);
 		   -moz-box-sizing:border-box;
             box-sizing:border-box;
 	}
-	#acrit-core-feedback-form table td textarea[readonly] {
+	#data-core-feedback-form table td textarea[readonly] {
 		background:#eee;
 		height:auto;
 		max-height:none;
@@ -144,58 +144,58 @@ $strTech = implode("\r\n", $arTechTmp);
 		opacity:1!important;
 		resize:none;
 	}
-	#acrit-core-feedback-form table td input[type=text] {
+	#data-core-feedback-form table td input[type=text] {
 		width:100%;
 		-webkit-box-sizing:border-box;
 		   -moz-box-sizing:border-box;
             box-sizing:border-box;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-agree {
+	#data-core-feedback-form #data-core-feedback-form-agree {
 		padding:10px 0;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-agree > * {
+	#data-core-feedback-form #data-core-feedback-form-agree > * {
 		vertical-align:middle;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-buttons {
+	#data-core-feedback-form #data-core-feedback-form-buttons {
 		width:100%;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-buttons td {
+	#data-core-feedback-form #data-core-feedback-form-buttons td {
 		vertical-align:middle;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-buttons td:first-child{
+	#data-core-feedback-form #data-core-feedback-form-buttons td:first-child{
 		text-align:left;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-buttons td:last-child{
+	#data-core-feedback-form #data-core-feedback-form-buttons td:last-child{
 		text-align:right;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-submit[disabled] {
+	#data-core-feedback-form #data-core-feedback-form-submit[disabled] {
 		opacity:0.4;
 		pointer-events:none!important;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-transmit {
+	#data-core-feedback-form #data-core-feedback-form-transmit {
 		border-bottom:1px dashed #2675d7;
 		color:#2675d7;
 		text-decoration:none;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-transmit:hover {
+	#data-core-feedback-form #data-core-feedback-form-transmit:hover {
 		border-bottom:0;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-transmit[disabled] {
+	#data-core-feedback-form #data-core-feedback-form-transmit[disabled] {
 		opacity:0.4;
 		pointer-events:none!important;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-tech {
+	#data-core-feedback-form #data-core-feedback-form-tech {
 		display:none;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-tech.visible {
+	#data-core-feedback-form #data-core-feedback-form-tech.visible {
 		display:table-row;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-tech td {
+	#data-core-feedback-form #data-core-feedback-form-tech td {
 		padding-bottom:20px;
 		padding-top:20px;
 	}
-	#acrit-core-feedback-form #acrit-core-feedback-form-tech-data[readonly][disabled]{
+	#data-core-feedback-form #data-core-feedback-form-tech-data[readonly][disabled]{
 		opacity:0.4!important;
 	}
 </style>
-<script src="/bitrix/js/acrit.core/feedback-form.js?<?=microtime(true);?>"></script>
+<script src="/bitrix/js/data.core/feedback-form.js?<?=microtime(true);?>"></script>

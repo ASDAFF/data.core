@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: Skybuy.ru plugin
+ * Data Core: Skybuy.ru plugin
  * @documentation https://skybuy.ru/help/skybuy/s-q22
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class SkybuyRuYml extends SkybuyRu {
 	

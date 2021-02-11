@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_EBAY_AVAILABILITY_';
+$strMessPrefix = 'DATA_EXP_EBAY_AVAILABILITY_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Ebay (наличие)';

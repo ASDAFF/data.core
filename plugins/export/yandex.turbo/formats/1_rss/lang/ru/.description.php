@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_TURBO_GENERAL_';
+$strMessPrefix = 'DATA_EXP_YANDEX_TURBO_GENERAL_';
 
 $MESS[$strMessPrefix.'GENERAL_PURPOSE'] = 'Данный формат предназначен для выгрузки статей и других подобных данных в сервис Яндекс.Турбо.';
 

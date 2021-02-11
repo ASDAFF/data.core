@@ -3,12 +3,12 @@
  * Class to work with multi-conditional values in fields
  */
 
-namespace Acrit\Core\Export\Field;
+namespace Data\Core\Export\Field;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Filter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Filter;
 
 class ValueConditionMulti extends ValueBase {
 	
@@ -34,7 +34,7 @@ class ValueConditionMulti extends ValueBase {
 	 *	
 	 */
 	public static function getName(){
-		return Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_MULTI_NAME');
+		return Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_MULTI_NAME');
 	}
 	
 	/**
@@ -106,11 +106,11 @@ class ValueConditionMulti extends ValueBase {
 					<?endforeach?>
 				</div>
 				<div style="margin-bottom:2px; margin-top:4px;">
-					<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_MULTI_ADD');?>" 
+					<input type="button" value="<?=Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_MULTI_ADD');?>" 
 						data-role="field-multicondition-value-add" />
 					<hr/>
 				</div>
-				<div style="margin-bottom:2px;"><b><?=Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_MULTI_BLOCK_ELSE');?></b></div>
+				<div style="margin-bottom:2px;"><b><?=Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_MULTI_BLOCK_ELSE');?></b></div>
 				<?
 				$arValuesElse = $arValuesGrouped[static::SUFFIX_ELSE];
 				if(!isset($arValuesElse) || empty($arValuesElse)){
@@ -159,9 +159,9 @@ class ValueConditionMulti extends ValueBase {
 		?>
 		<div data-role="field-multicondition-value">
 			<a href="javascript:void(0)" style="float:right;" data-role="field-multicondition-value-delete">
-				<?=Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_MULTI_DELETE');?>
+				<?=Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_MULTI_DELETE');?>
 			</a>
-			<div style="margin-bottom:2px;"><b><?=Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_MULTI_BLOCK_IF');?></b></div>
+			<div style="margin-bottom:2px;"><b><?=Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_MULTI_BLOCK_IF');?></b></div>
 			<?
 			$obFilter = new Filter($this->obField->getModuleId(), $this->intIBlockID);
 			$obFilter->setInputName(static::INPUTNAME_DEFAULT.'['.$this->intIBlockID.']['.$this->strFieldCode.'][field_conditions]['.$strSuffix.']');
@@ -169,7 +169,7 @@ class ValueConditionMulti extends ValueBase {
 			print $obFilter->show();
 			unset($obFilter);
 			?>
-			<div style="margin-bottom:2px;"><b><?=Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_MULTI_BLOCK_THEN');?></b></div>
+			<div style="margin-bottom:2px;"><b><?=Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_MULTI_BLOCK_THEN');?></b></div>
 			<?
 			$obValueThen = new ValueSimple();
 			$obValueThen->setMultiple(true);

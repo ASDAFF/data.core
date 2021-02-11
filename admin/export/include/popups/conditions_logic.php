@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Filter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Filter;
 
 Loc::loadMessages(__FILE__);
 
@@ -34,19 +34,19 @@ if(is_array($arCurrentField)) {
 
 <?if(strlen($strType)):?>
 	<input type="hidden" data-role="allow-save" />
-	<table class="acrit-exp-field-select-table">
+	<table class="data-exp-field-select-table">
 		<tbody>
 			<tr>
 				<td>
-					<input type="text" value="" class="acrit-exp-field-select-text" data-role="entity-select-search"
-						placeholder="<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_TEXT_PLACEHOLDER');?>"/>
+					<input type="text" value="" class="data-exp-field-select-text" data-role="entity-select-search"
+						placeholder="<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_TEXT_PLACEHOLDER');?>"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<select class="acrit-exp-field-select-list" size="10" data-role="entity-select-item">
+					<select class="data-exp-field-select-list" size="10" data-role="entity-select-item">
 						<option value="" disabled="disabled" data-role="entity-select-item-not-found">
-							<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_NOT_FOUND');?>
+							<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_NOT_FOUND');?>
 						</option>
 						<?foreach($arLogicAll as $strLogic => $arLogic):?>
 							<option value="<?=$strLogic;?>" <?if($strLogic==$strCurrentLogic):?> selected="selected"<?endif?>
@@ -61,5 +61,5 @@ if(is_array($arCurrentField)) {
 		</tbody>
 	</table>
 <?else:?>
-	<p><?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_NO_FIELD');?></p>
+	<p><?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_NO_FIELD');?></p>
 <?endif?>

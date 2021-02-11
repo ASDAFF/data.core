@@ -1,4 +1,4 @@
-function acritCoreCopyToClipboard(elementId, callback) {
+function dataCoreCopyToClipboard(elementId, callback) {
 	elementId = (typeof elementId == 'object' ? elementId : document.getElementById(elementId));
 	if(document.selection) {
 		document.selection.empty();

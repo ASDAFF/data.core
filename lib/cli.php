@@ -2,12 +2,12 @@
 /**
  *	Class to work with command-line-interface, requires php-function 'exec' is enabled
  */
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Thread,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Thread,
+	\Data\Core\Log;
 
 Helper::loadMessages(__FILE__);
 
@@ -151,8 +151,8 @@ class Cli {
 			$strPhpFile = Helper::root().'/bitrix/modules/'.Helper::id().'/cli/check_autoset.php';
 			$strCommand = 'php '.$strPhpFile.' > /dev/null 2>&1'; // ToDo! 
 			$strSchedule = '00 00 01 01 01';
-			if(static::addCronTask(ACRIT_CORE, $strCommand, $strSchedule)) {
-				static::deleteCronTask(ACRIT_CORE, $strCommand, $strSchedule);
+			if(static::addCronTask(DATA_CORE, $strCommand, $strSchedule)) {
+				static::deleteCronTask(DATA_CORE, $strCommand, $strSchedule);
 				return true;
 			}
 		}
@@ -163,7 +163,7 @@ class Cli {
 	 *	Check if cli is manually disabed in module settings
 	 */
 	public static function isManuallyDisabled(){
-		return Helper::getOption(ACRIT_CORE, 'disable_crontab_set') == 'Y';
+		return Helper::getOption(DATA_CORE, 'disable_crontab_set') == 'Y';
 	}
 	
 	/**
@@ -224,7 +224,7 @@ class Cli {
 			}
 		}
 		$arArgumentsTmp['auto'] = 'Y';
-		if(strlen(static::$strSiteId) && !$bClear && Helper::getOption(ACRIT_CORE, 'php_add_site') != 'N'){
+		if(strlen(static::$strSiteId) && !$bClear && Helper::getOption(DATA_CORE, 'php_add_site') != 'N'){
 			$arArgumentsTmp['site'] = static::$strSiteId;
 		}
 		$arArguments = $arArgumentsTmp;
@@ -354,7 +354,7 @@ class Cli {
 		if(!static::isProcOpen()){
 			return false;
 		}
-		$arCommand = static::getFullCommand(ACRIT_CORE, 'check_thread.php');
+		$arCommand = static::getFullCommand(DATA_CORE, 'check_thread.php');
 		$arArguments = array(
 			'profile' => '0',
 			'iblock' => '0',
@@ -545,7 +545,7 @@ class Cli {
 	 */
 	public static function getFullCommand($strModuleId, $strScriptName, $intProfileId=null, $strOutputFilename=null){
 		$bCanAutoSet = static::canAutoSet();
-		$strPhpPath = Helper::getOption(ACRIT_CORE, 'php_path');
+		$strPhpPath = Helper::getOption(DATA_CORE, 'php_path');
 		if(!strlen($strPhpPath)) {
 			$strPhpPath = static::getDefaultPhpPath();
 		}
@@ -553,9 +553,9 @@ class Cli {
 		$strCommandClear = static::getProfilePhpCommand($strModuleId, $intProfileId, $strScriptName, null, true);
 		$arSchedule = static::getCronTaskSchedule($strModuleId, $strCommandClear, true);
 		$arSchedule = is_array($arSchedule) ? $arSchedule : [];
-		$bMbstring = Helper::getOption(ACRIT_CORE, 'php_mbstring', 'Y') == 'Y' ? true : false;
-		$strConfig = Helper::getOption(ACRIT_CORE, 'php_config', '');
-		$strStdout = Helper::getOption(ACRIT_CORE, 'php_output_stdout') == 'Y' && !is_null($strOutputFilename) ? $strOutputFilename : null;
+		$bMbstring = Helper::getOption(DATA_CORE, 'php_mbstring', 'Y') == 'Y' ? true : false;
+		$strConfig = Helper::getOption(DATA_CORE, 'php_config', '');
+		$strStdout = Helper::getOption(DATA_CORE, 'php_output_stdout') == 'Y' && !is_null($strOutputFilename) ? $strOutputFilename : null;
 		$strCommandFull = static::buildCommand($strModuleId, $strPhpPath, $strCommand, $strScriptName, $bMbstring, $strConfig, $strStdout);
 		$strCommandFullNoOutput = static::buildCommand($strModuleId, $strPhpPath, $strCommand, $strScriptName, $bMbstring, $strConfig, null);
 		#
@@ -604,12 +604,12 @@ class Cli {
 						$arResult['VERSION'] = $strCheckVersion;
 						if($strCheckVersion == $strUsedPhpVersion) {
 							$arResult['SUCCESS'] = true;
-							$arResult['MESSAGE'] = Helper::getMessage('ACRIT_CORE_PHP_PATH_CHECK_SUCCESS', array(
+							$arResult['MESSAGE'] = Helper::getMessage('DATA_CORE_PHP_PATH_CHECK_SUCCESS', array(
 								'#VERSION#' => $strUsedPhpVersion,
 							));
 						}
 						else{
-							$arResult['MESSAGE'] = Helper::getMessage('ACRIT_CORE_PHP_PATH_CHECK_MISMATCH', array(
+							$arResult['MESSAGE'] = Helper::getMessage('DATA_CORE_PHP_PATH_CHECK_MISMATCH', array(
 								'#PHP_PATH#' => $strManualPhpPath,
 								'#VERSION_TEST#' => $strCheckVersion,
 								'#VERSION_SITE#' => $strUsedPhpVersion,
@@ -619,14 +619,14 @@ class Cli {
 				}
 				unset($arOutput);
 				if(!$bFound){
-					$arResult['MESSAGE'] = Helper::getMessage('ACRIT_CORE_PHP_PATH_CHECK_ERROR', array(
+					$arResult['MESSAGE'] = Helper::getMessage('DATA_CORE_PHP_PATH_CHECK_ERROR', array(
 						'#PHP_PATH#' => $strManualPhpPath,
 						'#VERSION#' => $strUsedPhpVersion,
 					));
 				}
 			}
 			else{
-				$arResult['MESSAGE'] = Helper::getMessage('ACRIT_CORE_PHP_PATH_CHECK_ERROR', array(
+				$arResult['MESSAGE'] = Helper::getMessage('DATA_CORE_PHP_PATH_CHECK_ERROR', array(
 					'#PHP_PATH#' => $strManualPhpPath,
 					'#VERSION#' => $strUsedPhpVersion,
 				));

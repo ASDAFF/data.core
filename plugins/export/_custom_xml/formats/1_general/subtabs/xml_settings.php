@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\ValueBase;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\ValueBase;
 
 Loc::loadMessages(__FILE__);
 
@@ -16,8 +16,8 @@ $arCatalog = Helper::getCatalogArray($intIBlockID);
 		<?if(is_array($arCatalog) && $arCatalog['OFFERS_IBLOCK_ID']):?>
 			<tr>
 				<td width="40%">
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_XML_SETTINGS_OFFERS_PREPROCESS_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_XML_SETTINGS_OFFERS_PREPROCESS');?>:
+					<?=Helper::showHint(Loc::getMessage('DATA_EXP_XML_SETTINGS_OFFERS_PREPROCESS_HINT'));?>
+					<?=Loc::getMessage('DATA_EXP_XML_SETTINGS_OFFERS_PREPROCESS');?>:
 				</td>
 				<td width="60%">
 					<input type="checkbox" value="Y" name="PROFILE[PARAMS][OFFERS_PREPROCESS]"
@@ -27,8 +27,8 @@ $arCatalog = Helper::getCatalogArray($intIBlockID);
 		<?endif?>
 		<tr>
 			<td width="40%">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_XML_SETTINGS_ADD_UMT_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_XML_SETTINGS_ADD_UMT');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_XML_SETTINGS_ADD_UMT_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_XML_SETTINGS_ADD_UMT');?>:
 			</td>
 			<td width="60%">
 				<input type="checkbox" value="Y" name="iblockparams[<?=$intIBlockID;?>][XML_ADD_UTM]"
@@ -37,8 +37,8 @@ $arCatalog = Helper::getCatalogArray($intIBlockID);
 		</tr>
 		<tr>
 			<td width="40%">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_XML_SETTINGS_ALL_CATEGORIES_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_XML_SETTINGS_ALL_CATEGORIES');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_XML_SETTINGS_ALL_CATEGORIES_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_XML_SETTINGS_ALL_CATEGORIES');?>:
 			</td>
 			<td width="60%">
 				<input type="checkbox" value="Y" name="iblockparams[<?=$intIBlockID;?>][XML_ALL_CATEGORIES]"
@@ -47,15 +47,15 @@ $arCatalog = Helper::getCatalogArray($intIBlockID);
 		</tr>
 		<tr>
 			<td width="40%">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_XML_SETTINGS_DELETE_MODE_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_XML_SETTINGS_DELETE_MODE');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_XML_SETTINGS_DELETE_MODE_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_XML_SETTINGS_DELETE_MODE');?>:
 			</td>
 			<td width="60%">
 				<?
 				$arDeleteMode = array(
-					$strPluginClass::DELETE_MODE_NO => Loc::getMessage('ACRIT_EXP_XML_SETTINGS_DELETE_MODE_NO'),
-					$strPluginClass::DELETE_MODE_SIMPLE => Loc::getMessage('ACRIT_EXP_XML_SETTINGS_DELETE_MODE_SIMPLE'),
-					$strPluginClass::DELETE_MODE_ATTR => Loc::getMessage('ACRIT_EXP_XML_SETTINGS_DELETE_MODE_ATTR'),
+					$strPluginClass::DELETE_MODE_NO => Loc::getMessage('DATA_EXP_XML_SETTINGS_DELETE_MODE_NO'),
+					$strPluginClass::DELETE_MODE_SIMPLE => Loc::getMessage('DATA_EXP_XML_SETTINGS_DELETE_MODE_SIMPLE'),
+					$strPluginClass::DELETE_MODE_ATTR => Loc::getMessage('DATA_EXP_XML_SETTINGS_DELETE_MODE_ATTR'),
 				);
 				$arDeleteMode = array(
 					'REFERENCE' => array_values($arDeleteMode),

@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_TURBO_GENERAL_';
+$strMessPrefix = 'DATA_EXP_YANDEX_TURBO_GENERAL_';
 
 $MESS[$strMessPrefix.'COUNT_PER_FILE'] = 'Количество записей в файле';
 	$MESS[$strMessPrefix.'COUNT_PER_FILE_DESC'] = 'Укажите количество записей, попадающих в каждый файл (максимальной количество - 1000 записей в файл).<br/><br/>

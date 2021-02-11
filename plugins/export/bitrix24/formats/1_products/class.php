@@ -1,19 +1,19 @@
 <?
 /**
- * Acrit Core: Bitrix24 plugin
+ * Data Core: Bitrix24 plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\Plugins\Bitrix24Rest as BitrixRest;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Log,
+	\Data\Core\Json,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\Plugins\Bitrix24Rest as BitrixRest;
 
 Loc::loadMessages(__FILE__);
 

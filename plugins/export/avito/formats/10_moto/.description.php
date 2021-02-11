@@ -1,6 +1,6 @@
 <?
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 ?>
 <?=Helper::showNote(static::getMessage('PARAGRAPH_ABOUT_REQUIRED_PARAMS'));?>
 <p><?=static::getMessage('IMAGES_MAX_COUNT', array(

@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit Core: zakupki.mos.ru
+ * Data Core: zakupki.mos.ru
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
 	\Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\UniversalPlugin;
+	\Data\Core\Helper,
+	\Data\Core\Export\UniversalPlugin;
 
 Loc::loadMessages(__FILE__);
 

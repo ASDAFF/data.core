@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_ROZETKA_COM_UA_GENERAL_';
+$strMessPrefix = 'DATA_EXP_ROZETKA_COM_UA_GENERAL_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Rozetka.com.ua';

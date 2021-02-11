@@ -1,16 +1,16 @@
 <?
 /**
- * Acrit Core: Yandex.Turbo plugin
+ * Data Core: Yandex.Turbo plugin
  * @documentation https://yandex.ru/support/partnermarket/export/vendor-model.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use 
 		\Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Export\Field\Field,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Xml;
+		\Data\Core\Export\Field\Field,
+		\Data\Core\Helper,
+		\Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 

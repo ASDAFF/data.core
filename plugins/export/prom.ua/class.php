@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: Prom.ua base plugin
+ * Data Core: Prom.ua base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Export\UniversalPlugin,
-	\Acrit\Core\Helper,
+	\Data\Core\Export\UniversalPlugin,
+	\Data\Core\Helper,
 	#
 	\PhpOffice\PhpSpreadsheet\Spreadsheet,
 	\PhpOffice\PhpSpreadsheet\Writer\Xlsx,

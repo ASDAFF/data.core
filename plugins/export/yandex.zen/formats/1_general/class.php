@@ -1,19 +1,16 @@
 <?
 /**
- * Acrit Core: Yandex market base plugin
- * @package acrit.core
- * @copyright 2018 Acrit
- * @documentation https://yandex.ru/support/partnermarket/export/yml.html
+ * Copyright (c) 12/2/2021 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
  */
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Xml;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 

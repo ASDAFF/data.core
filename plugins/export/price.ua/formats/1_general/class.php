@@ -1,10 +1,10 @@
 <?
 /**
- * Acrit Core: Yandex.Realty plugin
+ * Data Core: Yandex.Realty plugin
  * @documentation https://yandex.ru/support/realty/requirements/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 class PriceUaXml extends PriceUa {
 	

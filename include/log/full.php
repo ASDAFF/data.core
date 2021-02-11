@@ -1,14 +1,14 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $arGet = \Bitrix\Main\Context::getCurrent()->getRequest()->getQueryList()->toArray();
 
 $strModuleId = $arGet['module'];
 if(!strlen($strModuleId)){
-	$strModuleId = ACRIT_CORE;
+	$strModuleId = DATA_CORE;
 }
 
 $strLogFilename = Log::getInstance($strModuleId)->getLogFilename($intProfileId);
@@ -18,7 +18,7 @@ $strDownloadUrl = http_build_query([
 	Log::DOWNLOAD_PARAM => Log::DOWNLOAD_PARAM_Y,
 ]);
 
-$strCss = '/bitrix/themes/.default/'.ACRIT_CORE.'.css';
+$strCss = '/bitrix/themes/.default/'.DATA_CORE.'.css';
 $strCssHref = $strCss.'?'.filemtime(Helper::root().$strCss);
 
 if(is_file($strLogFilename)){
@@ -26,8 +26,8 @@ if(is_file($strLogFilename)){
 }
 
 
-$strTitle = Helper::getMessage('ACRIT_CORE_LOG_TITLE', array(
-	'#WHAT#' => Helper::getMessage('ACRIT_CORE_LOG_WHAT_'.($intProfileId ? 'PROFILE' : 'MODULE'), array(
+$strTitle = Helper::getMessage('DATA_CORE_LOG_TITLE', array(
+	'#WHAT#' => Helper::getMessage('DATA_CORE_LOG_WHAT_'.($intProfileId ? 'PROFILE' : 'MODULE'), array(
 		'#MODULE_ID#' => $strModuleId,
 		'#PROFILE_ID#' => $intProfileId,
 	)),
@@ -42,51 +42,51 @@ $strTitle = Helper::getMessage('ACRIT_CORE_LOG_TITLE', array(
 	<link rel="stylesheet" type="text/css" href="<?=$strCssHref;?>" />
 	<script src="<?=\CJSCore::getExtInfo('jquery2')['js'];?>"></script>
 </head>
-<body class="acrit-core-log-detail-wrapper">
-	<div class="acrit-core-log-panel">
-		<span class="acrit-core-log-size-notice">
-			<?=Helper::getMessage('ACRIT_CORE_LOG_SIZE_NOTICE', array(
+<body class="data-core-log-detail-wrapper">
+	<div class="data-core-log-panel">
+		<span class="data-core-log-size-notice">
+			<?=Helper::getMessage('DATA_CORE_LOG_SIZE_NOTICE', array(
 				'#MAX_SIZE#' => Log::getInstance($strModuleId)->getMaxSize(false, true),
 			));?>
 		</span>
-		<a class="acrit-core-log-download"
+		<a class="data-core-log-download"
 			href="<?=$GLOBALS['APPLICATION']->getCurPageParam($strDownloadUrl, [Log::DOWNLOAD_PARAM]);?>"
 			title="<?=$strLogFilenameRel;?>" >
-			<?=Helper::getMessage('ACRIT_CORE_LOG_DOWNLOAD', array(
-				'#WHAT#' => Helper::getMessage('ACRIT_CORE_LOG_WHAT_'.($intProfileId ? 'PROFILE' : 'MODULE'), array(
+			<?=Helper::getMessage('DATA_CORE_LOG_DOWNLOAD', array(
+				'#WHAT#' => Helper::getMessage('DATA_CORE_LOG_WHAT_'.($intProfileId ? 'PROFILE' : 'MODULE'), array(
 					'#MODULE_ID#' => $strModuleId,
 					'#PROFILE_ID#' => $intProfileId,
 				)),
 				'#FILESIZE#' => Log::getInstance($strModuleId)->getLogSize($intProfileId, true),
 			));?></a>
 		<?if(is_file($strLogFilename)):?>
-			<span class="acrit-core-log-date">
-				<?=Helper::getMessage('ACRIT_CORE_LOG_DATETIME', array(
+			<span class="data-core-log-date">
+				<?=Helper::getMessage('DATA_CORE_LOG_DATETIME', array(
 					'#DATETIME#' => $strDatetime,
 				));?>
 			</span>
 		<?endif?>
 	</div>
-	<div class="acrit-core-log">
-		<div class="acrit-core-log-content">
+	<div class="data-core-log">
+		<div class="data-core-log-content">
 			<?if(strlen($strLogFilename) && is_file($strLogFilename) && filesize($strLogFilename)):?>
 				<pre><?=Log::getInstance($strModuleId)->getLogDetail($intProfileId);?></pre>
 			<?else:?>
-				<p><?=Helper::getMessage('ACRIT_CORE_LOG_EMPTY');?></p>
+				<p><?=Helper::getMessage('DATA_CORE_LOG_EMPTY');?></p>
 			<?endif?>
 		</div>
 	</div>
 	<script>
-	function acritExpFullLogScrollToEnd(){
+	function dataExpFullLogScrollToEnd(){
 		$('html,body').scrollTop($(document).height()+100000);
 	}
 	$(document).ready(function(){
 		setTimeout(function(){
-			acritExpFullLogScrollToEnd();
+			dataExpFullLogScrollToEnd();
 		}, 100);
 	});
 	$(window).load(function(){
-		acritExpFullLogScrollToEnd();
+		dataExpFullLogScrollToEnd();
 	});
 	</script>
 </body>

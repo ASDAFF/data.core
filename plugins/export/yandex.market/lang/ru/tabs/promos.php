@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_MARKET_';
+$strMessPrefix = 'DATA_EXP_YANDEX_MARKET_';
 
 $MESS[$strMessPrefix.'PROMOS_HEADER'] = 'Выгружать промо-акции';
 
@@ -99,7 +99,7 @@ $MESS[$strMessPrefix.'EXPORT_GIFTS'] = 'Подарок';
 ';
 
 #
-$MESS[$strMessPrefix.'EXPORT_PROMOS_HELP_URL'] = '<a href="https://www.acrit-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/vygruzka-podarkov-v-yandeks-market/" target="_blank">Пример настройки выгрузки промо-акций</a>';
+$MESS[$strMessPrefix.'EXPORT_PROMOS_HELP_URL'] = '<a href="https://www.data-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/vygruzka-podarkov-v-yandeks-market/" target="_blank">Пример настройки выгрузки промо-акций</a>';
 $MESS[$strMessPrefix.'EXPORT_PROMOS_NOTICE'] = '<b>Внимание!</b> После установки галочки в «<b>Специальная цена</b>», «<b>N + M</b>», «<b>Подарок</b>» в списке полей (как для товаров, так и для предложений) появляются новые поля для заполнения (см. группы «ПРОМО: СПЕЦИАЛЬНАЯ ЦЕНА», «ПРОМО: АКЦИЯ N+M», «ПРОМО: ПОДАРКИ»).';
 
 ?>

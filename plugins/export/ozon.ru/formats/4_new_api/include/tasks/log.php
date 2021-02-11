@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\TaskTable as Task;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugins\OzonRuHelpers\TaskTable as Task;
 
 Helper::loadMessages(__FILE__);
 
@@ -32,7 +32,7 @@ while($arTask = $resTasks->fetch()){
 }
 
 # Nav object
-$obNav = new \Bitrix\Main\UI\AdminPageNavigation('acrit-exp-nav-tasks');
+$obNav = new \Bitrix\Main\UI\AdminPageNavigation('data-exp-nav-tasks');
 $arQuery = [
 	'filter' => $arTasksFilter,
 ];
@@ -50,7 +50,7 @@ $obNav->setPageSize($arNavParams['size']);
 	</div>
 	<br/>
 	<?if(!empty($arProfileTasksAll)):?>
-		<table class="adm-list-table acrit-exp-table-tasks">
+		<table class="adm-list-table data-exp-table-tasks">
 			<thead>
 				<tr class="adm-list-table-header">
 					<td class="adm-list-table-cell" style="width:1px;">
@@ -102,7 +102,7 @@ $obNav->setPageSize($arNavParams['size']);
 						</td>
 						<td class="adm-list-table-cell align-right" style="white-space:nowrap;">
 							<?if(strlen($arTask['JSON'])):?>
-								<a class="acrit-inline-link" data-role="log-task-json-preview" data-id="<?=$arTask['TASK_ID'];?>">
+								<a class="data-inline-link" data-role="log-task-json-preview" data-id="<?=$arTask['TASK_ID'];?>">
 									<?=static::getMessage('LOG_TASKS_JSON_VIEW');?>
 								</a>
 							<?endif?>
@@ -120,7 +120,7 @@ $obNav->setPageSize($arNavParams['size']);
 							</div>
 						</td>
 						<td class="adm-list-table-cell align-right" style="white-space:nowrap;">
-							<a class="acrit-inline-link" 
+							<a class="data-inline-link" 
 								data-role="log-tasks-item-update-status"><?=static::getMessage('LOG_TASKS_STATUS_UPDATE');?></a>
 						</td>
 					</tr>
@@ -129,7 +129,7 @@ $obNav->setPageSize($arNavParams['size']);
 		</table>
 		<?/**/?>
 		<script>
-		AcritExpTasksTable = {
+		DataExpTasksTable = {
 			GetAdminList: function(url){
 				if(params = url.match(/page-(\d+)-size-(\d+)/)){
 					$('input[data-role="log-tasks-refresh"]').trigger('click', {
@@ -156,7 +156,7 @@ $obNav->setPageSize($arNavParams['size']);
 				"TITLE" => "",
 				"PAGE_WINDOW" => 10,
 				"SHOW_ALWAYS" => "Y",
-				"TABLE_ID" => "AcritExpTasksTable",
+				"TABLE_ID" => "DataExpTasksTable",
 			),
 			false,
 			array(

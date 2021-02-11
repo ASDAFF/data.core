@@ -1,5 +1,5 @@
-textarea.acrit-exp-custom-json-structure,
-textarea.acrit-exp-custom-json-fields {
+textarea.data-exp-custom-json-structure,
+textarea.data-exp-custom-json-fields {
 	font:normal 13px/15px "Courier New", "Courier", monospace!important;
 	height:150px;
 	max-height:1000px;
@@ -15,18 +15,18 @@ textarea.acrit-exp-custom-json-fields {
 	   -moz-box-sizing:border-box;
 	        box-sizing:border-box;
 }
-textarea.acrit-exp-custom-json-structure {
+textarea.data-exp-custom-json-structure {
 	height:200px;
 }
-textarea.acrit-exp-custom-json-fields {
+textarea.data-exp-custom-json-fields {
 	height:150px;
 }
-.acrit-exp-custom-json-encode-option {
+.data-exp-custom-json-encode-option {
 	margin-bottom:2px;
 }
-.acrit-exp-custom-json-encode-option label {
+.data-exp-custom-json-encode-option label {
 	display:block;
 }
-.acrit-exp-custom-json-encode-option label span {
+.data-exp-custom-json-encode-option label span {
 	vertical-align:middle;
 }

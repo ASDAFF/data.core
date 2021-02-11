@@ -1,21 +1,21 @@
 <?
 /**
- * Acrit Core: Custom Excel format
+ * Data Core: Custom Excel format
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Log,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Json,
+	\Data\Core\Helper,
+	\Data\Core\HttpRequest,
+	\Data\Core\Log,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Filter,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Json,
 	#
 	\PhpOffice\PhpSpreadsheet\Spreadsheet,
 	\PhpOffice\PhpSpreadsheet\Writer\Xlsx,
@@ -176,19 +176,19 @@ class CustomExcelGeneral extends CustomExcel {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;" data-role="settings-<?=static::getCode();?>">
+		<table class="data-exp-plugin-settings" style="width:100%;" data-role="settings-<?=static::getCode();?>">
 			<tbody>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?=Helper::ShowHint(static::getMessage('SETTINGS_FILE_HINT'));?>
-						<label for="acrit_exp_plugin_excel_filename">
+						<label for="data_exp_plugin_excel_filename">
 							<b><?=static::getMessage('SETTINGS_FILE');?>:</b>
 						</label>
 					</td>
 					<td width="60%" class="adm-detail-content-cell-r">
 						<?\CAdminFileDialog::ShowScript(Array(
-							'event' => 'AcritExpPluginExcelFilenameSelect',
-							'arResultDest' => array('FUNCTION_NAME' => 'acrit_exp_plugin_excel_filename_select'),
+							'event' => 'DataExpPluginExcelFilenameSelect',
+							'arResultDest' => array('FUNCTION_NAME' => 'data_exp_plugin_excel_filename_select'),
 							'arPath' => array(),
 							'select' => 'F',
 							'operation' => 'S',
@@ -199,20 +199,20 @@ class CustomExcelGeneral extends CustomExcel {
 							'saveConfig' => true,
 						));?>
 						<script>
-						function acrit_exp_plugin_excel_filename_select(File,Path,Site){
+						function data_exp_plugin_excel_filename_select(File,Path,Site){
 							var FilePath = Path+'/'+File;
 							FilePath = FilePath.replace(/\/\//g, '/');
-							$('#acrit_exp_plugin_excel_filename').val(FilePath);
+							$('#data_exp_plugin_excel_filename').val(FilePath);
 						}
 						</script>
-						<table class="acrit-exp-plugin-settings-fileselect">
+						<table class="data-exp-plugin-settings-fileselect">
 							<tbody>
 								<tr>
 									<td><input type="text" name="PROFILE[PARAMS][EXPORT_FILE_NAME]" 
-										id="acrit_exp_plugin_excel_filename" data-role="export-file-name"
+										id="data_exp_plugin_excel_filename" data-role="export-file-name"
 										value="<?=htmlspecialcharsbx($this->arProfile['PARAMS']['EXPORT_FILE_NAME']);?>" size="40" 
 										placeholder="<?=static::getMessage('SETTINGS_FILE_PLACEHOLDER');?>" /></td>
-									<td><input type="button" value="..." onclick="AcritExpPluginExcelFilenameSelect()" /></td>
+									<td><input type="button" value="..." onclick="DataExpPluginExcelFilenameSelect()" /></td>
 									<td>
 										&nbsp;
 										<?=$this->showFileOpenLink();?>
@@ -228,7 +228,7 @@ class CustomExcelGeneral extends CustomExcel {
 				<tr id="tr_FORMAT">
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?=Helper::ShowHint(static::getMessage('SETTINGS_FORMAT_HINT'));?>
-						<label for="acrit_exp_plugin_format">
+						<label for="data_exp_plugin_format">
 							<?=static::getMessage('SETTINGS_FORMAT');?>:
 						</label>
 					</td>
@@ -242,7 +242,7 @@ class CustomExcelGeneral extends CustomExcel {
 							'REFERENCE_ID' => array_keys($arOptions),
 						);
 						print SelectBoxFromArray('PROFILE[PARAMS][EXCEL_FORMAT]', $arOptions, 
-							$this->getFormat(), '', 'id="acrit_exp_plugin_format" data-role="excel-general-format"');
+							$this->getFormat(), '', 'id="data_exp_plugin_format" data-role="excel-general-format"');
 						?>
 					</td>
 				</tr>
@@ -260,7 +260,7 @@ class CustomExcelGeneral extends CustomExcel {
 					<tr id="tr_ZIP">
 						<td width="40%" class="adm-detail-content-cell-l">
 							<?=Helper::ShowHint(static::getMessage('SETTINGS_ZIP_HINT'));?>
-							<label for="acrit_exp_plugin_compress_to_zip">
+							<label for="data_exp_plugin_compress_to_zip">
 								<?=static::getMessage('SETTINGS_ZIP');?>:
 							</label>
 						</td>
@@ -268,13 +268,13 @@ class CustomExcelGeneral extends CustomExcel {
 							<input name="PROFILE[PARAMS][COMPRESS_TO_ZIP]" type="hidden" value="N"/>
 							<input name="PROFILE[PARAMS][COMPRESS_TO_ZIP]" type="checkbox" value="Y" 
 								<?if($this->arProfile['PARAMS']['COMPRESS_TO_ZIP']=='Y'):?>checked="checked"<?endif?>
-							id="acrit_exp_plugin_compress_to_zip" />
+							id="data_exp_plugin_compress_to_zip" />
 						</td>
 					</tr>
 					<tr id="tr_DELETE_EXCEL_IF_ZIP">
 						<td width="40%" class="adm-detail-content-cell-l">
 							<?=Helper::ShowHint(static::getMessage('SETTINGS_DELETE_EXCEL_IF_ZIP_HINT'));?>
-							<label for="acrit_exp_plugin_delete_excel_if_zip">
+							<label for="data_exp_plugin_delete_excel_if_zip">
 								<?=static::getMessage('SETTINGS_DELETE_EXCEL_IF_ZIP');?>:
 							</label>
 						</td>
@@ -282,7 +282,7 @@ class CustomExcelGeneral extends CustomExcel {
 							<input name="PROFILE[PARAMS][DELETE_EXCEL_IF_ZIP]" type="hidden" value="N"/>
 							<input name="PROFILE[PARAMS][DELETE_EXCEL_IF_ZIP]" type="checkbox" value="Y" 
 								<?if($this->arProfile['PARAMS']['DELETE_EXCEL_IF_ZIP']=='Y'):?>checked="checked"<?endif?>
-							id="acrit_exp_plugin_delete_excel_if_zip" />
+							id="data_exp_plugin_delete_excel_if_zip" />
 						</td>
 					</tr>
 				<?endif?>
@@ -598,7 +598,7 @@ class CustomExcelGeneral extends CustomExcel {
 	public function getSteps(){
 		$arResult = array();
 		$arResult['CHECK'] = array(
-			'NAME' => static::getMessage('ACRIT_EXP_EXPORTER_STEP_CHECK'),
+			'NAME' => static::getMessage('DATA_EXP_EXPORTER_STEP_CHECK'),
 			'SORT' => 10,
 			'FUNC' => [$this, 'stepCheck'],
 		);

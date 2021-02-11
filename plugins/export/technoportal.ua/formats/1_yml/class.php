@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: Technoportal.ua plugin
+ * Data Core: Technoportal.ua plugin
  * @documentation http://technoportal.ua/shops/requirements_info.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class TechnoportalUaYml extends TechnoportalUa {
 	

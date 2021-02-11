@@ -1,5 +1,5 @@
 <?php
-define('ACRIT_EXP_CRON', true);
+define('DATA_EXP_CRON', true);
 define('NO_KEEP_STATISTIC', true);
 define('NOT_CHECK_PERMISSIONS',true);
 ini_set('display_errors', 0);
@@ -24,12 +24,12 @@ error_reporting(0);
 set_time_limit(0);
 ignore_user_abort(true);
 
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 if(\Bitrix\Main\Loader::includeModule($strCoreId)) {
 	$strModuleId = $arArguments['module'];
 	if(strlen($strModuleId)) {
 		if(\Bitrix\Main\Loader::includeModule($strModuleId)){
-			\Acrit\Core\Export\Exporter::getInstance($strModuleId)->runThread();
+			\Data\Core\Export\Exporter::getInstance($strModuleId)->runThread();
 		}
 		else{
 			print 'Module '.$strModuleId.' is not installed!';

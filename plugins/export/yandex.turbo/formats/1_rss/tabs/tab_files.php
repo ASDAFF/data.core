@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -23,7 +23,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[DIRS_STRUCTURE]', $obPlugin::
 			<?=$obTabControl->GetCustomLabelHTML()?>:
 		</td>
 		<td width="60%">
-			<div class="acrit-exp-yandex-turbo-structure" data-role="yandex-turbo-structure">
+			<div class="data-exp-yandex-turbo-structure" data-role="yandex-turbo-structure">
 				<?=$obPlugin->displayDirsStructure($arStructure);?>
 			</div>
 			<br/>

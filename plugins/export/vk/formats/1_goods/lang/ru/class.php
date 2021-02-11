@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_VK_GOODS_';
+$strMessPrefix = 'DATA_EXP_VK_GOODS_';
 
 // General
 

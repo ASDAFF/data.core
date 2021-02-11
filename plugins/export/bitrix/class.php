@@ -1,19 +1,19 @@
 <?
 /**
- * Acrit Core: Bitrix plugin
+ * Data Core: Bitrix plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Log,
-	\Acrit\Core\Export\BitrixRest as BitrixRest,
-	\Acrit\Core\Export\BitrixJson as Json;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\HttpRequest,
+	\Data\Core\Export\Filter,
+	\Data\Core\Log,
+	\Data\Core\Export\BitrixRest as BitrixRest,
+	\Data\Core\Export\BitrixJson as Json;
 
 Loc::loadMessages(__FILE__);
 
@@ -92,7 +92,7 @@ class Bitrix extends Plugin {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
@@ -100,7 +100,7 @@ class Bitrix extends Plugin {
 					<?=static::getMessage('SETTINGS_ACCESS_PORTAL');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_PORTAL]" id="acrit_exp_plugin_vk_access_portal" value="<?=$this->arProfile['PARAMS']['ACCESS_PORTAL'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_PORTAL]" id="data_exp_plugin_vk_access_portal" value="<?=$this->arProfile['PARAMS']['ACCESS_PORTAL'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -109,7 +109,7 @@ class Bitrix extends Plugin {
 					<?=static::getMessage('SETTINGS_ACCESS_WEBHOOK');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_WEBHOOK]" id="acrit_exp_plugin_vk_access_webhook" value="<?=$this->arProfile['PARAMS']['ACCESS_WEBHOOK'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_WEBHOOK]" id="data_exp_plugin_vk_access_webhook" value="<?=$this->arProfile['PARAMS']['ACCESS_WEBHOOK'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -118,7 +118,7 @@ class Bitrix extends Plugin {
 					<?=static::getMessage('SETTINGS_ACCESS_USER_ID');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_USER_ID]" id="acrit_exp_plugin_vk_access_user_id" value="<?=$this->arProfile['PARAMS']['ACCESS_USER_ID'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_USER_ID]" id="data_exp_plugin_vk_access_user_id" value="<?=$this->arProfile['PARAMS']['ACCESS_USER_ID'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -127,7 +127,7 @@ class Bitrix extends Plugin {
 					<?=static::getMessage('SETTINGS_IBLOCK_ID');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][IBLOCK_ID]" id="acrit_exp_plugin_vk_iblock_id" value="<?=$this->arProfile['PARAMS']['IBLOCK_ID'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][IBLOCK_ID]" id="data_exp_plugin_vk_iblock_id" value="<?=$this->arProfile['PARAMS']['IBLOCK_ID'];?>" size="90" />
 				</td>
 			</tr>
 			</tbody>

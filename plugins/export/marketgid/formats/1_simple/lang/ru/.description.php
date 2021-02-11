@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_MARKETGID_SIMPLE_';
+$strMessPrefix = 'DATA_EXP_MARKETGID_SIMPLE_';
 
 //
 $MESS[$strMessPrefix . 'TEXT'] = '<p>Выгрузка товаров осуществляется посредством файла формата XML.</p>';

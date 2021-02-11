@@ -3,12 +3,12 @@
  * Currency converter class
  */
 
-namespace Acrit\Core\Export\CurrencyConverter;
+namespace Data\Core\Export\CurrencyConverter;
 
 use
 	\Bitrix\Main\Localization\Loc,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Xml;
+	\Data\Core\HttpRequest,
+	\Data\Core\Xml;
 
 /**
  * Centrobank
@@ -22,7 +22,7 @@ abstract class Cbrf extends Base {
 	 *	Get name of converter
 	 */
 	public static function getName(){
-		return Loc::getMessage('ACRIT_EXP_CURRENCYCONVERTER_CBRF_NAME');
+		return Loc::getMessage('DATA_EXP_CURRENCYCONVERTER_CBRF_NAME');
 	}
 	
 	/**

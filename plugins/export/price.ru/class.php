@@ -1,10 +1,10 @@
 <?
 /**
- * Acrit Core: Price.ru base plugin
+ * Data Core: Price.ru base plugin
  * @documentation https://static.price.ru/docs/pricelist_requirements.pdf
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc;
 

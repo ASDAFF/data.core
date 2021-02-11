@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 $strSName = $strLang.'SETTINGS_NAME_';
 $strSHint = $strLang.'SETTINGS_HINT_';
 
@@ -94,7 +94,7 @@ $MESS[$strName.'category_id'] = 'ID категории';
 $MESS[$strLang.'MESSAGE_CHECK_ACCESS_SUCCESS'] = 'Проверка успешна. Доступ разрешен.';
 $MESS[$strLang.'MESSAGE_CHECK_ACCESS_DENIED'] = 'Указаны некорректные данные (ClientId и/или ApiKey).';
 
-$MESS[$strLang . 'NOTICE_SUPPORT'] = '<b>Внимание!</b> На данный формат выгрузки не распространяются условия бесплатной техподдержки. Помощь в настройке осуществляется <a href="/bitrix/admin/acrit_exportproplus_new_support.php?lang=ru&AcritExpSupport_active_tab=ask" target="_blank">на платной основе</a>.';
+$MESS[$strLang . 'NOTICE_SUPPORT'] = '<b>Внимание!</b> На данный формат выгрузки не распространяются условия бесплатной техподдержки. Помощь в настройке осуществляется <a href="/bitrix/admin/data_exportproplus_new_support.php?lang=ru&DataExpSupport_active_tab=ask" target="_blank">на платной основе</a>.';
 
 $MESS[$strLang.'ERROR_WRONG_PRODUCT_SECTION'] = 'Для товара #ELEMENT_ID# раздел инфоблока не определен.';
 $MESS[$strLang.'ERROR_WRONG_PRODUCT_CATEGORY'] = 'Для товара #ELEMENT_ID# категория не определена.';

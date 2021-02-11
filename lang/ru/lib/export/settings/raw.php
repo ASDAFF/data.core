@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_RAW_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_RAW_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Использовать значение без обработки';
 $MESS[$strMessPrefix.'DESC'] = 'Отметьте галочку, если исходное значение не требуется обработать - это учитывается для свойств инфоблоков следующих типов:<ul><li>E (привязка к элементам),</li><li>G (привязка к разделам),</li><li>S:directory (справочник).</li></ul>

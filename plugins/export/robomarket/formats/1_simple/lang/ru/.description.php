@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_ROBO_MARKET_';
+$strMessPrefix = 'DATA_EXP_ROBO_MARKET_';
 
 //
 $MESS[$strMessPrefix.'USEFUL_LINKS'] = 'Полезные ссылки:';

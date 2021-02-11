@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_GOOGLE_MERCHANT_GENERAL_';
+$strMessPrefix = 'DATA_EXP_GOOGLE_MERCHANT_GENERAL_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Google.Merchant';

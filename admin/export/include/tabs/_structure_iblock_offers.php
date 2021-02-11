@@ -1,5 +1,5 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 $bMainIBlock = false;
 $intThisIBlockID = $intIBlockOffersID;

@@ -1,17 +1,17 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class CategoryRedefinitionTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class CategoryRedefinitionTable extends Entity\DataManager {
@@ -48,19 +48,19 @@ abstract class CategoryRedefinitionTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_REDEFINITION_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_REDEFINITION_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_REDEFINITION_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_REDEFINITION_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_REDEFINITION_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_REDEFINITION_IBLOCK_ID'),
 			)),
 			'SECTION_ID' => new Entity\IntegerField('SECTION_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_REDEFINITION_SECTION_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_REDEFINITION_SECTION_ID'),
 			)),
 			'SECTION_NAME' => new Entity\TextField('SECTION_NAME', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_REDEFINITION_SECTION_NAME'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_REDEFINITION_SECTION_NAME'),
 			)),
 		);
 	}

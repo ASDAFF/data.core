@@ -3,10 +3,10 @@
  * Class for settings of fields and values
  */
 
-namespace Acrit\Core\Export\Settings;
+namespace Data\Core\Export\Settings;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -43,7 +43,7 @@ class SettingsEval extends SettingsBase {
 	}
 	
 	public static function isShown($obField, $arParams){
-		if(end(\Acrit\Core\Export\Exporter::getInstance($obField->getModuleId())->getExportModules(true)) == $obField->getModuleId()){
+		if(end(\Data\Core\Export\Exporter::getInstance($obField->getModuleId())->getExportModules(true)) == $obField->getModuleId()){
 			return true;
 		}
 		return false;
@@ -104,7 +104,7 @@ return ob_get_clean();
 	}
 	
 	public static function process(&$mValue, $arParams, $obField=null){
-		if(end(\Acrit\Core\Export\Exporter::getInstance($obField->getModuleId())->getExportModules(true)) == $obField->getModuleId()){
+		if(end(\Data\Core\Export\Exporter::getInstance($obField->getModuleId())->getExportModules(true)) == $obField->getModuleId()){
 			if($arParams[static::getCode()] == 'Y') {
 				static::processMultipleValue($mValue, $arParams, $obField, function(&$strValue, $arParams, $obField){
 					$strPhp = $arParams[static::getCode().'_php'];
@@ -113,7 +113,7 @@ return ob_get_clean();
 						$strModuleId = $obField->getModuleId();
 						$intProfileId = $obField->getProfileID();
 						$intIBlockId = $obField->getIBlockID();
-						$intElementId = \Acrit\Core\Export\Exporter::getInstance($strModuleId)->getElementId();
+						$intElementId = \Data\Core\Export\Exporter::getInstance($strModuleId)->getElementId();
 						$strValue = eval(static::getPhp($strPhp));
 					}
 				});

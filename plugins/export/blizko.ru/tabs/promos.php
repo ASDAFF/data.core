@@ -1,14 +1,14 @@
 <?
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Export\Plugins\YandexMarket;
+		\Data\Core\Helper,
+		\Data\Core\Export\Plugins\YandexMarket;
 
 Loc::loadMessages(__FILE__);
 
-// Это использовать для всех дополнительных параметров в плагинах, чтобы параметры профиля не пересекались
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 $strPluginParams = $obPlugin->getPluginParamsInputName();
 $arPluginParams = $obPlugin->getPluginParams();
 

@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Config\Option,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class GoogleTagManager
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 class GoogleTagManager {
 	
@@ -80,7 +80,7 @@ class GoogleTagManager {
 	 *	Get tag manager ID
 	 */
 	protected static function getID(){
-		return trim(Option::get(ACRIT_CORE, 'google_tagmanager_id'));
+		return trim(Option::get(DATA_CORE, 'google_tagmanager_id'));
 	}
 	
 	/**

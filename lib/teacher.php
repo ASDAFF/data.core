@@ -3,10 +3,10 @@
  *	Class for teacher
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 
@@ -32,7 +32,7 @@ class Teacher {
 		# Title
 		$arTeacherJson['labels']['title'] = isset($arTeacher['TITLE']) 
 			? $arTeacher['TITLE']
-			: static::getMessage('ACRIT_EXP_TEACHER_'.$key);
+			: static::getMessage('DATA_EXP_TEACHER_'.$key);
 		
 		# Splash screen
 		if(is_array($arTeacher['SPLASH_SCREEN'])){
@@ -44,7 +44,7 @@ class Teacher {
 		
 		# Description toggle text
 		if(!strlen($arTeacher['LABELS']['DESCRIPTION_TOGGLE'])){
-			$arTeacher['LABELS']['DESCRIPTION_TOGGLE'] = static::getMessage('ACRIT_EXP_TEACHER_DESCRIPTION_TOGGLE');
+			$arTeacher['LABELS']['DESCRIPTION_TOGGLE'] = static::getMessage('DATA_EXP_TEACHER_DESCRIPTION_TOGGLE');
 		}
 		
 		# Labels
@@ -60,7 +60,7 @@ class Teacher {
 		foreach($arLabels as $strKey => $strKeyJs){
 			$arTeacherJson['labels'][$strKeyJs] = isset($arTeacher['LABELS'][$strKey]) 
 				? $arTeacher['LABELS'][$strKey]
-				: static::getMessage('ACRIT_EXP_TEACHER_'.$strKey);
+				: static::getMessage('DATA_EXP_TEACHER_'.$strKey);
 		}
 		
 		# Callbacks
@@ -123,7 +123,7 @@ class Teacher {
 		
 		# End...
 		$intJsonParams = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
-		$strJs = \Acrit\Core\Json::encode($arTeacherJson, $intJsonParams);
+		$strJs = \Data\Core\Json::encode($arTeacherJson, $intJsonParams);
 		$strJs = static::replaceFunction($strJs);
 		if(!Helper::isUtf()){
 			$strJs = Helper::convertEncoding($strJs, 'UTF-8', 'CP1251');
@@ -159,7 +159,7 @@ class Teacher {
 	 * Get lang message
 	 */
 	public static function getMessage($strLangKey, $arReplace=[]){
-		$strPhrase = 'ACRIT_EXP_TEACHER_'.$strLangKey;
+		$strPhrase = 'DATA_EXP_TEACHER_'.$strLangKey;
 		$strMessage = Helper::getMessage($strPhrase, $arReplace);
 		if(empty($strMessage)) {
 			$strMessage = Helper::getMessage($strLangKey, $arReplace);
@@ -171,14 +171,14 @@ class Teacher {
 	 *	Add js to admin page
 	 */
 	public static function addJs(){
-		\Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/'.ACRIT_CORE.'/teacher/jquery.acrit.teacher.js');
+		\Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/'.DATA_CORE.'/teacher/jquery.data.teacher.js');
 	}
 	
 	/**
 	 *	Add css to admin page
 	 */
 	public static function addCss(){
-		$GLOBALS['APPLICATION']->setAdditionalCss('/bitrix/js/'.ACRIT_CORE.'/teacher/jquery.acrit.teacher.css');
+		$GLOBALS['APPLICATION']->setAdditionalCss('/bitrix/js/'.DATA_CORE.'/teacher/jquery.data.teacher.css');
 	}
 
 }

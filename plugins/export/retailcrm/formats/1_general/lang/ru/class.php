@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_RETAILCRM_GENERAL_';
+$strMessPrefix = 'DATA_EXP_RETAILCRM_GENERAL_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'retailCRM';

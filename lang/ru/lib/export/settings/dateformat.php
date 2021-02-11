@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_DATEFORMAT_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_DATEFORMAT_';
 
 $arFormats = array(
 	\CDatabase::DateFormatToPHP(FORMAT_DATETIME),

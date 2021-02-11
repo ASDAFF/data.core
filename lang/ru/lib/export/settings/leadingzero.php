@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_LEADING_ZERO_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_LEADING_ZERO_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Добавить ведущие нули';
 $MESS[$strMessPrefix.'DESC'] = 'Данная опция позволяет выгружать ведущие нули. Актуально только для чисел (в случае, если не число - значение останется как есть, без обработки).<br/></br>

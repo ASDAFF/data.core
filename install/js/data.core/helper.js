@@ -32,7 +32,7 @@ if($.fn && !$.fn.serializeObject){
 /**
  *	Analog to http_build_query
  */
-function acritCoreHttpBuildQuery(url, params){
+function dataCoreHttpBuildQuery(url, params){
 	var query = Object.keys(params)
    .map(function(k) {return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);})
     .join('&');
@@ -42,7 +42,7 @@ function acritCoreHttpBuildQuery(url, params){
 /**
  *	Analog to Bitrix CMain::getCurPageParam
  */
-function acritCoreGetCurPageParam(strAdd, arRemove, bAtTheEnd){
+function dataCoreGetCurPageParam(strAdd, arRemove, bAtTheEnd){
 	var arData = [];
 		arDataTmp = [],
 		arGetParts = location.search.substr(1).split('&'),
@@ -94,14 +94,14 @@ function acritCoreGetCurPageParam(strAdd, arRemove, bAtTheEnd){
 /**
  *	Change browser url without reloading
  */
-function acritCoreChangeUrl(key, value){
+function dataCoreChangeUrl(key, value){
 	if(document.readyState == 'complete') {
 		value = (typeof value == 'number' && value > 0 || typeof value == 'string' && value.length 
 			? key+'='+encodeURIComponent(value) : '');
-		var newUrl = acritCoreGetCurPageParam(value, [key]);
+		var newUrl = dataCoreGetCurPageParam(value, [key]);
 		window.history.pushState('', '', newUrl);
 		if(key == 'profile_id') {
-			acritCoreChangeUrl('entity_type', null);
+			dataCoreChangeUrl('entity_type', null);
 		}
 	}
 }
@@ -112,8 +112,8 @@ function acritCoreChangeUrl(key, value){
  *	ajaxAction = 'change_iblock';
  *	ajaxAction = ['change_iblock', 'custom_subaction'];
  */
-var acritCoreAjaxObjects = {};
-function acritCoreAjax(ajaxAction, get, post, success, error, hideLoader){
+var dataCoreAjaxObjects = {};
+function dataCoreAjax(ajaxAction, get, post, success, error, hideLoader){
 	var
 		url = location.pathname,
 		ajaxActionSub = '',
@@ -166,15 +166,15 @@ function acritCoreAjax(ajaxAction, get, post, success, error, hideLoader){
 		}
 	}
 	//
-	url = acritCoreHttpBuildQuery(url, $.extend({
+	url = dataCoreHttpBuildQuery(url, $.extend({
 		ajax_action: (ajaxAction !== false && ajaxAction !== null ? ajaxAction : 'none'),
 		ajax_action_sub: ajaxActionSub,
 		lang: phpVars.LANGUAGE_ID
 	}, get));
 	//
 	ajaxActionFull = ajaxAction + (ajaxActionSub.length ? '_' + ajaxActionSub : '');
-	if(acritCoreAjaxObjects[ajaxActionFull] && acritCoreAjaxObjects[ajaxActionFull].readyState != 4){
-		acritCoreAjaxObjects[ajaxActionFull].abort();
+	if(dataCoreAjaxObjects[ajaxActionFull] && dataCoreAjaxObjects[ajaxActionFull].readyState != 4){
+		dataCoreAjaxObjects[ajaxActionFull].abort();
 	}
 	ajax = $.ajax({
 		url: url,
@@ -187,13 +187,13 @@ function acritCoreAjax(ajaxAction, get, post, success, error, hideLoader){
 				success(jqXHR, textStatus, arJson);
 			}
 			if(arJson.DebugMessage){
-				acritCorePopupDebug.Open(arJson.DebugMessage);
+				dataCorePopupDebug.Open(arJson.DebugMessage);
 			}
 			else{
-				acritCorePopupDebug.Close();
+				dataCorePopupDebug.Close();
 			}
 			if(typeof arJson != 'object'){
-				acritCorePopupError.Open(jqXHR);
+				dataCorePopupError.Open(jqXHR);
 			}
 			if(hideLoader!==true) {
 				BX.closeWait();
@@ -214,28 +214,28 @@ function acritCoreAjax(ajaxAction, get, post, success, error, hideLoader){
 			}
 		}
 	});
-	acritCoreAjaxObjects[ajaxActionFull] = ajax;
+	dataCoreAjaxObjects[ajaxActionFull] = ajax;
 	return ajax;
 }
 
 /**
  *	Create loading
  */
-function acritCoreLoader(size, id){
+function dataCoreLoader(size, id){
 	size = !isNaN(parseInt(size)) ? parseInt(size) : 24;
 	id = typeof id == 'string' && id.length ? id : null;
-	return $('<div class="acrit-core-loading"/>').attr('data-size', size).attr('id', id)
+	return $('<div class="data-core-loading"/>').attr('data-size', size).attr('id', id)
 		.append($('<span/>').css({height:size, width:size}))
 		.append($('<span/>').text(phpVars.messLoading));
 }
 
 /*** BASE POPUP ********************************************************************************************************/
-let acritCorePopup = BX.CDialog;
+let dataCorePopup = BX.CDialog;
 
 /**
  *	Build URL for AJAX
  */
-acritCorePopup.prototype.AcritCoreHttpBuildQuery = function(url, params) {
+dataCorePopup.prototype.DataCoreHttpBuildQuery = function(url, params) {
 	var query = Object.keys(params)
 	 .map(function(k) {return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);})
 		.join('&');
@@ -245,7 +245,7 @@ acritCorePopup.prototype.AcritCoreHttpBuildQuery = function(url, params) {
 /**
  *	Load content via AJAX
  */
-acritCorePopup.prototype.AcritCoreLoadContentAjax = function(ajaxAction, get, post, success, error, hideLoader) {
+dataCorePopup.prototype.DataCoreLoadContentAjax = function(ajaxAction, get, post, success, error, hideLoader) {
 	let
 		popup = this,
 		url = location.href,
@@ -262,7 +262,7 @@ acritCorePopup.prototype.AcritCoreLoadContentAjax = function(ajaxAction, get, po
 		url = popup.AjaxUrl;
 	}
 	return BX.ajax({
-		url: popup.AcritCoreHttpBuildQuery(url, get),
+		url: popup.DataCoreHttpBuildQuery(url, get),
 		method: 'POST',
 		data: post,
 		dataType: 'json',
@@ -275,13 +275,13 @@ acritCorePopup.prototype.AcritCoreLoadContentAjax = function(ajaxAction, get, po
 		cache: false,
 		onsuccess: function(arJsonResult){
 			if(arJsonResult.Title != undefined){
-				popup.AcritCoreSetTitle(arJsonResult.Title);
+				popup.DataCoreSetTitle(arJsonResult.Title);
 			}
 			if(typeof success == 'function') {
 				success(arJsonResult);
 			}
 			else if(arJsonResult.HTML != undefined){
-				popup.AcritCoreSetContent(arJsonResult.HTML);
+				popup.DataCoreSetContent(arJsonResult.HTML);
 			}
 			if(hideLoader!==true) {
 				BX.closeWait();
@@ -289,8 +289,8 @@ acritCorePopup.prototype.AcritCoreLoadContentAjax = function(ajaxAction, get, po
 		},
 		onfailure: function(status, error){
 			console.error(error.data);
-			popup.AcritCoreSetTitle('Error');
-			popup.AcritCoreSetContent('<div class="acrit_core_bx_dialog_content_preformat" style="font-family:monospace;">'
+			popup.DataCoreSetTitle('Error');
+			popup.DataCoreSetContent('<div class="data_core_bx_dialog_content_preformat" style="font-family:monospace;">'
 				+error.data+'</div>');
 			if(typeof error == 'function') {
 				error(error);
@@ -305,7 +305,7 @@ acritCorePopup.prototype.AcritCoreLoadContentAjax = function(ajaxAction, get, po
 /**
  *	Set title (considering HTML)
  */
-acritCorePopup.prototype.AcritCoreSetTitle = function(title) {
+dataCorePopup.prototype.DataCoreSetTitle = function(title) {
 	let nodes = this.PARTS.TITLEBAR.querySelectorAll('.bx-core-adm-dialog-head-inner');
 	for(let i=0; i<nodes.length; i++) {
 		nodes[i].innerHTML = title;
@@ -315,10 +315,10 @@ acritCorePopup.prototype.AcritCoreSetTitle = function(title) {
 /**
  *	Set content (and set height 100%)
  */
-acritCorePopup.prototype.AcritCoreSetContent = function(html) {
+dataCorePopup.prototype.DataCoreSetContent = function(html) {
 	let nodes = this.PARTS.CONTENT_DATA.querySelectorAll('.bx-core-adm-dialog-content-wrap-inner');
 	for(let i=0; i<nodes.length; i++) {
-		nodes[i].innerHTML = '<div class="acrit_core_bx_dialog_content">' + html + '</div>';
+		nodes[i].innerHTML = '<div class="data_core_bx_dialog_content">' + html + '</div>';
 		nodes[i].style.boxSizing = 'border-box';
 		nodes[i].style.height = '100%';
 		for(let j=0; j<nodes[i].childNodes.length; j++) {
@@ -352,7 +352,7 @@ acritCorePopup.prototype.AcritCoreSetContent = function(html) {
 /**
  *	Set nav buttons
  */
-acritCorePopup.prototype.AcritCoreSetNavButtons = function(buttons) {
+dataCorePopup.prototype.DataCoreSetNavButtons = function(buttons) {
 	let
 		empty = buttons == undefined || typeof(buttons) != 'object' || !buttons.length,
 		container = this.PARTS.BUTTONS_CONTAINER;
@@ -371,9 +371,9 @@ acritCorePopup.prototype.AcritCoreSetNavButtons = function(buttons) {
 /*** POPUPS ***********************************************************************************************************/
 
 // POPUP: debug text
-var acritCorePopupDebug;
-acritCorePopupDebug = new BX.CDialog({
-	ID: 'acritCorePopupDebug',
+var dataCorePopupDebug;
+dataCorePopupDebug = new BX.CDialog({
+	ID: 'dataCorePopupDebug',
 	title: '',
 	content: '',
 	resizable: true,
@@ -381,33 +381,33 @@ acritCorePopupDebug = new BX.CDialog({
 	height: 400,
 	width: 1000
 });
-acritCorePopupDebug.Open = function(error){
-	this.SetTitle(BX.message('ACRIT_CORE_POPUP_DEBUG_TITLE'));
+dataCorePopupDebug.Open = function(error){
+	this.SetTitle(BX.message('DATA_CORE_POPUP_DEBUG_TITLE'));
 	this.SetNavButtons();
 	this.Show();
 	this.LoadContent(error);
 }
-acritCorePopupDebug.SetTitle = function(title){
+dataCorePopupDebug.SetTitle = function(title){
 	$('.bx-core-adm-dialog-head-inner', this.PARTS.TITLEBAR).html(title);
 }
-acritCorePopupDebug.LoadContent = function(error){
+dataCorePopupDebug.LoadContent = function(error){
 	if(typeof error == 'object'){
 		var jqXHR = error;
-		error = jqXHR.responseText.replace(/<pre>/g, '<pre class="acritCore-error-text">');
+		error = jqXHR.responseText.replace(/<pre>/g, '<pre class="dataCore-error-text">');
 		if(!error.length){
-			error = '<pre class="acritCore-error-text">'+jqXHR.statusText+'</pre>'
+			error = '<pre class="dataCore-error-text">'+jqXHR.statusText+'</pre>'
 		}
 	}
 	this.SetContent(error);
 }
-acritCorePopupDebug.SetNavButtons = function(){
+dataCorePopupDebug.SetNavButtons = function(){
 	var container = $(this.PARTS.BUTTONS_CONTAINER);
 	container.html('<input type="button" value="0" style="visibility:hidden;" />');
 	this.SetButtons(
 		[{
-			'name': BX.message('ACRIT_CORE_POPUP_CLOSE'),
-			'id': 'acritCore_debug_close',
-			'className': 'acritCore-button-right',
+			'name': BX.message('DATA_CORE_POPUP_CLOSE'),
+			'id': 'dataCore_debug_close',
+			'className': 'dataCore-button-right',
 			'action': function(){
 				this.parentWindow.Close();
 			}
@@ -417,9 +417,9 @@ acritCorePopupDebug.SetNavButtons = function(){
 }
 
 // POPUP: error text
-var acritCorePopupError;
-acritCorePopupError = new BX.CDialog({
-	ID: 'acritCorePopupError',
+var dataCorePopupError;
+dataCorePopupError = new BX.CDialog({
+	ID: 'dataCorePopupError',
 	title: '',
 	content: '',
 	resizable: true,
@@ -427,32 +427,32 @@ acritCorePopupError = new BX.CDialog({
 	height: 300,
 	width: 800
 });
-acritCorePopupError.Open = function(error){
-	this.SetTitle(BX.message('ACRIT_CORE_POPUP_ERROR'));
+dataCorePopupError.Open = function(error){
+	this.SetTitle(BX.message('DATA_CORE_POPUP_ERROR'));
 	this.SetNavButtons();
 	this.Show();
 	this.LoadContent(error);
 }
-acritCorePopupError.SetTitle = function(title){
+dataCorePopupError.SetTitle = function(title){
 	$('.bx-core-adm-dialog-head-inner', this.PARTS.TITLEBAR).html(title);
 }
-acritCorePopupError.LoadContent = function(error){
+dataCorePopupError.LoadContent = function(error){
 	if(typeof error == 'object'){
 		var jqXHR = error;
-		error = jqXHR.responseText.replace(/<pre>/g, '<pre class="acritProcessing-error-text">');
+		error = jqXHR.responseText.replace(/<pre>/g, '<pre class="dataProcessing-error-text">');
 		if(!error.length){
-			error = '<pre class="acritProcessing-error-text">&lt;Empty response&gt;'+"\n\n"+'Status text: '+jqXHR.statusText+"\n\n"+jqXHR.getAllResponseHeaders()+'</pre>'
+			error = '<pre class="dataProcessing-error-text">&lt;Empty response&gt;'+"\n\n"+'Status text: '+jqXHR.statusText+"\n\n"+jqXHR.getAllResponseHeaders()+'</pre>'
 		}
 	}
 	this.SetContent(error);
 }
-acritCorePopupError.SetNavButtons = function(){
+dataCorePopupError.SetNavButtons = function(){
 	var container = $(this.PARTS.BUTTONS_CONTAINER).html('');
 	this.SetButtons(
 		[{
-			'name': BX.message('ACRIT_CORE_POPUP_CLOSE'),
-			'id': 'acritProcessing_profile_preview_cancel',
-			'className': 'acritProcessing-button-right',
+			'name': BX.message('DATA_CORE_POPUP_CLOSE'),
+			'id': 'dataProcessing_profile_preview_cancel',
+			'className': 'dataProcessing-button-right',
 			'action': function(){
 				this.parentWindow.Close();
 			}
@@ -465,9 +465,9 @@ acritCorePopupError.SetNavButtons = function(){
  *	Add module version + core version to nav chain
  */
 $(document).ready(function(){
-	if(window.acritModuleVersion != undefined && BX.message('ACRIT_CORE_VERSION') != undefined){
-		$('a[id^="bx_admin_chain_item_menu_acrit_"]>span')
-			.append(' ('+acritModuleVersion+' / '+BX.message('ACRIT_CORE_VERSION')+')');
+	if(window.dataModuleVersion != undefined && BX.message('DATA_CORE_VERSION') != undefined){
+		$('a[id^="bx_admin_chain_item_menu_data_"]>span')
+			.append(' ('+dataModuleVersion+' / '+BX.message('DATA_CORE_VERSION')+')');
 	}
 });
 

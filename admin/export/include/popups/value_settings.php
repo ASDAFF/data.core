@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field;
 
 Loc::loadMessages(__FILE__);
 
@@ -15,7 +15,7 @@ $strFieldCode = $arPost['field_code'];
 $strFieldType = $arPost['field_type'];
 $strFieldName = $arPost['field_name'];
 
-print Helper::showNote(Loc::getMessage('ACRIT_EXP_POPUP_VALUE_SETTINGS_NOTICE'), true).'<br/>';
+print Helper::showNote(Loc::getMessage('DATA_EXP_POPUP_VALUE_SETTINGS_NOTICE'), true).'<br/>';
 
 ?>
 

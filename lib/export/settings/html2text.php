@@ -3,11 +3,11 @@
  * Class for settings of fields and values
  */
 
-namespace Acrit\Core\Export\Settings;
+namespace Data\Core\Export\Settings;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 

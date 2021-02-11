@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_CUSTOM_EXCEL_GENERAL_';
+$strMessPrefix = 'DATA_EXP_CUSTOM_EXCEL_GENERAL_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = '[Произвольный Excel]';

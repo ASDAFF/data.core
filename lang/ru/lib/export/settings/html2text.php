@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_HTML2TEXT_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_HTML2TEXT_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Преобразовать HTML в текст';
 $MESS[$strMessPrefix.'DESC'] = 'Преобразование HTML-содержимого в текст (удаление тегов с сохранением текста в них).<br/>

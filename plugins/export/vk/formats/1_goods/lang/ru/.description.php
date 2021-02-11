@@ -1,9 +1,9 @@
 <?
-use \Acrit\Core\Export\Plugins\Vk;
+use \Data\Core\Export\Plugins\Vk;
 
 $accessTokenUrl = Vk::getAccessUrl();
 
-$strMessPrefix = 'ACRIT_EXP_VK_GOODS_';
+$strMessPrefix = 'DATA_EXP_VK_GOODS_';
 
 $MESS[$strMessPrefix.'HEADER_FIRST'] = 'Первые действия';
 $MESS[$strMessPrefix.'INTRO'] = 'Прежде всего необходимо авторизовать в <a href="https://vk.com" target="_blank">vk.com</a> и создать новую группу, если она еще не создана. При создании группы сразу указывайте полную информацию о группе и о компании.';

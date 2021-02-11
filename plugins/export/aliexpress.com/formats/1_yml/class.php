@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: Aliexpress plugin
+ * Data Core: Aliexpress plugin
  * @documentation https://service.aliexpress.com/page/knowledge?pageId=44&category=1000023367&knowledge=1060047979&language=ru
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Xml;
+	\Data\Core\Xml;
 
 class AliexpressComYml extends AliexpressCom {
 	

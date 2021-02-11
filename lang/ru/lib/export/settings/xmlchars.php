@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_XMLCHARS_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_XMLCHARS_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Удалить служебные символы';
 $MESS[$strMessPrefix.'DESC'] = 'Удаление служебных ASCII-символов с символами от 0 до 31 (кроме символа табуляции, переноса строки и возврата каретки).<br/>

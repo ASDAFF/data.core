@@ -1,7 +1,7 @@
 <?
 use \Bitrix\Main\EventManager;
 
-$strModuleId = 'acrit.core';
+$strModuleId = 'data.core';
 
 /*** CORE ***/
 
@@ -10,7 +10,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnBuildGlobalMenu',
 	$strModuleId,
-	'\Acrit\Core\EventHandler',
+	'\Data\Core\EventHandler',
 	'OnBuildGlobalMenu'
 );
 
@@ -19,7 +19,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnAfterEpilog',
 	$strModuleId,
-	'\Acrit\Core\EventHandler',
+	'\Data\Core\EventHandler',
 	'OnAfterEpilog'
 );
 
@@ -28,7 +28,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnModuleUpdate',
 	$strModuleId,
-	'\Acrit\Core\EventHandler',
+	'\Data\Core\EventHandler',
 	'OnModuleUpdate'
 );
 
@@ -37,7 +37,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnEndBufferContent',
 	$strModuleId,
-	'\Acrit\Core\GoogleTagManager',
+	'\Data\Core\GoogleTagManager',
 	'OnEndBufferContent'
 );
 
@@ -46,7 +46,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnEndBufferContent',
 	$strModuleId,
-	'\Acrit\Core\DynamicRemarketing',
+	'\Data\Core\DynamicRemarketing',
 	'OnEndBufferContent'
 );
 
@@ -57,7 +57,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnAdminContextMenuShow',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAdminContextMenuShow'
 );
 
@@ -66,14 +66,14 @@ EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockElementAdd',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockElementAddUpdate'
 );
 EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockElementUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockElementAddUpdate'
 );
 
@@ -82,14 +82,14 @@ EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockElementSetPropertyValues',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockElementSetPropertyValues'
 );
 EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockElementSetPropertyValuesEx',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockElementSetPropertyValues'
 );
 
@@ -98,7 +98,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnBeforeLocalRedirect',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnBeforeLocalRedirect'
 );
 
@@ -107,14 +107,14 @@ EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnProductAdd',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnProductAddUpdate'
 );
 EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnProductUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnProductAddUpdate'
 );
 
@@ -123,14 +123,14 @@ EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnPriceAdd',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnPriceAddUpdate'
 );
 EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnPriceUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnPriceAddUpdate'
 );
 
@@ -139,14 +139,14 @@ EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnStoreProductAdd',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnStoreProductAddUpdate'
 );
 EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnStoreProductUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnStoreProductAddUpdate'
 );
 
@@ -155,7 +155,7 @@ EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockElementDelete',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockElementDelete'
 );
 
@@ -164,7 +164,7 @@ EventManager::getInstance()->registerEventHandler(
 	'main',
 	'OnEpilog',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnEpilog'
 );
 
@@ -173,7 +173,7 @@ EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockSectionUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockSectionUpdate'
 );
 
@@ -182,7 +182,7 @@ EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockUpdate'
 );
 
@@ -191,7 +191,7 @@ EventManager::getInstance()->registerEventHandler(
 	'iblock',
 	'OnAfterIBlockDelete',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnAfterIBlockDelete'
 );
 
@@ -200,7 +200,7 @@ EventManager::getInstance()->registerEventHandler(
 	'sale',
 	'DiscountOnAfterAdd',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'DiscountOnAfterAdd'
 );
 
@@ -209,7 +209,7 @@ EventManager::getInstance()->registerEventHandler(
 	'sale',
 	'DiscountOnAfterUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'DiscountOnAfterUpdate'
 );
 
@@ -218,7 +218,7 @@ EventManager::getInstance()->registerEventHandler(
 	'sale',
 	'DiscountOnAfterDelete',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'DiscountOnAfterDelete'
 );
 
@@ -227,7 +227,7 @@ EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnGroupAdd',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnGroupAdd'
 );
 
@@ -236,7 +236,7 @@ EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnGroupUpdate',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnGroupUpdate'
 );
 
@@ -245,7 +245,7 @@ EventManager::getInstance()->registerEventHandler(
 	'catalog',
 	'OnGroupDelete',
 	$strModuleId,
-	'\Acrit\Core\Export\EventHandlerExport',
+	'\Data\Core\Export\EventHandlerExport',
 	'OnGroupDelete'
 );
 

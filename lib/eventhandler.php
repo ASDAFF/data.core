@@ -3,11 +3,11 @@
  *	Class to work with handlers
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Update;
+	\Data\Core\Helper,
+	\Data\Core\Update;
 	
 Helper::loadMessages(__FILE__);
 
@@ -22,44 +22,44 @@ class EventHandler {
 				'main',
 				'OnBuildGlobalMenu',
 				$strModuleId,
-				'\Acrit\Core\EventHandler',
+				'\Data\Core\EventHandler',
 				'OnBuildGlobalMenu'
 			);
 	 */
 	public static function OnBuildGlobalMenu(&$arGlobalMenu, &$arModuleMenu){
 		global $obAdminMenu, $APPLICATION;
-		if(is_array($obAdminMenu->aGlobalMenu) && key_exists('global_menu_acrit', $obAdminMenu->aGlobalMenu)){
+		if(is_array($obAdminMenu->aGlobalMenu) && key_exists('global_menu_data', $obAdminMenu->aGlobalMenu)){
 			return;
 		}
 		#
-		$strAcritMenuGroupName = Helper::getOption(ACRIT_CORE, 'acritmenu_group_name');
-		$strAcritMenuGroupSort = Helper::getOption(ACRIT_CORE, 'acritmenu_group_sort');
-		$strAcritMenuGroupImage = Helper::getOption(ACRIT_CORE, 'acritmenu_group_image');
+		$strDataMenuGroupName = Helper::getOption(DATA_CORE, 'datamenu_group_name');
+		$strDataMenuGroupSort = Helper::getOption(DATA_CORE, 'datamenu_group_sort');
+		$strDataMenuGroupImage = Helper::getOption(DATA_CORE, 'datamenu_group_image');
 		#
-		if(!strlen($strAcritMenuGroupName)){
-			$strAcritMenuGroupName = Helper::getMessage('ACRITMENU_GROUP_NAME_DEFAULT');
+		if(!strlen($strDataMenuGroupName)){
+			$strDataMenuGroupName = Helper::getMessage('DATAMENU_GROUP_NAME_DEFAULT');
 		}
-		if(!is_numeric($strAcritMenuGroupSort) || $strAcritMenuGroupSort <= 0){
-			$strAcritMenuGroupSort = 150;
+		if(!is_numeric($strDataMenuGroupSort) || $strDataMenuGroupSort <= 0){
+			$strDataMenuGroupSort = 150;
 		}
-		if(strlen($strAcritMenuGroupImage)){
+		if(strlen($strDataMenuGroupImage)){
 			$APPLICATION->addHeadString('<style>
-				.adm-main-menu-item.adm-acrit .adm-main-menu-item-icon{
-					background:url("'.$strAcritMenuGroupImage.'") center center no-repeat;
+				.adm-main-menu-item.adm-data .adm-main-menu-item-icon{
+					background:url("'.$strDataMenuGroupImage.'") center center no-repeat;
 				}
 			</style>');
 		}
 		#
 		$aMenu = array(
-			'menu_id' => 'acrit',
-			'sort' => $strAcritMenuGroupSort,
-			'text' => $strAcritMenuGroupName,
+			'menu_id' => 'data',
+			'sort' => $strDataMenuGroupSort,
+			'text' => $strDataMenuGroupName,
 			'icon' => 'clouds_menu_icon',
 			'page_icon' => 'clouds_page_icon',
-			'items_id' => 'global_menu_acrit',
+			'items_id' => 'global_menu_data',
 			'items' => array()
 		);
-		$arGlobalMenu['global_menu_acrit'] = $aMenu;
+		$arGlobalMenu['global_menu_data'] = $aMenu;
 	}
 	
 	/**

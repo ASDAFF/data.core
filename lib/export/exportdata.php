@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Export\Helper;
+	\Data\Core\Export\Helper;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ExportDataTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 abstract class ExportDataTable extends Entity\DataManager {
 	
@@ -39,64 +39,64 @@ abstract class ExportDataTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_IBLOCK_ID'),
 			)),
 			'ELEMENT_ID' => new Entity\IntegerField('ELEMENT_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_ELEMENT_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_ELEMENT_ID'),
 			)),
 			'SECTION_ID' => new Entity\IntegerField('SECTION_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_SECTION_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_SECTION_ID'),
 			)),
 			'CATEGORY_CUSTOM_ID' => new Entity\IntegerField('CATEGORY_CUSTOM_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_CATEGORY_CUSTOM_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_CATEGORY_CUSTOM_ID'),
 			)),
 			'ADDITIONAL_SECTIONS_ID' => new Entity\TextField('ADDITIONAL_SECTIONS_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_ADDITIONAL_SECTIONS_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_ADDITIONAL_SECTIONS_ID'),
 			)),
 			'CURRENCY' => new Entity\StringField('CURRENCY', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_CURRENCY'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_CURRENCY'),
 			)),
 			'DATA' => new Entity\StringField('DATA', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_DATA'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_DATA'),
 			)),
 			'DATA_MORE' => new Entity\TextField('DATA_MORE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_DATA_MORE'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_DATA_MORE'),
 			)),
 			'SORT' => new Entity\StringField('SORT', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_SORT'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_SORT'),
 			)),
 			'TYPE' => new Entity\StringField('TYPE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_TYPE'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_TYPE'),
 			)),
 			'IS_ERROR' => new Entity\StringField('IS_ERROR', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_IS_ERROR'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_IS_ERROR'),
 			)),
 			'DATE_GENERATED' => new Entity\DatetimeField('DATE_GENERATED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_DATE_GENERATED'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_DATE_GENERATED'),
 			)),
 			'TIME' => new Entity\StringField('TIME', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_TIME'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_TIME'),
 			)),
 			'IS_OFFER' => new Entity\StringField('IS_OFFER', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_IS_OFFER'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_IS_OFFER'),
 			)),
 			'OFFERS_SUCCESS' => new Entity\IntegerField('OFFERS_SUCCESS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_OFFERS_SUCCESS'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_OFFERS_SUCCESS'),
 			)),
 			'OFFERS_ERRORS' => new Entity\IntegerField('OFFERS_ERRORS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_OFFERS_ERRORS'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_OFFERS_ERRORS'),
 			)),
 			'EXPORTED' => new Entity\StringField('EXPORTED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXPORT_DATA_FIELD_EXPORTED'),
+				'title' => Loc::getMessage('DATA_EXP_EXPORT_DATA_FIELD_EXPORTED'),
 			)),
 		);
 	}

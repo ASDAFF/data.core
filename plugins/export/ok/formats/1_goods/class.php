@@ -1,22 +1,22 @@
 <?
 /**
- * Acrit Core: Ok.ru plugin
+ * Data Core: Ok.ru plugin
  * @documentation https://apiok.ru/dev/methods/rest/market/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Log,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\Plugins\OdnoklassnikiSDK as OkSDK;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Xml,
+	\Data\Core\Json,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Filter,
+	\Data\Core\Log,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\Plugins\OdnoklassnikiSDK as OkSDK;
 
 Loc::loadMessages(__FILE__);
 
@@ -394,7 +394,7 @@ class OkGoods extends Ok {
 		else
 			$cookieType = ( empty( $cookiePostfix )? 0 : 1 );
 
-		$cookieFile = "/upload/tmp/acrit.core/";
+		$cookieFile = "/upload/tmp/data.core/";
 		if( $params["cookie_type"] and ( is_dir( $cookieFile ) or mkdir( $cookieFile, BX_DIR_PERMISSIONS, true ) ) ){
 			if( empty( $params["cookie_postfix"] ) ){
 				$cookieFile .= "cookie.txt";
@@ -1286,7 +1286,7 @@ class OkGoods extends Ok {
 		}
 //		foreach ($arProfile['IBLOCKS'] as $arIblock) {
 //			$intIBlockID = $arIblock['IBLOCK_ID'];
-//			$arFilter = \Acrit\Core\ProfileTable::getFilter($intProfileID, $intIBlockID);
+//			$arFilter = \Data\Core\ProfileTable::getFilter($intProfileID, $intIBlockID);
 //			$res = \CIBlockElement::GetList(['SORT' => 'asc'], $arFilter, false, false, ['ID', 'NAME']);
 //			while ($ob = $res->GetNextElement()) {
 //			    $arItem = $ob->GetFields();

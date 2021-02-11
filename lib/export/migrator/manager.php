@@ -3,13 +3,13 @@
  * Class for migrate profiles from old export module's core
  */
 
-namespace Acrit\Core\Export\Migrator;
+namespace Data\Core\Export\Migrator;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Field\ValueBase,
-	\Acrit\Core\Export\Migrator\FilterConverter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Field\ValueBase,
+	\Data\Core\Export\Migrator\FilterConverter;
 
 Helper::loadMessages(__FILE__);
 
@@ -210,7 +210,7 @@ class Manager {
 		$arParams = &$arNewProfile['PARAMS'];
 		$arParams = array();
 		#
-		$strFile = preg_replace('#^/(acrit\.[A-z]+)/(.*?)$#i', '/upload/$1/$2', $arOldProfile['SETUP']['URL_DATA_FILE']);
+		$strFile = preg_replace('#^/(data\.[A-z]+)/(.*?)$#i', '/upload/$1/$2', $arOldProfile['SETUP']['URL_DATA_FILE']);
 		$strFile = preg_replace('#^(.*?)\.(\w+)$#i', '$1_new.$2', $strFile);
 		$arParams['AUTO_DELETE'] = 'N';
 		$arParams['EXPORT_FILE_NAME'] = $strFile;
@@ -985,7 +985,7 @@ class Manager {
 	 */
 	public function saveProfile($arNewProfile){
 		#$this->serializeParamsRecursive($arNewProfile);
-		#$intNewProfileID = \Acrit\Core\Export\Backup::setProfileData($arNewProfile);
+		#$intNewProfileID = \Data\Core\Export\Backup::setProfileData($arNewProfile);
 		$intNewProfileID = Helper::call($this->strModuleId, 'Backup', 'setProfileData', [$arNewProfile]);
 		return !!$intNewProfileID;
 	}

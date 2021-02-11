@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit Core: Facebook base plugin
+ * Data Core: Facebook base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Export\Plugin,
-		\Acrit\Core\Export\Filter;
+		\Data\Core\Helper,
+		\Data\Core\Export\Plugin,
+		\Data\Core\Export\Filter;
 
 Loc::loadMessages(__FILE__);
 

@@ -1,13 +1,13 @@
 <?
-$strPrefix = 'ACRIT_EXP_PLUGIN_';
+$strPrefix = 'DATA_EXP_PLUGIN_';
 
 #
-$MESS['ACRIT_EXP_PLATFORM_NAME'] = '1С-Битрикс: Управление сайтом';
-$MESS['ACRIT_EXP_FILE_OPEN'] = 'Открыть файл';
-	$MESS['ACRIT_EXP_FILE_OPEN_TITLE'] = 'Файл откроется в новой вкладке';
-	$MESS['ACRIT_EXP_URL_OPEN_TITLE'] = 'Страница откроется в новой вкладке';
-	$MESS['ACRIT_EXP_FILE_OPEN_ARCHIVE'] = 'Скачать архив';
-$MESS['ACRIT_EXP_DATE_UPDATED'] = '<div data-role="plugin-date-updated"><br/><i>Дата актуализации: #DATE#.</i></div>';
+$MESS['DATA_EXP_PLATFORM_NAME'] = '1С-Битрикс: Управление сайтом';
+$MESS['DATA_EXP_FILE_OPEN'] = 'Открыть файл';
+	$MESS['DATA_EXP_FILE_OPEN_TITLE'] = 'Файл откроется в новой вкладке';
+	$MESS['DATA_EXP_URL_OPEN_TITLE'] = 'Страница откроется в новой вкладке';
+	$MESS['DATA_EXP_FILE_OPEN_ARCHIVE'] = 'Скачать архив';
+$MESS['DATA_EXP_DATE_UPDATED'] = '<div data-role="plugin-date-updated"><br/><i>Дата актуализации: #DATE#.</i></div>';
 $strHelp = '<b>Дополнительная информация:</b><br/>
 <ul>
 	<li><a href="https://yandex.ru/support/direct/statistics/url-tags.html#url-tags__utm" target="_blank">Из Яндекс.Маркета</a></li>
@@ -15,51 +15,51 @@ $strHelp = '<b>Дополнительная информация:</b><br/>
 	<li><a href="https://context.tips/analitika/utm-metki-chto-eto-takoe-i-kak-ih-ispolzovat/" target="_blank">Из context.tips</a></li>
 	<li><a href="https://en.wikipedia.org/wiki/UTM_parameters" target="_blank">Из Википедии (англ.)</a></li>
 </ul>';
-$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_FIELDS_NAME'] = 'UTM-метки (для ссылок)';
-$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_SOURCE_NAME'] = '[utm] Источник перехода';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_SOURCE_DESC'] = 'Источник перехода, например:<br/>
+$MESS['DATA_EXP_PLUGIN_FIELD_UTM_FIELDS_NAME'] = 'UTM-метки (для ссылок)';
+$MESS['DATA_EXP_PLUGIN_FIELD_UTM_SOURCE_NAME'] = '[utm] Источник перехода';
+	$MESS['DATA_EXP_PLUGIN_FIELD_UTM_SOURCE_DESC'] = 'Источник перехода, например:<br/>
 <ul>
 	<li><code>Yandex</code>,</li>
 	<li><code>Google</code>,</li>
 	<li><code>Email</code>,</li>
 	<li><code>Blog</code> и т.д.</li>
 </ul>'.$strHelp;
-$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_MEDIUM_NAME'] = '[utm] Тип трафика';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_MEDIUM_DESC'] = 'Тип трафика:<br/>
+$MESS['DATA_EXP_PLUGIN_FIELD_UTM_MEDIUM_NAME'] = '[utm] Тип трафика';
+	$MESS['DATA_EXP_PLUGIN_FIELD_UTM_MEDIUM_DESC'] = 'Тип трафика:<br/>
 	<ul>
 		<li><code>cpc</code> [контекстная реклама],</li>
 		<li><code>ppc</code> [оплата за клик],</li>
 		<li><code>banner</code> [банер],</li>
 		<li><code>email</code> [рассылка] и т.п.</li>
 	</ul>'.$strHelp;
-$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_NAME'] = '[utm] Название рекламной кампании';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_DESC'] = 'Название рекламной кампании, например:<br/><code>Одежда осень-зима 2018</code>.<br/><br/>'.$strHelp;
-$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_CONTENT_NAME'] = '[utm] Дополнительная информация';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_CONTENT_DESC'] = 'Дополнительная информация, которая помогает различать объявления. Например, ID объявления или дата проведения кампании.<br/><br/>'.$strHelp;
-$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_TERM_NAME'] = '[utm] Ключевая фраза';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_UTM_TERM_DESC'] = 'Ключевая фраза.<br/><br/>'.$strHelp;
+$MESS['DATA_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_NAME'] = '[utm] Название рекламной кампании';
+	$MESS['DATA_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_DESC'] = 'Название рекламной кампании, например:<br/><code>Одежда осень-зима 2018</code>.<br/><br/>'.$strHelp;
+$MESS['DATA_EXP_PLUGIN_FIELD_UTM_CONTENT_NAME'] = '[utm] Дополнительная информация';
+	$MESS['DATA_EXP_PLUGIN_FIELD_UTM_CONTENT_DESC'] = 'Дополнительная информация, которая помогает различать объявления. Например, ID объявления или дата проведения кампании.<br/><br/>'.$strHelp;
+$MESS['DATA_EXP_PLUGIN_FIELD_UTM_TERM_NAME'] = '[utm] Ключевая фраза';
+	$MESS['DATA_EXP_PLUGIN_FIELD_UTM_TERM_DESC'] = 'Ключевая фраза.<br/><br/>'.$strHelp;
 
 
-$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP'] = 'Пошаговая выгрузка (N товаров за 1 выгрузку)';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_HINT'] = 'Отметьте данную опцию, если необходимо организовать пошаговый экспорт, т.е. за каждый шаг будет выгружаться одинаковое количество товаров.<br/><br/>Пошаговый экспорт активируется только при отмеченной галочке, а также при указании числа товаров за 1 шаг отличного от нуля.';
-$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT'] = 'Товаров за 1 выгрузку';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_HINT'] = 'Укажите количество товаров, выгружаемых за 1 шаг экспорта.<br/><br/>Значение должно быть целым числом более нуля.';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_PLACEHOLDER'] = 'Например, 20.';
-$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX'] = 'Выполнено шагов';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX_HINT'] = 'Здесь показано, какой шаг выгрузки был последним.';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_RESET'] = 'Сбросить';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_FINISHED'] = '<b style="color:green;">Достингут последний шаг выгрузки</b>';
+$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP'] = 'Пошаговая выгрузка (N товаров за 1 выгрузку)';
+	$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_HINT'] = 'Отметьте данную опцию, если необходимо организовать пошаговый экспорт, т.е. за каждый шаг будет выгружаться одинаковое количество товаров.<br/><br/>Пошаговый экспорт активируется только при отмеченной галочке, а также при указании числа товаров за 1 шаг отличного от нуля.';
+$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT'] = 'Товаров за 1 выгрузку';
+	$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_HINT'] = 'Укажите количество товаров, выгружаемых за 1 шаг экспорта.<br/><br/>Значение должно быть целым числом более нуля.';
+	$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_PLACEHOLDER'] = 'Например, 20.';
+$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX'] = 'Выполнено шагов';
+	$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX_HINT'] = 'Здесь показано, какой шаг выгрузки был последним.';
+	$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_RESET'] = 'Сбросить';
+	$MESS['DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_FINISHED'] = '<b style="color:green;">Достингут последний шаг выгрузки</b>';
 	
 # Fields
-$MESS['ACRIT_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_NAME'] = 'Название категории';
-	$MESS['ACRIT_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_DESC'] = 'Укажите здесь название категории (используется только при выбранном значении «Использовать поля товаров» в опции «Источник названий категорий» [вкладка «Категории»])';
+$MESS['DATA_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_NAME'] = 'Название категории';
+	$MESS['DATA_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_DESC'] = 'Укажите здесь название категории (используется только при выбранном значении «Использовать поля товаров» в опции «Источник названий категорий» [вкладка «Категории»])';
 
 # Check data
-$MESS['ACRIT_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_TITLE'] = 'Файл выгрузки #FILENAME# уже используется';
-$MESS['ACRIT_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_DESC'] = 'Указанный файл уже используется для выгрузки данных по другому профилю (ID=#ID#).<br/>Выгрузка в один файл из разных профилей недопустима.<br/>Необходимо настроить профили на выгрузку в разные файлы.';
+$MESS['DATA_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_TITLE'] = 'Файл выгрузки #FILENAME# уже используется';
+$MESS['DATA_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_DESC'] = 'Указанный файл уже используется для выгрузки данных по другому профилю (ID=#ID#).<br/>Выгрузка в один файл из разных профилей недопустима.<br/>Необходимо настроить профили на выгрузку в разные файлы.';
 
 # Teacher
-$strLang = 'ACRIT_EXP_PLUGIN_TEACHER_';
+$strLang = 'DATA_EXP_PLUGIN_TEACHER_';
 $strStepNameLang = $strLang.'STEP_NAME_';
 $strStepDescLang = $strLang.'STEP_DESC_';
 $MESS[$strLang.'NAME'] = 'Общая информация по настройке профиля';
@@ -120,8 +120,8 @@ $MESS[$strStepNameLang.'PRODUCT_FIELD'] = 'Это поле выгрузки то
 	</ul>
 	<div style="margin-top:6px;"><b>Дополнительно:</b></div>
 	<ul>
-		<li><a href="https://www.acrit-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-znacheniy-pole-svoystvo-i-znachenie/" target="_blank">Чем отличаются типы значений - «Поле/свойство» и «Значение»</a></li>
-		<li><a href="https://www.acrit-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-poley-prostoe-uslovnoe-multiuslovnoe/" target="_blank">Чем отличаются типы полей - «Простое», «Условное», «Мультиусловное»</a></li>
+		<li><a href="https://www.data-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-znacheniy-pole-svoystvo-i-znachenie/" target="_blank">Чем отличаются типы значений - «Поле/свойство» и «Значение»</a></li>
+		<li><a href="https://www.data-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-poley-prostoe-uslovnoe-multiuslovnoe/" target="_blank">Чем отличаются типы полей - «Простое», «Условное», «Мультиусловное»</a></li>
 	</ul>';
 #
 $MESS[$strStepNameLang.'SUBTAB_FIELDS_OFFER'] = 'Теперь настройте поля для выгрузки торговых предложений.';
@@ -137,8 +137,8 @@ $MESS[$strStepNameLang.'OFFER_FIELD'] = 'Это поле выгрузки тор
 	</ul>
 	<div style="margin-top:6px;"><b>Дополнительно:</b></div>
 	<ul>
-		<li><a href="https://www.acrit-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-znacheniy-pole-svoystvo-i-znachenie/" target="_blank">Чем отличаются типы значений - «Поле/свойство» и «Значение»</a></li>
-		<li><a href="https://www.acrit-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-poley-prostoe-uslovnoe-multiuslovnoe/" target="_blank">Чем отличаются типы полей - «Простое», «Условное», «Мультиусловное»</a></li>
+		<li><a href="https://www.data-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-znacheniy-pole-svoystvo-i-znachenie/" target="_blank">Чем отличаются типы значений - «Поле/свойство» и «Значение»</a></li>
+		<li><a href="https://www.data-studio.ru/technical-support/faq-export/nastroyki-znacheniy-i-poley/chem-otlichayutsya-tipy-poley-prostoe-uslovnoe-multiuslovnoe/" target="_blank">Чем отличаются типы полей - «Простое», «Условное», «Мультиусловное»</a></li>
 	</ul>';
 #
 $MESS[$strStepNameLang.'SUBTAB_OFFERS'] = 'Теперь необходимо решить, по какой схеме будут выгружаться торговые предложения относительно товаров.';
@@ -207,7 +207,7 @@ $MESS[$strStepNameLang.'MISC_INTRO'] = 'И напоследок.. Немного
 $MESS[$strStepNameLang.'PROFILE_BACKUP'] = 'Не забывайте периодически делать бэкапы (резервные копии профиля) - нижний пункт «Скачать рез. копию профиля».';
 	$MESS[$strStepDescLang.'PROFILE_BACKUP'] = 'Если профилей несколько (или даже много), удобнее скачивать общий бэкап - это делается на странице списка профилей. Кстати, восстановление из бэкапа производится там же.';
 $MESS[$strStepNameLang.'HOT_KEYS'] = 'Наш модуль поддерживает горячие клавиши! Они помогут Вам сэкономить время.';
-	$MESS[$strStepDescLang.'HOT_KEYS'] = 'Полный список поддерживаемых горячих клавиш Вы найдете на <a href="https://www.acrit-studio.ru/technical-support/faq-export/obshchie-voprosy/goryachie-klavishi-hotkeys/" target="_blank">странице нашего модуля</a>.';
+	$MESS[$strStepDescLang.'HOT_KEYS'] = 'Полный список поддерживаемых горячих клавиш Вы найдете на <a href="https://www.data-studio.ru/technical-support/faq-export/obshchie-voprosy/goryachie-klavishi-hotkeys/" target="_blank">странице нашего модуля</a>.';
 
 
 

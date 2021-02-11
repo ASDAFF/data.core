@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 // General
 $MESS[$strLang.'NAME'] = 'goods.ru (Закажи и забери)';
@@ -41,7 +41,7 @@ $MESS[$strMessPrefix.'NOTICE_SUPPORT'] = '';
 $MESS[$strLang.'ERROR_NO_STORES_TITLE'] = 'Не указаны склады.';
 	$MESS[$strLang.'ERROR_NO_STORES_DESCR'] = 'Необходимо выбрать не менее одного склада в списке на первой странице настроек профиля.';
 $MESS[$strLang.'ERROR_NO_CATALOG_TITLE'] = 'Недоступны функции складов';
-	$MESS[$strLang.'ERROR_NO_CATALOG_DESCR'] = 'Функционал складов доступен только в редакции 1С-Битрикс: Бизнес. Необходимо перейти на эту редацию для продолжения. По вопросам перехода обращайтесь, пожалуйста, к <a href="https://www.acrit-studio.ru/about/contact_information.php" target="_blank">нашим менеджерам</a>.';
+	$MESS[$strLang.'ERROR_NO_CATALOG_DESCR'] = 'Функционал складов доступен только в редакции 1С-Битрикс: Бизнес. Необходимо перейти на эту редацию для продолжения. По вопросам перехода обращайтесь, пожалуйста, к <a href="https://www.data-studio.ru/about/contact_information.php" target="_blank">нашим менеджерам</a>.';
 $MESS[$strLang.'ERROR_NO_STORAGE_DIRECTORY_TITLE'] = 'Не указана папка для JSON';
 	$MESS[$strLang.'ERROR_NO_STORAGE_DIRECTORY_DESCR'] = 'Не указана папка для хранения сгенерированных JSON-файлов.';
 $MESS[$strLang.'ERROR_CREATE_STORAGE_DIRECTORY'] = 'Ошибка создания целевого раздела.';

@@ -1,5 +1,5 @@
 <?
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 // Prepare
 //$next_item = $_REQUEST['next_item']?$_REQUEST['next_item']:0;

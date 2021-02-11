@@ -1,13 +1,13 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use 
 	\Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Migrator\Manager as MigratorManager;
+	\Data\Core\Helper,
+	\Data\Core\Export\Migrator\Manager as MigratorManager;
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 $strModuleId = $ModuleID = preg_replace('#^.*?/([a-z0-9]+)_([a-z0-9]+).*?$#', '$1.$2', $_SERVER['REQUEST_URI']);
 $strModuleCode = preg_replace('#^(.*?)\.(.*?)$#', '$2', $strModuleId);
 $strModuleUnderscore = preg_replace('#^(.*?)\.(.*?)$#', '$1_$2', $strModuleId);
@@ -29,15 +29,15 @@ $arGet = \Bitrix\Main\Context::getCurrent()->getRequest()->getQueryList()->toArr
 $arPost = \Bitrix\Main\Context::getCurrent()->getRequest()->getPostList()->toArray();
 
 // Page title
-$strPageTitle = Loc::getMessage('ACRIT_EXP_PAGE_TITLE');
+$strPageTitle = Loc::getMessage('DATA_EXP_PAGE_TITLE');
 
 // Core notice
 if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
-	?><div id="acrit-exp-core-notifier"><?
+	?><div id="data-exp-core-notifier"><?
 		print '<div style="margin-top:15px;"></div>';
 		print \CAdminMessage::ShowMessage(array(
-			'MESSAGE' => Loc::getMessage('ACRIT_EXP_CORE_NOTICE', [
+			'MESSAGE' => Loc::getMessage('DATA_EXP_CORE_NOTICE', [
 				'#CORE_ID#' => $strCoreId,
 				'#LANG#' => LANGUAGE_ID,
 			]),
@@ -65,13 +65,13 @@ ob_start();
 ?><script>
 BX.message({
 	// General
-	ACRIT_EXP_POPUP_LOADING: '<?=Loc::getMessage('ACRIT_EXP_POPUP_LOADING');?>',
-	ACRIT_EXP_POPUP_RESTORE_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_TITLE');?>',
-	ACRIT_EXP_POPUP_RESTORE_SAVE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_SAVE');?>',
-	ACRIT_EXP_POPUP_RESTORE_CLOSE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_CLOSE');?>',
-	ACRIT_EXP_POPUP_RESTORE_WRONG_FILE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_WRONG_FILE');?>',
-	ACRIT_EXP_POPUP_RESTORE_NO_FILE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_NO_FILE');?>',
-	ACRIT_EXP_POPUP_RESTORE_RESTORE_ERROR: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_RESTORE_ERROR');?>'
+	DATA_EXP_POPUP_LOADING: '<?=Loc::getMessage('DATA_EXP_POPUP_LOADING');?>',
+	DATA_EXP_POPUP_RESTORE_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_TITLE');?>',
+	DATA_EXP_POPUP_RESTORE_SAVE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_SAVE');?>',
+	DATA_EXP_POPUP_RESTORE_CLOSE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_CLOSE');?>',
+	DATA_EXP_POPUP_RESTORE_WRONG_FILE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_WRONG_FILE');?>',
+	DATA_EXP_POPUP_RESTORE_NO_FILE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_NO_FILE');?>',
+	DATA_EXP_POPUP_RESTORE_RESTORE_ERROR: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_RESTORE_ERROR');?>'
 });
 </script><?
 $strJs = ob_get_clean();
@@ -125,18 +125,18 @@ if($bSave) {
 $arTabs = array();
 $arTabs[] = array(
 	'DIV' => 'general',
-	'TAB' => Loc::getMessage('ACRIT_EXP_TAB_GENERAL_NAME'),
-	'TITLE' => Loc::getMessage('ACRIT_EXP_TAB_GENERAL_DESC'),
+	'TAB' => Loc::getMessage('DATA_EXP_TAB_GENERAL_NAME'),
+	'TITLE' => Loc::getMessage('DATA_EXP_TAB_GENERAL_DESC'),
 );
 
 // Warning
-print Helper::showNote(Loc::getMessage('ACRIT_EXP_NOTICE', [
+print Helper::showNote(Loc::getMessage('DATA_EXP_NOTICE', [
 	'#MODULE_UNDERSCORE#' => $strModuleUnderscore,
 	'#LANGUAGE_ID#' => LANGUAGE_ID,
 ]));
 
 // Start tab control
-$strAdminFormName = 'AcritExpMigrator';
+$strAdminFormName = 'DataExpMigrator';
 $obTabControl = new \CAdminTabControl($strAdminFormName, $arTabs);
 $obTabControl->Begin();
 $obTabControl->BeginNextTab();
@@ -145,14 +145,14 @@ $obTabControl->BeginNextTab();
 
 <form action="<?=POST_FORM_ACTION_URI;?>" method="post">
 
-	<div class="acrit-exp-migrator" data-role="migrator">
+	<div class="data-exp-migrator" data-role="migrator">
 		<?if(!empty($arMigratableProfiles)):?>
 			<ul>
 				<?foreach($arMigrateFromSites as $strSiteID):?>
 					<li>
 						<?if(count($arMigrateFromSites) > 1):?>
 							<h4>
-								<?=Loc::getMessage('ACRIT_EXP_SITE_PREFIX');?> <?=$arSites[$strSiteID]['NAME'];?>
+								<?=Loc::getMessage('DATA_EXP_SITE_PREFIX');?> <?=$arSites[$strSiteID]['NAME'];?>
 								<?
 								$arInfo = array();
 								if(strlen($arSites[$strSiteID]['SERVER_NAME'])){
@@ -178,7 +178,7 @@ $obTabControl->BeginNextTab();
 											</span>
 											<?if($intMigratedProfile !== false):?>
 											<span>
-												<?=Loc::getMessage('ACRIT_EXP_ALREADY_MIGRATED', array(
+												<?=Loc::getMessage('DATA_EXP_ALREADY_MIGRATED', array(
 													'#URL#' => '/bitrix/admin/'.$strModuleUnderscore.'_new_edit.php?ID='.$intMigratedProfile
 														.'&lang='.LANGUAGE_ID,
 													'#ID#' => $intMigratedProfile,
@@ -191,33 +191,33 @@ $obTabControl->BeginNextTab();
 							<?endforeach?>
 						</ul>
 						<div class="select-control">
-							<a href="#" data-role="select-all"><?=Loc::getMessage('ACRIT_EXP_SELECT_ALL');?></a>
-							<a href="#" data-role="select-none"><?=Loc::getMessage('ACRIT_EXP_SELECT_NONE');?></a>
-							<a href="#" data-role="select-invert"><?=Loc::getMessage('ACRIT_EXP_SELECT_INVERT');?></a>
+							<a href="#" data-role="select-all"><?=Loc::getMessage('DATA_EXP_SELECT_ALL');?></a>
+							<a href="#" data-role="select-none"><?=Loc::getMessage('DATA_EXP_SELECT_NONE');?></a>
+							<a href="#" data-role="select-invert"><?=Loc::getMessage('DATA_EXP_SELECT_INVERT');?></a>
 						</div>
 					</li>
 				<?endforeach?>
 			</ul>
 		<?else:?>
-			<p><?=Loc::getMessage('ACRIT_EXP_NO_MIGRATABLE_PROFILES');?></p>
+			<p><?=Loc::getMessage('DATA_EXP_NO_MIGRATABLE_PROFILES');?></p>
 		<?endif?>
 	</div>
 	<br/>
 
 	<style>
-		.acrit-exp-migrator ul {
+		.data-exp-migrator ul {
 			list-style:none;
 			margin:0 0 0 20px;
 			padding:0;
 		}
-		.acrit-exp-migrator ul li li {
+		.data-exp-migrator ul li li {
 			margin-bottom:3px;
 		}
-		.acrit-exp-migrator .select-control {
+		.data-exp-migrator .select-control {
 			margin:10px 0 0 20px;
 			padding:2px 0 4px;
 		}
-		.acrit-exp-migrator .select-control a {
+		.data-exp-migrator .select-control a {
 			border-bottom:1px dashed #2675d7;
 			color:#2675d7;
 			display:inline-block;
@@ -225,7 +225,7 @@ $obTabControl->BeginNextTab();
 			margin:0 4px 0 0;
 			text-decoration:none;
 		}
-		.acrit-exp-migrator .select-control a:hover {
+		.data-exp-migrator .select-control a:hover {
 			border-bottom-color:transparent;
 		}
 	</style>
@@ -254,7 +254,7 @@ $obTabControl->BeginNextTab();
 	// End tab control
 	$obTabControl->Buttons();
 		if(!empty($arMigratableProfiles)){
-			?><input type="submit" name="save" data-role="migrate-button" class="adm-btn-green" value="<?=GetMessage('ACRIT_EXP_MIGRATE_BUTTON');?>" /><?
+			?><input type="submit" name="save" data-role="migrate-button" class="adm-btn-green" value="<?=GetMessage('DATA_EXP_MIGRATE_BUTTON');?>" /><?
 		}
 	$obTabControl->End();
 	?>

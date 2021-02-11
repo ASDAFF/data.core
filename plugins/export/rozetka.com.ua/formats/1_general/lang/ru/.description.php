@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_ROZETKA_COM_UA_GENERAL_';
+$strMessPrefix = 'DATA_EXP_ROZETKA_COM_UA_GENERAL_';
 
 //
 $MESS[$strMessPrefix.'INFO'] = 'Что нужно, чтобы продавать на Rozetka?';

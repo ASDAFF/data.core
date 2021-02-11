@@ -1,1 +1,1 @@
-<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/acrit.core/admin/cron.php');?>
+<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/data.core/admin/cron.php');?>

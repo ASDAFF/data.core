@@ -1,19 +1,19 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field as Field,
-	\Acrit\Core\Export\Backup,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field as Field,
+	\Data\Core\Export\Backup,
+	\Data\Core\Cli,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ProfileTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class ProfileTable extends Entity\DataManager {
@@ -48,80 +48,80 @@ abstract class ProfileTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_ID'),
 			)),
 			'ACTIVE' => new Entity\StringField('ACTIVE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_ACTIVE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_ACTIVE'),
 			)),
 			'NAME' => new Entity\StringField('NAME', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_NAME'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_NAME'),
 			)),
 			'CODE' => new Entity\StringField('CODE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_CODE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_CODE'),
 			)),
 			'DESCRIPTION' => new Entity\TextField('DESCRIPTION', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DESCRIPTION'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DESCRIPTION'),
 			)),
 			'SORT' => new Entity\IntegerField('SORT', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_SORT'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_SORT'),
 			)),
 			'SITE_ID' => new Entity\StringField('SITE_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_SITE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_SITE_ID'),
 			)),
 			'DOMAIN' => new Entity\StringField('DOMAIN', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DOMAIN'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DOMAIN'),
 			)),
 			'IS_HTTPS' => new Entity\StringField('IS_HTTPS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_IS_HTTPS'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_IS_HTTPS'),
 			)),
 			'PLUGIN' => new Entity\StringField('PLUGIN', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_PLUGIN'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_PLUGIN'),
 			)),
 			'FORMAT' => new Entity\StringField('FORMAT', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_FORMAT'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_FORMAT'),
 			)),
 			'LAST_IBLOCK_ID' => new Entity\IntegerField('LAST_IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_LAST_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_LAST_IBLOCK_ID'),
 			)),
 			'LAST_SETTINGS_TAB' => new Entity\StringField('LAST_SETTINGS_TAB', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_LAST_SETTINGS_TAB'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_LAST_SETTINGS_TAB'),
 			)),
 			'PARAMS' => new Entity\TextField('PARAMS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_PARAMS'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_PARAMS'),
 			)),
 			'AUTO_GENERATE' => new Entity\StringField('AUTO_GENERATE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_AUTO_GENERATE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_AUTO_GENERATE'),
 			)),
 			'LOCKED' => new Entity\StringField('LOCKED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_LOCKED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_LOCKED'),
 			)),
 			'DATE_CREATED' => new Entity\DatetimeField('DATE_CREATED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DATE_CREATED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DATE_CREATED'),
 			)),
 			'DATE_MODIFIED' => new Entity\DatetimeField('DATE_MODIFIED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DATE_MODIFIED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DATE_MODIFIED'),
 			)),
 			'DATE_STARTED' => new Entity\DatetimeField('DATE_STARTED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DATE_STARTED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DATE_STARTED'),
 			)),
 			'DATE_LOCKED' => new Entity\DatetimeField('DATE_LOCKED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DATE_LOCKED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DATE_LOCKED'),
 			)),
 			'SESSION' => new Entity\TextField('SESSION', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_SESSION'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_SESSION'),
 			)),
 			'LAST_EXPORTED_ITEM' => new Entity\TextField('LAST_EXPORTED_ITEM', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_LAST_EXPORTED_ITEM'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_LAST_EXPORTED_ITEM'),
 			)),
 			'EXTERNAL_ID' => new Entity\StringField('EXTERNAL_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_EXTERNAL_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_EXTERNAL_ID'),
 			)),
 			'ONE_TIME' => new Entity\StringField('ONE_TIME', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_ONE_TIME'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_ONE_TIME'),
 			)),
 		);
 	}
@@ -637,7 +637,7 @@ abstract class ProfileTable extends Entity\DataManager {
 			$intCacheLifeTime = 0;
 		}
 		$strCacheID = 'getProfiles_'.$strCacheKey;
-		$strCacheDir = '/acrit/'.preg_replace('#^(.*?)\.(.*?)$#i', '$2', static::MODULE_ID).'/new/get_profiles';
+		$strCacheDir = '/data/'.preg_replace('#^(.*?)\.(.*?)$#i', '$2', static::MODULE_ID).'/new/get_profiles';
 		if($obCache->InitCache($intCacheLifeTime, $strCacheID, $strCacheDir)) {
 			$arResult = $obCache->GetVars();
 		} elseif($obCache->StartDataCache()) {
@@ -769,7 +769,7 @@ abstract class ProfileTable extends Entity\DataManager {
 	protected static function getFieldSortGeneral($intProfileID, $intIBlockID, $strCode, $arValues){
 		$arFieldParams = array(
 			'CODE' => $strCode,
-			'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_SORT_DATA'),
+			'NAME' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_SORT_DATA'),
 			'INPUT_NAME' => $strCode,
 			'DEFAULT_TYPE' => 'FIELD',
 			'DEFAULT_VALUE' => array(
@@ -1042,7 +1042,7 @@ abstract class ProfileTable extends Entity\DataManager {
 	 */
 	public static function checkXDebug(){
 		if(extension_loaded('xdebug')){
-			print Helper::showNote(Helper::getMessage('ACRIT_EXP_PROFILE_XDEBUG_NOTICE'), true);
+			print Helper::showNote(Helper::getMessage('DATA_EXP_PROFILE_XDEBUG_NOTICE'), true);
 		}
 	}
 	

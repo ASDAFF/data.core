@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 $MESS[$strLang.'STATUS_START'] = 'Запуск обновления...';
 $MESS[$strLang.'STATUS_CATEGORY'] = '[ID=#ID#] «#NAME#» - #PERCENT#% (#INDEX# из #COUNT#)';

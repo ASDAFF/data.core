@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\AttributeValueTable as AttributeValue;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugins\OzonRuHelpers\AttributeValueTable as AttributeValue;
 
 Helper::loadMessages(__FILE__);
 

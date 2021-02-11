@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: JSON plugin
+ * Data Core: JSON plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Json;
 
 class CustomJsonGeneral extends CustomJson {
 	

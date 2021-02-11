@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_MARKET_MUSICVIDEO_';
+$strMessPrefix = 'DATA_EXP_YANDEX_MARKET_MUSICVIDEO_';
 
 //
 $MESS[$strMessPrefix.'USEFUL_LINKS'] = 'Полезные ссылки:';

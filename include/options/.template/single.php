@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $strModuleId = &$arVariables['MODULE_ID'];
 $strModuleCodeFull = str_replace('.', '_', $strModuleId);
@@ -19,9 +19,9 @@ if(is_callable($arOption['CALLBACK_VALUE'])){
 $strValue = $arOption['VALUE'];
 ?>
 <?if($bWithTable):?>
-	<table class="adm-detail-content-table edit-table" id="acrit_core_table_<?=$strOption;?>">
+	<table class="adm-detail-content-table edit-table" id="data_core_table_<?=$strOption;?>">
 <?endif?>
-	<tr id="acrit_core_row_option_<?=$strOption;?>">
+	<tr id="data_core_row_option_<?=$strOption;?>">
 		<?if($arOption['FULL_WIDTH'] == 'Y'):?>
 			<td colspan="2">
 				<?

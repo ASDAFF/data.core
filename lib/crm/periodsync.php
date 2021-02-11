@@ -3,12 +3,12 @@
  *    Periodical synchronization
  */
 
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use Bitrix\Main,
     Bitrix\Main\DB\Exception,
     Bitrix\Main\Config\Option,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class PeriodSync
 {
@@ -27,7 +27,7 @@ class PeriodSync
 		$sync_schedule = $profile['SYNC']['add']['period'];
 		$agent_period = $sync_schedule * 60;
 		if ($agent_period) {
-			\CAgent::AddAgent("\\Acrit\\Core\\Crm\\PeriodSync::run('".self::$MODULE_ID."', $profile_id);", self::$MODULE_ID, "N", $agent_period);
+			\CAgent::AddAgent("\\Data\\Core\\Crm\\PeriodSync::run('".self::$MODULE_ID."', $profile_id);", self::$MODULE_ID, "N", $agent_period);
 		}
 		return $result;
 	}
@@ -35,7 +35,7 @@ class PeriodSync
 	public static function remove($profile_id) {
 		$result = true;
 		// Remove agent
-		\CAgent::RemoveAgent("\\Acrit\\Core\\Crm\\PeriodSync::run('".self::$MODULE_ID."', $profile_id);", self::$MODULE_ID);
+		\CAgent::RemoveAgent("\\Data\\Core\\Crm\\PeriodSync::run('".self::$MODULE_ID."', $profile_id);", self::$MODULE_ID);
 		return $result;
 	}
 
@@ -52,7 +52,7 @@ class PeriodSync
 			Settings::set('last_update_ts', time());
 			Controller::syncStoreToCRM($sync_interval);
 		}
-		return "\\Acrit\\Core\\Crm\\PeriodSync::run('$module_id', $profile_id);";
+		return "\\Data\\Core\\Crm\\PeriodSync::run('$module_id', $profile_id);";
 	}
 
 	public static function getSyncInterval($profile) {

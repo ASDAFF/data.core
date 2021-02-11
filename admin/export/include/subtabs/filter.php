@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Filter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Filter;
 
 Loc::loadMessages(__FILE__);
 
@@ -29,18 +29,18 @@ unset($obFilter);
 <br/>
 <table class="adm-list-table">
 	<tbody>
-		<tr class="heading"><td colspan="2"><?=Loc::getMessage('ACRIT_EXP_TAB_FILTER_SETTINGS');?></td></tr>
+		<tr class="heading"><td colspan="2"><?=Loc::getMessage('DATA_EXP_TAB_FILTER_SETTINGS');?></td></tr>
 		<tr>
 			<td width="40%" style="padding-top:11px; vertical-align:top;">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS');?>:
 			</td>
 			<td width="60%">
 				<div data-role="sort-field" data-iblock-id="<?=$intIBlockID;?>"  data-name="<?=$obSortFieldElements->getName();?>" data-field="<?=$obSortFieldElements->getCode();?>" data-type="FIELD">
 					<?
 					$arIncludeSubsections = array(
-						'N' => Loc::getMessage('ACRIT_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS_N'),
-						'Y' => Loc::getMessage('ACRIT_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS_Y'),
+						'N' => Loc::getMessage('DATA_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS_N'),
+						'Y' => Loc::getMessage('DATA_EXP_TAB_FILTER_INCLUDE_SUBSECTIONS_Y'),
 					);
 					$arIncludeSubsections = array(
 						'reference' => array_values($arIncludeSubsections),

@@ -1,19 +1,19 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\Cron,
-	\Acrit\Core\Export\Crontab,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\Cron,
+	\Data\Core\Export\Crontab,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class Debug
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 class Debug {
 	

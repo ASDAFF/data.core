@@ -1,12 +1,12 @@
 <?
 /**
- * Acrit Core: Price.ua base plugin
+ * Data Core: Price.ua base plugin
  * @https://price.ua/business/stores/price_download.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Export\UniversalPlugin;
+use \Data\Core\Export\UniversalPlugin;
 
 abstract class PriceUa extends UniversalPlugin {
 	

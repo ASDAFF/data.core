@@ -5,7 +5,7 @@ use \Bitrix\Main\Localization\Loc;
 <h2><?= static::getMessage('USEFUL_LINKS'); ?></h2>
 <ul>
 	<li>
-		<a href="https://www.acrit-studio.ru/upload/export_docs/goods_ru_manual.pdf" target="_blank">
+		<a href="https://www.data-studio.ru/upload/export_docs/goods_ru_manual.pdf" target="_blank">
 			<?= static::getMessage('DOCUMENTATION'); ?>
 		</a>
 	</li>

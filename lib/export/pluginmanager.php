@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit core
- * @package acrit.core
- * @copyright 2018 Acrit
+ * Data core
+ * @package data.core
+ * @copyright 2018 Data
  */
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 

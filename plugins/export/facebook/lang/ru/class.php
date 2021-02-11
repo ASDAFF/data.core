@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_FACEBOOK_';
+$strMessPrefix = 'DATA_EXP_FACEBOOK_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'Facebook ';

@@ -1,1 +1,1 @@
-<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/acrit.core/admin/export/preview_element.php');?>
+<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/data.core/admin/export/preview_element.php');?>

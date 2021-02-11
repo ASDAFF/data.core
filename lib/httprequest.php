@@ -3,7 +3,7 @@
  *	Class to work with HTTP-requests
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 class HttpRequest {
 	

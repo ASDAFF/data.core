@@ -3,10 +3,10 @@
  *	Class to work with XML, not requires simplexml
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 
@@ -247,7 +247,7 @@ $arXml = array(
 		),
 	),
 );
-$strXml = htmlspecialchars(\Acrit\Core\Xml::arrayToXml($arXml));
+$strXml = htmlspecialchars(\Data\Core\Xml::arrayToXml($arXml));
 
 RESULT IS:
 <offer id="123" date="today">

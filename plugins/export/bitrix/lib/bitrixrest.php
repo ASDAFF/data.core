@@ -1,16 +1,16 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use	
 	\Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class Rest
- * @package Acrit\Core
+ * @package Data\Core
  */
 class BitrixRest {
 

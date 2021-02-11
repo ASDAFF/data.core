@@ -1,20 +1,20 @@
 <?
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 if(!$intProfileID){
-	$arProfile['NAME'] = Loc::getMessage('ACRIT_EXP_FIELD_NAME_DEFAULT');
+	$arProfile['NAME'] = Loc::getMessage('DATA_EXP_FIELD_NAME_DEFAULT');
 	if(!empty($arSites)){
 		$arProfile['NAME'] .= ' ['.key($arSites).']';
 	}
 }
 
 // Active
-$obTabControl->BeginCustomField('PROFILE[ACTIVE]', Loc::getMessage('ACRIT_EXP_FIELD_ACTIVE'));
+$obTabControl->BeginCustomField('PROFILE[ACTIVE]', Loc::getMessage('DATA_EXP_FIELD_ACTIVE'));
 ?>
 	<tr id="tr_ACTIVE">
 		<td>
@@ -29,7 +29,7 @@ $obTabControl->BeginCustomField('PROFILE[ACTIVE]', Loc::getMessage('ACRIT_EXP_FI
 $obTabControl->EndCustomField('PROFILE[ACTIVE]');
 
 // Name
-$obTabControl->BeginCustomField('PROFILE[NAME]', Loc::getMessage('ACRIT_EXP_FIELD_NAME'));
+$obTabControl->BeginCustomField('PROFILE[NAME]', Loc::getMessage('DATA_EXP_FIELD_NAME'));
 ?>
 	<tr id="tr_NAME">
 		<td>
@@ -37,7 +37,7 @@ $obTabControl->BeginCustomField('PROFILE[NAME]', Loc::getMessage('ACRIT_EXP_FIEL
 		</td>
 		<td>
 			<input type="text" name="PROFILE[NAME]" size="50" maxlength="255" data-role="profile-name"
-				data-default-name="<?=Loc::getMessage('ACRIT_EXP_FIELD_NAME_DEFAULT');?>"
+				data-default-name="<?=Loc::getMessage('DATA_EXP_FIELD_NAME_DEFAULT');?>"
 				<?if($intProfileID):?>data-custom-name="true"<?endif?>
 				value="<?=htmlspecialcharsbx($arProfile['NAME']);?>" />
 		</td>
@@ -46,14 +46,14 @@ $obTabControl->BeginCustomField('PROFILE[NAME]', Loc::getMessage('ACRIT_EXP_FIEL
 $obTabControl->EndCustomField('PROFILE[NAME]');
 
 // Description
-$obTabControl->BeginCustomField('PROFILE[DESCRIPTION]', Loc::getMessage('ACRIT_EXP_FIELD_DESCRIPTION'));
+$obTabControl->BeginCustomField('PROFILE[DESCRIPTION]', Loc::getMessage('DATA_EXP_FIELD_DESCRIPTION'));
 ?>
 	<tr id="tr_DESCRIPTION">
 		<td>
 			<label for="field_DESCRIPTION"><?=$obTabControl->GetCustomLabelHTML()?><label>
 		</td>
 		<td>
-			<textarea name="PROFILE[DESCRIPTION]" id="field_DESCRIPTION" class="acrit-exp-profile-description" 
+			<textarea name="PROFILE[DESCRIPTION]" id="field_DESCRIPTION" class="data-exp-profile-description" 
 				style="min-height:48px;resize:vertical;width:80%;"
 				cols="51" rows="3"><?=$arProfile['DESCRIPTION']?></textarea>
 		</td>
@@ -62,18 +62,18 @@ $obTabControl->BeginCustomField('PROFILE[DESCRIPTION]', Loc::getMessage('ACRIT_E
 $obTabControl->EndCustomField('PROFILE[DESCRIPTION]');
 
 // Sort
-$obTabControl->AddEditField('PROFILE[SORT]', Loc::getMessage('ACRIT_EXP_FIELD_SORT'), false, array('size'=>10, 'maxlength'=>10), 
+$obTabControl->AddEditField('PROFILE[SORT]', Loc::getMessage('DATA_EXP_FIELD_SORT'), false, array('size'=>10, 'maxlength'=>10), 
 	$arProfile['SORT']);
 
 // SECTION: Plugin
-$obTabControl->AddSection('HEADING_PLUGIN', GetMessage('ACRIT_EXP_HEADING_PLUGIN'));
+$obTabControl->AddSection('HEADING_PLUGIN', GetMessage('DATA_EXP_HEADING_PLUGIN'));
 
 // Plugin
-$obTabControl->BeginCustomField('PROFILE[PLUGIN]', Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN'), true);
+$obTabControl->BeginCustomField('PROFILE[PLUGIN]', Loc::getMessage('DATA_EXP_FIELD_PLUGIN'), true);
 ?>
 	<tr id="tr_PLUGIN">
 		<td>
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_HINT'));?>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_FIELD_PLUGIN_HINT'));?>
 			<label for="field_PLUGIN"><?=$obTabControl->GetCustomLabelHTML()?></label>
 		</td>
 		<td>
@@ -110,7 +110,7 @@ $obTabControl->BeginCustomField('PROFILE[PLUGIN]', Loc::getMessage('ACRIT_EXP_FI
 			<div style="position:relative;">
 				<select name="PROFILE[PLUGIN]" id="field_PLUGIN"<?if($bSelectDisabled):?> disabled="disabled"<?endif?>>
 					<?if(!$bSingle):?>
-						<option value=""><?=Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_EMPTY');?></option>
+						<option value=""><?=Loc::getMessage('DATA_EXP_FIELD_PLUGIN_EMPTY');?></option>
 					<?endif?>
 					<?foreach($arPluginsGrouped as $strGroupCode => $arGroup):?>
 						<?if(!empty($arGroup['ITEMS'])):?>
@@ -132,8 +132,8 @@ $obTabControl->BeginCustomField('PROFILE[PLUGIN]', Loc::getMessage('ACRIT_EXP_FI
 					<?endforeach?>
 				</select>
 				<?if(strlen($arProfile['PLUGIN']) && !$bSingle):?>
-					<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_ACTIVATE');?>"
-						id="input_PLUGIN_activate" data-confirm="<?=Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_ACTIVATE_CONFIRM');?>" />
+					<input type="button" value="<?=Loc::getMessage('DATA_EXP_FIELD_PLUGIN_ACTIVATE');?>"
+						id="input_PLUGIN_activate" data-confirm="<?=Loc::getMessage('DATA_EXP_FIELD_PLUGIN_ACTIVATE_CONFIRM');?>" />
 				<?endif?>
 				<?if($bSingle):?>
 					<script>
@@ -159,23 +159,23 @@ $obTabControl->BeginCustomField('PROFILE[PLUGIN]', Loc::getMessage('ACRIT_EXP_FI
 	<?if(!$intProfileID):?>
     <tr id="tr_PLUGIN_NEED_SAVE">
         <td></td>
-        <td><?=Helper::showNote(Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_NEED_SAVE'));?></td>
+        <td><?=Helper::showNote(Loc::getMessage('DATA_EXP_FIELD_PLUGIN_NEED_SAVE'));?></td>
     </tr>
 	<?endif?>
 	<?if(is_object($obPlugin)):?>
-		<tr id="tr_PLUGIN_DESCRIPTION_HEADING" class="acrit_exp_type_info heading">
-			<td colspan="2"><?=Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_DESCRIPTION');?></td>
+		<tr id="tr_PLUGIN_DESCRIPTION_HEADING" class="data_exp_type_info heading">
+			<td colspan="2"><?=Loc::getMessage('DATA_EXP_FIELD_PLUGIN_DESCRIPTION');?></td>
 		</tr>
-		<tr id="tr_PLUGIN_DESCRIPTION" class="acrit_exp_type_info">
+		<tr id="tr_PLUGIN_DESCRIPTION" class="data_exp_type_info">
 			<td colspan="2">
 				<?=$obPlugin::getDescription();?>
 			</td>
 		</tr>
 	<?else:?>
-		<tr id="tr_PLUGIN_DESCRIPTION_HEADING" class="acrit_exp_type_info heading" style="display:none">
-			<td colspan="2"><?=Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_DESCRIPTION');?></td>
+		<tr id="tr_PLUGIN_DESCRIPTION_HEADING" class="data_exp_type_info heading" style="display:none">
+			<td colspan="2"><?=Loc::getMessage('DATA_EXP_FIELD_PLUGIN_DESCRIPTION');?></td>
 		</tr>
-		<tr id="tr_PLUGIN_DESCRIPTION" class="acrit_exp_type_info" style="display:none"><td colspan="2"></td></tr>
+		<tr id="tr_PLUGIN_DESCRIPTION" class="data_exp_type_info" style="display:none"><td colspan="2"></td></tr>
 	<?endif?>
 <?
 $obTabControl->EndCustomField('PROFILE[PLUGIN]');
@@ -183,10 +183,10 @@ $obTabControl->EndCustomField('PROFILE[PLUGIN]');
 if ($obPlugin):
 
 // SECTION: Synchronization parameters
-$obTabControl->AddSection('HEADING_SYNC_PARAMS', Loc::getMessage('ACRIT_CRM_GENERAL_SYNC_PARAMS'));
+$obTabControl->AddSection('HEADING_SYNC_PARAMS', Loc::getMessage('DATA_CRM_GENERAL_SYNC_PARAMS'));
 
 // Direction
-$obTabControl->BeginCustomField('PROFILE[CONNECT_CRED][direction]', Loc::getMessage('ACRIT_CRM_GENERAL_DIRECTION'));
+$obTabControl->BeginCustomField('PROFILE[CONNECT_CRED][direction]', Loc::getMessage('DATA_CRM_GENERAL_DIRECTION'));
 $directions = $obPlugin->getDirections();
 ?>
     <tr id="tr_DIRECTION">
@@ -205,7 +205,7 @@ $directions = $obPlugin->getDirections();
 $obTabControl->EndCustomField('PROFILE[CONNECT_CRED][direction]');
 
 // Start date
-$obTabControl->BeginCustomField('PROFILE[CONNECT_CRED][start_date]', Loc::getMessage('ACRIT_CRM_GENERAL_START_DATE'));
+$obTabControl->BeginCustomField('PROFILE[CONNECT_CRED][start_date]', Loc::getMessage('DATA_CRM_GENERAL_START_DATE'));
 ?>
     <tr id="tr_START_DATE">
         <td>

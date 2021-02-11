@@ -1,10 +1,10 @@
 <?
 /**
- * Acrit Core: All.biz plugin
+ * Data Core: All.biz plugin
  * @documentation http://help.all.biz/import-tovarov-kak-importirovat-tovary-iz-yml-fajla-ans186
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 class AllBizYml extends AllBiz {
 	

@@ -1,19 +1,19 @@
 <?
 /**
- * Acrit Core: Ok.ru plugin
+ * Data Core: Ok.ru plugin
  * @documentation https://apiok.ru/dev/methods/rest/market/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\Plugins\OdnoklassnikiSDK as OkSDK;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\HttpRequest,
+	\Data\Core\Log,
+	\Data\Core\Json,
+	\Data\Core\Export\Plugins\OdnoklassnikiSDK as OkSDK;
 
 Loc::loadMessages(__FILE__);
 
@@ -113,7 +113,7 @@ class Ok extends Plugin {
 	protected function showDefaultSettings(){
 		ob_start();
 			?>
-			<table class="acrit-exp-plugin-settings" style="width:100%;">
+			<table class="data-exp-plugin-settings" style="width:100%;">
 				<tbody>
                     <tr class="heading" id="tr_HEADING_SYSTEM"><td colspan="2"><?=static::getMessage('SETTINGS_APP_DATA_TITLE');?></td></tr>
 					<tr>
@@ -122,7 +122,7 @@ class Ok extends Plugin {
 							<?=static::getMessage('SETTINGS_APP_ID');?>:
 						</td>
 						<td width="60%" class="adm-detail-content-cell-r">
-							<input type="text" name="PROFILE[PARAMS][APP_ID]" id="acrit_exp_plugin_ok_app_id" value="<?=$this->arProfile['PARAMS']['APP_ID'];?>" size="90" />
+							<input type="text" name="PROFILE[PARAMS][APP_ID]" id="data_exp_plugin_ok_app_id" value="<?=$this->arProfile['PARAMS']['APP_ID'];?>" size="90" />
 						</td>
 					</tr>
 					<tr>
@@ -131,7 +131,7 @@ class Ok extends Plugin {
 							<?=static::getMessage('SETTINGS_APP_PUB_KEY');?>:
 						</td>
 						<td width="60%" class="adm-detail-content-cell-r">
-							<input type="text" name="PROFILE[PARAMS][APP_PUB_KEY]" id="acrit_exp_plugin_ok_app_pub_key" value="<?=$this->arProfile['PARAMS']['APP_PUB_KEY'];?>" size="90" />
+							<input type="text" name="PROFILE[PARAMS][APP_PUB_KEY]" id="data_exp_plugin_ok_app_pub_key" value="<?=$this->arProfile['PARAMS']['APP_PUB_KEY'];?>" size="90" />
 						</td>
 					</tr>
 					<tr>
@@ -140,7 +140,7 @@ class Ok extends Plugin {
 							<?=static::getMessage('SETTINGS_APP_SEC_KEY');?>:
 						</td>
 						<td width="60%" class="adm-detail-content-cell-r">
-							<input type="text" name="PROFILE[PARAMS][APP_SEC_KEY]" id="acrit_exp_plugin_ok_app_sec_key" value="<?=$this->arProfile['PARAMS']['APP_SEC_KEY'];?>" size="90" />
+							<input type="text" name="PROFILE[PARAMS][APP_SEC_KEY]" id="data_exp_plugin_ok_app_sec_key" value="<?=$this->arProfile['PARAMS']['APP_SEC_KEY'];?>" size="90" />
 						</td>
 					</tr>
 					<tr>
@@ -149,7 +149,7 @@ class Ok extends Plugin {
 							<?=static::getMessage('SETTINGS_ACCESS_TOKEN');?>:
 						</td>
 						<td width="60%" class="adm-detail-content-cell-r">
-							<input type="text" name="PROFILE[PARAMS][ACCESS_TOKEN]" id="acrit_exp_plugin_ok_access_token" value="<?=$this->arProfile['PARAMS']['ACCESS_TOKEN'];?>" size="90" />
+							<input type="text" name="PROFILE[PARAMS][ACCESS_TOKEN]" id="data_exp_plugin_ok_access_token" value="<?=$this->arProfile['PARAMS']['ACCESS_TOKEN'];?>" size="90" />
 						</td>
 					</tr>
                     <tr class="heading" id="tr_HEADING_SYSTEM"><td colspan="2"><?=static::getMessage('SETTINGS_PROCESS_TITLE');?></td></tr>
@@ -159,7 +159,7 @@ class Ok extends Plugin {
 							<?=static::getMessage('SETTINGS_GROUP_ID');?>:
 						</td>
 						<td width="60%" class="adm-detail-content-cell-r">
-							<input type="text" name="PROFILE[PARAMS][GROUP_ID]" id="acrit_exp_plugin_ok_group_id" value="<?=$this->arProfile['PARAMS']['GROUP_ID'];?>" size="30" />
+							<input type="text" name="PROFILE[PARAMS][GROUP_ID]" id="data_exp_plugin_ok_group_id" value="<?=$this->arProfile['PARAMS']['GROUP_ID'];?>" size="30" />
 							<?if(strlen($this->arProfile['PARAMS']['GROUP_ID'])):?>
 								&nbsp;
 								<?=$this->showFileOpenLink($this->getExportFileName(), static::getMessage('SETTINGS_GROUP_ID_URL'));?>
@@ -172,7 +172,7 @@ class Ok extends Plugin {
 							<?=static::getMessage('SETTINGS_GROUP_LINK');?>:
 						</td>
 						<td width="60%" class="adm-detail-content-cell-r">
-							<input type="text" name="PROFILE[PARAMS][GROUP_LINK]" id="acrit_exp_plugin_ok_group_link" value="<?=$this->arProfile['PARAMS']['GROUP_LINK'];?>" size="30" />
+							<input type="text" name="PROFILE[PARAMS][GROUP_LINK]" id="data_exp_plugin_ok_group_link" value="<?=$this->arProfile['PARAMS']['GROUP_LINK'];?>" size="30" />
 						</td>
 					</tr>
                     <tr>
@@ -181,7 +181,7 @@ class Ok extends Plugin {
                             <?=static::getMessage('SETTINGS_PROCESS_CREATE_CATALOGS');?>:
                         </td>
                         <td width="60%" class="adm-detail-content-cell-r">
-                            <input type="checkbox" name="PROFILE[PARAMS][PROCESS_CREATE_CATALOGS]" id="acrit_exp_plugin_ok_process_create_catalogs" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_CREATE_CATALOGS']=='Y'?' checked':'';?> />
+                            <input type="checkbox" name="PROFILE[PARAMS][PROCESS_CREATE_CATALOGS]" id="data_exp_plugin_ok_process_create_catalogs" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_CREATE_CATALOGS']=='Y'?' checked':'';?> />
                         </td>
                     </tr>
                     <tr>
@@ -190,7 +190,7 @@ class Ok extends Plugin {
                             <?=static::getMessage('SETTINGS_PROCESS_DELETE_OTHER');?>:
                         </td>
                         <td width="60%" class="adm-detail-content-cell-r">
-                            <input type="checkbox" name="PROFILE[PARAMS][PROCESS_DELETE_OTHER]" id="acrit_exp_plugin_ok_process_delete_other" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_DELETE_OTHER']=='Y'?' checked':'';?> />
+                            <input type="checkbox" name="PROFILE[PARAMS][PROCESS_DELETE_OTHER]" id="data_exp_plugin_ok_process_delete_other" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_DELETE_OTHER']=='Y'?' checked':'';?> />
                         </td>
                     </tr>
                     <tr>
@@ -199,7 +199,7 @@ class Ok extends Plugin {
                             <?=static::getMessage('SETTINGS_PROCESS_LIMIT');?>:
                         </td>
                         <td width="60%" class="adm-detail-content-cell-r">
-                            <input type="text" name="PROFILE[PARAMS][PROCESS_LIMIT]" id="acrit_exp_plugin_ok_process_run_limit" value="<?=$this->arProfile['PARAMS']['PROCESS_LIMIT']?$this->arProfile['PARAMS']['PROCESS_LIMIT']:0;?>" />
+                            <input type="text" name="PROFILE[PARAMS][PROCESS_LIMIT]" id="data_exp_plugin_ok_process_run_limit" value="<?=$this->arProfile['PARAMS']['PROCESS_LIMIT']?$this->arProfile['PARAMS']['PROCESS_LIMIT']:0;?>" />
                         </td>
                     </tr>
                     <tr>
@@ -208,9 +208,9 @@ class Ok extends Plugin {
                             <?=static::getMessage('SETTINGS_PROCESS_NEXT_POS');?>:
                         </td>
                         <td width="60%" class="adm-detail-content-cell-r">
-                            <span style="margin-right: 20px;" id="acrit_exp_plugin_ok_process_next_pos_view"><?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?></span>
-                            <input type="hidden" name="PROFILE[PARAMS][PROCESS_NEXT_POS]" id="acrit_exp_plugin_ok_process_next_pos" value="<?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?>" />
-                            <a href="#" class="adm-btn" id="acrit_exp_plugin_ok_process_next_pos_reset"><?=static::getMessage('SETTINGS_PROCESS_NEXT_POS_RESET');?></a>
+                            <span style="margin-right: 20px;" id="data_exp_plugin_ok_process_next_pos_view"><?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?></span>
+                            <input type="hidden" name="PROFILE[PARAMS][PROCESS_NEXT_POS]" id="data_exp_plugin_ok_process_next_pos" value="<?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?>" />
+                            <a href="#" class="adm-btn" id="data_exp_plugin_ok_process_next_pos_reset"><?=static::getMessage('SETTINGS_PROCESS_NEXT_POS_RESET');?></a>
                         </td>
                     </tr>
 				</tbody>

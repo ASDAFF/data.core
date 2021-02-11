@@ -1,12 +1,12 @@
 <?
 /**
- * Acrit Core: nadavi.net base plugin
+ * Data Core: nadavi.net base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Export\UniversalPlugin;
+	\Data\Core\Export\UniversalPlugin;
 
 abstract class NadaviNet extends UniversalPlugin {
 	

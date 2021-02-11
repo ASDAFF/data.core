@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_WEBMASTER_EVENT_TICKETS_';
+$strMessPrefix = 'DATA_EXP_YANDEX_WEBMASTER_EVENT_TICKETS_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Яндекс.Вебмастер (билеты на мероприятие)';

@@ -4,10 +4,10 @@
  * This settings is used in core, we cannot control its behaviour here
  */
 
-namespace Acrit\Core\Export\Settings;
+namespace Data\Core\Export\Settings;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -44,7 +44,7 @@ class evenEmpty extends SettingsBase {
 	}
 	
 	public static function isShown($obField, $arParams, $arValue=null){
-		if($arParams['value_type']!='FIELD' && is_subclass_of($obField->getPlugin(), '\Acrit\Core\Export\UniversalPlugin')){
+		if($arParams['value_type']!='FIELD' && is_subclass_of($obField->getPlugin(), '\Data\Core\Export\UniversalPlugin')){
 			return true;
 		}
 		return false;

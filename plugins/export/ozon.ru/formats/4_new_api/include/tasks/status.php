@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\HistoryTable as History;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugins\OzonRuHelpers\HistoryTable as History;
 
 # Count
 print sprintf(static::getMessage('STATUS_COUNT'), $arStatus['Count']);
@@ -42,7 +42,7 @@ if($arTask['ID']){
 }
 if(!empty($arHistoryItems)){
 	?>
-		<a data-role="log-tasks-status-toggle" class="acrit-inline-link"><?=static::getMessage('STATUS_TOGGLE');?></a>
+		<a data-role="log-tasks-status-toggle" class="data-inline-link"><?=static::getMessage('STATUS_TOGGLE');?></a>
 		<div data-role="log-tasks-status-details-table">
 			<table>
 				<thead>
@@ -56,7 +56,7 @@ if(!empty($arHistoryItems)){
 					<?foreach($arHistoryItems as $arItem):?>
 						<tr>
 							<td align="right">
-								<a data-role="log-tasks-status-preview" class="acrit-inline-link" 
+								<a data-role="log-tasks-status-preview" class="data-inline-link" 
 									data-id="<?=$arItem['ID'];?>"><?=$arItem['OFFER_ID'];?></a>
 							</td>
 							<td align="right">

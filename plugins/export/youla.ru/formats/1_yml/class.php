@@ -1,11 +1,11 @@
 <?
 
 /**
- * Acrit Core: youla.ru plugin
+ * Data Core: youla.ru plugin
  * @documentation https://docs.google.com/document/d/1flyFODQ1UGy6pKh5jwi0-yuNz2SzqkeZsNwEvD1zbmU/edit#
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 class YoulaRuYml extends YoulaRu {
 

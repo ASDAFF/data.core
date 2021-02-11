@@ -1,5 +1,5 @@
 /*
-function acritCoreAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
+function dataCoreAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
 	var lang = phpVars.LANGUAGE_ID,
 		mid = location.search.match(/mid=([a-z0-9-_\.]+)/)[1];
 	//
@@ -43,7 +43,7 @@ function acritCoreAjax(ajaxAction, data, callbackSuccess, callbackError, post, h
 }
 */
 /* Log */
-function acritExpOptionsHandleLogTextarea(log){
+function dataExpOptionsHandleLogTextarea(log){
 	var textarea = $('textarea[data-role="module-log"]');
 	if(log==true){
 		log = textarea.val();
@@ -56,29 +56,29 @@ function acritExpOptionsHandleLogTextarea(log){
 	}
 }
 $(document).delegate('input[data-role="module-log-refresh"]', 'click', function(e){
-	acritCoreAjax('log_refresh', {}, {}, function(JsonResult, textStatus, jqXHR){
+	dataCoreAjax('log_refresh', {}, {}, function(JsonResult, textStatus, jqXHR){
 		if(JsonResult.Success){
-			acritExpOptionsHandleLogTextarea(JsonResult.Log);
+			dataExpOptionsHandleLogTextarea(JsonResult.Log);
 		}
 		else {
-			acritExpOptionsHandleLogTextarea(null);
+			dataExpOptionsHandleLogTextarea(null);
 		}
 		if(JsonResult.LogSize != undefined){
 			$('[data-role="log-full-size"]').html(JsonResult.LogSize);
 		}
 	}, function(jqXHR){
-		acritExpOptionsHandleLogTextarea(null);
+		dataExpOptionsHandleLogTextarea(null);
 	}, false);
 });
 $(document).delegate('input[data-role="module-log-clear"]', 'click', function(e){
-	acritCoreAjax('log_clear', {}, {}, function(JsonResult, textStatus, jqXHR){
-		acritExpOptionsHandleLogTextarea(null);
+	dataCoreAjax('log_clear', {}, {}, function(JsonResult, textStatus, jqXHR){
+		dataExpOptionsHandleLogTextarea(null);
 	}, function(jqXHR){
-		acritExpOptionsHandleLogTextarea(null);
+		dataExpOptionsHandleLogTextarea(null);
 	}, false);
 });
 $(document).ready(function(){
-	acritExpOptionsHandleLogTextarea(true);
-	$('tr#acrit_exp_option_multithreaded input[type=checkbox]').trigger('change');
-	$('tr#acrit_exp_option_discount_recalculation_enabled input[type=checkbox]').trigger('change');
+	dataExpOptionsHandleLogTextarea(true);
+	$('tr#data_exp_option_multithreaded input[type=checkbox]').trigger('change');
+	$('tr#data_exp_option_discount_recalculation_enabled input[type=checkbox]').trigger('change');
 });

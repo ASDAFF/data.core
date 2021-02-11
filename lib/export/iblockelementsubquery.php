@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Log;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class IBlockElementSubQuery
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 class IBlockElementSubQuery {

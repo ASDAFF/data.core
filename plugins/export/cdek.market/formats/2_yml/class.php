@@ -1,18 +1,18 @@
 <?
 /**
- * Acrit Core: Cdek.Market plugin
+ * Data Core: Cdek.Market plugin
  * @documentation https://docs.cdek.market/prodavcam/instrukcii/import-tovarov.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Xml,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 

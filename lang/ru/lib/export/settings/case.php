@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_CASE_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_CASE_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Регистр текста';
 $MESS[$strMessPrefix.'DESC'] = 'Выберите преобразование регистра текста.<br/>

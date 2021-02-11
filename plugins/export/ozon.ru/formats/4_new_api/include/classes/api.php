@@ -1,16 +1,16 @@
 <?
 /**
- * Acrit Core: ozon.ru api
+ * Data Core: ozon.ru api
  * @documentation https://docs.ozon.ru/api/seller
  */
 
-namespace Acrit\Core\Export\Plugins\OzonRuHelpers;
+namespace Data\Core\Export\Plugins\OzonRuHelpers;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json,
-	\Acrit\Core\HttpRequest;
+	\Data\Core\Helper,
+	\Data\Core\Log,
+	\Data\Core\Json,
+	\Data\Core\HttpRequest;
 
 Helper::loadMessages(__FILE__);
 
@@ -40,7 +40,7 @@ class Api {
 		static $strLang;
 		$strFile = realpath(__DIR__.'/../class.php');
 		if(is_null($strLang)){
-			\Acrit\Core\Export\Exporter::getLangPrefix($strFile, $strLang, $strHead, $strName, $strHint);
+			\Data\Core\Export\Exporter::getLangPrefix($strFile, $strLang, $strHead, $strName, $strHint);
 		}
 		return Helper::getMessage($strLang.$strMessage, $arReplace);
 	}

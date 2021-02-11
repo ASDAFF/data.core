@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class Filter
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 class Filter {
@@ -49,41 +49,41 @@ class Filter {
 		?>
 		<script>
 		BX.message({
-			'ACRIT_EXP_CONDITIONS_VALUE_SEPARATOR': '<?=static::VALUE_SEPARATOR;?>',
-			'ACRIT_EXP_CONDITIONS_POPUP_LOADING': '<?=Loc::getMessage('ACRIT_EXP_POPUP_LOADING');?>',
-			'ACRIT_EXP_CONDITIONS_POPUP_SELECT_FIELD': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_SELECT_FIELD');?>',
-			'ACRIT_EXP_CONDITIONS_POPUP_SELECT_LOGIC': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_SELECT_LOGIC');?>',
-			'ACRIT_EXP_CONDITIONS_POPUP_SELECT_VALUE': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_SELECT_VALUE');?>',
-			'ACRIT_EXP_CONDITIONS_POPUP_SAVE': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_SAVE');?>',
-			'ACRIT_EXP_CONDITIONS_POPUP_CANCEL': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_CANCEL');?>',
+			'DATA_EXP_CONDITIONS_VALUE_SEPARATOR': '<?=static::VALUE_SEPARATOR;?>',
+			'DATA_EXP_CONDITIONS_POPUP_LOADING': '<?=Loc::getMessage('DATA_EXP_POPUP_LOADING');?>',
+			'DATA_EXP_CONDITIONS_POPUP_SELECT_FIELD': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_SELECT_FIELD');?>',
+			'DATA_EXP_CONDITIONS_POPUP_SELECT_LOGIC': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_SELECT_LOGIC');?>',
+			'DATA_EXP_CONDITIONS_POPUP_SELECT_VALUE': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_SELECT_VALUE');?>',
+			'DATA_EXP_CONDITIONS_POPUP_SAVE': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_SAVE');?>',
+			'DATA_EXP_CONDITIONS_POPUP_CANCEL': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_CANCEL');?>',
 			//
-			'ACRIT_EXP_CONDITIONS_ADD_ITEM': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_ADD_ITEM');?>',
-			'ACRIT_EXP_CONDITIONS_ADD_GROUP': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_ADD_GROUP');?>',
-			'ACRIT_EXP_CONDITIONS_ENTITY_FIELD': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_ENTITY_FIELD');?>',
-			'ACRIT_EXP_CONDITIONS_ENTITY_LOGIC': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_ENTITY_LOGIC');?>',
-			'ACRIT_EXP_CONDITIONS_ENTITY_VALUE': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_ENTITY_VALUE');?>',
-			'ACRIT_EXP_CONDITIONS_AGGREGATOR_ALL': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_AGGREGATOR_ALL');?>',
-			'ACRIT_EXP_CONDITIONS_AGGREGATOR_ANY': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_AGGREGATOR_ANY');?>',
-			'ACRIT_EXP_CONDITIONS_AGGREGATOR_Y': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_AGGREGATOR_Y');?>',
-			'ACRIT_EXP_CONDITIONS_AGGREGATOR_N': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_AGGREGATOR_N');?>',
-			'ACRIT_EXP_CONDITIONS_DELETE_ITEM': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_DELETE_ITEM');?>',
-			'ACRIT_EXP_CONDITIONS_DELETE_GROUP': '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_DELETE_GROUP');?>'
+			'DATA_EXP_CONDITIONS_ADD_ITEM': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_ADD_ITEM');?>',
+			'DATA_EXP_CONDITIONS_ADD_GROUP': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_ADD_GROUP');?>',
+			'DATA_EXP_CONDITIONS_ENTITY_FIELD': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_ENTITY_FIELD');?>',
+			'DATA_EXP_CONDITIONS_ENTITY_LOGIC': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_ENTITY_LOGIC');?>',
+			'DATA_EXP_CONDITIONS_ENTITY_VALUE': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_ENTITY_VALUE');?>',
+			'DATA_EXP_CONDITIONS_AGGREGATOR_ALL': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_AGGREGATOR_ALL');?>',
+			'DATA_EXP_CONDITIONS_AGGREGATOR_ANY': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_AGGREGATOR_ANY');?>',
+			'DATA_EXP_CONDITIONS_AGGREGATOR_Y': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_AGGREGATOR_Y');?>',
+			'DATA_EXP_CONDITIONS_AGGREGATOR_N': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_AGGREGATOR_N');?>',
+			'DATA_EXP_CONDITIONS_DELETE_ITEM': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_DELETE_ITEM');?>',
+			'DATA_EXP_CONDITIONS_DELETE_GROUP': '<?=Loc::getMessage('DATA_EXP_CONDITIONS_DELETE_GROUP');?>'
 		});
-		var acritFilterLang = {
-			addItem: BX.message('ACRIT_EXP_CONDITIONS_ADD_ITEM'),
-			addGroup: BX.message('ACRIT_EXP_CONDITIONS_ADD_GROUP'),
+		var dataFilterLang = {
+			addItem: BX.message('DATA_EXP_CONDITIONS_ADD_ITEM'),
+			addGroup: BX.message('DATA_EXP_CONDITIONS_ADD_GROUP'),
 			//
-			selectField: BX.message('ACRIT_EXP_CONDITIONS_ENTITY_FIELD'),
-			selectLogic: BX.message('ACRIT_EXP_CONDITIONS_ENTITY_LOGIC'),
-			selectValue: BX.message('ACRIT_EXP_CONDITIONS_ENTITY_VALUE'),
+			selectField: BX.message('DATA_EXP_CONDITIONS_ENTITY_FIELD'),
+			selectLogic: BX.message('DATA_EXP_CONDITIONS_ENTITY_LOGIC'),
+			selectValue: BX.message('DATA_EXP_CONDITIONS_ENTITY_VALUE'),
 			//
-			aggregatorAll: BX.message('ACRIT_EXP_CONDITIONS_AGGREGATOR_ALL'),
-			aggregatorAny: BX.message('ACRIT_EXP_CONDITIONS_AGGREGATOR_ANY'),
-			aggregatorY: BX.message('ACRIT_EXP_CONDITIONS_AGGREGATOR_Y'),
-			aggregatorN: BX.message('ACRIT_EXP_CONDITIONS_AGGREGATOR_N'),
+			aggregatorAll: BX.message('DATA_EXP_CONDITIONS_AGGREGATOR_ALL'),
+			aggregatorAny: BX.message('DATA_EXP_CONDITIONS_AGGREGATOR_ANY'),
+			aggregatorY: BX.message('DATA_EXP_CONDITIONS_AGGREGATOR_Y'),
+			aggregatorN: BX.message('DATA_EXP_CONDITIONS_AGGREGATOR_N'),
 			//
-			deleteItemConfirm: BX.message('ACRIT_EXP_CONDITIONS_DELETE_ITEM'),
-			deleteGroupConfirm: BX.message('ACRIT_EXP_CONDITIONS_DELETE_GROUP')
+			deleteItemConfirm: BX.message('DATA_EXP_CONDITIONS_DELETE_ITEM'),
+			deleteGroupConfirm: BX.message('DATA_EXP_CONDITIONS_DELETE_GROUP')
 		};
 		</script>
 		<?
@@ -96,14 +96,14 @@ class Filter {
 	public function show(){
 		$strFilterUniqID = 'filter_'.uniqid().time();
 		?>
-		<div class="acrit-filter" id="<?=$strFilterUniqID;?>" data-role="filter" data-iblock-id="<?=$this->intIBlockID;?>"></div>
+		<div class="data-filter" id="<?=$strFilterUniqID;?>" data-role="filter" data-iblock-id="<?=$this->intIBlockID;?>"></div>
 		<input type="hidden" name="<?=$this->strInputName;?>" value="<?=htmlspecialcharsbx($this->strJson);?>" id="<?=$strFilterUniqID;?>_input" />
 		<script>
 		// Main filter
-		$('#<?=$strFilterUniqID;?>').acritFilter({
-			lang: acritFilterLang,
+		$('#<?=$strFilterUniqID;?>').dataFilter({
+			lang: dataFilterLang,
 			field: $('#<?=$strFilterUniqID;?>_input'),
-			callbackClickEntity: AcritExpConditionsPopupCallbackClickEntity
+			callbackClickEntity: DataExpConditionsPopupCallbackClickEntity
 		});
 		</script>
 		<?
@@ -150,12 +150,12 @@ class Filter {
 	 */
 	public static function getDatetimeFilterValues($bWithTime=true){
 		$arResult = [
-			'days' => Helper::getMessage('ACRIT_EXP_PROFILE_VALUES_DATETIME_DAYS'),
-			'months' => Helper::getMessage('ACRIT_EXP_PROFILE_VALUES_DATETIME_MONTHS'),
-			'years' => Helper::getMessage('ACRIT_EXP_PROFILE_VALUES_DATETIME_YEARS'),
-			'hours' => Helper::getMessage('ACRIT_EXP_PROFILE_VALUES_DATETIME_HOURS'),
-			'minutes' => Helper::getMessage('ACRIT_EXP_PROFILE_VALUES_DATETIME_MINUTES'),
-			'seconds' => Helper::getMessage('ACRIT_EXP_PROFILE_VALUES_DATETIME_SECONDS'),
+			'days' => Helper::getMessage('DATA_EXP_PROFILE_VALUES_DATETIME_DAYS'),
+			'months' => Helper::getMessage('DATA_EXP_PROFILE_VALUES_DATETIME_MONTHS'),
+			'years' => Helper::getMessage('DATA_EXP_PROFILE_VALUES_DATETIME_YEARS'),
+			'hours' => Helper::getMessage('DATA_EXP_PROFILE_VALUES_DATETIME_HOURS'),
+			'minutes' => Helper::getMessage('DATA_EXP_PROFILE_VALUES_DATETIME_MINUTES'),
+			'seconds' => Helper::getMessage('DATA_EXP_PROFILE_VALUES_DATETIME_SECONDS'),
 		];
 		if(!$bWithTime){
 			unset($arResult['hours'], $arResult['minutes'], $arResult['seconds']);
@@ -212,26 +212,26 @@ class Filter {
 		
 		$arResult = array(
 			'EQUAL' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_EQUAL'),
+				'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_EQUAL'),
 				'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 					return static::buildFilterItem($strModuleId, array($strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 				},
 			),
 			'NOT_EQUAL' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_EQUAL'),
+				'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_EQUAL'),
 				'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 					return static::buildFilterItem($strModuleId, array('!'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 				},
 			),
 			'ISSET' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_ISSET'),
+				'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_ISSET'),
 				'HIDE_VALUE' => true,
 				'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 					return static::buildFilterItem($strModuleId, array('!'.$strField => false), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 				},
 			),
 			'NOT_ISSET' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_ISSET'),
+				'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_ISSET'),
 				'HIDE_VALUE' => true,
 				'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 					return static::buildFilterItem($strModuleId, array($strField => false), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
@@ -244,14 +244,14 @@ class Filter {
 				if($strUserType=='_Checkbox' || $strUserType=='SASDCheckbox') {
 					$arResult = array(
 						'CHECKED' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_CHECKED'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_CHECKED'),
 							'HIDE_VALUE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array($strField => 'Y'), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_CHECKED' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_CHECKED'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_CHECKED'),
 							'HIDE_VALUE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('!'.$strField => 'Y'), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
@@ -262,7 +262,7 @@ class Filter {
 				elseif($strUserType=='directory') {
 					$arResult = array_merge($arResult, array(
 						'IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -271,7 +271,7 @@ class Filter {
 							},
 						),
 						'NOT_IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -284,38 +284,38 @@ class Filter {
 				elseif($strUserType=='Date' || $strUserType=='DateTime') {
 					$arResult = array_merge($arResult, array(
 						'LESS' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LESS'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LESS'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('<'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'LESS_OR_EQUAL' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LESS_OR_EQUAL'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LESS_OR_EQUAL'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('<='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'MORE' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_MORE'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_MORE'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('>'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'MORE_OR_EQUAL' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_MORE_OR_EQUAL'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_MORE_OR_EQUAL'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('>='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'FOR_THE_LAST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_FOR_THE_LAST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_FOR_THE_LAST'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$strValueParsed = static::parseDatetimeValue($strValue, $strField);
 								return static::buildFilterItem($strModuleId, array('>='.$strField => $strValueParsed), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_FOR_THE_LAST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_FOR_THE_LAST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_FOR_THE_LAST'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$strValueParsed = static::parseDatetimeValue($strValue, $strField);
 								return static::buildFilterItem($strModuleId, array('<'.$strField => $strValueParsed), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
@@ -326,7 +326,7 @@ class Filter {
 				elseif($strUserType=='_Currency') {
 					$arResult = array_merge($arResult, array(
 						'IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -335,7 +335,7 @@ class Filter {
 							},
 						),
 						'NOT_IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -348,91 +348,91 @@ class Filter {
 				else {
 					$arResult = array_merge($arResult, array(
 						'EXACT' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_EXACT'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_EXACT'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_EXACT' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_EXACT'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_EXACT'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('!='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'SUBSTRING' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_SUBSTRING'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_SUBSTRING'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('%'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_SUBSTRING' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_SUBSTRING'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_SUBSTRING'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('!%'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'BEGINS_WITH' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_BEGINS_WITH'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_BEGINS_WITH'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array($strField => $strValue.'%'), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_BEGINS_WITH' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_BEGINS_WITH'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_BEGINS_WITH'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('!'.$strField => $strValue.'%'), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'ENDS_WITH' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_ENDS_WITH'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_ENDS_WITH'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array($strField => '%'.$strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_ENDS_WITH' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_ENDS_WITH'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_ENDS_WITH'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('!'.$strField => '%'.$strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'LOGIC' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LOGIC'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LOGIC'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('?'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_LOGIC' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_LOGIC'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_LOGIC'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('!?'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'LESS' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LESS'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LESS'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('<'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'LESS_OR_EQUAL' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LESS_OR_EQUAL'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LESS_OR_EQUAL'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('<='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'MORE' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_MORE'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_MORE'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('>'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'MORE_OR_EQUAL' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_MORE_OR_EQUAL'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_MORE_OR_EQUAL'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('>='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -441,7 +441,7 @@ class Filter {
 							},
 						),
 						'NOT_IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -456,7 +456,7 @@ class Filter {
 				if($strUserType=='_ID_LIST') {
 					$arResult = array_merge($arResult, array(
 						'IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -465,7 +465,7 @@ class Filter {
 							},
 						),
 						'NOT_IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -478,14 +478,14 @@ class Filter {
 				elseif($strUserType=='SASDCheckboxNum') {
 					$arResult = array(
 						'CHECKED' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_CHECKED'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_CHECKED'),
 							'HIDE_VALUE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array($strField => 1), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'NOT_CHECKED' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_CHECKED'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_CHECKED'),
 							'HIDE_VALUE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array($strField => 2), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
@@ -496,25 +496,25 @@ class Filter {
 				else {
 					$arResult = array_merge($arResult, array(
 						'LESS' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LESS'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LESS'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('<'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'LESS_OR_EQUAL' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_LESS_OR_EQUAL'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_LESS_OR_EQUAL'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('<='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'MORE' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_MORE'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_MORE'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('>'.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
 						),
 						'MORE_OR_EQUAL' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_MORE_OR_EQUAL'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_MORE_OR_EQUAL'),
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								return static::buildFilterItem($strModuleId, array('>='.$strField => $strValue), $bIsOffers, $intIBlockOffersID, $intOffersPropertyID);
 							},
@@ -524,7 +524,7 @@ class Filter {
 				if($strUserType == '_SectionId'){
 					$arResult = array_merge($arResult, array(
 						'IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -533,7 +533,7 @@ class Filter {
 							},
 						),
 						'NOT_IN_LIST' => array(
-							'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+							'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 							'MULTIPLE' => true,
 							'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 								$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -547,7 +547,7 @@ class Filter {
 			case 'L':
 				$arResult = array_merge($arResult, array(
 					'IN_LIST' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+						'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 						'MULTIPLE' => true,
 						'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 							$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -556,7 +556,7 @@ class Filter {
 						},
 					),
 					'NOT_IN_LIST' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+						'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 						'MULTIPLE' => true,
 						'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 							$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -569,7 +569,7 @@ class Filter {
 			case 'E':
 				$arResult = array_merge($arResult, array(
 					'IN_LIST' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+						'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 						'MULTIPLE' => true,
 						'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 							$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -578,7 +578,7 @@ class Filter {
 						},
 					),
 					'NOT_IN_LIST' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+						'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 						'MULTIPLE' => true,
 						'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 							$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -591,7 +591,7 @@ class Filter {
 			case 'G':
 				$arResult = array_merge($arResult, array(
 					'IN_LIST' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
+						'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_IN_LIST'),
 						'MULTIPLE' => true,
 						'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 							$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -600,7 +600,7 @@ class Filter {
 						},
 					),
 					'NOT_IN_LIST' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
+						'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_NOT_IN_LIST'),
 						'MULTIPLE' => true,
 						'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID){
 							$arValue = explode(static::VALUE_SEPARATOR, $strValue);
@@ -623,7 +623,7 @@ class Filter {
 					case '_OffersFlag':
 						$arResult = array(
 							'X_WITH_OFFERS' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_X_WITH_OFFERS'),
+								'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_X_WITH_OFFERS'),
 								'MULTIPLE' => true,
 								'HIDE_VALUE' => true,
 								'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID=false){
@@ -633,7 +633,7 @@ class Filter {
 								},
 							),
 							'X_WITHOUT_OFFERS' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_LOGIC_X_WITHOUT_OFFERS'),
+								'NAME' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_LOGIC_X_WITHOUT_OFFERS'),
 								'MULTIPLE' => true,
 								'HIDE_VALUE' => true,
 								'CALLBACK' => function($strModuleId, $strField, $strLogic, $strValue, $intIBlockID, $bIsOffers=false, $intIBlockOffersID=false, $intOffersPropertyID=false){

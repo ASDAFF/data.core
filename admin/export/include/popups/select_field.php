@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -40,40 +40,40 @@ $intColspan = 1;
 
 ?>
 <?if($intIBlockID):?>
-	<table class="acrit-exp-field-select-table">
+	<table class="data-exp-field-select-table">
 		<tbody>
 			<tr>
 				<?if(($bIBlockIsParent || $bIBlockIsOffers) && $bIBlockChangeAllowed):?>
 					<?$intColspan=2;?>
 					<td>
-						<select class="acrit-exp-field-select-type" data-role="field-select-type">
+						<select class="data-exp-field-select-type" data-role="field-select-type">
 							<?if($bIBlockIsParent):?>
 								<option value="element" data-type="element">
-									<?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_TYPE_PRODUCT');?>
+									<?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_TYPE_PRODUCT');?>
 								</option>
 								<option value="offer" data-type="offer"<?if($bIsOfferValue):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_TYPE_OFFER');?>
+									<?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_TYPE_OFFER');?>
 								</option>
 							<?elseif($bIBlockIsOffers):?>
 								<option value="element" data-type="element">
-									<?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_TYPE_OFFER');?>
+									<?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_TYPE_OFFER');?>
 								</option>
 								<option value="parent" data-type="parent"<?if($bIsParentValue):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_TYPE_PRODUCT');?>
+									<?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_TYPE_PRODUCT');?>
 								</option>
 							<?endif?>
 						</select>
 					</td>
 				<?endif?>
 				<td>
-					<input type="text" value="" class="acrit-exp-field-select-text" data-role="field-select-search"
-						placeholder="<?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_PLACEHOLDER');?>"/>
+					<input type="text" value="" class="data-exp-field-select-text" data-role="field-select-search"
+						placeholder="<?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_PLACEHOLDER');?>"/>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="<?=$intColspan;?>">
-					<select class="acrit-exp-field-select-list" size="10" data-role="field-select-list" data-type="element"<?if($bIsParentIBlock):?> style="display:none"<?endif?>>
-						<option value="" disabled="disabled"><?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_NOT_FOUND');?></option>
+					<select class="data-exp-field-select-list" size="10" data-role="field-select-list" data-type="element"<?if($bIsParentIBlock):?> style="display:none"<?endif?>>
+						<option value="" disabled="disabled"><?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_NOT_FOUND');?></option>
 						<?foreach($arAvailableElementFields as $strGroup => $arGroup):?>
 							<?if(is_array($arGroup['ITEMS']) && !empty($arGroup['ITEMS'])):?>
 								<optgroup label="<?=$arGroup['NAME'];?>" data-code="<?=$strGroup;?>">
@@ -92,8 +92,8 @@ $intColspan = 1;
 						<?endforeach?>
 					</select>
 					<?if($bIBlockIsParent && $bIBlockChangeAllowed):?>
-						<select class="acrit-exp-field-select-list" size="10" data-role="field-select-list" data-type="offer"<?if(!$bIsParentIBlock):?> style="display:none"<?endif?>>
-							<option value="" disabled="disabled"><?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_NOT_FOUND');?></option>
+						<select class="data-exp-field-select-list" size="10" data-role="field-select-list" data-type="offer"<?if(!$bIsParentIBlock):?> style="display:none"<?endif?>>
+							<option value="" disabled="disabled"><?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_NOT_FOUND');?></option>
 							<?foreach($arAvailableOfferFields as $strGroup => $arGroup):?>
 								<?if(is_array($arGroup['ITEMS']) && !empty($arGroup['ITEMS'])):?>
 									<optgroup label="<?=$arGroup['NAME'];?>" data-code="<?=$strGroup;?>">
@@ -114,8 +114,8 @@ $intColspan = 1;
 						</select>
 					<?endif?>
 					<?if($bIBlockIsOffers && $bIBlockChangeAllowed):?>
-						<select class="acrit-exp-field-select-list" size="10" data-role="field-select-list" data-type="parent"<?if(!$bIsParentIBlock):?> style="display:none"<?endif?>>
-							<option value="" disabled="disabled"><?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_NOT_FOUND');?></option>
+						<select class="data-exp-field-select-list" size="10" data-role="field-select-list" data-type="parent"<?if(!$bIsParentIBlock):?> style="display:none"<?endif?>>
+							<option value="" disabled="disabled"><?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_NOT_FOUND');?></option>
 							<?foreach($arAvailableParentFields as $strGroup => $arGroup):?>
 								<?if(is_array($arGroup['ITEMS']) && !empty($arGroup['ITEMS'])):?>
 									<optgroup label="<?=$arGroup['NAME'];?>" data-code="<?=$strGroup;?>">
@@ -140,5 +140,5 @@ $intColspan = 1;
 		</tbody>
 	</table>
 <?else:?>
-	<p><?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_NO_IBLOCK_SELECTED');?></p>
+	<p><?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_NO_IBLOCK_SELECTED');?></p>
 <?endif?>

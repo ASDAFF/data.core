@@ -1,3 +1,3 @@
 <?
-$MESS['ACRIT_CORE_FIELD_POPUP_HINT_SEARCH'] = 'Введите текст для поиска';
+$MESS['DATA_CORE_FIELD_POPUP_HINT_SEARCH'] = 'Введите текст для поиска';
 ?>

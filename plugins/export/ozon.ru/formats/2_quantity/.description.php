@@ -8,7 +8,7 @@ use \Bitrix\Main\Localization\Loc;
 		<?= static::getMessage('WARNINGS'); ?>
 	</li>
 	<li>
-		<a href="https://www.acrit-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/profile-unloading-goods-to-the-site-ozon-ru/" target="_blank">
+		<a href="https://www.data-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/profile-unloading-goods-to-the-site-ozon-ru/" target="_blank">
 			<?= static::getMessage('MANUAL'); ?>
 		</a>
 	</li>

@@ -3,11 +3,11 @@
  * Base class for settings of fields and values
  */
 
-namespace Acrit\Core\Export\Settings;
+namespace Data\Core\Export\Settings;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 	
 Loc::loadMessages(__FILE__);
 
@@ -21,7 +21,7 @@ abstract class SettingsBase {
 	
 	public static function getMessage($strMessage, $arReplace=array()){
 		$strCode = get_called_class()==__CLASS__ ? 'BASE' : static::getCode();
-		$strResult = Loc::getMessage('ACRIT_EXP_SETTINGS_'.$strCode.'_'.$strMessage, $arReplace);
+		$strResult = Loc::getMessage('DATA_EXP_SETTINGS_'.$strCode.'_'.$strMessage, $arReplace);
 		return $strResult;
 	}
 	
@@ -60,7 +60,7 @@ abstract class SettingsBase {
 	 *	Get ID for input (id="...")
 	 */
 	public static function getInputID(){
-		return 'acrit_exp_settings_'.(static::$strPrefix).ToLower(static::getCode());
+		return 'data_exp_settings_'.(static::$strPrefix).ToLower(static::getCode());
 	}
 	
 	/**
@@ -163,7 +163,7 @@ abstract class SettingsBase {
 			}
 			//
 			foreach($arResult as $strGroupCode => $strGroupName){
-				uasort($arResult[$strGroupCode]['ITEMS'], '\Acrit\Core\Helper::sortBySort');
+				uasort($arResult[$strGroupCode]['ITEMS'], '\Data\Core\Helper::sortBySort');
 			}
 		}
 		#

@@ -1,17 +1,17 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\Field\Valuebase;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\Field\Valuebase;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ProfileIBlockTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class ProfileIBlockTable extends Entity\DataManager {
@@ -48,34 +48,34 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_IBLOCK_ID'),
 			)),
 			'IBLOCK_MAIN' => new Entity\StringField('IBLOCK_MAIN', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_IBLOCK_MAIN'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_IBLOCK_MAIN'),
 			)),
 			'SECTIONS_ID' => new Entity\TextField('SECTIONS_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_SECTIONS_ID'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_SECTIONS_ID'),
 			)),
 			'SECTIONS_MODE' => new Entity\StringField('SECTIONS_MODE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_SECTIONS_MODE'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_SECTIONS_MODE'),
 			)),
 			'USE_FILTER' => new Entity\StringField('USE_FILTER', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_USE_FILTER'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_USE_FILTER'),
 			)),
 			'FILTER' => new Entity\TextField('FILTER', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_FILTER'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_FILTER'),
 			)),
 			'PARAMS' => new Entity\TextField('PARAMS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_PARAMS'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_PARAMS'),
 			)),
 			'DATE_MODIFIED' => new Entity\DatetimeField('DATE_MODIFIED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_FIELD_DATE_MODIFIED'),
+				'title' => Loc::getMessage('DATA_EXP_FIELD_DATE_MODIFIED'),
 			)),
 		);
 	}
@@ -191,177 +191,177 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 		}
 		$arResult = array(
 			'ID' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__ID'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__ID'),
 				'TYPE' => 'N',
 				'READONLY' => true,
 				'USER_TYPE' => '_ID_LIST',
 			),
 			'NAME' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__NAME'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__NAME'),
 				'TYPE' => 'S',
 			),
 			'TIMESTAMP_X' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__TIMESTAMP_X'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__TIMESTAMP_X'),
 				'TYPE' => 'S',
 				'USER_TYPE' => 'DateTime',
 			),
 			'DATE_CREATE' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DATE_CREATE'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DATE_CREATE'),
 				'TYPE' => 'S',
 				'USER_TYPE' => 'DateTime',
 			),
 			'IBLOCK_ID' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK_ID'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK_ID'),
 				'TYPE' => 'N',
 				'FILTRABLE' => false,
 			),
 			'IBLOCK_SECTION_ID' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK_SECTION_ID'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK_SECTION_ID'),
 				'TYPE' => 'N',
 				'USER_TYPE' => '_SectionId',
 			),
 			'__IBLOCK_SECTION_CHAIN' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK_SECTION_CHAIN'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK_SECTION_CHAIN'),
 				'TYPE' => 'N',
 				'FILTRABLE' => false,
 			),
 			'ACTIVE' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__ACTIVE'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__ACTIVE'),
 				'TYPE' => 'S',
 				'USER_TYPE' => '_Checkbox',
 			),
 			'ACTIVE_FROM' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__ACTIVE_FROM'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__ACTIVE_FROM'),
 				'TYPE' => 'S',
 				'USER_TYPE' => 'DateTime',
 			),
 			'ACTIVE_TO' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__ACTIVE_TO'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__ACTIVE_TO'),
 				'TYPE' => 'S',
 				'USER_TYPE' => 'DateTime',
 			),
 			'SORT' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SORT'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SORT'),
 				'TYPE' => 'N',
 			),
 			'PREVIEW_PICTURE' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__PREVIEW_PICTURE'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__PREVIEW_PICTURE'),
 				'TYPE' => 'F',
 			),
 			'PREVIEW_TEXT' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__PREVIEW_TEXT'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__PREVIEW_TEXT'),
 				'TYPE' => 'S',
 			),
 			'DETAIL_PICTURE' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DETAIL_PICTURE'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DETAIL_PICTURE'),
 				'TYPE' => 'F',
 			),
 			'DETAIL_TEXT' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DETAIL_TEXT'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DETAIL_TEXT'),
 				'TYPE' => 'S',
 			),
 			'DETAIL_PAGE_URL' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DETAIL_PAGE_URL'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DETAIL_PAGE_URL'),
 				'TYPE' => 'S',
 			),
 			'CODE' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CODE'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CODE'),
 				'TYPE' => 'S',
 			),
 			'XML_ID' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__XML_ID'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__XML_ID'),
 				'TYPE' => 'S',
 			),
 			'TAGS' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__TAGS'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__TAGS'),
 				'TYPE' => 'S',
 			),
 			'SHOW_COUNTER' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SHOW_COUNTER'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SHOW_COUNTER'),
 				'TYPE' => 'N',
 				'READONLY' => true,
 			),
 			'SHOW_COUNTER_START' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SHOW_COUNTER_START'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SHOW_COUNTER_START'),
 				'TYPE' => 'S',
 				'USER_TYPE' => 'DateTime',
 				'READONLY' => true,
 			),
 			'CREATED_BY' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CREATED_BY'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CREATED_BY'),
 				'TYPE' => 'N',
 			),
 			'CREATED_BY__NAME' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CREATED_BY__NAME'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CREATED_BY__NAME'),
 				'TYPE' => 'S',
 				'FILTRABLE' => false,
 			),
 			'MODIFIED_BY' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__MODIFIED_BY'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__MODIFIED_BY'),
 				'TYPE' => 'N',
 			),
 			'MODIFIED_BY__NAME' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__MODIFIED_BY__NAME'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__MODIFIED_BY__NAME'),
 				'TYPE' => 'S',
 				'FILTRABLE' => false,
 			),
 			'SEO_TITLE' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SEO_TITLE'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SEO_TITLE'),
 				'TYPE' => 'S',
 				'FILTRABLE' => false,
 			),
 			'SEO_KEYWORDS' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SEO_KEYWORDS'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SEO_KEYWORDS'),
 				'TYPE' => 'S',
 				'FILTRABLE' => false,
 			),
 			'SEO_DESCRIPTION' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SEO_DESCRIPTION'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SEO_DESCRIPTION'),
 				'TYPE' => 'S',
 				'FILTRABLE' => false,
 			),
 			'SEO_H1' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SEO_H1'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SEO_H1'),
 				'TYPE' => 'S',
 				'FILTRABLE' => false,
 			),
 		);
 		$arResult = array(
 			'fields' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__GROUP__FIELDS'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__GROUP__FIELDS'),
 				'ITEMS' => $arResult,
 				'PREFIX' => '', // used for system purposes
 				'TYPE' => static::TYPE_FIELD,
 			),
 			'properties' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__GROUP__PROPERTIES'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__GROUP__PROPERTIES'),
 				'ITEMS' => static::_getAvailableElementProperties($intIBlockID),
 				'PREFIX' => 'PROPERTY_',
 				'SHOW_MORE' => true,
 				'TYPE' => static::TYPE_PROPERTY,
 			),
 			'section' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__GROUP__SECTION'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__GROUP__SECTION'),
 				'ITEMS' => static::_getAvailableElementSectionFields($intIBlockID),
 				'PREFIX' => 'SECTION__',
 				'NAME_PREFIX' => '',
 				'TYPE' => static::TYPE_SECTION,
 			),
 			'iblock' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__GROUP__IBLOCK'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__GROUP__IBLOCK'),
 				'ITEMS' => static::_getAvailableElementIBlockFields($intIBlockID),
 				'PREFIX' => 'IBLOCK__',
 				'NAME_PREFIX' => '',
 				'TYPE' => static::TYPE_IBLOCK,
 			),
 			'catalog' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__GROUP__CATALOG'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__GROUP__CATALOG'),
 				'ITEMS' => static::_getAvailableElementCatalogFields($intIBlockID),
 				'PREFIX' => 'CATALOG_',
 				'TYPE' => static::TYPE_CATALOG,
 			),
 			'prices' => array(
-				'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__GROUP__PRICES'),
+				'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__GROUP__PRICES'),
 				'ITEMS' => static::_getAvailableElementPrices($intIBlockID),
 				'PREFIX' => 'CATALOG_PRICE_',
 				'SHOW_MORE' => true,
@@ -459,16 +459,16 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 	protected static function _getAvailableElementProperties_S_ElementXmlID(&$arProps, $arProp, $intIBlockID, $bUsePropCode){
 		static::_getAvailableElementProperties_default($arProps, $arProp, $intIBlockID, $bUsePropCode);
 		$arFields = array(
-			'ID' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__ID'),
-			'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__NAME'),
-			'CODE' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CODE'),
-			'SORT' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SORT'),
-			'XML_ID' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__XML_ID'),
-			'PREVIEW_TEXT' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__PREVIEW_TEXT'),
-			'DETAIL_TEXT' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DETAIL_TEXT'),
-			'PREVIEW_PICTURE' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__PREVIEW_PICTURE'),
-			'DETAIL_PICTURE' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DETAIL_PICTURE'),
-			'DETAIL_PAGE_URL' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__DETAIL_PAGE_URL'),
+			'ID' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__ID'),
+			'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__NAME'),
+			'CODE' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CODE'),
+			'SORT' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SORT'),
+			'XML_ID' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__XML_ID'),
+			'PREVIEW_TEXT' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__PREVIEW_TEXT'),
+			'DETAIL_TEXT' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DETAIL_TEXT'),
+			'PREVIEW_PICTURE' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__PREVIEW_PICTURE'),
+			'DETAIL_PICTURE' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DETAIL_PICTURE'),
+			'DETAIL_PAGE_URL' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__DETAIL_PAGE_URL'),
 		);
 		foreach($arFields as $strField => $strName) {
 			$arPropItem = array(
@@ -512,50 +512,50 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 		if($intIBlockID && \Bitrix\Main\Loader::includeModule('iblock')){
 			$arResult = array(
 				'ID' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__ID'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__ID'),
 					'TYPE' => 'N',
 					'READONLY' => true,
 				),
 				'TIMESTAMP_X' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__TIMESTAMP_X'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__TIMESTAMP_X'),
 					'TYPE' => 'S',
 					'USER_TYPE' => 'DateTime',
 				),
 				'IBLOCK_TYPE_ID' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__TYPE_ID'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__TYPE_ID'),
 					'TYPE' => 'S',
 				),
 				'LID' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__LID'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__LID'),
 					'TYPE' => 'S',
 				),
 				'CODE' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__CODE'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__CODE'),
 					'TYPE' => 'S',
 				),
 				'NAME' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__NAME'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__NAME'),
 					'TYPE' => 'S',
 				),
 				'SORT' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__SORT'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__SORT'),
 					'TYPE' => 'N',
 				),
 				'PICTURE' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__PICTURE'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__PICTURE'),
 					'TYPE' => 'F',
 				),
 				'DESCRIPTION' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__DESCRIPTION'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__DESCRIPTION'),
 					'TYPE' => 'S',
 					'USER_TYPE' => 'HTML',
 				),
 				'ELEMENT_NAME' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__ELEMENT_NAME'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__ELEMENT_NAME'),
 					'TYPE' => 'S',
 				),
 				'XML_ID' => array(
-					'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__IBLOCK__XML_ID'),
+					'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__IBLOCK__XML_ID'),
 					'TYPE' => 'S',
 				),
 			);
@@ -579,63 +579,63 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 					if($arIBlockType['SECTIONS']=='Y') {
 						$arResult = array(
 							'ID' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__ID'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__ID'),
 								'TYPE' => 'N',
 								'READONLY' => true,
 							),
 							'TIMESTAMP_X' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__TIMESTAMP_X'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__TIMESTAMP_X'),
 								'TYPE' => 'S',
 								'USER_TYPE' => 'DateTime',
 							),
 							'DATE_CREATE' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__DATE_CREATE'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__DATE_CREATE'),
 								'TYPE' => 'S',
 								'USER_TYPE' => 'DateTime',
 							),
 							'SORT' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__SORT'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__SORT'),
 								'TYPE' => 'N',
 							),
 							'NAME' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__NAME'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__NAME'),
 								'TYPE' => 'S',
 							),
 							'PICTURE' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__PICTURE'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__PICTURE'),
 								'TYPE' => 'F',
 							),
 							'DETAIL_PICTURE' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__DETAIL_PICTURE'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__DETAIL_PICTURE'),
 								'TYPE' => 'F',
 							),
 							'DESCRIPTION' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__DESCRIPTION'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__DESCRIPTION'),
 								'TYPE' => 'S',
 								'USER_TYPE' => 'HTML',
 							),
 							'CODE' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__CODE'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__CODE'),
 								'TYPE' => 'S',
 							),
 							'XML_ID' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__XML_ID'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__XML_ID'),
 								'TYPE' => 'S',
 							),
 							'SEO_TITLE' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__SEO_TITLE'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__SEO_TITLE'),
 								'TYPE' => 'S',
 							),
 							'SEO_KEYWORDS' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__SEO_KEYWORDS'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__SEO_KEYWORDS'),
 								'TYPE' => 'S',
 							),
 							'SEO_DESCRIPTION' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__SEO_DESCRIPTION'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__SEO_DESCRIPTION'),
 								'TYPE' => 'S',
 							),
 							'SEO_H1' => array(
-								'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__SECTION__SEO_H1'),
+								'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__SECTION__SEO_H1'),
 								'TYPE' => 'S',
 							),
 						);
@@ -697,88 +697,88 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			if(is_array($arCatalog) && $arCatalog['IBLOCK_ID']==$intIBlockID){
 				$arResult = array(
 					'QUANTITY' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_QUANTITY'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_QUANTITY'),
 						'TYPE' => 'N',
 					),
 					'QUANTITY_RESERVED' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_QUANTITY_RESERVED'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_QUANTITY_RESERVED'),
 						'TYPE' => 'N',
 					),
 					'AVAILABLE' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_AVAILABLE'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_AVAILABLE'),
 						'TYPE' => 'S',
 						'USER_TYPE' => '_Checkbox',
 						'READONLY' => true,
 					),
 					'WEIGHT' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WEIGHT'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_WEIGHT'),
 						'TYPE' => 'N',
 					),
 					'WIDTH' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_WIDTH'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_WIDTH'),
 						'TYPE' => 'N',
 					),
 					'LENGTH' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_LENGTH'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_LENGTH'),
 						'TYPE' => 'N',
 					),
 					'HEIGHT' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_HEIGHT'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_HEIGHT'),
 						'TYPE' => 'N',
 					),
 					'VAT_ID' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_ID'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_VAT_ID'),
 						'TYPE' => 'N',
 					),
 					'VAT_VALUE' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_VALUE'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_VAT_VALUE'),
 						'TYPE' => 'N',
 					),
 					'VAT_VALUE_FLOAT' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_VALUE_FLOAT'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_VAT_VALUE_FLOAT'),
 						'TYPE' => 'N',
 					),
 					'VAT_INCLUDED' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_VAT_INCLUDED'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_VAT_INCLUDED'),
 						'TYPE' => 'S',
 						'USER_TYPE' => '_Checkbox',
 					),
 					'PURCHASING_PRICE' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PURCHASING_PRICE'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PURCHASING_PRICE'),
 						'TYPE' => 'N',
 					),
 					'PURCHASING_CURRENCY' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PURCHASING_CURRENCY'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PURCHASING_CURRENCY'),
 						'TYPE' => 'S',
 						'USER_TYPE' => '_Currency',
 					),
 					'MEASURE_ID' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_MEASURE_ID'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_MEASURE_ID'),
 						'TYPE' => 'N',
 					),
 					'MEASURE_UNIT' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_MEASURE_UNIT'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_MEASURE_UNIT'),
 						'TYPE' => 'S',
 					),
 					'MEASURE_NAME' => array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_MEASURE_NAME'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_MEASURE_NAME'),
 						'TYPE' => 'S',
 					),
 				);
 				if(class_exists('\CCatalogStoreBarCode')/* && Helper::isCatalogUseStoreControl()*/){
 					$arResult['BARCODE'] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_BARCODE'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_BARCODE'),
 						'TYPE' => 'S',
 					);
 				}
 				if($intIBlockOffersID) {
 					#$arResult['TYPE'] = array(
-					#	'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_TYPE'),
+					#	'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_TYPE'),
 					#	'TYPE' => 'N',
 					#	'READONLY' => true,
 					#);
 					$arResult['OFFERS'] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_OFFERS'),
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_OFFERS'),
 						'TYPE' => 'X',
 						'USER_TYPE' => '_OffersFlag',
 						'READONLY' => true,
@@ -787,7 +787,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 				$arStores = Helper::getStoresList();
 				foreach($arStores as $arStore){
 					$arResult['STORE_AMOUNT_'.$arStore['ID']] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_STORE_AMOUNT', array(
+						'NAME' => Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_STORE_AMOUNT', array(
 							'#NAME#' => $arStore['~TITLE'],
 							'#ADDRESS#' => $arStore['~ADDRESS'],
 						)),
@@ -811,20 +811,20 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 				foreach($arPrices as $arPrice) {
 					$arPrice['NAME_LANG'] = strlen(trim($arPrice['NAME_LANG'])) ? $arPrice['NAME_LANG'] : $arPrice['NAME'];
 					$arResult[$arPrice['ID'].'__WITH_DISCOUNT'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_WITH_DISCOUNT'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_WITH_DISCOUNT'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'N',
 						'ID' => $arPrice['ID'],
 						'FILTRABLE' => false,
 					);
 					$arResult[$arPrice['ID']] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_NO_DISCOUNT'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_NO_DISCOUNT'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'N',
 						'ID' => $arPrice['ID'],
 					);
 					$arResult[$arPrice['ID'].'__DISCOUNT'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_DISCOUNT'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_DISCOUNT'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'N',
 						'ID' => $arPrice['ID'],
@@ -832,28 +832,28 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 					);
 					#
 					$arResult[$arPrice['ID'].'__WITH_DISCOUNT__CURR'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_WITH_DISCOUNT_CURR'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_WITH_DISCOUNT_CURR'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'S',
 						'ID' => $arPrice['ID'],
 						'FILTRABLE' => false,
 					);
 					$arResult[$arPrice['ID'].'__CURR'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_NO_DISCOUNT_CURR'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_NO_DISCOUNT_CURR'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'S',
 						'ID' => $arPrice['ID'],
 						'FILTRABLE' => false,
 					);
 					$arResult[$arPrice['ID'].'__DISCOUNT__CURR'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_DISCOUNT_CURR'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_DISCOUNT_CURR'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'S',
 						'ID' => $arPrice['ID'],
 						'FILTRABLE' => false,
 					);
 					$arResult[$arPrice['ID'].'__PERCENT'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_PERCENT'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_PERCENT'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'N',
 						'ID' => $arPrice['ID'],
@@ -861,7 +861,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 					);
 					#
 					$arResult[$arPrice['ID'].'__CURRENCY'] = array(
-						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__CATALOG_PRICE_CURRENCY'),
+						'NAME' => $arPrice['NAME_LANG'].Loc::getMessage('DATA_EXP_ELEMENT_FIELD__CATALOG_PRICE_CURRENCY'),
 						'CODE' => $arPrice['NAME'],
 						'TYPE' => 'S',
 						'ID' => $arPrice['ID'],
@@ -914,10 +914,10 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			$strResult .= ' '.$arItem['MORE'];
 		}
 		if($bOffer){
-			$strResult = Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__PREFIX_OFFER').$strResult;
+			$strResult = Loc::getMessage('DATA_EXP_ELEMENT_FIELD__PREFIX_OFFER').$strResult;
 		}
 		elseif($bParent){
-			$strResult = Loc::getMessage('ACRIT_EXP_ELEMENT_FIELD__PREFIX_PRODUCT').$strResult;
+			$strResult = Loc::getMessage('DATA_EXP_ELEMENT_FIELD__PREFIX_PRODUCT').$strResult;
 		}
 		return $strResult;
 	}
@@ -1005,14 +1005,14 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			$arIBlock = array_shift($arErrors);
 			if(!empty($arErrors)){
 				$strResult .= '<li>';
-				$strIBlock = Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_'.($arIBlock['ID'] == $intIBlockID ? 'MAIN' : 'OFFERS'))
+				$strIBlock = Loc::getMessage('DATA_EXP_IBLOCK_ERROR_'.($arIBlock['ID'] == $intIBlockID ? 'MAIN' : 'OFFERS'))
 					.' - ['.$arIBlock['ID'].'] '.$arIBlock['NAME'];
 				$strResult .= '<b>'.$strIBlock.'</b>';
 				$strResult .= '<ul style="margin:0 0 0 20px;padding:0;">';
 				foreach($arErrors as $arError){
 					$bErrors = true;
 					$strResult .= '<li>'.$arError['TEXT'].' <a href="'.$arError['URL'].'" target="_blank">'
-						.Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_CHECK').'</a></li>';
+						.Loc::getMessage('DATA_EXP_IBLOCK_ERROR_CHECK').'</a></li>';
 				}
 				$strResult .= '</ul>';
 				$strResult .= '</li>';
@@ -1053,7 +1053,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			$arExistCodeProps = array_slice($arExistCodeProps, 0, $intMaxShow);
 			if(!empty($arExistCodeProps) && !(count($arExistCodeProps) == 1 && empty($arExistCodeProps[0]))){
 				$arErrors[] = array(
-					'TEXT' => Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_PROPS_DOUBLE', array(
+					'TEXT' => Loc::getMessage('DATA_EXP_IBLOCK_ERROR_PROPS_DOUBLE', array(
 						'#PROPS#' => implode(', ', $arExistCodeProps),
 					)),
 					'URL' => static::getIBlockUrl($arIBlock, 'edit2'),
@@ -1061,7 +1061,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			}
 			if(!empty($arEmptyCodeProps)){
 				$arErrors[] = array(
-					'TEXT' => Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_PROPS_EMPTY', array(
+					'TEXT' => Loc::getMessage('DATA_EXP_IBLOCK_ERROR_PROPS_EMPTY', array(
 						'#PROPS#' => implode(', ', $arEmptyCodeProps),
 					)),
 					'URL' => static::getIBlockUrl($arIBlock, 'edit2'),
@@ -1071,7 +1071,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			$arIBlock['DETAIL_PAGE_URL'] = trim($arIBlock['DETAIL_PAGE_URL']);
 			if(!strlen($arIBlock['DETAIL_PAGE_URL'])){
 				$arErrors[] = array(
-					'TEXT' => Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_DETAIL_PAGE_URL'),
+					'TEXT' => Loc::getMessage('DATA_EXP_IBLOCK_ERROR_DETAIL_PAGE_URL'),
 					'URL' => static::getIBlockUrl($arIBlock, 'edit1'),
 				);
 			}
@@ -1079,7 +1079,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			$arIBlock['SECTION_PAGE_URL'] = trim($arIBlock['SECTION_PAGE_URL']);
 			if($bIBlockSupportSections && !strlen($arIBlock['SECTION_PAGE_URL']) && !$bOffer){
 				$arErrors[] = array(
-					'TEXT' => Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_SECTION_PAGE_URL'),
+					'TEXT' => Loc::getMessage('DATA_EXP_IBLOCK_ERROR_SECTION_PAGE_URL'),
 					'URL' => static::getIBlockUrl($arIBlock, 'edit1'),
 				);
 			}
@@ -1092,7 +1092,7 @@ abstract class ProfileIBlockTable extends Entity\DataManager {
 			$resIBlockWithPermissions = \CIBlock::GetList(array(), $arFilterWithPermissions, false);
 			if(!$resIBlockWithPermissions->getNext(false, false)){
 				$arErrors[] = array(
-					'TEXT' => Loc::getMessage('ACRIT_EXP_IBLOCK_ERROR_PERMISSIONS'),
+					'TEXT' => Loc::getMessage('DATA_EXP_IBLOCK_ERROR_PERMISSIONS'),
 					'URL' => static::getIBlockUrl($arIBlock, 'edit4'),
 				);
 			}

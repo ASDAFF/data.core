@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_CDEK_MARKET_SIMPLE_';
+$strMessPrefix = 'DATA_EXP_CDEK_MARKET_SIMPLE_';
 
 //
 $MESS[$strMessPrefix.'USEFUL_LINKS'] = 'Полезные ссылки:';

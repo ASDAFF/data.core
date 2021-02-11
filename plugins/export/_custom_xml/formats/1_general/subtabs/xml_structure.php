@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -17,24 +17,24 @@ if(is_null($arIBlockParams)){
 
 ?>
 
-<?=Helper::showHeading(Loc::getMessage('ACRIT_EXP_PROFILE_CUSTOM_XML_STRUCTURE_ITEM'), true);?>
+<?=Helper::showHeading(Loc::getMessage('DATA_EXP_PROFILE_CUSTOM_XML_STRUCTURE_ITEM'), true);?>
 <div>
 	<div data-role="xml-structure-wrapper">
-		<textarea class="acrit-exp-custom-xml-structure" name="iblockparams[<?=$intIBlockID;?>][CUSTOM_XML_STRUCTURE_ITEM]" style="height:400px"><?
+		<textarea class="data-exp-custom-xml-structure" name="iblockparams[<?=$intIBlockID;?>][CUSTOM_XML_STRUCTURE_ITEM]" style="height:400px"><?
 			print htmlspecialcharsbx($arIBlockParams['CUSTOM_XML_STRUCTURE_ITEM']);
 		?></textarea>
 		<?=Helper::showNote($obPlugin::getMessage('CHECK_XML_VALID_NOTICE'), true);?>
 		<?if($obPlugin->isOffersPreprocess()):?>
-			<?=Helper::showNote(Loc::getMessage('ACRIT_EXP_XML_STRUCTURE_AVAILABLE_MACROS', array('#MACROS#' => '#OFFERS#')), true);?>
+			<?=Helper::showNote(Loc::getMessage('DATA_EXP_XML_STRUCTURE_AVAILABLE_MACROS', array('#MACROS#' => '#OFFERS#')), true);?>
 		<?endif?>
 	</div>
 </div><br/>
 
 <?if($intIBlockOffersID):?>
-	<?=Helper::showHeading(Loc::getMessage('ACRIT_EXP_PROFILE_CUSTOM_XML_STRUCTURE_OFFER'), true);?>
+	<?=Helper::showHeading(Loc::getMessage('DATA_EXP_PROFILE_CUSTOM_XML_STRUCTURE_OFFER'), true);?>
 	<div>
 		<div data-role="xml-structure-wrapper">
-			<textarea class="acrit-exp-custom-xml-structure" name="iblockparams[<?=$intIBlockID;?>][CUSTOM_XML_STRUCTURE_OFFER]" style="height:400px"><?
+			<textarea class="data-exp-custom-xml-structure" name="iblockparams[<?=$intIBlockID;?>][CUSTOM_XML_STRUCTURE_OFFER]" style="height:400px"><?
 				print htmlspecialcharsbx($arIBlockParams['CUSTOM_XML_STRUCTURE_OFFER']);
 			?></textarea>
 			<?=Helper::showNote($obPlugin::getMessage('CHECK_XML_VALID_NOTICE'), true);?>

@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ProfileFieldTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class ProfileFieldTable extends Entity\DataManager {
@@ -37,28 +37,28 @@ abstract class ProfileFieldTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_IBLOCK_ID'),
 			)),
 			'FIELD' => new Entity\StringField('FIELD', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_FIELD'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_FIELD'),
 			)),
 			'TYPE' => new Entity\StringField('TYPE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_TYPE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_TYPE'),
 			)),
 			'PARAMS' => new Entity\TextField('PARAMS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_PARAMS'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_PARAMS'),
 			)),
 			'CONDITIONS' => new Entity\TextField('CONDITIONS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_CONDITIONS'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_CONDITIONS'),
 			)),
 			'DATE_MODIFIED' => new Entity\DateTimeField('DATE_MODIFIED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELDS_FIELD_DATE_MODIFIED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELDS_FIELD_DATE_MODIFIED'),
 			)),
 		);
 	}

@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class Rest
- * @package Acrit\Core
+ * @package Data\Core
  */
  
 class Bitrix24Rest {
@@ -77,8 +77,8 @@ class Bitrix24Rest {
 	static function controlLimits() {
 		$delay = 0;
 		// Get values
-		$last_exec = \Bitrix\Main\Config\Option::get(ACRIT_CORE,'rest_last_exec');
-		$count_exec = \Bitrix\Main\Config\Option::get(ACRIT_CORE,'rest_count_exec');
+		$last_exec = \Bitrix\Main\Config\Option::get(DATA_CORE,'rest_last_exec');
+		$count_exec = \Bitrix\Main\Config\Option::get(DATA_CORE,'rest_count_exec');
 		// Waiting for end of executions
 		$current_exec = microtime(true);
 		if ($current_exec < $last_exec) {
@@ -99,8 +99,8 @@ class Bitrix24Rest {
 			$count_exec -= $diff * 1;
 		}
 		// Save values
-		\Bitrix\Main\Config\Option::set(ACRIT_CORE,'rest_last_exec', $current_exec);
-		\Bitrix\Main\Config\Option::set(ACRIT_CORE,'rest_count_exec', $count_exec);
+		\Bitrix\Main\Config\Option::set(DATA_CORE,'rest_last_exec', $current_exec);
+		\Bitrix\Main\Config\Option::set(DATA_CORE,'rest_count_exec', $count_exec);
 		// Delay
 		if ($delay) {
 			usleep($delay);

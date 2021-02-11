@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_OK_';
+$strMessPrefix = 'DATA_EXP_OK_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Одноклассники';

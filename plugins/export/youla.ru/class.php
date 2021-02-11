@@ -1,14 +1,14 @@
 <?
 
 /**
- * Acrit Core: youla.ru base plugin
+ * Data Core: youla.ru base plugin
  * @documentation https://docs.google.com/document/d/1flyFODQ1UGy6pKh5jwi0-yuNz2SzqkeZsNwEvD1zbmU/edit#
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Export\UniversalPlugin,
-		\Acrit\Core\Helper;
+use \Data\Core\Export\UniversalPlugin,
+		\Data\Core\Helper;
 
 abstract class YoulaRu extends UniversalPlugin
 {

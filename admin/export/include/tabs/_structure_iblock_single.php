@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -26,27 +26,27 @@ $arSavedValues = Helper::call($strModuleId, 'ProfileValue', 'loadFieldValuesAll'
 	<input type="hidden" name="iblock_id[]" value="<?=$intThisIBlockID;?>" />
 	<div data-role="iblock-structure" data-iblock-id="<?=$intThisIBlockID;?>">
 		<div>
-			<table class="adm-list-table acrit-exp-fields-table">
+			<table class="adm-list-table data-exp-fields-table">
 				<thead>
 					<tr class="adm-list-table-header">
-						<td class="adm-list-table-cell acrit-exp-fields-table-code">
+						<td class="adm-list-table-cell data-exp-fields-table-code">
 							<div class="adm-list-table-cell-inner" style="white-space:nowrap;">
-								<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_COL_FIELD');?>
+								<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_COL_FIELD');?>
 							</div>
 						</td>
-						<td class="adm-list-table-cell acrit-exp-fields-table-type">
+						<td class="adm-list-table-cell data-exp-fields-table-type">
 							<div class="adm-list-table-cell-inner" style="white-space:nowrap;">
-								<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_COL_TYPE');?>
+								<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_COL_TYPE');?>
 							</div>
 						</td>
-						<td class="adm-list-table-cell acrit-exp-fields-table-value">
+						<td class="adm-list-table-cell data-exp-fields-table-value">
 							<div class="adm-list-table-cell-inner" style="white-space:nowrap;">
-								<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_COL_VALUE');?>
+								<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_COL_VALUE');?>
 							</div>
 						</td>
-						<td class="adm-list-table-cell acrit-exp-fields-table-settings">
+						<td class="adm-list-table-cell data-exp-fields-table-settings">
 							<div class="adm-list-table-cell-inner" style="white-space:nowrap;">
-								<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_COL_PARAMS');?>
+								<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_COL_PARAMS');?>
 							</div>
 						</td>
 					</tr>
@@ -56,18 +56,18 @@ $arSavedValues = Helper::call($strModuleId, 'ProfileValue', 'loadFieldValuesAll'
 						<tr>
 							<td colspan="4">
 								<?if(!$bCopy):?>
-									<div class="acrit-exp-fields-table-settings-tfoot-left">
+									<div class="data-exp-fields-table-settings-tfoot-left">
 										<input type="button" data-role="additional-field-add"
-											value="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_ADD');?>" 
+											value="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_ADD');?>" 
 										/>
 										&nbsp;
 										<input type="button" data-role="additional-field-add-multiple"
-											value="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_ADD_MULTIPLE');?>" 
+											value="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_ADD_MULTIPLE');?>" 
 										/>
 									</div>
-									<div class="acrit-exp-fields-table-settings-tfoot-right">
+									<div class="data-exp-fields-table-settings-tfoot-right">
 										<input type="button" data-role="additional-field-delete-all"
-											value="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_DELETE_ALL');?>" 
+											value="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_DELETE_ALL');?>" 
 										/>
 									</div>
 								<?else:?>
@@ -86,10 +86,10 @@ $arSavedValues = Helper::call($strModuleId, 'ProfileValue', 'loadFieldValuesAll'
 										$bAdditionalFieldsExists = true;
 									}
 									if($bAdditionalFieldsExists){
-										print Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_COPY_NOTICE_IF_EXISTS');
+										print Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_COPY_NOTICE_IF_EXISTS');
 									}
 									else{
-										print Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_COPY_NOTICE'); 
+										print Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_COPY_NOTICE'); 
 									}
 									?>
 								<?endif?>
@@ -118,5 +118,5 @@ $arSavedValues = Helper::call($strModuleId, 'ProfileValue', 'loadFieldValuesAll'
 		<br/>
 	</div>
 <?else:?>
-	<p><?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_EMPTY');?></p>
+	<p><?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_EMPTY');?></p>
 <?endif?>

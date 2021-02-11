@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter;
 
 Loc::loadMessages(__FILE__);
 
@@ -36,25 +36,25 @@ if(strlen($strCurrentStep) && !$arSession['FINISHED']){
 ?>
 
 <?if($arCurrentProfile['ACTIVE']!='Y'):?>
-	<?=Helper::showError(Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_PROGRESS_PROFILE_IS_NOT_ACTIVE'));?>
+	<?=Helper::showError(Loc::getMessage('DATA_EXP_POPUP_EXECUTE_PROGRESS_PROFILE_IS_NOT_ACTIVE'));?>
 <?elseif(empty($arCurrentProfile['IBLOCKS'])):?>
-	<?=Helper::showError(Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_PROGRESS_PROFILE_NO_SETUP_IBLOCKS'));?>
+	<?=Helper::showError(Loc::getMessage('DATA_EXP_POPUP_EXECUTE_PROGRESS_PROFILE_NO_SETUP_IBLOCKS'));?>
 <?else:?>
-	<div class="acrit-exp-progress">
+	<div class="data-exp-progress">
 		<?if(\Bitrix\Main\Loader::includeSharewareModule($strModuleId) === MODULE_DEMO):?>
-			<?=Helper::showNote(Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_PROGRESS_DEMO_MODE', [
+			<?=Helper::showNote(Loc::getMessage('DATA_EXP_POPUP_EXECUTE_PROGRESS_DEMO_MODE', [
 				'#MODULE_ID#' => $strModuleId,
 			]), true);?>
 			<br/>
 		<?endif?>
-		<div class="acrit-exp-progress-steps">
+		<div class="data-exp-progress-steps">
 			<ul>
 				<?foreach($arSteps as $strStep => $arStep):?>
 					<li data-step="<?=$strStep;?>">
-						<span class="acrit-exp-progress-item-name">
+						<span class="data-exp-progress-item-name">
 							<?=$arStep['NAME'];?>
 						</span>
-						<span class="acrit-exp-progress-item-data">
+						<span class="data-exp-progress-item-data">
 							<?if($strStep==$strCurrentStep && isset($arSession[$strCurrentStep]['PERCENT'])):?>
 								<span class="text-percent">(<?=number_format($arSession[$strCurrentStep]['PERCENT'], 1, '.', '');?>%)</span>
 							<?endif?>
@@ -75,7 +75,7 @@ if(strlen($strCurrentStep) && !$arSession['FINISHED']){
 		<?if($arSession['FINISHED']):?>
 			<?$strResult = $obPlugin->showResults($arSession);?>
 			<?if(strlen($strResult)):?>
-				<div class="acrit-exp-progress-report">
+				<div class="data-exp-progress-report">
 					<?=$strResult;?>
 				</div>
 			<?endif?>

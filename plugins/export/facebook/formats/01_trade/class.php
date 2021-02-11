@@ -1,21 +1,21 @@
 <?
 /**
- * Acrit Core: Facebook plugin
+ * Data Core: Facebook plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
     \Bitrix\Main\EventManager,
-    \Acrit\Core\Helper,
-    \Acrit\Core\Export\Plugin,
-    \Acrit\Core\Export\Field\Field,
-    \Acrit\Core\HttpRequest,
-    \Acrit\Core\Export\Filter,
-    \Acrit\Core\Export\Exporter,
-    \Acrit\Core\Export\ExportDataTable as ExportData,
-    \Acrit\Core\Log,
-    \Acrit\Core\Xml;
+    \Data\Core\Helper,
+    \Data\Core\Export\Plugin,
+    \Data\Core\Export\Field\Field,
+    \Data\Core\HttpRequest,
+    \Data\Core\Export\Filter,
+    \Data\Core\Export\Exporter,
+    \Data\Core\Export\ExportDataTable as ExportData,
+    \Data\Core\Log,
+    \Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 
@@ -159,7 +159,7 @@ class FacebookTrade extends Facebook {
    protected function showDefaultSettings() {
       ob_start();
       ?>
-      <table class="acrit-exp-plugin-settings" style="width:100%;" data-role="settings-<?= static::getCode(); ?>">
+      <table class="data-exp-plugin-settings" style="width:100%;" data-role="settings-<?= static::getCode(); ?>">
          <tbody>
             <tr>
                <td width="40%" class="adm-detail-content-cell-l">
@@ -189,8 +189,8 @@ class FacebookTrade extends Facebook {
                <td width="60%" class="adm-detail-content-cell-r">
                   <?
                   \CAdminFileDialog::ShowScript(array(
-                      'event' => 'AcritExpPluginXmlFilenameSelect',
-                      'arResultDest' => array('FUNCTION_NAME' => 'acrit_exp_plugin_xml_filename_select'),
+                      'event' => 'DataExpPluginXmlFilenameSelect',
+                      'arResultDest' => array('FUNCTION_NAME' => 'data_exp_plugin_xml_filename_select'),
                       'arPath' => array(),
                       'select' => 'F',
                       'operation' => 'S',
@@ -202,19 +202,19 @@ class FacebookTrade extends Facebook {
                   ));
                   ?>
                   <script>
-                     function acrit_exp_plugin_xml_filename_select(File, Path, Site) {
+                     function data_exp_plugin_xml_filename_select(File, Path, Site) {
                         var FilePath = Path + '/' + File;
-                        $('#acrit_exp_plugin_xml_filename').val(FilePath);
+                        $('#data_exp_plugin_xml_filename').val(FilePath);
                      }
                   </script>
-                  <table class="acrit-exp-plugin-settings-fileselect">
+                  <table class="data-exp-plugin-settings-fileselect">
                      <tbody>
                         <tr>
                            <td><input type="text" name="PROFILE[PARAMS][EXPORT_FILE_NAME]" data-role="export-file-name"
-                                      id="acrit_exp_plugin_xml_filename"
+                                      id="data_exp_plugin_xml_filename"
                                       value="<?= htmlspecialcharsbx($this->arProfile['PARAMS']['EXPORT_FILE_NAME']); ?>"
                                       size="40" placeholder="<?= static::getMessage('SETTINGS_FILE_PLACEHOLDER'); ?>" /></td>
-                           <td><input type="button" value="..." onclick="AcritExpPluginXmlFilenameSelect()" /></td>
+                           <td><input type="button" value="..." onclick="DataExpPluginXmlFilenameSelect()" /></td>
                            <td>
                               &nbsp;
                               <?= $this->showFileOpenLink(); ?>
@@ -1814,7 +1814,7 @@ class FacebookTrade extends Facebook {
    public function getSteps() {
       $arResult = array();
       $arResult['CHECK'] = array(
-          'NAME' => static::getMessage('ACRIT_EXP_EXPORTER_STEP_CHECK'),
+          'NAME' => static::getMessage('DATA_EXP_EXPORTER_STEP_CHECK'),
           'SORT' => 10,
           #'FUNC' => __CLASS__ . '::stepCheck',
           'FUNC' => array($this, 'stepCheck'),
@@ -1888,7 +1888,7 @@ class FacebookTrade extends Facebook {
          unlink($arSession['XML_FILE']);
       }
       if (!Helper::createDirectoriesForFile($arSession['XML_FILE'])) {
-         $strMessage = Loc::getMessage('ACRIT_EXP_ERROR_CREATE_DIRECORY', array(
+         $strMessage = Loc::getMessage('DATA_EXP_ERROR_CREATE_DIRECORY', array(
                      '#DIR#' => Helper::getDirectoryForFile($arSession['XML_FILE']),
          ));
          Log::getInstance($this->strModuleId)->add($strMessage);
@@ -1900,7 +1900,7 @@ class FacebookTrade extends Facebook {
       }
       if (!@rename($arSession['XML_FILE_TMP'], $arSession['XML_FILE'])) {
          @unlink($arSession['XML_FILE_TMP']);
-         $strMessage = Loc::getMessage('ACRIT_EXP_FILE_NO_PERMISSIONS', array(
+         $strMessage = Loc::getMessage('DATA_EXP_FILE_NO_PERMISSIONS', array(
                      '#FILE#' => $arSession['XML_FILE'],
          ));
          Log::getInstance($this->strModuleId)->add($strMessage);

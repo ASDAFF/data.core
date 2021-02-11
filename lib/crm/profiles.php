@@ -1,13 +1,13 @@
 <?php
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field as Field,
-	\Acrit\Core\Export\Backup,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field as Field,
+	\Data\Core\Export\Backup,
+	\Data\Core\Cli,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -83,7 +83,7 @@ abstract class ProfilesTable extends Entity\DataManager
 				'title' => Loc::getMessage('CRM_PROFILES_ENTITY_NAME_FIELD'),
 			),
 			'DESCRIPTION' => new Entity\TextField('DESCRIPTION', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_FIELD_DESCRIPTION'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_FIELD_DESCRIPTION'),
 			)),
 			'ACTIVE' => array(
 				'data_type' => 'string',
@@ -246,7 +246,7 @@ abstract class ProfilesTable extends Entity\DataManager
 			$intCacheLifeTime = 0;
 		}
 		$strCacheID = 'getProfiles_'.serialize($arFilter).serialize($arSort);
-		$strCacheDir = '/acrit/'.preg_replace('#^(.*?)\.(.*?)$#i', '$2', static::MODULE_ID).'/crm/get_profiles';
+		$strCacheDir = '/data/'.preg_replace('#^(.*?)\.(.*?)$#i', '$2', static::MODULE_ID).'/crm/get_profiles';
 //		if($obCache->InitCache($intCacheLifeTime, $strCacheID, $strCacheDir)) {
 //			$arResult = $obCache->GetVars();
 //		} elseif($obCache->StartDataCache()) {

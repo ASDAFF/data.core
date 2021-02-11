@@ -1,25 +1,25 @@
 <?
 /**
- *  Acrit Core: OZON.RU plugin
+ *  Data Core: OZON.RU plugin
  * 	@documentation https://cb-api.ozonru.me/apiref/ru/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
     \Bitrix\Main\EventManager,
-    \Acrit\Core\Helper,
-    \Acrit\Core\HttpRequest,
-    \Acrit\Core\Export\Plugin,
-    \Acrit\Core\Export\Field\Field,
-    \Acrit\Core\Export\Exporter,
-    \Acrit\Core\Export\ExternalIdTable,
-    \Acrit\Core\Export\ProfileTable as Profile,
-    \Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-    \Acrit\Core\Export\Filter,
-    \Acrit\Core\Export\ExportDataTable as ExportData,
-    \Acrit\Core\Log,
-    \Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+    \Data\Core\Helper,
+    \Data\Core\HttpRequest,
+    \Data\Core\Export\Plugin,
+    \Data\Core\Export\Field\Field,
+    \Data\Core\Export\Exporter,
+    \Data\Core\Export\ExternalIdTable,
+    \Data\Core\Export\ProfileTable as Profile,
+    \Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+    \Data\Core\Export\Filter,
+    \Data\Core\Export\ExportDataTable as ExportData,
+    \Data\Core\Log,
+    \Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
     \Bitrix\Highloadblock as HL,
     \Bitrix\Main\Entity;
 
@@ -113,7 +113,7 @@ class OzonRuGeneralV2 extends OzonRu {
       <? if (!strlen($this->arProfile['PARAMS']['CATEGORIES_REDEFINITION_MODE'])): ?>
          <input type="hidden" name="PROFILE[PARAMS][CATEGORIES_REDEFINITION_MODE]" value="<?= CategoryRedefinition::MODE_STRICT; ?>" />
       <? endif ?>
-      <table class="acrit-exp-plugin-settings" style="width:100%;">
+      <table class="data-exp-plugin-settings" style="width:100%;">
          <tbody>
             <tr>
                <td width="40%" class="adm-detail-content-cell-l">
@@ -548,7 +548,7 @@ class OzonRuGeneralV2 extends OzonRu {
     * makeField($attr)<br>
     * description
     * $arResult[] = new Field($arFields);
-    * @param array $attr массив аттрибутов раздела
+    * @param array $attr пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     * @return array $arResult
     * */
    function makeField($attr) {
@@ -565,12 +565,12 @@ class OzonRuGeneralV2 extends OzonRu {
             $arAllowedValues = [static::getMessage('BIG_VALUES_FILE') . $attr['dictionary_id']];
          }
       }
-      if ($attr['type'] == 'option') {//Массив предустановленных значений характеристики. $attr['type'] == 'option'
+      if ($attr['type'] == 'option') {//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. $attr['type'] == 'option'
          foreach ($attr['option'] as $option) {
             $arAllowedValues[$option['value']] = $option['value'];
          }
       }
-      if ($attr['type'] == 'child') { // Массив дочерних характеристик. Структура дочерней и родительской характеристики должна совпадать.
+      if ($attr['type'] == 'child') { // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
          foreach ($attr['child'] as $subAttr) {
             $sub = '';
             if ($this->deb())
@@ -1623,7 +1623,7 @@ class OzonRuGeneralV2 extends OzonRu {
 
    /**
     * loadDictionaries(&$attributes, $categoryId, $intProfileID)<br>
-    * Метод возвращает справочник для характеристики товара.
+    * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     * @param array $attributes description
     * @param int $categoryId
     * @param int $intProfileID

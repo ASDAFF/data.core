@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit core
- * @package acrit.core
- * @copyright 2018 Acrit
+ * Data core
+ * @package data.core
+ * @copyright 2018 Data
  */
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Application,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -36,7 +36,7 @@ abstract class Plugin {
 	protected static $strStaticModuleId = null;
 	protected static $bSubclass = false;
 
-	# Äàòà àêòóàëèçàöèè èíòåãðàöèè ïëàãèíà ñ îíëàéí-ñåðâèñîì
+	# Ð”Ð°Ñ‚Ð° Ð°ÐºÑ‚ÑƒÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¸Ð½Ñ‚ÐµÐ³Ñ€Ð°Ñ†Ð¸Ð¸ Ð¿Ð»Ð°Ð³Ð¸Ð½Ð° Ñ Ð¾Ð½Ð»Ð°Ð¹Ð½-ÑÐµÑ€Ð²Ð¸ÑÐ¾Ð¼
 	CONST DATE_UPDATED = NULL;
 
 	protected $strModuleId = null;
@@ -95,7 +95,7 @@ abstract class Plugin {
 			require $strFile;
 			$strResult = ob_get_clean();
 			if(strlen(static::DATE_UPDATED)){
-				$strResult .= PHP_EOL.Loc::getMessage('ACRIT_EXP_DATE_UPDATED', array('#DATE#' => static::DATE_UPDATED));
+				$strResult .= PHP_EOL.Loc::getMessage('DATA_EXP_DATE_UPDATED', array('#DATE#' => static::DATE_UPDATED));
 			}
 			return trim($strResult);
 		}
@@ -135,7 +135,7 @@ abstract class Plugin {
 	 * Get lang message
 	 */
 	public static function getMessage($strLangKey, $arReplace=array()){
-		$strPhrase = 'ACRIT_EXP_'.(static::getCode()).'_'.$strLangKey;
+		$strPhrase = 'DATA_EXP_'.(static::getCode()).'_'.$strLangKey;
 		$strMessage = Loc::getMessage($strPhrase, $arReplace);
 		if(empty($strMessage)){
 			$strClass = get_called_class();
@@ -149,7 +149,7 @@ abstract class Plugin {
 				}
 			}
 			foreach($arClasses as $strClass){
-				$strPhrase = 'ACRIT_EXP_'.($strClass::getCode()).'_'.$strLangKey;
+				$strPhrase = 'DATA_EXP_'.($strClass::getCode()).'_'.$strLangKey;
 				$strMessage = Loc::getMessage($strPhrase, $arReplace);
 				if(!empty($strMessage)){
 					break;
@@ -268,10 +268,10 @@ abstract class Plugin {
 			}
 			if(!empty($arConflictProfilesId)){
 				$arMessages[] = [
-					'TITLE' => Helper::getMessage('ACRIT_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_TITLE', [
+					'TITLE' => Helper::getMessage('DATA_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_TITLE', [
 						'#FILENAME#' => $this->arParams['EXPORT_FILE_NAME'],
 					]),
-					'MESSAGE' => Helper::getMessage('ACRIT_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_DESC', [
+					'MESSAGE' => Helper::getMessage('DATA_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_DESC', [
 						'#ID#' => implode(', ', $arConflictProfilesId),
 					]),
 					'IS_ERROR' => true,
@@ -374,25 +374,25 @@ abstract class Plugin {
 		if (in_array(self::SYNC_NONE, $this->arDirections)) {
 			$list[] = [
 				'id' => self::SYNC_NONE,
-				'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_DIRECTS_NONE'),
+				'name' => Loc::getMessage('DATA_CRM_PLUGIN_DIRECTS_NONE'),
 			];
 		}
 		if (in_array(self::SYNC_STOC, $this->arDirections)) {
 			$list[] = [
 				'id' => self::SYNC_STOC,
-				'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_DIRECTS_STOC'),
+				'name' => Loc::getMessage('DATA_CRM_PLUGIN_DIRECTS_STOC'),
 			];
 		}
 		if (in_array(self::SYNC_CTOS, $this->arDirections)) {
 			$list[] = [
 				'id' => self::SYNC_CTOS,
-				'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_DIRECTS_CTOS'),
+				'name' => Loc::getMessage('DATA_CRM_PLUGIN_DIRECTS_CTOS'),
 			];
 		}
 		if (in_array(self::SYNC_ALL, $this->arDirections)) {
 			$list[] = [
 				'id' => self::SYNC_ALL,
-				'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_DIRECTS_ALL'),
+				'name' => Loc::getMessage('DATA_CRM_PLUGIN_DIRECTS_ALL'),
 			];
 		}
 		return $list;

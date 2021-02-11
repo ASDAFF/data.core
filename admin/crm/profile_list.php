@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Json,
-	\Acrit\Core\Cli;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Json,
+	\Data\Core\Cli;
 	
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 $strModuleId = $ModuleID = preg_replace('#^.*?/([a-z0-9]+)_([a-z0-9]+).*?$#', '$1.$2', $_SERVER['REQUEST_URI']);
 $strModuleCode = preg_replace('#^(.*?)\.(.*?)$#', '$2', $strModuleId);
 $strModuleUnderscore = preg_replace('#^(.*?)\.(.*?)$#', '$1_$2', $strModuleId);
@@ -31,34 +31,34 @@ $arGet = \Bitrix\Main\Context::getCurrent()->getRequest()->getQueryList()->toArr
 $arPost = \Bitrix\Main\Context::getCurrent()->getRequest()->getPostList()->toArray();
 
 // Demo
-acritShowDemoExpired($strModuleId);
+dataShowDemoExpired($strModuleId);
 
 // Core notice
 if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
-	?><div id="acrit-exp-core-notifier"><?
+	?><div id="data-exp-core-notifier"><?
 		print '<div style="margin-top:15px;"></div>';
 		print \CAdminMessage::ShowMessage(array(
-			'MESSAGE' => Loc::getMessage('ACRIT_EXP_CORE_NOTICE', [
+			'MESSAGE' => Loc::getMessage('DATA_EXP_CORE_NOTICE', [
 				'#CORE_ID#' => $strCoreId,
 				'#LANG#' => LANGUAGE_ID,
 			]),
 			'HTML' => true,
 		));
 	?></div><?
-	$APPLICATION->SetTitle(Loc::getMessage('ACRIT_EXP_PAGE_TITLE_DEFAULT'));
+	$APPLICATION->SetTitle(Loc::getMessage('DATA_EXP_PAGE_TITLE_DEFAULT'));
 	die();
 }
 
 // Module
 \Bitrix\Main\Loader::includeModule($strModuleId);
 $arPluginsPlain = Exporter::getInstance($strModuleId)->findPlugins(false);
-$APPLICATION->SetTitle(Loc::getMessage('ACRIT_EXP_PAGE_TITLE'));
+$APPLICATION->SetTitle(Loc::getMessage('DATA_EXP_PAGE_TITLE'));
 $intLockTime = IntVal(Helper::getOption($strModuleId, 'lock_time'));
 $intLockTime = $intLockTime > 0 ? $intLockTime * 60 : 0;
 
 // Backup
-$strErrorSessionKey = 'ACRIT_EXP_BACKUP_ERROR_CODE';
+$strErrorSessionKey = 'DATA_EXP_BACKUP_ERROR_CODE';
 if(strlen($arGet['backup'])){
 	$strErrorCode = null;
 	$strErrorData = null;
@@ -109,8 +109,8 @@ if(strlen($arGet['backup'])){
 	if(!$bBackupSuccess) {
 		if(strlen($strErrorCode)){
 			$_SESSION[$strErrorSessionKey] = array(
-				'TITLE' => Loc::getMessage('ACRIT_EXP_POPUP_BACKUP_ERROR'),
-				'DESCR' => Loc::getMessage('ACRIT_EXP_POPUP_BACKUP_ERROR_'.$strErrorCode, [
+				'TITLE' => Loc::getMessage('DATA_EXP_POPUP_BACKUP_ERROR'),
+				'DESCR' => Loc::getMessage('DATA_EXP_POPUP_BACKUP_ERROR_'.$strErrorCode, [
 					'#DATA#' => $strErrorData,
 				]),
 			);
@@ -120,7 +120,7 @@ if(strlen($arGet['backup'])){
 }
 
 // Start table
-$sTableID = 'AcritExpProfiles';
+$sTableID = 'DataExpProfiles';
 $oSort = new \CAdminSorting($sTableID, 'SORT', 'ASC');
 $lAdmin = new \CAdminList($sTableID, $oSort);
 
@@ -241,7 +241,7 @@ if($lAdmin->GroupAction() && $strRight == 'W') {
 					$obResult = Helper::call($strModuleId, 'CrmProfiles', 'delete', [$ID]);
 					$bSuccess = $obResult->isSuccess();
 					if ( ! $bSuccess) {
-						$strError = Loc::getMessage('ACRIT_EXP_GROUP_ERROR_DELETE', array('#ID#' => $ID));
+						$strError = Loc::getMessage('DATA_EXP_GROUP_ERROR_DELETE', array('#ID#' => $ID));
 					}
 					break;
 				case 'activate':
@@ -252,20 +252,20 @@ if($lAdmin->GroupAction() && $strRight == 'W') {
 					$obResult        = Helper::call($strModuleId, 'CrmProfiles', 'update', [$ID, $arProfileFields]);
 					$bSuccess        = $obResult->isSuccess();
 					if ( ! $bSuccess) {
-						$strError = Loc::getMessage('ACRIT_EXP_GROUP_ERROR_UPDATE', array('#ID#' => $ID));
+						$strError = Loc::getMessage('DATA_EXP_GROUP_ERROR_UPDATE', array('#ID#' => $ID));
 					}
 					break;
 				case 'unlock':
 					$obResult = Helper::call($strModuleId, 'CrmProfiles', 'unlock', [$ID]);
 					$bSuccess = $obResult->isSuccess();
 					if ( ! $bSuccess) {
-						$strError = Loc::getMessage('ACRIT_EXP_GROUP_ERROR_UNLOCK', array('#ID#' => $ID));
+						$strError = Loc::getMessage('DATA_EXP_GROUP_ERROR_UNLOCK', array('#ID#' => $ID));
 					}
 					break;
 				case 'uncron':
 					$bSuccess = Cli::deleteProfileCron($strModuleId, $ID, 'export.php');
 					if ( ! $bSuccess) {
-						$strError = Loc::getMessage('ACRIT_EXP_GROUP_ERROR_UNCRON', array('#ID#' => $ID));
+						$strError = Loc::getMessage('DATA_EXP_GROUP_ERROR_UNCRON', array('#ID#' => $ID));
 					}
 					break;
 			}
@@ -278,7 +278,7 @@ if($lAdmin->GroupAction() && $strRight == 'W') {
 				}
 			}
 		} else {
-			$lAdmin->AddGroupError(Loc::getMessage('ACRIT_EXP_GROUP_ERROR_NOT_FOUND', array('#ID#' => $ID)));
+			$lAdmin->AddGroupError(Loc::getMessage('DATA_EXP_GROUP_ERROR_NOT_FOUND', array('#ID#' => $ID)));
 		}
 		unset($resProfile, $arProfile, $arProfileFields);
 	}
@@ -308,10 +308,10 @@ if(strlen($strAjaxAction)){
 				$bSuccess = Helper::call($strModuleId, 'Backup', 'restoreFromBackupFile', [$arFile['tmp_name'], $arPost['mode']]);
 			}
 			if($bSuccess) {
-				$arJsonResult['HTML'] = Helper::showSuccess(Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_SUCCESS'));
+				$arJsonResult['HTML'] = Helper::showSuccess(Loc::getMessage('DATA_EXP_POPUP_RESTORE_SUCCESS'));
 			}
 			else {
-				$arJsonResult['HTML'] = Helper::showError(Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_ERROR'));
+				$arJsonResult['HTML'] = Helper::showError(Loc::getMessage('DATA_EXP_POPUP_RESTORE_ERROR'));
 			}
 			break;
 		// Delete all profiles data
@@ -321,7 +321,7 @@ if(strlen($strAjaxAction)){
 				#Backup::deleteProfilesDataAll();
 				Helper::call($strModuleId, 'Backup', 'deleteProfilesDataAll');
 				$arJsonResult['Success'] = true;
-				$arJsonResult['HTML'] = Helper::showSuccess(Loc::getMessage('ACRIT_EXP_BACKUP_DELETED_ALL'));
+				$arJsonResult['HTML'] = Helper::showSuccess(Loc::getMessage('DATA_EXP_BACKUP_DELETED_ALL'));
 			}
 			break;
 	}
@@ -386,49 +386,49 @@ $bCrontabCanAutoSet = Cli::canAutoSet();
 $lAdmin->AddHeaders(array(
 	array(
 		'id'      => 'ID',
-		'content' => getMessage('ACRIT_EXP_HEADER_ID'),
+		'content' => getMessage('DATA_EXP_HEADER_ID'),
 		'sort'    => 'ID',
 		'align'   => 'right',
 		'default' => true,
 	),
 	array(
 		'id'      => 'ACTIVE',
-		'content' => getMessage('ACRIT_EXP_HEADER_ACTIVE'),
+		'content' => getMessage('DATA_EXP_HEADER_ACTIVE'),
 		'sort'    => 'ACTIVE',
 		'align'   => 'center',
 		'default' => true,
 	),
 	array(
 		'id'      => 'SORT',
-		'content' => getMessage('ACRIT_EXP_HEADER_SORT'),
+		'content' => getMessage('DATA_EXP_HEADER_SORT'),
 		'sort'    => 'SORT',
 		'align'   => 'right',
 		'default' => true,
 	),
 	array(
 		'id'      => 'NAME',
-		'content' => getMessage('ACRIT_EXP_HEADER_NAME'),
+		'content' => getMessage('DATA_EXP_HEADER_NAME'),
 		'sort'    => 'NAME',
 		'align'   => 'left',
 		'default' => true,
 	),
 	array(
 		'id'      => 'DESCRIPTION',
-		'content' => getMessage('ACRIT_EXP_HEADER_DESCRIPTION'),
+		'content' => getMessage('DATA_EXP_HEADER_DESCRIPTION'),
 		'sort'    => 'DESCRIPTION',
 		'align'   => 'left',
 		'default' => false,
 	),
 	array(
 		'id'      => 'DATE_CREATED',
-		'content' => getMessage('ACRIT_EXP_HEADER_DATE_CREATED'),
+		'content' => getMessage('DATA_EXP_HEADER_DATE_CREATED'),
 		'sort'    => 'DATE_CREATED',
 		'align'   => 'left',
 		'default' => false,
 	),
 	array(
 		'id'      => 'DATE_MODIFIED',
-		'content' => getMessage('ACRIT_EXP_HEADER_DATE_MODIFIED'),
+		'content' => getMessage('DATA_EXP_HEADER_DATE_MODIFIED'),
 		'sort'    => 'DATE_MODIFIED',
 		'align'   => 'left',
 		'default' => true,
@@ -480,34 +480,34 @@ while ($arRow = $resData->NavNext(true, 'f_')) {
 	$arActions[] = array(
 		'ICON'    => 'edit',
 		'DEFAULT' => true,
-		'TEXT'    => getMessage('ACRIT_EXP_CONTEXT_PROFILE_EDIT'),
+		'TEXT'    => getMessage('DATA_EXP_CONTEXT_PROFILE_EDIT'),
 		'ACTION'  => $lAdmin->ActionRedirect($strModuleUnderscore . '_crm_edit.php?ID=' . $f_ID . '&lang=' . LANGUAGE_ID),
 	);
 //	$arActions[] = array(
 //		'ICON'    => 'copy',
 //		'DEFAULT' => false,
-//		'TEXT'    => getMessage('ACRIT_EXP_CONTEXT_PROFILE_COPY'),
+//		'TEXT'    => getMessage('DATA_EXP_CONTEXT_PROFILE_COPY'),
 //		'ACTION'  => $lAdmin->ActionRedirect($strModuleUnderscore . '_crm_edit.php?ID=' . $f_ID . '&copy=Y&lang=' . LANGUAGE_ID),
 //	);
 	$arActions[] = array(
 		'ICON'    => 'delete',
 		'DEFAULT' => false,
-		'TEXT'    => getMessage('ACRIT_EXP_CONTEXT_PROFILE_DELETE'),
-		'ACTION'  => "if(confirm('" . sprintf(getMessage('ACRIT_EXP_CONTEXT_PROFILE_DELETE_CONFIRM'), $f_NAME) . "')&&'u254'=='u254') " . $lAdmin->ActionDoGroup($f_ID, 'delete'),
+		'TEXT'    => getMessage('DATA_EXP_CONTEXT_PROFILE_DELETE'),
+		'ACTION'  => "if(confirm('" . sprintf(getMessage('DATA_EXP_CONTEXT_PROFILE_DELETE_CONFIRM'), $f_NAME) . "')&&'u254'=='u254') " . $lAdmin->ActionDoGroup($f_ID, 'delete'),
 	);
 	$arActions[] = array('SEPARATOR' => true);
 	if ($f_ACTIVE == 'N') {
 		$arActions[] = array(
 			'ICON'    => 'activate',
 			'DEFAULT' => false,
-			'TEXT'    => getMessage('ACRIT_EXP_CONTEXT_PROFILE_ACTIVATE'),
+			'TEXT'    => getMessage('DATA_EXP_CONTEXT_PROFILE_ACTIVATE'),
 			'ACTION'  => $lAdmin->ActionDoGroup($f_ID, 'activate'),
 		);
 	} else {
 		$arActions[] = array(
 			'ICON'    => 'deactivate',
 			'DEFAULT' => false,
-			'TEXT'    => getMessage('ACRIT_EXP_CONTEXT_PROFILE_DEACTIVATE'),
+			'TEXT'    => getMessage('DATA_EXP_CONTEXT_PROFILE_DEACTIVATE'),
 			'ACTION'  => $lAdmin->ActionDoGroup($f_ID, 'deactivate'),
 		);
 	}
@@ -516,7 +516,7 @@ while ($arRow = $resData->NavNext(true, 'f_')) {
 		$arActions[] = array(
 			'ICON'    => 'uncron',
 			'DEFAULT' => false,
-			'TEXT'    => getMessage('ACRIT_EXP_CONTEXT_PROFILE_REMOVE_CRONTAB'),
+			'TEXT'    => getMessage('DATA_EXP_CONTEXT_PROFILE_REMOVE_CRONTAB'),
 			'ACTION'  => $lAdmin->ActionDoGroup($f_ID, 'uncron'),
 		);
 	}
@@ -536,17 +536,17 @@ $arGroupActions = array(
 	'delete'     => GetMessage('MAIN_ADMIN_LIST_DELETE'),
 	'activate'   => GetMessage('MAIN_ADMIN_LIST_ACTIVATE'),
 	'deactivate' => GetMessage('MAIN_ADMIN_LIST_DEACTIVATE'),
-	'unlock'     => getMessage('ACRIT_EXP_GROUP_UNLOCK'),
+	'unlock'     => getMessage('DATA_EXP_GROUP_UNLOCK'),
 );
 if ($bCrontabCanAutoSet) {
-	$arGroupActions['uncron'] = getMessage('ACRIT_EXP_GROUP_UNCRON');
+	$arGroupActions['uncron'] = getMessage('DATA_EXP_GROUP_UNCRON');
 }
 $lAdmin->AddGroupActionTable($arGroupActions);
 
 // Context menu
 $arContext         = array(
 	array(
-		'TEXT' => getMessage('ACRIT_EXP_TOOLBAR_ADD'),
+		'TEXT' => getMessage('DATA_EXP_TOOLBAR_ADD'),
 		'LINK' => $strModuleUnderscore . '_crm_edit.php?lang=' . LANGUAGE_ID,
 		'ICON' => 'btn_new',
 	),
@@ -560,39 +560,39 @@ $lAdmin->CheckListMode();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_admin_after.php');
 
 // Demo
-acritShowDemoNotice($strModuleId);
+dataShowDemoNotice($strModuleId);
 
 // Text definitions for popup
 ob_start();
 ?><script>
-var acritExpModuleVersion = '<?=Helper::getModuleVersion($strModuleId);?>';
-var acritExpCoreVersion = '<?=Helper::getModuleVersion($strCoreId);?>';
+var dataExpModuleVersion = '<?=Helper::getModuleVersion($strModuleId);?>';
+var dataExpCoreVersion = '<?=Helper::getModuleVersion($strCoreId);?>';
 BX.message({
 	// General
-	ACRIT_EXP_POPUP_LOADING: '<?=Loc::getMessage('ACRIT_EXP_POPUP_LOADING');?>',
-	ACRIT_EXP_POPUP_RESTORE_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_TITLE');?>',
-	ACRIT_EXP_POPUP_RESTORE_SAVE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_SAVE');?>',
-	ACRIT_EXP_POPUP_RESTORE_CLOSE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_CLOSE');?>',
-	ACRIT_EXP_POPUP_RESTORE_WRONG_FILE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_WRONG_FILE');?>',
-	ACRIT_EXP_POPUP_RESTORE_NO_FILE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_NO_FILE');?>',
-	ACRIT_EXP_POPUP_RESTORE_RESTORE_ERROR: '<?=Loc::getMessage('ACRIT_EXP_POPUP_RESTORE_RESTORE_ERROR');?>'
+	DATA_EXP_POPUP_LOADING: '<?=Loc::getMessage('DATA_EXP_POPUP_LOADING');?>',
+	DATA_EXP_POPUP_RESTORE_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_TITLE');?>',
+	DATA_EXP_POPUP_RESTORE_SAVE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_SAVE');?>',
+	DATA_EXP_POPUP_RESTORE_CLOSE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_CLOSE');?>',
+	DATA_EXP_POPUP_RESTORE_WRONG_FILE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_WRONG_FILE');?>',
+	DATA_EXP_POPUP_RESTORE_NO_FILE: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_NO_FILE');?>',
+	DATA_EXP_POPUP_RESTORE_RESTORE_ERROR: '<?=Loc::getMessage('DATA_EXP_POPUP_RESTORE_RESTORE_ERROR');?>'
 });
 </script><?
 $strJs = ob_get_clean();
 \Bitrix\Main\Page\Asset::GetInstance()->AddString($strJs, true, \Bitrix\Main\Page\AssetLocation::AFTER_CSS);
 
 // JS
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.$strCoreId.'/jquery.acrit.hotkey.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.$strCoreId.'/jquery.data.hotkey.js');
 \Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.$strCoreId.'/export/profile_list.js');
 
 // Output filter
 $oFilter = new \CAdminFilter(
   $sTableID.'_filter',
   array(
-		getMessage('ACRIT_EXP_FILTER_ACTIVE'),
-		getMessage('ACRIT_EXP_FILTER_NAME'),
-		getMessage('ACRIT_EXP_FILTER_DATE_CREATED'),
-		getMessage('ACRIT_EXP_FILTER_DATE_MODIFIED'),
+		getMessage('DATA_EXP_FILTER_ACTIVE'),
+		getMessage('DATA_EXP_FILTER_NAME'),
+		getMessage('DATA_EXP_FILTER_DATE_CREATED'),
+		getMessage('DATA_EXP_FILTER_DATE_MODIFIED'),
   )
 );
 
@@ -623,7 +623,7 @@ if(!empty($arFilenames)){
 	$strHtml = '<ul>';
 	foreach($arFilenames as $strFilename => $arProfilesId){
 		foreach($arProfilesId as $key => $intProfileId){
-			$arProfilesId[$key] = sprintf('<a href="/bitrix/admin/acrit_%s_crm_edit.php?ID=%d&lang=%s" target="_blank">%d</a>',
+			$arProfilesId[$key] = sprintf('<a href="/bitrix/admin/data_%s_crm_edit.php?ID=%d&lang=%s" target="_blank">%d</a>',
 				$strModuleCodeLower, $intProfileId, LANGUAGE_ID, $intProfileId);
 		}
 		/*
@@ -631,22 +631,22 @@ if(!empty($arFilenames)){
 			$strFilename = sprintf('<a href="%1$s" target="_blank">%1$s</a>', $strFilename);
 		}
 		*/
-		$strHtml .= Helper::getMessage('ACRIT_EXP_FILENAME_CONFLICTS_ITEM', [
+		$strHtml .= Helper::getMessage('DATA_EXP_FILENAME_CONFLICTS_ITEM', [
 			'#FILENAME#' => $strFilename,
 			'#PROFILES#' => implode(', ', $arProfilesId),
 		]);
 	}
 	$strHtml .= '<ul>';
-	print Helper::showError(Helper::getMessage('ACRIT_EXP_FILENAME_CONFLICTS_TITLE'), $strHtml);
+	print Helper::showError(Helper::getMessage('DATA_EXP_FILENAME_CONFLICTS_TITLE'), $strHtml);
 }
 ?>
-<div data-role="settings-notice"><?=Helper::showNote(Helper::getMessage('ACRIT_CRM_SETTINGS_LINK'), true);?></div>
+<div data-role="settings-notice"><?=Helper::showNote(Helper::getMessage('DATA_CRM_SETTINGS_LINK'), true);?></div>
 
 <?// Output ?>
 
 <?
 # Update notifier
-\Acrit\Core\Update::display();
+\Data\Core\Update::display();
 # XDebug notifier
 Helper::call($strModuleId, 'CrmProfiles', 'checkXDebug');
 # Error

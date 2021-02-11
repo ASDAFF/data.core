@@ -1,3 +1,3 @@
 <?
-define('ADMIN_MODULE_NAME', 'acrit.core');
+define('ADMIN_MODULE_NAME', 'data.core');
 ?>

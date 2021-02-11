@@ -1,27 +1,27 @@
 <?
 /**
- * Acrit core
- * @package acrit.core
- * @copyright 2019 Acrit
+ * Data core
+ * @package data.core
+ * @copyright 2019 Data
  */
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Application,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
-	\Acrit\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Json,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Filter,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+	\Data\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
+	\Data\Core\Xml,
+	\Data\Core\Json,
+	\Data\Core\HttpRequest,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -70,7 +70,7 @@ abstract class UniversalPlugin extends Plugin{
 	protected $strCategoriesTimeout = 5;
 	protected $bCurrenciesExport = false;
 	protected $arSupportedCurrencies = array('RUB');
-	protected $strDefaultDirectory = '/upload/acrit.core';
+	protected $strDefaultDirectory = '/upload/data.core';
 	protected $strDefaultFilename = 'file.xml';
 	protected $arSupportedFormats = array('XML', 'CSV', 'XLS', 'XLSX', 'JSON');
 	protected $bApi = false;
@@ -508,7 +508,7 @@ abstract class UniversalPlugin extends Plugin{
 		#
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 				<?foreach($arSettings as $key => $arSettingsItem):?>
 					<?
@@ -545,13 +545,13 @@ abstract class UniversalPlugin extends Plugin{
 		return ob_get_clean();
 	}
 	protected function getInputID($strID){
-		return 'acrit_exp_plugin_settings_'.toLower($strID);
+		return 'data_exp_plugin_settings_'.toLower($strID);
 	}
 	protected function showSettingsFilename(){
 		ob_start();
 		\CAdminFileDialog::showScript(Array(
-			'event' => 'AcritExpPluginFilenameSelect',
-			'arResultDest' => array('FUNCTION_NAME' => 'acritExpPluginFilenameSelectCallback'),
+			'event' => 'DataExpPluginFilenameSelect',
+			'arResultDest' => array('FUNCTION_NAME' => 'dataExpPluginFilenameSelectCallback'),
 			'arPath' => array(),
 			'select' => 'F',
 			'operation' => 'S',
@@ -563,18 +563,18 @@ abstract class UniversalPlugin extends Plugin{
 		))
 		?>
 		<script>
-		function acritExpPluginFilenameSelectCallback(File,Path,Site){
+		function dataExpPluginFilenameSelectCallback(File,Path,Site){
 			$('#<?=$this->getInputID('FILENAME');?>').val(Path+'/'+File);
 		}
 		</script>
-		<table class="acrit-exp-plugin-settings-fileselect">
+		<table class="data-exp-plugin-settings-fileselect">
 			<tbody>
 				<tr>
 					<td><input type="text" name="PROFILE[PARAMS][EXPORT_FILE_NAME]" size="40" 
 						id="<?=$this->getInputID('FILENAME');?>" data-role="export-file-name"
 						value="<?=htmlspecialcharsbx($this->arParams['EXPORT_FILE_NAME']);?>"
 						placeholder="<?=static::getMessage('SETTINGS_FILE_PLACEHOLDER');?>" /></td>
-					<td><input type="button" value="..." onclick="AcritExpPluginFilenameSelect()" /></td>
+					<td><input type="button" value="..." onclick="DataExpPluginFilenameSelect()" /></td>
 					<td>
 						&nbsp;
 					</td>
@@ -797,8 +797,8 @@ abstract class UniversalPlugin extends Plugin{
 			}
 			if($arField['CATEGORY_CUSTOM_NAME'] === true){
 				$arField['DISPLAY_CODE'] = ' ';
-				$arField['NAME'] = Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_NAME');
-				$arField['DESCRIPTION'] = Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_DESC');
+				$arField['NAME'] = Helper::getMessage('DATA_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_NAME');
+				$arField['DESCRIPTION'] = Helper::getMessage('DATA_EXP_PLUGIN_FIELD_CATEGORY_NAME_CUSTOM_DESC');
 			}
 			$arResult[] = $arField;
 		}
@@ -966,7 +966,7 @@ abstract class UniversalPlugin extends Plugin{
 		if(strlen($this->arParams['ARCHIVE'])){
 			$strFilenameArchive = $this->getExportFileNameArchive($this->arParams['ARCHIVE']);
 			if($strTitle === false){
-				$strTitle = Loc::getMessage('ACRIT_EXP_FILE_OPEN_ARCHIVE');
+				$strTitle = Loc::getMessage('DATA_EXP_FILE_OPEN_ARCHIVE');
 			}
 			elseif($strTitle === true){
 				$strTitle = $strFilenameArchive;
@@ -974,8 +974,8 @@ abstract class UniversalPlugin extends Plugin{
 			if(strlen($strFilenameArchive) && is_file($_SERVER['DOCUMENT_ROOT'].$strFilenameArchive)){
 				ob_start();
 				?>
-					<a href="<?=$strFilenameArchive;?>" target="_blank" title="<?=Loc::getMessage('ACRIT_EXP_FILE_OPEN_TITLE');?>"
-						class="acrit-exp-file-open-link">
+					<a href="<?=$strFilenameArchive;?>" target="_blank" title="<?=Loc::getMessage('DATA_EXP_FILE_OPEN_TITLE');?>"
+						class="data-exp-file-open-link">
 						<?=$strTitle;?>
 						(<?=\CFile::FormatSize(filesize($_SERVER['DOCUMENT_ROOT'].$strFilenameArchive));?>)
 					</a>
@@ -1198,7 +1198,7 @@ abstract class UniversalPlugin extends Plugin{
 			);
 		}
 		$this->handler('onUpGetExportSteps', array(&$arExportSteps, &$arSession));
-		uasort($arExportSteps, '\Acrit\Core\Helper::sortBySort');
+		uasort($arExportSteps, '\Data\Core\Helper::sortBySort');
 		# ToDo: проверять CategoryRedefinition: если выбрано использовать категории торговой площадки и не все заполнено, то выдавать ошибку
 		# Done
 		return Exporter::RESULT_SUCCESS;

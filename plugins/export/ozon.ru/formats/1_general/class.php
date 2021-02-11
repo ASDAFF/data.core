@@ -1,25 +1,25 @@
 <?
 /**
- *  Acrit Core: OZON.RU plugin
+ *  Data Core: OZON.RU plugin
  * 	@documentation https://cb-api.ozonru.me/apiref/ru/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 		\Bitrix\Main\EventManager,
-		\Acrit\Core\Helper,
-		\Acrit\Core\HttpRequest,
-		\Acrit\Core\Export\Plugin,
-		\Acrit\Core\Export\Field\Field,
-		\Acrit\Core\Export\Exporter,
-		\Acrit\Core\Export\ExternalIdTable,
-		\Acrit\Core\Export\ProfileTable as Profile,
-		\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-		\Acrit\Core\Export\Filter,
-		\Acrit\Core\Export\ExportDataTable as ExportData,
-		\Acrit\Core\Log,
-		\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+		\Data\Core\Helper,
+		\Data\Core\HttpRequest,
+		\Data\Core\Export\Plugin,
+		\Data\Core\Export\Field\Field,
+		\Data\Core\Export\Exporter,
+		\Data\Core\Export\ExternalIdTable,
+		\Data\Core\Export\ProfileTable as Profile,
+		\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+		\Data\Core\Export\Filter,
+		\Data\Core\Export\ExportDataTable as ExportData,
+		\Data\Core\Log,
+		\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
 		\Bitrix\Highloadblock as HL,
 		\Bitrix\Main\Entity;
 
@@ -117,7 +117,7 @@ class OzonRuGeneral extends OzonRu
 		<? if (!strlen($this->arProfile['PARAMS']['CATEGORIES_REDEFINITION_MODE'])): ?>
 			<input type="hidden" name="PROFILE[PARAMS][CATEGORIES_REDEFINITION_MODE]" value="<?= CategoryRedefinition::MODE_STRICT; ?>" />
 		<? endif ?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">

@@ -1,12 +1,12 @@
 // *********************************************************************************************************************
 // AJAX
 // *********************************************************************************************************************
-function acritCoreCronAjax(ajaxAction, post, callbackSuccess, callbackError, hideLoader){
+function dataCoreCronAjax(ajaxAction, post, callbackSuccess, callbackError, hideLoader){
 	var lang = phpVars.LANGUAGE_ID,
 		moduleId = $('input[data-role="acrt-core-cron-module-id"]').first().val(),
 		profileId = $('input[data-role="acrt-core-cron-profile-id"]').first().val(),
 		cliFile = $('input[data-role="acrt-core-cron-cli-file"]').first().val(),
-		schedule = $('[data-role="acrit-core-cron-schedule"]').first().find('input[type=text]').get().map(function(input){
+		schedule = $('[data-role="data-core-cron-schedule"]').first().find('input[type=text]').get().map(function(input){
 			var value = $.trim($(input).val());
 			if(!value.length){
 				value = '*';
@@ -22,7 +22,7 @@ function acritCoreCronAjax(ajaxAction, post, callbackSuccess, callbackError, hid
 		BX.showWait();
 	}
 	return $.ajax({
-		url: acritCoreHttpBuildQuery('/bitrix/admin/acrit_core_cron.php', {
+		url: dataCoreHttpBuildQuery('/bitrix/admin/data_core_cron.php', {
 			module_id: moduleId,
 			profile_id: profileId,
 			cli_file: cliFile,
@@ -55,7 +55,7 @@ function acritCoreCronAjax(ajaxAction, post, callbackSuccess, callbackError, hid
 					callbackError(jqXHR, textStatus, errorThrown);
 				}
 				else{
-					acritCorePopupError.Open(jqXHR);
+					dataCorePopupError.Open(jqXHR);
 				}
 			}
 			if(hideLoader!==true) {
@@ -66,29 +66,29 @@ function acritCoreCronAjax(ajaxAction, post, callbackSuccess, callbackError, hid
 }
 
 // Status
-function acritCoreCronSetStatus(configured){
+function dataCoreCronSetStatus(configured){
 	var statusDiv = $('div[data-cron-status][data-profile-id]');
 	statusDiv.attr('data-cron-status', configured ? 'Y' : 'N');
 	if(configured){
-		$('[data-role="acrit-core-cron-clear"]').removeAttr('disabled');
+		$('[data-role="data-core-cron-clear"]').removeAttr('disabled');
 	}
 	else {
-		$('[data-role="acrit-core-cron-clear"]').attr('disabled', 'disabled');
+		$('[data-role="data-core-cron-clear"]').attr('disabled', 'disabled');
 	}
-	statusDiv.addClass('acrit-core-text-blink');
-	clearTimeout(window.acritExpTimeoutCronStatus);
-	window.acritExpTimeoutCronStatus = setTimeout(function(){
-		statusDiv.removeClass('acrit-core-text-blink');
+	statusDiv.addClass('data-core-text-blink');
+	clearTimeout(window.dataExpTimeoutCronStatus);
+	window.dataExpTimeoutCronStatus = setTimeout(function(){
+		statusDiv.removeClass('data-core-text-blink');
 	}, 1000);
 }
 
 // Current tasks
-function acritCoreCronSetCurrentTasks(html){
+function dataCoreCronSetCurrentTasks(html){
 	$('[data-role="cron-current-tasks-wrapper"]').html(html);
 }
 
 // Examples
-$(document).delegate('[data-role="acrit-core-cron-example"]', 'click', function(e){
+$(document).delegate('[data-role="data-core-cron-example"]', 'click', function(e){
 	e.preventDefault();
 	var schedule = $(this).data('schedule').split(' '),
 		table = $(this).closest('table');
@@ -100,17 +100,17 @@ $(document).delegate('[data-role="acrit-core-cron-example"]', 'click', function(
 });
 
 // Current tasks
-$(document).delegate('a[data-role="acrit-core-cron-current-tasks-toggle"]', 'click', function(e){
+$(document).delegate('a[data-role="data-core-cron-current-tasks-toggle"]', 'click', function(e){
 	e.preventDefault();
-	var target = $(this).parent().parent().find('[data-role="acrit-core-cron-current-tasks"]');
+	var target = $(this).parent().parent().find('[data-role="data-core-cron-current-tasks"]');
 	if(!target.is(':animated')){
 		target.slideToggle(200);
 	}
 });
 
 // Time
-function acritCoreCronShowServerTime(){
-	$('[data-role="acrit-core-server-time"]').each(function(){
+function dataCoreCronShowServerTime(){
+	$('[data-role="data-core-server-time"]').each(function(){
 		var block = $(this),
 			formatRFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ",
 			offset,
@@ -136,25 +136,25 @@ function acritCoreCronShowServerTime(){
 	});
 }
 $(document).ready(function(){
-	window.acritCoreServerTimeClock = setInterval(function(){
-		acritCoreCronShowServerTime();
+	window.dataCoreServerTimeClock = setInterval(function(){
+		dataCoreCronShowServerTime();
 	}, 1000);
-	acritCoreCronShowServerTime();
+	dataCoreCronShowServerTime();
 });
 
 // Copy
-$(document).delegate('a[data-role="acrit-core-cron-command-copy"]', 'click', function(e){
+$(document).delegate('a[data-role="data-core-cron-command-copy"]', 'click', function(e){
 	e.preventDefault();
 	var message = $(this).attr('data-message'),
 		span = $(this).next('span'),
 		command = $(this).prev(),
 		timeout;
-	acritCoreCopyToClipboard(command.get(0), function(){
+	dataCoreCopyToClipboard(command.get(0), function(){
 		if(message.length) {
-			span.html(message).show().addClass('acrit-core-text-blink');
+			span.html(message).show().addClass('data-core-text-blink');
 			clearTimeout(timeout);
 			timeout = setTimeout(function(){
-				span.removeClass('acrit-core-text-blink');
+				span.removeClass('data-core-text-blink');
 				timeout = setTimeout(function(){
 					span.fadeOut(200, function(){
 						$(this).html('');
@@ -166,25 +166,25 @@ $(document).delegate('a[data-role="acrit-core-cron-command-copy"]', 'click', fun
 });
 
 // Setup
-$(document).delegate('input[data-role="acrit-core-cron-setup"]', 'click', function(e){
+$(document).delegate('input[data-role="data-core-cron-setup"]', 'click', function(e){
 	e.preventDefault();
-	acritCoreCronAjax('setup', null, function(jqXHR, textStatus, arJson){
-		acritCoreCronSetStatus(arJson.IsConfigured);
-		acritCoreCronSetCurrentTasks(arJson.CurrentTasks);
+	dataCoreCronAjax('setup', null, function(jqXHR, textStatus, arJson){
+		dataCoreCronSetStatus(arJson.IsConfigured);
+		dataCoreCronSetCurrentTasks(arJson.CurrentTasks);
 	});
 });
 
 // Clear
-$(document).delegate('input[data-role="acrit-core-cron-clear"]', 'click', function(e){
+$(document).delegate('input[data-role="data-core-cron-clear"]', 'click', function(e){
 	e.preventDefault();
-	acritCoreCronAjax('clear', null, function(jqXHR, textStatus, arJson){
-		acritCoreCronSetStatus(arJson.IsConfigured);
-		acritCoreCronSetCurrentTasks(arJson.CurrentTasks);
+	dataCoreCronAjax('clear', null, function(jqXHR, textStatus, arJson){
+		dataCoreCronSetStatus(arJson.IsConfigured);
+		dataCoreCronSetCurrentTasks(arJson.CurrentTasks);
 	});
 });
 
 // More info if cannot autoset
-$(document).delegate('a[data-role="acrit-core-cron-more-toggle"]', 'click', function(e){
+$(document).delegate('a[data-role="data-core-cron-more-toggle"]', 'click', function(e){
 	e.preventDefault();
 	var div = $(this).closest('tr').next().find('div').first();
 	if(!div.is(':animated')){

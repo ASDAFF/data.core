@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_VK_';
+$strMessPrefix = 'DATA_EXP_VK_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'ВКонтакте';

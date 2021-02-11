@@ -3,14 +3,14 @@
  * Helper class with base general methods
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Config\Option,
 	\Bitrix\Main\EventManager,
 	\Bitrix\Main\Loader,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Json;
+	\Data\Core\Export\Plugin,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 
@@ -88,7 +88,7 @@ class Helper {
 	 *	Get current core module id
 	 */
 	public static function id(){
-		return ACRIT_CORE;
+		return DATA_CORE;
 	}
 	
 	/**
@@ -307,10 +307,10 @@ class Helper {
 		}
 		$arClass = [];
 		if($bCompact){
-			$arClass[] = 'acrit_core_note_compact';
+			$arClass[] = 'data_core_note_compact';
 		}
 		if($bCenter){
-			$arClass[] = 'acrit_core_note_center';
+			$arClass[] = 'data_core_note_center';
 		}
 		print '<div class="'.implode(' ', $arClass).'">';
 		print BeginNote();
@@ -329,7 +329,7 @@ class Helper {
 		ob_start();
 		$arClass = [];
 		if($bCompact){
-			$arClass[] = 'acrit_core_note_compact';
+			$arClass[] = 'data_core_note_compact';
 		}
 		print '<div class="'.implode(' ', $arClass).'">';
 		\CAdminMessage::showMessage([
@@ -349,7 +349,7 @@ class Helper {
 		ob_start();
 		$arClass = [];
 		if($bCompact){
-			$arClass[] = 'acrit_core_note_compact';
+			$arClass[] = 'data_core_note_compact';
 		}
 		print '<div class="'.implode(' ', $arClass).'">';
 		\CAdminMessage::showMessage([
@@ -369,13 +369,13 @@ class Helper {
 			ob_start();
 		}
 		if(is_numeric($intValue) && $intValue >= 0 && is_numeric($intMax) && $intMax >= 0) {
-			print '<div class="acrit_core_message_progress">';
+			print '<div class="data_core_message_progress">';
 			\CAdminMessage::showMessage([
 				'MESSAGE' => static::strlen($strTitle) ? $strTitle : ' ',
 				'DETAILS' => sprintf('<div class="%s">%s</div><div class="%s">%s</div><div class="%s">%s</div>', 
-					'acrit_core_message_progress_top', $strText1, 
-					'acrit_core_message_progress_middle', '#PROGRESS_BAR#', 
-					'acrit_core_message_progress_bottom', $strText2),
+					'data_core_message_progress_top', $strText1, 
+					'data_core_message_progress_middle', '#PROGRESS_BAR#', 
+					'data_core_message_progress_bottom', $strText2),
 				'HTML' => true,
 				'TYPE' => 'PROGRESS',
 				'PROGRESS_TOTAL' => $intMax,
@@ -398,7 +398,7 @@ class Helper {
 	 */
 	public static function showHeading($strMessage, $bNoMargin=false){
 		$strResult = '';
-		$strClass = $bNoMargin ? ' class="acrit_core_table_nomargin"' : '';
+		$strClass = $bNoMargin ? ' class="data_core_table_nomargin"' : '';
 		$strResult .= '<table style="width:100%"'.$strClass.'><tbody><tr class="heading"><td>'
 			.$strMessage.'</td></tr></tbody></table>';
 		return $strResult;
@@ -416,11 +416,11 @@ class Helper {
 			static::includeJsPopupHint();
 			$strImage = '/bitrix/js/main/core/images/hint.gif';
 			if($bWarning){
-				$strImage = '/bitrix/themes/.default/images/acrit.core/icon-warning-12.gif';
+				$strImage = '/bitrix/themes/.default/images/data.core/icon-warning-12.gif';
 			}
 			$strResult = '<span id="hint_'.$strCode.'"><img src="'.$strImage.'" style="cursor:pointer; margin-left:5px;"></span>';
 			$strResult .= '<script>BX.bind(BX("hint_'.$strCode.'"), "click", function(){
-				AcritPopupHint.Open("'.$strPopupTitle.'", "'.$strText.'");
+				DataPopupHint.Open("'.$strPopupTitle.'", "'.$strText.'");
 				'.(strlen($strPopupJs) ? $strPopupJs : '').'
 			});</script>';
 		}
@@ -429,17 +429,17 @@ class Helper {
 				.'<script>BX.hint_replace(BX("hint_'.$strCode.'").childNodes[0], "'.$strText.'");</script>';
 			if($bWarning){
 				$strResult .= '<script>BX("hint_'.$strCode.'").childNodes[0].src='
-					.'"/bitrix/themes/.default/images/acrit.core/icon-warning-12.gif";</script>';
+					.'"/bitrix/themes/.default/images/data.core/icon-warning-12.gif";</script>';
 			}
 		}
 		return $strResult;
 	}
 	
 	/**
-	 *	Include js for AcritPopupHint
+	 *	Include js for DataPopupHint
 	 */
 	public static function includeJsPopupHint(){
-		$GLOBALS['APPLICATION']->addHeadScript('/bitrix/js/acrit.core/popup_hint.js');
+		$GLOBALS['APPLICATION']->addHeadScript('/bitrix/js/data.core/popup_hint.js');
 	}
 	
 	/**
@@ -899,7 +899,7 @@ class Helper {
 	 *	Get general tmp dir
 	 */
 	public static function getTmpDir($bAutoCreate=true, $bRelative=false){
-		$strResult = sprintf('%s/%s/.tmp', static::getUploadDir(), ACRIT_CORE);
+		$strResult = sprintf('%s/%s/.tmp', static::getUploadDir(), DATA_CORE);
 		$strResultAbs = static::root().$strResult;
 		if($bAutoCreate && !is_dir($strResultAbs)){
 			mkdir($strResultAbs, BX_DIR_PERMISSIONS, true);
@@ -1105,10 +1105,10 @@ class Helper {
 		$bSuccess = true;
 		$arErrors = [];
 		if(strlen($strFile)){
-			$strFile = $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/'.ACRIT_CORE.'/install/db/mysql/'.$strFile;
+			$strFile = $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/'.DATA_CORE.'/install/db/mysql/'.$strFile;
 			if(is_file($strFile) && filesize($strFile)){
 				$arSql = $DB->parseSqlBatch(file_get_contents($strFile));
-				$strModuleCode = preg_replace('#^acrit\.(.*?)$#i', '$1', $strModuleId);
+				$strModuleCode = preg_replace('#^data\.(.*?)$#i', '$1', $strModuleId);
 				if(is_array($arSql)){
 					$DB->startTransaction();
 					foreach($arSql as $strSql){
@@ -1358,7 +1358,7 @@ class Helper {
 		if($intVatID > 0 && !isset($arVatValues[$intVatID]) && Loader::includeModule('catalog')){
 			$resVat = \CCatalogVat::getList(array('RATE'=>'ASC'), array('ID' => $intVatID));
 			if($arVat = $resVat->GetNext(false, false)) {
-				if(stripos($arVat['NAME'], static::getMessage('ACRIT_CORE_NO_VAT_PRETEXT')) === false){
+				if(stripos($arVat['NAME'], static::getMessage('DATA_CORE_NO_VAT_PRETEXT')) === false){
 					return $arVat['RATE'];
 				}
 			}
@@ -1465,7 +1465,7 @@ class Helper {
 				}
 			}
 		}
-		foreach (EventManager::getInstance()->findEventHandlers(ACRIT_CORE, 'OnGetIBlockList') as $arHandler) {
+		foreach (EventManager::getInstance()->findEventHandlers(DATA_CORE, 'OnGetIBlockList') as $arHandler) {
 			ExecuteModuleEventEx($arHandler, array(&$arResult, $bGroupByType, $bShowInActive));
 		}
 		return $arResult;
@@ -1619,7 +1619,7 @@ class Helper {
 					$arPhpSpreadsheetClasses[$strNamespace.'\\'.$strClassName] = substr($strFileName, strlen($strModuleDir) + 1);
 				}
 			}
-			Loader::registerAutoLoadClasses(ACRIT_CORE, $arPhpSpreadsheetClasses);
+			Loader::registerAutoLoadClasses(DATA_CORE, $arPhpSpreadsheetClasses);
 			unset($arPhpSpreadsheetClasses, $arFiles, $strFileName, $strClassName, $arMatch, $strPatternClass, $strPatternNamespace);
 			$bIncluded = true;
 			return true;
@@ -1632,7 +1632,7 @@ class Helper {
 	 */
 	public static function showXlsxNoticeZip($bForce=false){
 		if($bForce || !class_exists('\ZipArchive')){
-			print static::showNote(static::getMessage('ACRIT_CORE_XLSX_NOTICE_CLASS_ZIPARCHIVE'), true);
+			print static::showNote(static::getMessage('DATA_CORE_XLSX_NOTICE_CLASS_ZIPARCHIVE'), true);
 		}
 	}
 	
@@ -1641,7 +1641,7 @@ class Helper {
 	 */
 	public static function showXlsxNoticeXml($bForce=false){
 		if($bForce || !class_exists('\XMLWriter')){
-			print static::showNote(static::getMessage('ACRIT_CORE_XLSX_NOTICE_CLASS_XMLWRITER'), true);
+			print static::showNote(static::getMessage('DATA_CORE_XLSX_NOTICE_CLASS_XMLWRITER'), true);
 		}
 	}
 	
@@ -1786,7 +1786,7 @@ class Helper {
 					'#CLASS#' => $strClass,
 					'#METHOD#' => $strMethod,
 				];
-				$strClass = '\Acrit\#ID#\#CLASS#';
+				$strClass = '\Data\#ID#\#CLASS#';
 				$strClass = str_replace(array_keys($arReplace), array_values($arReplace), $strClass);
 				$strClassReal = null;
 				if(class_exists($strClass)){
@@ -2101,7 +2101,7 @@ class Helper {
 	 *	Log for developers
 	 */
 	public static function devLog($mMessage=''){
-		if($_SESSION['ACRIT_DEV'] == 'Y'){
+		if($_SESSION['DATA_DEV'] == 'Y'){
 			$arDebug = debug_backtrace(2);
 			if(is_array($arDebug) && !empty($arDebug)){
 				$arDebug = reset($arDebug);
@@ -2130,7 +2130,7 @@ class Helper {
 	 *	Get phrase 'Loading...'
 	 */
 	public static function getLoadingString(){
-		return static::getMessage('ACRIT_CORE_LOADING');
+		return static::getMessage('DATA_CORE_LOADING');
 	}
 	
 	/**
@@ -2148,21 +2148,21 @@ class Helper {
 	 */
 	public static function printLangPhrases($strModuleId, array $arPhrases=[]){
 		$arPopupPhrases = [
-			'ACRIT_CORE_POPUP_SAVE',
-			'ACRIT_CORE_POPUP_APPLY',
-			'ACRIT_CORE_POPUP_RESET',
-			'ACRIT_CORE_POPUP_CLOSE',
-			'ACRIT_CORE_POPUP_CANCEL',
-			'ACRIT_CORE_POPUP_REFRESH',
-			'ACRIT_CORE_POPUP_BEGIN',
-			'ACRIT_CORE_POPUP_END',
-			'ACRIT_CORE_POPUP_RUN',
-			'ACRIT_CORE_POPUP_STOP',
-			'ACRIT_CORE_POPUP_SELECT',
-			'ACRIT_CORE_POPUP_DELETE',
-			'ACRIT_CORE_POPUP_DELETE_ALL',
-			'ACRIT_CORE_POPUP_RESTORE',
-			'ACRIT_CORE_POPUP_COPY',
+			'DATA_CORE_POPUP_SAVE',
+			'DATA_CORE_POPUP_APPLY',
+			'DATA_CORE_POPUP_RESET',
+			'DATA_CORE_POPUP_CLOSE',
+			'DATA_CORE_POPUP_CANCEL',
+			'DATA_CORE_POPUP_REFRESH',
+			'DATA_CORE_POPUP_BEGIN',
+			'DATA_CORE_POPUP_END',
+			'DATA_CORE_POPUP_RUN',
+			'DATA_CORE_POPUP_STOP',
+			'DATA_CORE_POPUP_SELECT',
+			'DATA_CORE_POPUP_DELETE',
+			'DATA_CORE_POPUP_DELETE_ALL',
+			'DATA_CORE_POPUP_RESTORE',
+			'DATA_CORE_POPUP_COPY',
 		];
 		if(!static::isArrayAssociative($arPhrases)){
 			$arPhrasesTmp = [];
@@ -2173,10 +2173,10 @@ class Helper {
 		}
 		ob_start();
 		?><script>
-		window.acritModuleVersion = '<?=static::getModuleVersion($strModuleId);?>';
+		window.dataModuleVersion = '<?=static::getModuleVersion($strModuleId);?>';
 		BX.message({
 			// General
-			ACRIT_CORE_LOADING: '<?=static::getLoadingString();?>',
+			DATA_CORE_LOADING: '<?=static::getLoadingString();?>',
 			// General popup
 			<?foreach($arPopupPhrases as $strPhraseKey):?>
 				<?=$strPhraseKey;?>: '<?=static::getMessage($strPhraseKey);?>',
@@ -2186,20 +2186,20 @@ class Helper {
 				<?=$strPhraseKey;?>: '<?=($strPhrase === true ? static::getMessage($strPhraseKey) : $strPhrase);?>',
 			<?endforeach?>
 			// Technical data
-			ACRIT_CORE_VERSION: '<?=static::getModuleVersion(ACRIT_CORE);?>',
-			ACRIT_CORE_SM_VERSION: '<?=defined('SM_VERSION') ? SM_VERSION : '';?>',
-			ACRIT_CORE_SM_VERSION_DATE: '<?=defined('SM_VERSION_DATE') ? SM_VERSION_DATE : '';?>',
-			ACRIT_CORE_PHP_VERSION: '<?=defined('PHP_VERSION') ? PHP_VERSION : '';?>',
-			ACRIT_CORE_PHP_VERSION: '<?=defined('SM_VERSION_DATE') ? SM_VERSION_DATE : '';?>',
-			ACRIT_CORE_BX_FILE_PERMISSIONS: '<?=defined('BX_FILE_PERMISSIONS') ? BX_FILE_PERMISSIONS : '';?>',
-			ACRIT_CORE_BX_DIR_PERMISSIONS: '<?=defined('BX_DIR_PERMISSIONS') ? BX_DIR_PERMISSIONS : '';?>',
-			ACRIT_CORE_MYSQL_TABLE_TYPE: '<?=defined('MYSQL_TABLE_TYPE') ? MYSQL_TABLE_TYPE : '';?>',
-			ACRIT_CORE_LOG_FILENAME: '<?=defined('LOG_FILENAME') ? LOG_FILENAME : '';?>',
-			ACRIT_CORE_LANG: '<?=defined('LANG') ? LANG : '';?>',
-			ACRIT_CORE_SITE_CHARSET: '<?=defined('SITE_CHARSET') ? SITE_CHARSET : '';?>',
-			ACRIT_CORE_FORMAT_DATE: '<?=defined('FORMAT_DATE') ? FORMAT_DATE : '';?>',
-			ACRIT_CORE_FORMAT_DATETIME: '<?=defined('FORMAT_DATETIME') ? FORMAT_DATETIME : '';?>',
-			ACRIT_CORE_POST_FORM_ACTION_URI: '<?=defined('POST_FORM_ACTION_URI') ? POST_FORM_ACTION_URI : '';?>'
+			DATA_CORE_VERSION: '<?=static::getModuleVersion(DATA_CORE);?>',
+			DATA_CORE_SM_VERSION: '<?=defined('SM_VERSION') ? SM_VERSION : '';?>',
+			DATA_CORE_SM_VERSION_DATE: '<?=defined('SM_VERSION_DATE') ? SM_VERSION_DATE : '';?>',
+			DATA_CORE_PHP_VERSION: '<?=defined('PHP_VERSION') ? PHP_VERSION : '';?>',
+			DATA_CORE_PHP_VERSION: '<?=defined('SM_VERSION_DATE') ? SM_VERSION_DATE : '';?>',
+			DATA_CORE_BX_FILE_PERMISSIONS: '<?=defined('BX_FILE_PERMISSIONS') ? BX_FILE_PERMISSIONS : '';?>',
+			DATA_CORE_BX_DIR_PERMISSIONS: '<?=defined('BX_DIR_PERMISSIONS') ? BX_DIR_PERMISSIONS : '';?>',
+			DATA_CORE_MYSQL_TABLE_TYPE: '<?=defined('MYSQL_TABLE_TYPE') ? MYSQL_TABLE_TYPE : '';?>',
+			DATA_CORE_LOG_FILENAME: '<?=defined('LOG_FILENAME') ? LOG_FILENAME : '';?>',
+			DATA_CORE_LANG: '<?=defined('LANG') ? LANG : '';?>',
+			DATA_CORE_SITE_CHARSET: '<?=defined('SITE_CHARSET') ? SITE_CHARSET : '';?>',
+			DATA_CORE_FORMAT_DATE: '<?=defined('FORMAT_DATE') ? FORMAT_DATE : '';?>',
+			DATA_CORE_FORMAT_DATETIME: '<?=defined('FORMAT_DATETIME') ? FORMAT_DATETIME : '';?>',
+			DATA_CORE_POST_FORM_ACTION_URI: '<?=defined('POST_FORM_ACTION_URI') ? POST_FORM_ACTION_URI : '';?>'
 		});
 		</script><?
 		$strJs = ob_get_clean();
@@ -2210,7 +2210,7 @@ class Helper {
 	 *	Short use for confirm in CAdminList
 	 */
 	public static function adminListContextActionDelete($obAdminList, $intId, $strName, $strConfirmLang=null){
-		$strConfirmLangPhrase = strlen($strConfirmLang) ? $strConfirmLang : 'ACRIT_CORE_ADMIN_LIST_DELETE_CONFIRM';
+		$strConfirmLangPhrase = strlen($strConfirmLang) ? $strConfirmLang : 'DATA_CORE_ADMIN_LIST_DELETE_CONFIRM';
 		$strConfirm = static::getMessage($strConfirmLangPhrase, [
 			'#ID#' => $intId,
 			'#NAME#' => $strName,

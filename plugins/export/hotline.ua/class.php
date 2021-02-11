@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit Core: Hotline.ua plugin
+ * Data Core: Hotline.ua plugin
  * @documentation https://hotline.ua/about/pricelists_specs/#tr1
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Export\Plugin;
+		\Data\Core\Helper,
+		\Data\Core\Export\Plugin;
 
 Loc::loadMessages(__FILE__);
 

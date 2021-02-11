@@ -1,4 +1,4 @@
-$.fn.acritFilter = function(options){
+$.fn.dataFilter = function(options){
 	
 	// Vars
 	var divContainer = $(this),
@@ -31,14 +31,14 @@ $.fn.acritFilter = function(options){
 				'<div data-role="item">' +
 					'<span data-role="name"></span> ' +
 					'<span data-role="field">' +
-						'<a href="#" data-role="select-field" data-acrit-modal="test1">' + options.lang.selectField + '</a>' +
+						'<a href="#" data-role="select-field" data-data-modal="test1">' + options.lang.selectField + '</a>' +
 					'</span> ' +
 					'<span data-role="type"></span> ' +
 					'<span data-role="logic">' +
-						'<a href="#" data-role="select-logic" data-acrit-modal="test2">' + options.lang.selectLogic + '</a>' +
+						'<a href="#" data-role="select-logic" data-data-modal="test2">' + options.lang.selectLogic + '</a>' +
 					'</span> ' +
 					'<span data-role="value">' +
-						'<a href="#" data-role="select-value" data-acrit-modal="test3">' + options.lang.selectValue + '</a>' +
+						'<a href="#" data-role="select-value" data-data-modal="test3">' + options.lang.selectValue + '</a>' +
 					'</span> ' +
 					'<span data-role="additional"></span>' +
 					'<a href="#" data-role="delete-item">&times;</a>' +
@@ -84,7 +84,7 @@ $.fn.acritFilter = function(options){
 			jsonItems = divContainer.searchGroupsForJson()[0];
 		inputJson.val(JSON.stringify(jsonItems));
 	}
-	divContainer.bind('acrit:buildJsonResult', function(){ // like public method
+	divContainer.bind('data:buildJsonResult', function(){ // like public method
 		divContainer.buildJsonResult();
 	});
 	

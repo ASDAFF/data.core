@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use 
-	\Acrit\Core\Update,
-	\Acrit\Core\Helper;
+	\Data\Core\Update,
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 
@@ -11,16 +11,16 @@ $bCheckCore = false;
 $arUpdates = Update::checkModuleUpdates($strModuleId, $intDateTo, $strVersion, $bCheckCore);
 #
 /*
-if(isset($arUpdates[ACRIT_CORE])){
-	$arUpdatesCore = $arUpdates[ACRIT_CORE];
-	unset($arUpdates[ACRIT_CORE]);
-	$arUpdates[ACRIT_CORE] = $arUpdatesCore;
+if(isset($arUpdates[DATA_CORE])){
+	$arUpdatesCore = $arUpdates[DATA_CORE];
+	unset($arUpdates[DATA_CORE]);
+	$arUpdates[DATA_CORE] = $arUpdatesCore;
 	unset($arUpdatesCore);
 }
 */
 #
 $arUpdatesModule = &$arUpdates[$strModuleId];
-#$arUpdatesCore = &$arUpdates[ACRIT_CORE];
+#$arUpdatesCore = &$arUpdates[DATA_CORE];
 #
 $arUpdatesModule = is_array($arUpdatesModule) ? $arUpdatesModule : [];
 #$arUpdatesCore = is_array($arUpdatesCore) ? $arUpdatesCore : [];
@@ -28,7 +28,7 @@ $arUpdatesModule = is_array($arUpdatesModule) ? $arUpdatesModule : [];
 $intMaxDisplayUpdates = 10;
 #
 if(is_numeric($intDateTo) && $intDateTo>0 && $intDateTo<=time()){
-	$strMessage = Helper::getMessage('ACRIT_CORE_UPDATE_NOTIFIER_RENEW_LICENSE', array(
+	$strMessage = Helper::getMessage('DATA_CORE_UPDATE_NOTIFIER_RENEW_LICENSE', array(
 		'#DATE#' => date(\CDatabase::DateFormatToPHP(FORMAT_DATE), $intDateTo),
 		'#LINK#' => Helper::getRenewUrl($strModuleId),
 	));
@@ -45,7 +45,7 @@ elseif(!empty($arUpdatesModule)/* || !empty($arUpdatesCore)*/){
 	}
 	ob_start();
 	?>
-	<div id="acrit-core-update-notifier-details-block">
+	<div id="data-core-update-notifier-details-block">
 		<ul>
 			<?foreach($arUpdates as $strUpdateModuleId => $arUpdatesItem):?>
 				<?if(!empty($arUpdatesItem)):?>
@@ -67,42 +67,42 @@ elseif(!empty($arUpdatesModule)/* || !empty($arUpdatesCore)*/){
 		</ul>
 		<a href="/bitrix/admin/update_system_partner.php?lang=<?=LANGUAGE_ID?>&addmodule=<?=implode(',', array_keys($arUpdates));?>" 
 			target="_blank" class="adm-btn adm-btn-green">
-			<?=Helper::getMessage('ACRIT_CORE_UPDATE_NOTIFIER_UPDATE');?>
+			<?=Helper::getMessage('DATA_CORE_UPDATE_NOTIFIER_UPDATE');?>
 		</a>
 	</div>
 	<div style="display:none!important;">
 		<style>
-		#acrit-core-update-notifier-details-toggle{
+		#data-core-update-notifier-details-toggle{
 			border-bottom:1px dashed #2675d7;
 			color:#2675d7;
 			text-decoration:none;
 		}
-		#acrit-core-update-notifier-details-toggle:hover{
+		#data-core-update-notifier-details-toggle:hover{
 			border-bottom:0;
 		}
-		#acrit-core-update-notifier-details-block{
+		#data-core-update-notifier-details-block{
 			display:none;
 		}
-		#acrit-core-update-notifier-details-block ul{
+		#data-core-update-notifier-details-block ul{
 			list-style:square;
 			margin-bottom:4px;
 			margin-left:0;
 			padding-left:18px;
 		}
-		#acrit-core-update-notifier-details-block ul{
+		#data-core-update-notifier-details-block ul{
 			list-style:disc;
 		}
 		</style>
 		<script>
-		$('#acrit-core-update-notifier-details-toggle').bind('click', function(e){
+		$('#data-core-update-notifier-details-toggle').bind('click', function(e){
 			e.preventDefault();
-			$('#acrit-core-update-notifier-details-block').toggle();
+			$('#data-core-update-notifier-details-block').toggle();
 		});
 		</script>
 	</div>
 	<?
 	$strDetails = ob_get_clean();
-	print Helper::showSuccess(Helper::getMessage('ACRIT_CORE_UPDATE_NOTIFIER_AVAILABLE', array(
+	print Helper::showSuccess(Helper::getMessage('DATA_CORE_UPDATE_NOTIFIER_AVAILABLE', array(
 		'#COUNT#' => $intUpdatesCount,
 	)), $strDetails);
 }

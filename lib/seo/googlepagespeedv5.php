@@ -3,11 +3,11 @@
  * Class to work with Google PageSpeed
  */
 
-namespace Acrit\Core\Seo;
+namespace Data\Core\Seo;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\HttpRequest;
+	\Data\Core\Helper,
+	\Data\Core\HttpRequest;
 
 class GooglePageSpeedV5 {
 	
@@ -126,7 +126,7 @@ class GooglePageSpeedV5 {
 	 *	Get API-key for Google PageSpeed
 	 */
 	public static function getApiKey(){
-		return \Bitrix\Main\Config\Option::get(ACRIT_CORE, 'google_pagespeed_v5_apikey');
+		return \Bitrix\Main\Config\Option::get(DATA_CORE, 'google_pagespeed_v5_apikey');
 	}
 	
 	/**

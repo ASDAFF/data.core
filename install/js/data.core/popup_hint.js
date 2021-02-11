@@ -1,7 +1,7 @@
-var AcritPopupHint;
+var DataPopupHint;
 $(document).ready(function(){
-	AcritPopupHint = new BX.CDialog({
-		ID: 'AcritPopupHint',
+	DataPopupHint = new BX.CDialog({
+		ID: 'DataPopupHint',
 		title: '',
 		content: '',
 		resizable: true,
@@ -9,14 +9,14 @@ $(document).ready(function(){
 		height: 400,
 		width: 800
 	});
-	AcritPopupHint.Open = function(title, content){
+	DataPopupHint.Open = function(title, content){
 		this.SetTitle(title);
 		this.SetContent(content);
 		this.SetAutoSize();
 		this.InitFilter();
 		this.Show();
 	}
-	AcritPopupHint.SetAutoSize = function(){
+	DataPopupHint.SetAutoSize = function(){
 		$('.bx-core-adm-dialog-content-wrap-inner', this.DIV).css({
 			'height': '100%',
 			'-webkit-box-sizing': 'border-box',
@@ -26,18 +26,18 @@ $(document).ready(function(){
 			'height': '100%'
 		});
 	}
-	AcritPopupHint.InitFilter = function(){
+	DataPopupHint.InitFilter = function(){
 		var
-			div = $('div[data-role="acrit-exp-field-popup-hint"]', this.DIV),
-			input = $('input[data-role="acrit-exp-field-popup-hint-search"]', this.DIV),
-			groups = $('ul[data-role="acrit-exp-field-popup-hint-groups"]', this.DIV).children('li');
+			div = $('div[data-role="data-exp-field-popup-hint"]', this.DIV),
+			input = $('input[data-role="data-exp-field-popup-hint-search"]', this.DIV),
+			groups = $('ul[data-role="data-exp-field-popup-hint-groups"]', this.DIV).children('li');
 		input.bind('input', function(e){
 			var
 				query = $(this).val().toLowerCase().trim(),
 				emptyQuery = !query.length;
 			groups.each(function(){
 				var
-					title = $(this).children('[data-role="acrit-exp-field-popup-hint-group"]').text().trim(),
+					title = $(this).children('[data-role="data-exp-field-popup-hint-group"]').text().trim(),
 					items = $(this).hide().children('ul').children('li').hide(),
 					groupVisible = false;
 				if(emptyQuery){
@@ -64,7 +64,7 @@ $(document).ready(function(){
 			});
 		});
 	}
-	AcritPopupHint.SetHtml = function(html){
+	DataPopupHint.SetHtml = function(html){
 		$('.bx-core-adm-dialog-content-wrap-inner', this.PARTS.CONTENT_DATA).first().html(html);
 	}
 });

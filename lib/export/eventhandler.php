@@ -1,22 +1,22 @@
 <?
 /**
- * Acrit core
- * @package acrit.core
- * @copyright 2018 Acrit
+ * Data core
+ * @package data.core
+ * @copyright 2018 Data
  */
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\DiscountRecalculation,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-	\Acrit\Core\Export\ProfileFieldTable as ProfileField,
-	\Acrit\Core\Export\ProfileValueTable as ProfileValue,
-	\Acrit\Core\Export\AdditionalFieldTable as AdditionalField,
-	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
-	\Acrit\Core\Export\ExportDataTable as ExportData;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\DiscountRecalculation,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+	\Data\Core\Export\ProfileFieldTable as ProfileField,
+	\Data\Core\Export\ProfileValueTable as ProfileValue,
+	\Data\Core\Export\AdditionalFieldTable as AdditionalField,
+	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+	\Data\Core\Export\ExportDataTable as ExportData;
 	
 Loc::loadMessages(__FILE__);
 
@@ -30,32 +30,32 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'main',
 				'OnBuildGlobalMenu',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnBuildGlobalMenu'
 			);
 	 */
 	/*
 	public static function OnBuildGlobalMenu(&$arGlobalMenu, &$arModuleMenu){
 		global $obAdminMenu;
-		if(is_array($obAdminMenu->aGlobalMenu) && key_exists('global_menu_acrit', $obAdminMenu->aGlobalMenu)){
+		if(is_array($obAdminMenu->aGlobalMenu) && key_exists('global_menu_data', $obAdminMenu->aGlobalMenu)){
 			return;
 		}
-		$strAcritMenuGroupName = Helper::getOption(ACRIT_CORE, 'acritmenu_groupname');
-		if(!strlen(trim($strAcritMenuGroupName))){
-			$strAcritMenuGroupName = Loc::getMessage('ACRITMENU_GROUPNAME_DEFAULT');
+		$strDataMenuGroupName = Helper::getOption(DATA_CORE, 'datamenu_groupname');
+		if(!strlen(trim($strDataMenuGroupName))){
+			$strDataMenuGroupName = Loc::getMessage('DATAMENU_GROUPNAME_DEFAULT');
 		}
 		$aMenu = array(
-			'menu_id' => 'acrit',
+			'menu_id' => 'data',
 			'sort' => 150,
-			'text' => $strAcritMenuGroupName,
-			'title' => Loc::getMessage('ACRIT_MENU_TITLE'),
+			'text' => $strDataMenuGroupName,
+			'title' => Loc::getMessage('DATA_MENU_TITLE'),
 			'icon' => 'clouds_menu_icon',
 			'page_icon' => 'clouds_page_icon',
-			'items_id' => 'global_menu_acrit',
+			'items_id' => 'global_menu_data',
 			'items' => array()
 		);
-		$arGlobalMenu['global_menu_acrit'] = $aMenu;
+		$arGlobalMenu['global_menu_data'] = $aMenu;
 	}
 	*/
 	
@@ -64,8 +64,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'main',
 				'OnAdminContextMenuShow',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAdminContextMenuShow'
 			);
 	 */
@@ -77,15 +77,15 @@ class EventHandlerExport {
 				if($intElementID > 0){
 					\CJSCore::Init(['jquery', 'jquery2']);
 					$obAsset = \Bitrix\Main\Page\Asset::GetInstance();
-					#$GLOBALS['APPLICATION']->SetAdditionalCss('/bitrix/js/acrit.core/jquery.select2/select2.min.css');
-					$GLOBALS['APPLICATION']->setAdditionalCss('/bitrix/js/'.ACRIT_CORE.'/jquery.select2/dist/css/select2.css');
-					$obAsset->AddJs('/bitrix/js/acrit.core/jquery.acrit.hotkey.js');
-					$obAsset->AddJs('/bitrix/js/acrit.core/export/preview_element.js');
-					#$obAsset->AddJs('/bitrix/js/acrit.core/jquery.select2/select2.min.js');
-					$obAsset->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.select2/dist/js/select2.js');
+					#$GLOBALS['APPLICATION']->SetAdditionalCss('/bitrix/js/data.core/jquery.select2/select2.min.css');
+					$GLOBALS['APPLICATION']->setAdditionalCss('/bitrix/js/'.DATA_CORE.'/jquery.select2/dist/css/select2.css');
+					$obAsset->AddJs('/bitrix/js/data.core/jquery.data.hotkey.js');
+					$obAsset->AddJs('/bitrix/js/data.core/export/preview_element.js');
+					#$obAsset->AddJs('/bitrix/js/data.core/jquery.select2/select2.min.js');
+					$obAsset->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.select2/dist/js/select2.js');
 					$strSelect2LangFile = Helper::isUtf() ? 'ru_utf8.js' : 'ru_cp1251.js';
-					#$obAsset->AddJs('/bitrix/js/acrit.core/export/jquery.select2/'.$strSelect2LangFile);
-					$obAsset->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.select2/'.$strSelect2LangFile);
+					#$obAsset->AddJs('/bitrix/js/data.core/export/jquery.select2/'.$strSelect2LangFile);
+					$obAsset->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.select2/'.$strSelect2LangFile);
 					$arExportModules = array_reverse(Exporter::getExportModules());
 					foreach($arExportModules as $key => $strModuleId){
 						if(!checkVersion(Helper::getModuleVersion($strModuleId), '8.0.0')){
@@ -97,9 +97,9 @@ class EventHandlerExport {
 					if($bSingle){
 						foreach($arExportModules as $strModuleId){
 							$arItems[] = array(
-								'ICON' => 'acrit-exp-element-preview-button',
-								'TEXT' => Loc::getMessage('ACRIT_EXP_EVENT_HANDLER_PREVIEW_BUTTON'),
-								'ONCLICK' => 'AcritExpPopupPreview.Open("'.$strModuleId.'", '.$intElementID.', \'\');',
+								'ICON' => 'data-exp-element-preview-button',
+								'TEXT' => Loc::getMessage('DATA_EXP_EVENT_HANDLER_PREVIEW_BUTTON'),
+								'ONCLICK' => 'DataExpPopupPreview.Open("'.$strModuleId.'", '.$intElementID.', \'\');',
 							);
 							break;
 						}
@@ -108,15 +108,15 @@ class EventHandlerExport {
 						$arSubmenu = [];
 						foreach($arExportModules as $strModuleId){
 							$arSubmenu[] = array(
-								'ICON' => 'acrit-exp-'.$strModuleId.'-element-preview-button',
+								'ICON' => 'data-exp-'.$strModuleId.'-element-preview-button',
 								'TEXT' => $strModuleId,
-								'ONCLICK' => 'AcritExpPopupPreview.Open("'.$strModuleId.'", '.$intElementID.', \'\');',
+								'ONCLICK' => 'DataExpPopupPreview.Open("'.$strModuleId.'", '.$intElementID.', \'\');',
 								'ICON' => 'view',
 							);
 						}
 						$arItems[] = array(
-							'ICON' => 'acrit-exp-element-preview-button',
-							'TEXT' => Loc::getMessage('ACRIT_EXP_EVENT_HANDLER_PREVIEW_BUTTON'),
+							'ICON' => 'data-exp-element-preview-button',
+							'TEXT' => Loc::getMessage('DATA_EXP_EVENT_HANDLER_PREVIEW_BUTTON'),
 							'MENU' => $arSubmenu,
 						);
 					}
@@ -124,21 +124,21 @@ class EventHandlerExport {
 					ob_start();
 					?><script>
 					BX.message({
-						ACRIT_EXP_EVENT_HANDLER_PREVIEW_TITLE: '<?=Loc::getMessage('ACRIT_EXP_EVENT_HANDLER_PREVIEW_TITLE');?>',
-						ACRIT_EXP_EVENT_HANDLER_PREVIEW_LOADING: '<?=Loc::getMessage('ACRIT_EXP_EVENT_HANDLER_PREVIEW_LOADING');?>',
-						ACRIT_EXP_EVENT_HANDLER_PREVIEW_REFRESH: '<?=Loc::getMessage('ACRIT_EXP_EVENT_HANDLER_PREVIEW_REFRESH');?>',
-						ACRIT_EXP_EVENT_HANDLER_PREVIEW_CLOSE: '<?=Loc::getMessage('ACRIT_EXP_EVENT_HANDLER_PREVIEW_CLOSE');?>'
+						DATA_EXP_EVENT_HANDLER_PREVIEW_TITLE: '<?=Loc::getMessage('DATA_EXP_EVENT_HANDLER_PREVIEW_TITLE');?>',
+						DATA_EXP_EVENT_HANDLER_PREVIEW_LOADING: '<?=Loc::getMessage('DATA_EXP_EVENT_HANDLER_PREVIEW_LOADING');?>',
+						DATA_EXP_EVENT_HANDLER_PREVIEW_REFRESH: '<?=Loc::getMessage('DATA_EXP_EVENT_HANDLER_PREVIEW_REFRESH');?>',
+						DATA_EXP_EVENT_HANDLER_PREVIEW_CLOSE: '<?=Loc::getMessage('DATA_EXP_EVENT_HANDLER_PREVIEW_CLOSE');?>'
 					});
-					window.acritExpPreviewProfileId = {};
+					window.dataExpPreviewProfileId = {};
 					<?foreach($arExportModules as $strModuleId):?>
 						<?$strParam = str_replace('.', '_', $strModuleId).'_'.Helper::PARAM_ELEMENT_PREVIEW;?>
 						<?if($_GET[$strParam] == 'Y'):?>
 							<?$strParam = str_replace('.', '_', $strModuleId).'_'.Helper::PARAM_ELEMENT_PROFILE_ID;?>
 							<?$intProfileID = htmlspecialcharsbx($_GET[$strParam]);?>
-							window.acritExpPreviewProfileId['<?=$strModuleId;?>'] = <?=IntVal($intProfileID);?>;
+							window.dataExpPreviewProfileId['<?=$strModuleId;?>'] = <?=IntVal($intProfileID);?>;
 							$(document).ready(function(){
 								setTimeout(function(){
-									AcritExpPopupPreview.Open('<?=$strModuleId;?>', '<?=$intElementID;?>', '<?=$intProfileID;?>');
+									DataExpPopupPreview.Open('<?=$strModuleId;?>', '<?=$intElementID;?>', '<?=$intProfileID;?>');
 								}, 500);
 							});
 						<?endif?>
@@ -156,15 +156,15 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockElementAdd',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockElementAddUpdate'
 			);
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockElementUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockElementAddUpdate'
 			);
 	 */
@@ -179,15 +179,15 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockElementSetPropertyValues',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockElementSetPropertyValues'
 			);
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockElementSetPropertyValuesEx',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockElementSetPropertyValues'
 			);
 	 */
@@ -202,8 +202,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'main',
 				'OnBeforeLocalRedirect',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnBeforeLocalRedirect'
 			);
 	 */
@@ -219,15 +219,15 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnProductAdd',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnProductAddUpdate'
 			);
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnProductUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnProductAddUpdate'
 			);
 	 */
@@ -242,15 +242,15 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnPriceAdd',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnPriceAddUpdate'
 			);
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnPriceUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnPriceAddUpdate'
 			);
 	 */
@@ -265,15 +265,15 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnStoreProductAdd',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnStoreProductAddUpdate'
 			);
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnStoreProductUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnStoreProductAddUpdate'
 			);
 	 */
@@ -288,8 +288,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockElementDelete',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockElementDelete'
 			);
 	 */
@@ -306,8 +306,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'main',
 				'OnEpilog',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnEpilog'
 			);
 	 */
@@ -324,8 +324,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockSectionUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockSectionUpdate'
 			);
 	 */
@@ -395,8 +395,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockUpdate'
 			);
 	 */
@@ -446,8 +446,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'iblock',
 				'OnAfterIBlockDelete',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnAfterIBlockDelete'
 			);
 	 */
@@ -552,8 +552,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'sale',
 				'DiscountOnAfterAdd',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'DiscountOnAfterAdd'
 			);
 	 */
@@ -566,8 +566,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'sale',
 				'DiscountOnAfterUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'DiscountOnAfterUpdate'
 			);
 	 */
@@ -580,8 +580,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'sale',
 				'DiscountOnAfterDelete',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'DiscountOnAfterDelete'
 			);
 	 */
@@ -596,8 +596,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnGroupAdd',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnGroupAdd'
 			);
 	 */
@@ -610,8 +610,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnGroupUpdate',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnGroupUpdate'
 			);
 	 */
@@ -624,8 +624,8 @@ class EventHandlerExport {
 			\Bitrix\Main\EventManager::getInstance()->registerEventHandler(
 				'catalog',
 				'OnGroupDelete',
-				'acrit.core',
-				'\Acrit\Core\Export\EventHandlerExport',
+				'data.core',
+				'\Data\Core\Export\EventHandlerExport',
 				'OnGroupDelete'
 			);
 	 */

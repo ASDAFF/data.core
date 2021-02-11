@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_MARKETGID_';
+$strMessPrefix = 'DATA_EXP_MARKETGID_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'MarketGid';

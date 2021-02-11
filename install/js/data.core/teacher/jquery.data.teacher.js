@@ -1,4 +1,4 @@
-$.fn.acritTeacher = function(options){
+$.fn.dataTeacher = function(options){
 	
 	let
 		This = $(this),
@@ -61,43 +61,43 @@ $.fn.acritTeacher = function(options){
 	// 1. PREPARE
 	
 	if(typeof overlayBg == 'undefined'){
-		overlayBg = $('<div class="acrit_teacher_overlay_bg" />').hide().fadeOut(0).appendTo($('body'));
+		overlayBg = $('<div class="data_teacher_overlay_bg" />').hide().fadeOut(0).appendTo($('body'));
 	}
 	
 	if(typeof overlayData == 'undefined'){
-		overlayData = $('<div class="acrit_teacher_overlay_data"/>').hide().fadeOut(0).appendTo($('body'));
-		overlayData.append($('<div class="acrit_teacher_content_wrapper"/>')
-			.append('<div class="acrit_teacher_content"><table><tbody><tr><td></td></tr></tbody></table></div>'));
+		overlayData = $('<div class="data_teacher_overlay_data"/>').hide().fadeOut(0).appendTo($('body'));
+		overlayData.append($('<div class="data_teacher_content_wrapper"/>')
+			.append('<div class="data_teacher_content"><table><tbody><tr><td></td></tr></tbody></table></div>'));
 	}
 	
 	if(typeof overlayControlsTop == 'undefined'){
-		overlayControlsTop = $('<div class="acrit_teacher_overlay_controls_top"/>').hide().fadeOut(0)
+		overlayControlsTop = $('<div class="data_teacher_overlay_controls_top"/>').hide().fadeOut(0)
 			.appendTo($('body'));
-		overlayControlsTop.append($('<div class="acrit_teacher_progress"/>'));
-		overlayControlsTop.append($('<div class="acrit_teacher_overlay_title"/>'));
-		overlayControlsTop.append($('<div class="acrit_teacher_close" title="'+options.labels.close+'">&times;</div>'));
+		overlayControlsTop.append($('<div class="data_teacher_progress"/>'));
+		overlayControlsTop.append($('<div class="data_teacher_overlay_title"/>'));
+		overlayControlsTop.append($('<div class="data_teacher_close" title="'+options.labels.close+'">&times;</div>'));
 	}
 	
 	if(typeof overlayControlsBottom == 'undefined'){
-		overlayControlsBottom = $('<div class="acrit_teacher_overlay_controls_bottom"/>').hide().fadeOut(0)
+		overlayControlsBottom = $('<div class="data_teacher_overlay_controls_bottom"/>').hide().fadeOut(0)
 			.appendTo($('body'));
-		overlayControlsBottom.append($('<div class="acrit_teacher_step_data"/>')
-			.append($('<div class="acrit_teacher_step_css_styles"/>'))
-			.append($('<div class="acrit_teacher_step_title"/>'))
-			.append($('<div class="acrit_teacher_step_description"/>'))
-			.append($('<div class="acrit_teacher_step_description_toggle"/>')
+		overlayControlsBottom.append($('<div class="data_teacher_step_data"/>')
+			.append($('<div class="data_teacher_step_css_styles"/>'))
+			.append($('<div class="data_teacher_step_title"/>'))
+			.append($('<div class="data_teacher_step_description"/>'))
+			.append($('<div class="data_teacher_step_description_toggle"/>')
 				.append('<a>'+options.labels.descriptionToggle+'</a>'))
 		);
-		overlayControlsBottom.append($('<div class="acrit_teacher_buttons">')
-			.append($('<div class="acrit_teacher_button acrit_teacher_button_prev">')
+		overlayControlsBottom.append($('<div class="data_teacher_buttons">')
+			.append($('<div class="data_teacher_button data_teacher_button_prev">')
 				.append($('<input type="button">').val(options.labels.prev).hide()))
-			.append($('<div class="acrit_teacher_button acrit_teacher_button_next">')
+			.append($('<div class="data_teacher_button data_teacher_button_next">')
 				.append($('<input type="button">').val(options.labels.start).hide()))
 		);
 		//
-		$('.acrit_teacher_step_description_toggle a', overlayControlsBottom).bind('click', function(e){
+		$('.data_teacher_step_description_toggle a', overlayControlsBottom).bind('click', function(e){
 			e.preventDefault();
-			let divDescription = $(this).parent().parent().find('.acrit_teacher_step_description');
+			let divDescription = $(this).parent().parent().find('.data_teacher_step_description');
 			if(!divDescription.is(':animated')){
 				divDescription.slideToggle();
 			}
@@ -112,7 +112,7 @@ $.fn.acritTeacher = function(options){
 	// 2. INTERNAL METHODS
 	
 	this.log = function(){
-		if(options.debug || window.acritTeacherDebug === true){
+		if(options.debug || window.dataTeacherDebug === true){
 			console.log.apply(this, arguments);
 		}
 	}
@@ -167,7 +167,7 @@ $.fn.acritTeacher = function(options){
 				$.proxy(options.callbackClose, this)(options);
 			}
 			setTimeout($.proxy(function(){
-				delete window.acritTeacher;
+				delete window.dataTeacher;
 			}, this), animateTime);
 			this.removeEvents();
 			this.closeBxPopups();
@@ -182,17 +182,17 @@ $.fn.acritTeacher = function(options){
 		}
 		setTimeout($.proxy(function(){
 			if(flag){
-				window.acritTeacher = this;
+				window.dataTeacher = this;
 			}
 			else{
-				delete window.acritTeacher;
+				delete window.dataTeacher;
 			}
 		}, this), delay);
 	}
 	
 	// Is restricted by other?
 	this.isRestricted = function(){
-		return !!window.acritTeacher;
+		return !!window.dataTeacher;
 	}
 	
 	// Add event handlers
@@ -222,7 +222,7 @@ $.fn.acritTeacher = function(options){
 				this.goNext(true);
 			}
 		}, this);
-		$('body').on('click', '.acrit_teacher_button_prev input[type="button"]', this.eventPrevClick);
+		$('body').on('click', '.data_teacher_button_prev input[type="button"]', this.eventPrevClick);
 		
 		// Handler for click Next
 		this.eventNextClick = $.proxy(function(e){
@@ -235,13 +235,13 @@ $.fn.acritTeacher = function(options){
 				}
 			}
 		}, this);
-		$('body').on('click', '.acrit_teacher_button_next input[type="button"]', this.eventNextClick);
+		$('body').on('click', '.data_teacher_button_next input[type="button"]', this.eventNextClick);
 		
 		// Handler for click Close
 		this.eventCloseClick = $.proxy(function(e){
 			this.teacherClose();
 		}, this);
-		$('body').on('click', '.acrit_teacher_close', this.eventCloseClick);
+		$('body').on('click', '.data_teacher_close', this.eventCloseClick);
 		
 		// Handler for press Esc key
 		this.eventEscPress = $.proxy(function(e){
@@ -262,9 +262,9 @@ $.fn.acritTeacher = function(options){
 		BX.removeCustomEvent(window, 'onWindowClose', this.eventBxRepaintStrokes);
 		$(window).off('resize', this.eventWindowResize);
 		$('body').off('mouseup', this.eventBodyMouseUp);
-		$('body').off('click', '.acrit_teacher_button_prev input[type="button"]', this.eventPrevClick);
-		$('body').off('click', '.acrit_teacher_button_next input[type="button"]', this.eventNextClick);
-		$('body').off('click', '.acrit_teacher_close', this.eventCloseClick);
+		$('body').off('click', '.data_teacher_button_prev input[type="button"]', this.eventPrevClick);
+		$('body').off('click', '.data_teacher_button_next input[type="button"]', this.eventNextClick);
+		$('body').off('click', '.data_teacher_close', this.eventCloseClick);
 		$('body').off('keydown', this.eventEscPress);
 	}
 	
@@ -274,25 +274,25 @@ $.fn.acritTeacher = function(options){
 		if(typeof options.tabControlName == 'string'){
 			options.tabControl = window[options.tabControlName];
 			if(options.tabControl){
-				if(options.tabControl.acritTeacherFixedTop == undefined){
-					options.tabControl.acritTeacherFixedTop = options.tabControl.bFixed.top;
+				if(options.tabControl.dataTeacherFixedTop == undefined){
+					options.tabControl.dataTeacherFixedTop = options.tabControl.bFixed.top;
 				}
-				if(options.tabControl.acritTeacherFixedBottom == undefined){
-					options.tabControl.acritTeacherFixedBottom = options.tabControl.bFixed.bottom;
+				if(options.tabControl.dataTeacherFixedBottom == undefined){
+					options.tabControl.dataTeacherFixedBottom = options.tabControl.bFixed.bottom;
 				}
 				if(flag){
-					if(options.tabControl.acritTeacherFixedTop){
-						options.tabControl.ToggleFix('top', options.tabControl.acritTeacherFixedTop);
+					if(options.tabControl.dataTeacherFixedTop){
+						options.tabControl.ToggleFix('top', options.tabControl.dataTeacherFixedTop);
 					}
-					if(options.tabControl.acritTeacherFixedBottom){
-						options.tabControl.ToggleFix('bottom', options.tabControl.acritTeacherFixedBottom);
+					if(options.tabControl.dataTeacherFixedBottom){
+						options.tabControl.ToggleFix('bottom', options.tabControl.dataTeacherFixedBottom);
 					}
 				}
 				else{
-					if(options.tabControl.acritTeacherFixedTop){
+					if(options.tabControl.dataTeacherFixedTop){
 						options.tabControl.ToggleFix('top', false);
 					}
-					if(options.tabControl.acritTeacherFixedBottom){
+					if(options.tabControl.dataTeacherFixedBottom){
 						options.tabControl.ToggleFix('bottom', false);
 					}
 				}
@@ -330,7 +330,7 @@ $.fn.acritTeacher = function(options){
 			delay = 0;
 		}
 		setTimeout($.proxy(function(){
-			$('html').toggleClass('acrit_teacher_html', !flag);
+			$('html').toggleClass('data_teacher_html', !flag);
 		}, this), delay);
 	}
 	
@@ -377,8 +377,8 @@ $.fn.acritTeacher = function(options){
 			if(flag === true){
 				strokeId = $.trim(Math.random()).substr(2);
 				$(elements[i]).attr('data-stroke-id', strokeId);
-				elementAccessible = !!flag && (!!accessible || !!elements[i].acritTeacherAccessible);
-				stroke = $('<div>').hide().fadeOut(0).addClass('acrit_teacher_stroke').appendTo($('body'))
+				elementAccessible = !!flag && (!!accessible || !!elements[i].dataTeacherAccessible);
+				stroke = $('<div>').hide().fadeOut(0).addClass('data_teacher_stroke').appendTo($('body'))
 					.attr({
 						'data-stroke-id': strokeId,
 						'data-control-accessible': elementAccessible ? 'Y' : 'N',
@@ -409,9 +409,9 @@ $.fn.acritTeacher = function(options){
 				item = strokeItem.item,
 				stroke = strokeItem.stroke;
 			$(item).removeAttr('data-stroke-id')
-				.removeClass('acrit_teacher_control_highlighted')
-				.removeClass('acrit_teacher_control_highlighted_relative')
-				.removeClass('acrit_teacher_control_accessible');
+				.removeClass('data_teacher_control_highlighted')
+				.removeClass('data_teacher_control_highlighted_relative')
+				.removeClass('data_teacher_control_accessible');
 			$(stroke).fadeOut(animateTime, function(){
 				$(this).remove();
 			});
@@ -443,12 +443,12 @@ $.fn.acritTeacher = function(options){
 				width: item.outerWidth() + 2 * strokeMargin,
 				height: item.outerHeight() + 2 * strokeMargin,
 			});
-			item.addClass('acrit_teacher_control_highlighted');
+			item.addClass('data_teacher_control_highlighted');
 			if(item.css('position') == 'static'){
-				item.addClass('acrit_teacher_control_highlighted_relative');
+				item.addClass('data_teacher_control_highlighted_relative');
 			}
 			if(stroke.attr('data-control-accessible') == 'Y'){
-				item.addClass('acrit_teacher_control_accessible');
+				item.addClass('data_teacher_control_accessible');
 			}
 			if(item.is(':visible')){
 				stroke.show();
@@ -501,28 +501,28 @@ $.fn.acritTeacher = function(options){
 	
 	// Set title (on top controls overlay)
 	this.setTitle = function(title){
-		$('.acrit_teacher_overlay_title', overlayControlsTop).html(title);
+		$('.data_teacher_overlay_title', overlayControlsTop).html(title);
 	}
 	
 	// Set content (on data overlay)
 	this.setContent = function(content){
-		$('.acrit_teacher_content > table > tbody > tr > td', overlayData).html(content);
+		$('.data_teacher_content > table > tbody > tr > td', overlayData).html(content);
 	}
 	
 	// Set splash screen content
 	this.buildSplashScreen = function(){
 		if(splashScreen){
-			let divContent = $('.acrit_teacher_content > table > tbody > tr > td', overlayData);
+			let divContent = $('.data_teacher_content > table > tbody > tr > td', overlayData);
 			if(options.splashScreen.html != undefined){
 				divContent.html(options.splashScreen.html);
 			}
 			else if (options.splashScreen.description != undefined){
-				let divSplashScreen = $('<div class="acrit_teacher_splash_screen" />'),
-					divSplashContent = $('<div class="acrit_teacher_splash_screen_content" />').appendTo(divSplashScreen);
-				$('<div class="acrit_teacher_splash_screen_title" />').html(options.labels.title).appendTo(divSplashContent);
-				$('<div class="acrit_teacher_splash_screen_description" />').html(options.splashScreen.description)
+				let divSplashScreen = $('<div class="data_teacher_splash_screen" />'),
+					divSplashContent = $('<div class="data_teacher_splash_screen_content" />').appendTo(divSplashScreen);
+				$('<div class="data_teacher_splash_screen_title" />').html(options.labels.title).appendTo(divSplashContent);
+				$('<div class="data_teacher_splash_screen_description" />').html(options.splashScreen.description)
 					.appendTo(divSplashContent);
-				$('<div class="acrit_teacher_button acrit_teacher_button_next" />').appendTo(divSplashScreen)
+				$('<div class="data_teacher_button data_teacher_button_next" />').appendTo(divSplashScreen)
 					.append($('<input type="button">').attr('value', options.labels.start));
 				if(options.splashScreen.cssStyles != undefined){
 					$('<style>'+options.splashScreen.cssStyles+'</style>').appendTo(divSplashScreen);
@@ -530,7 +530,7 @@ $.fn.acritTeacher = function(options){
 				divSplashScreen.appendTo(divContent);
 			}
 			else{
-				$('.acrit_teacher_button.acrit_teacher_button_next input[type="button"]', overlayControlsBottom).show()
+				$('.data_teacher_button.data_teacher_button_next input[type="button"]', overlayControlsBottom).show()
 					.trigger('click');
 			}
 		}
@@ -562,8 +562,8 @@ $.fn.acritTeacher = function(options){
 		this.goingNext = prev !== true;
 		//
 		let
-			btnPrev = $('.acrit_teacher_button_prev input[type="button"]', overlayControlsBottom),
-			btnNext = $('.acrit_teacher_button_next input[type="button"]', overlayControlsBottom),
+			btnPrev = $('.data_teacher_button_prev input[type="button"]', overlayControlsBottom),
+			btnNext = $('.data_teacher_button_next input[type="button"]', overlayControlsBottom),
 			currStepData = steps[currStep] ? steps[currStep] : {},
 			stepDelta = prev === true ? -1 : 1,
 			currStepElements = currStepData.elements,
@@ -662,9 +662,9 @@ $.fn.acritTeacher = function(options){
 						// Center viewport and display data
 						this.centerViewportAndDisplayData(nextStepData, nextStep);
 						// Css
-						$('.acrit_teacher_step_css_styles', overlayControlsBottom).html('');
+						$('.data_teacher_step_css_styles', overlayControlsBottom).html('');
 						if(typeof nextStepData.cssStyles != 'undefined'){
-							$('.acrit_teacher_step_css_styles', overlayControlsBottom)
+							$('.data_teacher_step_css_styles', overlayControlsBottom)
 								.html('<style>'+nextStepData.cssStyles+'</style>');
 						}
 						// Set button finish flag
@@ -783,8 +783,8 @@ $.fn.acritTeacher = function(options){
 	this.displayProgress = function(){
 		let
 			progress = options.steps.length ? (currStep / options.steps.length) * 100 : 0,
-			divProgress = $('.acrit_teacher_progress', overlayControlsTop).css('width', progress + '%');
-		divProgress.toggleClass('acrit_teacher_progress_full', currStep == options.steps.length && currStep > 0);
+			divProgress = $('.data_teacher_progress', overlayControlsTop).css('width', progress + '%');
+		divProgress.toggleClass('data_teacher_progress_full', currStep == options.steps.length && currStep > 0);
 	}
 	
 	// Display step title
@@ -798,10 +798,10 @@ $.fn.acritTeacher = function(options){
 			description = $.proxy(description, this)(options);
 		}
 		//
-		$('.acrit_teacher_step_data', overlayControlsBottom).fadeOut(25, function(){
-			$('.acrit_teacher_step_title', this).html(title);
-			$('.acrit_teacher_step_description', this).html(description).hide();
-			$('.acrit_teacher_step_description_toggle', this).toggle(typeof description == 'string');
+		$('.data_teacher_step_data', overlayControlsBottom).fadeOut(25, function(){
+			$('.data_teacher_step_title', this).html(title);
+			$('.data_teacher_step_description', this).html(description).hide();
+			$('.data_teacher_step_description_toggle', this).toggle(typeof description == 'string');
 			$(this).fadeIn(25);
 		});
 	}
@@ -827,8 +827,8 @@ $.fn.acritTeacher = function(options){
 						topMax = Math.max.apply(Math, valuesMax),
 						topMiddle = topMin + (topMax - topMin) / 2;
 					result = topMiddle - ($(window).height() / 2);
-					if(topMax - topMin > $('.acrit_teacher_content', overlayData).height() - 4 * strokeMargin){ // If block is too big by height
-						result = topMin - 2 * strokeMargin - $('.acrit_teacher_overlay_title', overlayControlsTop).outerHeight();
+					if(topMax - topMin > $('.data_teacher_content', overlayData).height() - 4 * strokeMargin){ // If block is too big by height
+						result = topMin - 2 * strokeMargin - $('.data_teacher_overlay_title', overlayControlsTop).outerHeight();
 					}
 					if(result < 0){
 						result = 60;

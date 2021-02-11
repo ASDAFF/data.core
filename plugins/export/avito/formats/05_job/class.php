@@ -1,16 +1,16 @@
 <?
 /**
- * Acrit Core: Avito plugin
+ * Data Core: Avito plugin
  * @documentation http://autoload.avito.ru/format/job
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Export\Field\Field;
+	\Data\Core\Helper,
+	\Data\Core\Xml,
+	\Data\Core\Export\Field\Field;
 
 Loc::loadMessages(__FILE__);
 

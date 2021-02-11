@@ -1,18 +1,18 @@
 <?
 /**
- * Acrit Core: Retailcrm.ru plugin
+ * Data Core: Retailcrm.ru plugin
  * @documentation http://help.retailcrm.ru/Developers/ICML
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Xml,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -486,8 +486,8 @@ class RetailCrmGeneral extends RetailCrm {
 
     /**
 	 *	Get XML tag: <category>
-	 *	У товара может быть основная категория, которая не попадает в выгрузку, поэтому нужно чтобы лишняя категория не добавлялась в <categories>
-	 *	Теперь это перенесено в формат [$arXmlTags['categoryId'] = Xml::addTag(reset($arElementSections));]
+	 *	пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ <categories>
+	 *	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [$arXmlTags['categoryId'] = Xml::addTag(reset($arElementSections));]
      */
 		/*
     protected function getXmlTag_Category($arProfile, $arElement){

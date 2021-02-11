@@ -1,13 +1,13 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 ?>
 
 <?
-$obTabControl->BeginCustomField('FAQ', Helper::getMessage('ACRIT_EXP_FAQ'));
-$strUrl = 'http://www.acrit-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/';
+$obTabControl->BeginCustomField('FAQ', Helper::getMessage('DATA_EXP_FAQ'));
+$strUrl = 'http://www.data-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/';
 ?>
 <tr class="heading"><td><?=$obTabControl->GetCustomLabelHTML()?></td></tr>
 <tr>
@@ -19,8 +19,8 @@ $strUrl = 'http://www.acrit-studio.ru/technical-support/configuring-the-module-e
 $obTabControl->EndCustomField('FAQ');
 
 //
-$obTabControl->BeginCustomField('REQUIREMENTS_1', Helper::getMessage('ACRIT_EXP_REQUIREMENTS_1'));
-$strUrl = 'https://www.acrit-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/test-your-environment-before-configuring-the-module-acrit-export/';
+$obTabControl->BeginCustomField('REQUIREMENTS_1', Helper::getMessage('DATA_EXP_REQUIREMENTS_1'));
+$strUrl = 'https://www.data-studio.ru/technical-support/configuring-the-module-export-on-trade-portals/test-your-environment-before-configuring-the-module-data-export/';
 ?>
 <tr class="heading"><td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td></tr>
 <tr>

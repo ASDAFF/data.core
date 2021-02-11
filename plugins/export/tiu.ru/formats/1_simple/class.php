@@ -1,18 +1,18 @@
 <?
 
 /**
- * Acrit Core: TiuRu plugin
- * @package acrit.core
- * @copyright 2019 Acrit
+ * Data Core: TiuRu plugin
+ * @package data.core
+ * @copyright 2019 Data
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Helper,
-    \Acrit\Core\Xml,
-    \Acrit\Core\HttpRequest,
-    \Acrit\Core\Export\Field\Field,
-    \Acrit\Core\Export\Filter,
+use \Data\Core\Helper,
+    \Data\Core\Xml,
+    \Data\Core\HttpRequest,
+    \Data\Core\Export\Field\Field,
+    \Data\Core\Export\Filter,
     \PhpOffice\PhpSpreadsheet\Spreadsheet,
     \PhpOffice\PhpSpreadsheet\Writer\Xlsx,
     \PhpOffice\PhpSpreadsheet\IOFactory,
@@ -238,7 +238,7 @@ class TiuRuSimple extends YandexMarketSimple {
 
             $strCategories = '';
             foreach ($sheetData as $cell) {
-               if ($cell['A'] == 'Êàòåãîðèÿ1')
+               if ($cell['A'] == 'ÐšÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ñ1')
                   continue;
                $strCategories .= $cell['F'] . ' - ' . $cell['A'];
                if ($cell['B'])

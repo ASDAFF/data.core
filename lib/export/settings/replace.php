@@ -3,10 +3,10 @@
  * Class for settings of fields and values
  */
 
-namespace Acrit\Core\Export\Settings;
+namespace Data\Core\Export\Settings;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -54,7 +54,7 @@ class SettingsReplace extends SettingsBase {
 	
 	public static function showSettings($strFieldCode, $obField, $arParams){
 		$arReplace = $arParams[static::getCode()];
-		$bRegExp = end(\Acrit\Core\Export\Exporter::getExportModules(true)) == $obField->getModuleId();
+		$bRegExp = end(\Data\Core\Export\Exporter::getExportModules(true)) == $obField->getModuleId();
 		if(!is_array($arReplace) || !is_array($arReplace['from']) || !is_array($arReplace['to'])){
 			$arReplace = array('from'=>array(),'to'=>array());
 		}
@@ -71,8 +71,8 @@ class SettingsReplace extends SettingsBase {
 		array_unshift($arReplaceTmp, true);
 		$strUniqID = md5(uniqid().time());
 		?>
-			<table class="acrit-exp-field-settings-replace" data-role="value-replaces"
-				id="acrit-exp-field-settings-replace-<?=$strUniqID;?>" >
+			<table class="data-exp-field-settings-replace" data-role="value-replaces"
+				id="data-exp-field-settings-replace-<?=$strUniqID;?>" >
 				<tfoot>
 					<td colspan="<?=($bRegExp?'5':'4');?>">
 						<input type="button" value="<?=static::getMessage('ADD');?>" data-role="replace-add" />
@@ -86,7 +86,7 @@ class SettingsReplace extends SettingsBase {
 							$arReplaceItem = array();
 						}
 						?>
-						<tr <?if($bIsHidden):?> class="acrit-exp-field-settings-replace-row-hidden" data-noserialize="Y"<?endif?>>
+						<tr <?if($bIsHidden):?> class="data-exp-field-settings-replace-row-hidden" data-noserialize="Y"<?endif?>>
 							<td class="cell-from">
 								<input type="text" size="10" name="<?=static::getCode();?>[from][]" value="<?=htmlspecialcharsbx($arReplaceItem['FROM']);?>" placeholder="<?=static::getMessage('FROM');?>" data-role="replace-from" />
 							</td>
@@ -118,14 +118,14 @@ class SettingsReplace extends SettingsBase {
 							</td>
 						</tr>
 					<?endforeach?>
-					<tr class="acrit-exp-field-settings-replace-row-nothing">
+					<tr class="data-exp-field-settings-replace-row-nothing">
 						<td colspan="<?=($bRegExp?'5':'4');?>"><?=static::getMessage('NOTHING');?></td>
 					</tr>
 				</tbody>
 			</table>
 			<?if($bRegExp):?>
 				<script>
-				$('#acrit-exp-field-settings-replace-<?=$strUniqID;?> tr:visible [data-role="replace-use-regexp"]').each(function(){
+				$('#data-exp-field-settings-replace-<?=$strUniqID;?> tr:visible [data-role="replace-use-regexp"]').each(function(){
 					$(this).trigger('change');
 				});
 				</script>

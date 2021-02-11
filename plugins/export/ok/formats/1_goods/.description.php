@@ -1,6 +1,6 @@
 <?
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 ?>
 
 <h2><?=static::getMessage('HEADER_FIRST');?></h2>

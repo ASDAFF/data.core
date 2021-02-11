@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit Core: nadavi.net plugin
+ * Data Core: nadavi.net plugin
  * @documentation https://nadavi.net/nadavi.php?idPage_=57&idBookmark_=5
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Xml;
+	\Data\Core\Helper,
+	\Data\Core\Xml;
 
 class NadaviNetXml extends NadaviNet {
 	

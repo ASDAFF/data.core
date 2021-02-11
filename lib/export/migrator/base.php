@@ -3,7 +3,7 @@
  * Base class for migrator
  */
 
-namespace Acrit\Core\Export\Migrator;
+namespace Data\Core\Export\Migrator;
 
 /**
  *	

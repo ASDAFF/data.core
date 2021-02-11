@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_MAXLENGTH_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_MAXLENGTH_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Ограничение максимальной длины текста';
 $MESS[$strMessPrefix.'DESC'] = 'Данная опция позволяет обрезать длинные значения до нужной длины. При обрезке в конце строки добавляется троеточие.<br/><br/>

@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_TIU_RU_VENDOR_MODEL_';
+$strMessPrefix = 'DATA_EXP_TIU_RU_VENDOR_MODEL_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'tiu.ru (произвольный тип)';

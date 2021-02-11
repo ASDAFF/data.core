@@ -1,11 +1,11 @@
-window.acritCoreLogAjaxQuery = null;
-function acritCoreLogAjax(ajaxAction, moduleId, profileId, callbackSuccess, callbackError){
+window.dataCoreLogAjaxQuery = null;
+function dataCoreLogAjax(ajaxAction, moduleId, profileId, callbackSuccess, callbackError){
 	BX.showWait();
-	if(window.acritCoreLogAjaxQuery){
-		window.acritCoreLogAjaxQuery.abort();
+	if(window.dataCoreLogAjaxQuery){
+		window.dataCoreLogAjaxQuery.abort();
 	}
-	window.acritCoreLogAjaxQuery = $.ajax({
-		url: '/bitrix/admin/acrit_core_log.php?action='+ajaxAction+'&module='+moduleId+'&profile='+profileId,
+	window.dataCoreLogAjaxQuery = $.ajax({
+		url: '/bitrix/admin/data_core_log.php?action='+ajaxAction+'&module='+moduleId+'&profile='+profileId,
 		type: 'POST',
 		data: {},
 		datatype: 'json',
@@ -42,7 +42,7 @@ $(document).delegate('[data-role="log-wrapper"] [data-role^="log-"][data-ajax="Y
 		maySend = false;
 	}
 	if(maySend) {
-		acritCoreLogAjax(action, moduleId, profileId, function(jsonResult, textStatus, jqXHR){
+		dataCoreLogAjax(action, moduleId, profileId, function(jsonResult, textStatus, jqXHR){
 			if(jsonResult.Success){
 				if(jsonResult.LogSize != undefined){
 					spanFullSize.html(jsonResult.LogSize);

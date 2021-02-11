@@ -1,12 +1,12 @@
 <?
 /**
- * Acrit Core: JSON base plugin
+ * Data Core: JSON base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Helper,
-	\Acrit\Core\Export\UniversalPlugin;
+use \Data\Core\Helper,
+	\Data\Core\Export\UniversalPlugin;
 
 abstract class CustomJson extends UniversalPlugin {
 	

@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_AVITO_SERVICES_';
+$strMessPrefix = 'DATA_EXP_AVITO_SERVICES_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Авито (Предложение услуг)';

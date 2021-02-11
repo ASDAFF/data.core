@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_INDIVIDION_COM_';
+$strMessPrefix = 'DATA_EXP_INDIVIDION_COM_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'individion.com';

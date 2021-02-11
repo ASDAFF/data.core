@@ -1,10 +1,10 @@
 <?
 /**
- * Acrit Core: Lengow.com plugin
+ * Data Core: Lengow.com plugin
  * @documentation https://support.lengow.com/hc/en-us/articles/360007020232-Products-Catalogue
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 class LengowComXml extends LengowCom {
 	

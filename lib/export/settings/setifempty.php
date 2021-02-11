@@ -3,11 +3,11 @@
  * Class for settings of fields and values
  */
 
-namespace Acrit\Core\Export\Settings;
+namespace Data\Core\Export\Settings;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Log;
 
 Helper::loadMessages(__FILE__);
 
@@ -44,7 +44,7 @@ class SettingsSetIfEmpty extends SettingsBase {
 	}
 	
 	public static function isShown($obField, $arParams){
-		if(in_array($obField->getModuleId(), array_slice(\Acrit\Core\Export\Exporter::getInstance($obField->getModuleId())->getExportModules(true), -2))){
+		if(in_array($obField->getModuleId(), array_slice(\Data\Core\Export\Exporter::getInstance($obField->getModuleId())->getExportModules(true), -2))){
 			return true;
 		}
 		return false;

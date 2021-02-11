@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_AVITO_TRUCKS_';
+$strMessPrefix = 'DATA_EXP_AVITO_TRUCKS_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Авито (Грузовики и спецтехника)';

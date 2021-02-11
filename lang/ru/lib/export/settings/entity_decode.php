@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_ENTITY_DECODE_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_ENTITY_DECODE_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Преобразовать HTML-сущности';
 $MESS[$strMessPrefix.'DESC'] = 'Отметьте данную опцию чтобы автоматически заменять HTML-сущности на соответствующие символы. К примеру, преобразуется:

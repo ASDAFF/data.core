@@ -1,4 +1,4 @@
-<table class="acrit-exp-goods-storage-directory-external" style="border-collapse:collapse;">
+<table class="data-exp-goods-storage-directory-external" style="border-collapse:collapse;">
 	<tbody>
 		<tr>
 			<td><input type="text" name="PROFILE[PARAMS][STORAGE_DIRECTORY_EXTERNAL]" size="50" 

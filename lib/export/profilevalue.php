@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ProfileValuesTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class ProfileValueTable extends Entity\DataManager {
@@ -37,37 +37,37 @@ abstract class ProfileValueTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_IBLOCK_ID'),
 			)),
 			'TYPE' => new Entity\StringField('TYPE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_TYPE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_TYPE'),
 			)),
 			'FIELD' => new Entity\StringField('FIELD', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_FIELD'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_FIELD'),
 			)),
 			'VALUE' => new Entity\StringField('VALUE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_VALUE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_VALUE'),
 			)),
 			'TITLE' => new Entity\StringField('TITLE', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_TITLE'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_TITLE'),
 			)),
 			'CONST' => new Entity\TextField('CONST', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_CONST'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_CONST'),
 			)),
 			'SUFFIX' => new Entity\StringField('SUFFIX', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_SUFFIX'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_SUFFIX'),
 			)),
 			'PARAMS' => new Entity\TextField('PARAMS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_PARAMS'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_PARAMS'),
 			)),
 			'DATE_MODIFIED' => new Entity\DateTimeField('DATE_MODIFIED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_VALUES_FIELD_DATE_MODIFIED'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_VALUES_FIELD_DATE_MODIFIED'),
 			)),
 		);
 	}

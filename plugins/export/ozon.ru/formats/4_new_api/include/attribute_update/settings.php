@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\CategoryTable as Category;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugins\OzonRuHelpers\CategoryTable as Category;
 	
 $intIBlockID = $arParams['IBLOCK_ID'];
 $arIBlockParams = $arParams['IBLOCK_PARAMS'];
@@ -58,7 +58,7 @@ $arIBlockParams = $arParams['IBLOCK_PARAMS'];
 						value="<?=$intCategoryId;?>">
 					<div data-role="categories-alternative-item-name"><?=$strCategoryName?></div>
 					<div data-role="categories-alternative-item-delete">
-						<a class="acrit-inline-link"><?=static::getMessage('CATEGORIES_ALTERNATIVE_SELECT_DELETE');?></a>
+						<a class="data-inline-link"><?=static::getMessage('CATEGORIES_ALTERNATIVE_SELECT_DELETE');?></a>
 					</div>
 				</div>
 			<?endforeach?>

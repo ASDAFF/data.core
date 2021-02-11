@@ -1,6 +1,6 @@
 <?
 
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 // General
 $MESS[$strLang . 'NAME'] = 'youla.ru (формат YML)';

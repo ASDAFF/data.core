@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_profiles` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_profiles` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`ACTIVE` char(1) NOT NULL DEFAULT 'Y',
 	`NAME` varchar(255) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_profiles` (
 	PRIMARY KEY (`ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_iblocks` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_iblocks` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
@@ -38,11 +38,11 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_iblocks` (
 	`PARAMS` longtext NOT NULL,
 	`DATE_MODIFIED` datetime DEFAULT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`PROFILE_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`PROFILE_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_fields` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_fields` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_fields` (
 	`CONDITIONS` longtext,
 	`DATE_MODIFIED` datetime DEFAULT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`PROFILE_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`PROFILE_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_values` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_values` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
@@ -69,11 +69,11 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_values` (
 	`PARAMS` longtext,
 	`DATE_MODIFIED` datetime DEFAULT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`PROFILE_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`PROFILE_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_additional_fields` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_additional_fields` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
@@ -81,21 +81,21 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_additional_fields` (
 	`UNIT` varchar(50) DEFAULT NULL,
 	`DEFAULT_FIELD` varchar(255) DEFAULT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`PROFILE_ID`,`IBLOCK_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`PROFILE_ID`,`IBLOCK_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_category_redefinition` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_category_redefinition` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
 	`SECTION_ID` int(11) NOT NULL,
 	`SECTION_NAME` text NOT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`PROFILE_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`PROFILE_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_2` (`PROFILE_ID`,`IBLOCK_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_category_custom_name` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_category_custom_name` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `PROFILE_ID` int(11) NOT NULL,
   `IBLOCK_ID` int(11) NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_category_custom_name` (
   PRIMARY KEY (`ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_export_data` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_export_data` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
@@ -126,13 +126,13 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_export_data` (
 	`OFFERS_ERRORS` int(11) DEFAULT NULL,
 	`EXPORTED` char(1) DEFAULT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`ELEMENT_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_2` (`PROFILE_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_3` (`IBLOCK_ID`,`PROFILE_ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_4` (`ELEMENT_ID`,`PROFILE_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`ELEMENT_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_2` (`PROFILE_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_3` (`IBLOCK_ID`,`PROFILE_ID`),
+  KEY `ix_perf_data_#MODULE_CODE#_4` (`ELEMENT_ID`,`PROFILE_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_history` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_history` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`DATE_START` datetime NOT NULL,
@@ -155,10 +155,10 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_history` (
 	`IP` varchar(15) DEFAULT NULL,
 	`VERSION` varchar(10) DEFAULT NULL,
 	PRIMARY KEY (`ID`),
-  KEY `ix_perf_acrit_#MODULE_CODE#_1` (`PROFILE_ID`)
+  KEY `ix_perf_data_#MODULE_CODE#_1` (`PROFILE_ID`)
 );
 
-CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_external_id` (
+CREATE TABLE IF NOT EXISTS `data_#MODULE_CODE#_new_external_id` (
 	`ID` int(11) NOT NULL AUTO_INCREMENT,
 	`PROFILE_ID` int(11) NOT NULL,
 	`IBLOCK_ID` int(11) NOT NULL,
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `acrit_#MODULE_CODE#_new_external_id` (
 	PRIMARY KEY (`ID`)
 );
 
-CREATE TABLE `acrit_#MODULE_CODE#_crm_profiles` (
+CREATE TABLE `data_#MODULE_CODE#_crm_profiles` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `SORT` int(11) NOT NULL,
   `NAME` varchar(255) NOT NULL,
@@ -191,17 +191,17 @@ CREATE TABLE `acrit_#MODULE_CODE#_crm_profiles` (
   PRIMARY KEY (`ID`)
 );
 
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_additional_fields` (`PROFILE_ID`, `IBLOCK_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_category_redefinition` (`PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_2 ON `acrit_#MODULE_CODE#_new_category_redefinition` (`PROFILE_ID`, `IBLOCK_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_export_data` (`ELEMENT_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_2 ON `acrit_#MODULE_CODE#_new_export_data` (`PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_3 ON `acrit_#MODULE_CODE#_new_export_data` (`IBLOCK_ID`, `PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_4 ON `acrit_#MODULE_CODE#_new_export_data` (`ELEMENT_ID`, `PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_fields` (`PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_2 ON `acrit_#MODULE_CODE#_new_fields` (`PROFILE_ID`, `IBLOCK_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_history` (`PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_iblocks` (`PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_2 ON `acrit_#MODULE_CODE#_new_iblocks` (`PROFILE_ID`, `IBLOCK_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_1 ON `acrit_#MODULE_CODE#_new_values` (`PROFILE_ID`);
-CREATE INDEX ix_perf_acrit_#MODULE_CODE#_2 ON `acrit_#MODULE_CODE#_new_values` (`PROFILE_ID`, `IBLOCK_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_additional_fields` (`PROFILE_ID`, `IBLOCK_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_category_redefinition` (`PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_2 ON `data_#MODULE_CODE#_new_category_redefinition` (`PROFILE_ID`, `IBLOCK_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_export_data` (`ELEMENT_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_2 ON `data_#MODULE_CODE#_new_export_data` (`PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_3 ON `data_#MODULE_CODE#_new_export_data` (`IBLOCK_ID`, `PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_4 ON `data_#MODULE_CODE#_new_export_data` (`ELEMENT_ID`, `PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_fields` (`PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_2 ON `data_#MODULE_CODE#_new_fields` (`PROFILE_ID`, `IBLOCK_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_history` (`PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_iblocks` (`PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_2 ON `data_#MODULE_CODE#_new_iblocks` (`PROFILE_ID`, `IBLOCK_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_1 ON `data_#MODULE_CODE#_new_values` (`PROFILE_ID`);
+CREATE INDEX ix_perf_data_#MODULE_CODE#_2 ON `data_#MODULE_CODE#_new_values` (`PROFILE_ID`, `IBLOCK_ID`);

@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 # Get full iblocks tree
 $arIBlocks = Helper::getIBlockList(true, false, false, false);

@@ -1,13 +1,13 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Update,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Update,
+	\Data\Core\Json;
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 define('ADMIN_MODULE_NAME', $strCoreId);
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php');
 \Bitrix\Main\Loader::includeModule($strCoreId);

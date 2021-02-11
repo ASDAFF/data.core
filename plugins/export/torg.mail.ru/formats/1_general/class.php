@@ -1,21 +1,21 @@
 <?
 /**
- * Acrit Core: Torg.mail.ru plugin
+ * Data Core: Torg.mail.ru plugin
  * @documentation https://torg.mail.ru/info/122/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Filter,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
+	\Data\Core\Xml,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -105,7 +105,7 @@ class TorgMailRuGeneral extends TorgMailRu {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;" data-role="settings-<?=static::getCode();?>">
+		<table class="data-exp-plugin-settings" style="width:100%;" data-role="settings-<?=static::getCode();?>">
 			<tbody>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
@@ -134,8 +134,8 @@ class TorgMailRuGeneral extends TorgMailRu {
 					</td>
 					<td width="60%" class="adm-detail-content-cell-r">
 						<?\CAdminFileDialog::ShowScript(array(
-							'event' => 'AcritExpPluginXmlFilenameSelect',
-							'arResultDest' => array('FUNCTION_NAME' => 'acrit_exp_plugin_xml_filename_select'),
+							'event' => 'DataExpPluginXmlFilenameSelect',
+							'arResultDest' => array('FUNCTION_NAME' => 'data_exp_plugin_xml_filename_select'),
 							'arPath' => array(),
 							'select' => 'F',
 							'operation' => 'S',
@@ -146,19 +146,19 @@ class TorgMailRuGeneral extends TorgMailRu {
 							'saveConfig' => true,
 						));?>
 						<script>
-						function acrit_exp_plugin_xml_filename_select(File,Path,Site){
+						function data_exp_plugin_xml_filename_select(File,Path,Site){
 							var FilePath = Path+'/'+File;
-							$('#acrit_exp_plugin_xml_filename').val(FilePath);
+							$('#data_exp_plugin_xml_filename').val(FilePath);
 						}
 						</script>
-						<table class="acrit-exp-plugin-settings-fileselect">
+						<table class="data-exp-plugin-settings-fileselect">
 							<tbody>
 								<tr>
 									<td><input type="text" name="PROFILE[PARAMS][EXPORT_FILE_NAME]" 
-										id="acrit_exp_plugin_xml_filename" data-role="export-file-name"
+										id="data_exp_plugin_xml_filename" data-role="export-file-name"
 										value="<?=htmlspecialcharsbx($this->arProfile['PARAMS']['EXPORT_FILE_NAME']);?>" size="40"
 										placeholder="<?=static::getMessage('SETTINGS_FILE_PLACEHOLDER');?>" /></td>
-									<td><input type="button" value="..." onclick="AcritExpPluginXmlFilenameSelect()" /></td>
+									<td><input type="button" value="..." onclick="DataExpPluginXmlFilenameSelect()" /></td>
 									<td>
 										&nbsp;
 										<?=$this->showFileOpenLink();?>
@@ -171,7 +171,7 @@ class TorgMailRuGeneral extends TorgMailRu {
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?=Helper::ShowHint(static::getMessage('SETTINGS_ENCODING_HINT'));?>
-						<label for="acrit_exp_plugin_encoding">
+						<label for="data_exp_plugin_encoding">
 							<b><?=static::getMessage('SETTINGS_ENCODING');?>:</b>
 						</label>
 					</td>
@@ -183,7 +183,7 @@ class TorgMailRuGeneral extends TorgMailRu {
 							'REFERENCE_ID' => array_keys($arEncodings),
 						);
 						print SelectBoxFromArray('PROFILE[PARAMS][ENCODING]', $arEncodings,
-							$this->arProfile['PARAMS']['ENCODING'], '', 'id="acrit_exp_plugin_encoding"');
+							$this->arProfile['PARAMS']['ENCODING'], '', 'id="data_exp_plugin_encoding"');
 						?>
 					</td>
 				</tr>
@@ -762,7 +762,7 @@ class TorgMailRuGeneral extends TorgMailRu {
 	public function getSteps(){
 		$arResult = array();
 		$arResult['CHECK'] = array(
-			'NAME' => static::getMessage('ACRIT_EXP_EXPORTER_STEP_CHECK'),
+			'NAME' => static::getMessage('DATA_EXP_EXPORTER_STEP_CHECK'),
 			'SORT' => 10,
 			#'FUNC' => __CLASS__.'::stepCheck',
 			'FUNC' => array($this, 'stepCheck'),
@@ -848,7 +848,7 @@ class TorgMailRuGeneral extends TorgMailRu {
 			unlink($arSession['XML_FILE']);
 		}
 		if(!Helper::createDirectoriesForFile($arSession['XML_FILE'])){
-			$strMessage = Loc::getMessage('ACRIT_EXP_ERROR_CREATE_DIRECORY', array(
+			$strMessage = Loc::getMessage('DATA_EXP_ERROR_CREATE_DIRECORY', array(
 				'#DIR#' => Helper::getDirectoryForFile($arSession['XML_FILE']),
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);
@@ -860,7 +860,7 @@ class TorgMailRuGeneral extends TorgMailRu {
 		}
 		if(!@rename($arSession['XML_FILE_TMP'], $arSession['XML_FILE'])){
 			@unlink($arSession['XML_FILE_TMP']);
-			$strMessage = Loc::getMessage('ACRIT_EXP_FILE_NO_PERMISSIONS', array(
+			$strMessage = Loc::getMessage('DATA_EXP_FILE_NO_PERMISSIONS', array(
 				'#FILE#' => $arSession['XML_FILE'],
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);

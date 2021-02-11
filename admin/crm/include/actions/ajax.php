@@ -1,10 +1,10 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
-CModule::IncludeModule("acrit.core");
+CModule::IncludeModule("data.core");
 
-use Acrit\Core\Crm\Controller,
-	Acrit\Core\Crm\Rest;
+use Data\Core\Crm\Controller,
+	Data\Core\Crm\Rest;
 
 Controller::setModuleId($strModuleId);
 

@@ -1,12 +1,12 @@
 <?
 /**
- * Acrit Core: Technoportal.ua base plugin
+ * Data Core: Technoportal.ua base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Export\UniversalPlugin;
+	\Data\Core\Export\UniversalPlugin;
 
 abstract class TechnoportalUa extends UniversalPlugin {
 	

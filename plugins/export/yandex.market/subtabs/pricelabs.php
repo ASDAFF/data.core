@@ -1,11 +1,11 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
-$strLang = 'ACRIT_EXP_YANDEX_MARKET_PRICELABS_';
+$strLang = 'DATA_EXP_YANDEX_MARKET_PRICELABS_';
 $strHint = $strLang.'HINT_';
 
 ?>

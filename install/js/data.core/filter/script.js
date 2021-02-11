@@ -1,7 +1,7 @@
 (function($) {
 	
 	/* Filter */
-	$.fn.acritFilter = function(options){
+	$.fn.dataFilter = function(options){
 		
 		// Vars
 		var divContainer = $(this),
@@ -79,7 +79,7 @@
 				$(options.field).val(jsonText);
 			}
 		}
-		divContainer.bind('acrit:buildJsonResult', function(){ // like public method
+		divContainer.bind('data:buildJsonResult', function(){ // like public method
 			divContainer.buildJsonResult();
 		});
 		
@@ -344,7 +344,7 @@
 })(jQuery);
 
 // Custom function
-function AcritExpConditionsPopupCallbackClickEntity(e, sender, options){
+function DataExpConditionsPopupCallbackClickEntity(e, sender, options){
 	e.preventDefault();
 	//
 	var divFilter = $(sender).closest('[data-role="filter"]'),
@@ -360,8 +360,8 @@ function AcritExpConditionsPopupCallbackClickEntity(e, sender, options){
 	currentLogic = currentLogic == undefined ? '' : currentLogic;
 	currentValue = currentValue == undefined ? '' : currentValue;
 	currentValueTitle = currentValueTitle == undefined ? '' : currentValueTitle;
-	AcritExpConditionsPopup.SetCurrentFilter(divFilter);
-	AcritExpConditionsPopup.OnSelectField = function(thisPopup, openerLink, selectedOption, inputValue, iblockType){
+	DataExpConditionsPopup.SetCurrentFilter(divFilter);
+	DataExpConditionsPopup.OnSelectField = function(thisPopup, openerLink, selectedOption, inputValue, iblockType){
 		if(iblockType == undefined) {
 			iblockType = 'main';
 		}
@@ -407,11 +407,11 @@ function AcritExpConditionsPopupCallbackClickEntity(e, sender, options){
 		}
 		else if (inputValue && inputValue.length){
 			if (inputValue.prop('tagName').toUpperCase()=='SELECT') {
-				var select = $('.acrit-exp-field-select-list', AcritExpConditionsPopup.DIV);
+				var select = $('.data-exp-field-select-list', DataExpConditionsPopup.DIV);
 					items = $('option:selected', select).not('[value=""]'),
 					text = items.get().map(function(option){return $(option).text()}).join(', '),
 					value = items.get().map(function(option){return $(option).val()})
-						.join(BX.message('ACRIT_EXP_CONDITIONS_VALUE_SEPARATOR')),
+						.join(BX.message('DATA_EXP_CONDITIONS_VALUE_SEPARATOR')),
 					justId = select.attr('data-just-id') == 'Y';
 				if(justId){
 					text = items.get().map(function(option){return $(option).val()}).join(', ');
@@ -436,7 +436,7 @@ function AcritExpConditionsPopupCallbackClickEntity(e, sender, options){
 					}
 					else if (inputValue.length > 1){
 						value = inputValue.get().map(function(input){return $(input).val()})
-							.join(BX.message('ACRIT_EXP_CONDITIONS_VALUE_SEPARATOR'));
+							.join(BX.message('DATA_EXP_CONDITIONS_VALUE_SEPARATOR'));
 						text = inputValue.get().map(function(input){return $(input).val()})
 							.join(', ');
 					}
@@ -448,17 +448,17 @@ function AcritExpConditionsPopupCallbackClickEntity(e, sender, options){
 			}
 		}
 		// rebuild
-		thisPopup.divFilter.trigger('acrit:buildJsonResult');
+		thisPopup.divFilter.trigger('data:buildJsonResult');
 	}
-	AcritExpConditionsPopup.Open(sender, iblockId, iblockType, entity, currentField, currentLogic, currentValue, currentValueTitle);
+	DataExpConditionsPopup.Open(sender, iblockId, iblockType, entity, currentField, currentLogic, currentValue, currentValueTitle);
 }
 
 /**
  *	POPUP: select field
  */
-var AcritExpConditionsPopup;
-AcritExpConditionsPopup = new BX.CDialog({
-	ID: 'AcritExpConditionsPopup',
+var DataExpConditionsPopup;
+DataExpConditionsPopup = new BX.CDialog({
+	ID: 'DataExpConditionsPopup',
 	title: '',
 	content: '',
 	resizable: true,
@@ -466,11 +466,11 @@ AcritExpConditionsPopup = new BX.CDialog({
 	height: 400,
 	width: 800
 });
-AcritExpConditionsPopup.OnSelectField = null;
-AcritExpConditionsPopup.SetCurrentFilter = function(divFilter){
+DataExpConditionsPopup.OnSelectField = null;
+DataExpConditionsPopup.SetCurrentFilter = function(divFilter){
 	this.divFilter = divFilter;
 }
-AcritExpConditionsPopup.Open = function(sender, iblockId, iblockType, entity, currentField, currentLogic, currentValue, currentValueTitle){
+DataExpConditionsPopup.Open = function(sender, iblockId, iblockType, entity, currentField, currentLogic, currentValue, currentValueTitle){
 	this.openerLink = sender;
 	this.iblockId = iblockId;
 	this.iblockType = iblockType; // 'main' || 'offers'
@@ -480,16 +480,16 @@ AcritExpConditionsPopup.Open = function(sender, iblockId, iblockType, entity, cu
 	this.currentValue = currentValue;
 	this.currentValueTitle = currentValueTitle;
 	//
-	this.SetTitle(BX.message('ACRIT_EXP_CONDITIONS_POPUP_SELECT_'+entity.toUpperCase()));
-	this.SetContent(BX.message('ACRIT_EXP_CONDITIONS_POPUP_LOADING'));
+	this.SetTitle(BX.message('DATA_EXP_CONDITIONS_POPUP_SELECT_'+entity.toUpperCase()));
+	this.SetContent(BX.message('DATA_EXP_CONDITIONS_POPUP_LOADING'));
 	this.SetNavButtons(true);
 	this.Show();
 	this.LoadContent();
 }
-AcritExpConditionsPopup.SetTitle = function(title){
+DataExpConditionsPopup.SetTitle = function(title){
 	$('.bx-core-adm-dialog-head-inner', this.PARTS.TITLEBAR).html(title);
 }
-AcritExpConditionsPopup.FilterFields = function(){
+DataExpConditionsPopup.FilterFields = function(){
 	var fieldText = $('[data-role="entity-select-search"]:visible', this.DIV),
 		fieldList = $('[data-role="entity-select-item"]:visible', this.DIV),
 		searchText = $.trim(fieldText.val()).toLowerCase()
@@ -526,14 +526,14 @@ AcritExpConditionsPopup.FilterFields = function(){
 		}
 	}
 }
-AcritExpConditionsPopup.LoadContent = function(){
+DataExpConditionsPopup.LoadContent = function(){
 	var thisPopup = this,
 		ajaxData = 'iblock_id='+this.iblockId+'&iblock_type='+this.iblockType+'&entity='+this.entity
 			+'&current_field='+this.currentField+'&current_logic='+this.currentLogic
 			+'&current_value='+encodeURIComponent(this.currentValue)
 			+'&current_value_title='+encodeURIComponent(this.currentValueTitle);
 	//
-	acritExpAjax('load_popup_conditions', ajaxData, function(JsonResult){
+	dataExpAjax('load_popup_conditions', ajaxData, function(JsonResult){
 		$(thisPopup.PARTS.CONTENT_DATA).children('.bx-core-adm-dialog-content-wrap-inner').children().html(JsonResult.HTML);
 		var isListWithSearch = $('[data-role="entity-select-item"]', thisPopup.DIV).length>0;
 		if(isListWithSearch){
@@ -552,11 +552,11 @@ AcritExpConditionsPopup.LoadContent = function(){
 		});
 		$('[data-role="entity-select-item"],[data-role="entity-select-value"],[data-role="entity-select-value-pseudo"]', thisPopup.DIV).dblclick(function(){
 			if($(this).is('select') && $('option:selected', this).length) {
-				$('#acrit_exp_conditions_save').trigger('click');
+				$('#data_exp_conditions_save').trigger('click');
 			}
 		}).keydown(function(e){
 			if(e.keyCode==13) {
-				$('#acrit_exp_conditions_save').trigger('click');
+				$('#data_exp_conditions_save').trigger('click');
 			}
 		});
 		if($('[data-role="allow-save"]', thisPopup.DIV).length) {
@@ -565,21 +565,21 @@ AcritExpConditionsPopup.LoadContent = function(){
 		$('[data-role="entity-select-type"]', thisPopup.DIV).trigger('change');
 		$('[data-role="entity-select-item"],[data-role="entity-select-value"]', thisPopup.DIV).first().focus();
 	}, function(jqXHR){
-		//$('#acrit_exp_form #field_IBLOCK_content').html(jqXHR.responseText);
+		//$('#data_exp_form #field_IBLOCK_content').html(jqXHR.responseText);
 	}, true);
 }
-AcritExpConditionsPopup.SetNavButtons = function(empty){
-	$(AcritExpConditionsPopup.PARTS.BUTTONS_CONTAINER).html('');
+DataExpConditionsPopup.SetNavButtons = function(empty){
+	$(DataExpConditionsPopup.PARTS.BUTTONS_CONTAINER).html('');
 	if(!empty) {
-		AcritExpConditionsPopup.SetButtons(
+		DataExpConditionsPopup.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_CONDITIONS_POPUP_SAVE'),
+				'name': BX.message('DATA_EXP_CONDITIONS_POPUP_SAVE'),
 				'title': '',
-				'id': 'acrit_exp_conditions_save',
+				'id': 'data_exp_conditions_save',
 				'className': 'adm-btn-green',
 				'action': function(){
 					var selected = false;
-					if(typeof AcritExpConditionsPopup.OnSelectField == 'function'){
+					if(typeof DataExpConditionsPopup.OnSelectField == 'function'){
 						var thisPopup = this.parentWindow,
 							selectedOption = $('[data-role="entity-select-item"]:visible option:selected', thisPopup.DIV),
 							inputValue = $('[data-role="entity-select-value"]:visible', thisPopup.DIV),
@@ -604,9 +604,9 @@ AcritExpConditionsPopup.SetNavButtons = function(empty){
 					}
 				}
 			}, {
-				'name': BX.message('ACRIT_EXP_CONDITIONS_POPUP_CANCEL'),
+				'name': BX.message('DATA_EXP_CONDITIONS_POPUP_CANCEL'),
 				'title': '',
-				'id': 'acrit_exp_conditions_cancel',
+				'id': 'data_exp_conditions_cancel',
 				'action': function(){
 					this.parentWindow.Close();
 				}
@@ -618,8 +618,8 @@ AcritExpConditionsPopup.SetNavButtons = function(empty){
 /**
  *	Field select for filter
  */
-$(document).delegate('.acrit-exp-field-select-table select[data-role="entity-select-type"]', 'change', function(){
-	var table = $(this).closest('.acrit-exp-field-select-table'),
+$(document).delegate('.data-exp-field-select-table select[data-role="entity-select-type"]', 'change', function(){
+	var table = $(this).closest('.data-exp-field-select-table'),
 		listMain = $('[data-role="entity-select-item"][data-type="main"]', table),
 		listOffers = $('[data-role="entity-select-item"][data-type="offers"]', table);
 	listMain.hide();
@@ -670,7 +670,7 @@ $(document).delegate('input[data-role="entity-select-value-multiple-add"]', 'cli
 		newRow = row.clone().appendTo(tbody);
 	newRow.find('input[type=text]').val('').keydown(function(e){
 		if(e.keyCode==13) {
-			$('#acrit_exp_conditions_save').trigger('click');
+			$('#data_exp_conditions_save').trigger('click');
 		}
 	});
 });

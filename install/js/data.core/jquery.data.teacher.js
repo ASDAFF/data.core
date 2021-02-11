@@ -1,14 +1,14 @@
 /*
-jQuery.acritTeacher = function(name, input){
+jQuery.dataTeacher = function(name, input){
 	let
 		type = typeof input,
 		mainArguments = arguments;
 	
-	if(jQuery.acritTeacher.data == undefined){
-		jQuery.acritTeacher.data = {};
+	if(jQuery.dataTeacher.data == undefined){
+		jQuery.dataTeacher.data = {};
 	}
 	
-	if(typeof jQuery.acritTeacher.data == undefined){
+	if(typeof jQuery.dataTeacher.data == undefined){
 		
 	}
 	
@@ -26,19 +26,19 @@ jQuery.acritTeacher = function(name, input){
 	}
 	
 	function saveInputData(name, input){
-		jQuery.acritTeacher.data.name = input;
+		jQuery.dataTeacher.data.name = input;
 	}
 	
 }
 */
 
 /*
-jQuery.acritTeacher({
+jQuery.dataTeacher({
 	data: {} // json || function || ajax
 });
 */
 
-$.fn.acritTeacher = function(options){
+$.fn.dataTeacher = function(options){
 	
 	let
 		divContainer = $(this),
@@ -46,8 +46,8 @@ $.fn.acritTeacher = function(options){
 			testOption: true
 		};
 	
-	if(this.acritTeacherOverlay == undefined){
-		this.acritTeacherOverlay = $('<div [data-role="acrit_teacher_overlay"] />').appendTo($('body'));
+	if(this.dataTeacherOverlay == undefined){
+		this.dataTeacherOverlay = $('<div [data-role="data_teacher_overlay"] />').appendTo($('body'));
 	}
 	
 	// Options
@@ -63,7 +63,7 @@ $.fn.acritTeacher = function(options){
 	}
 	
 	//
-	divContainer.bind('acrit:buildJsonResult', function(){
+	divContainer.bind('data:buildJsonResult', function(){
 		divContainer.buildJsonResult();
 	});
 	
@@ -166,6 +166,6 @@ $.fn.acritTeacher = function(options){
 };
 
 $(document).ready(function(){
-	$('#adm-workarea').acritTeacher();
+	$('#adm-workarea').dataTeacher();
 });
 

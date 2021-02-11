@@ -1,12 +1,16 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+/**
+ * Copyright (c) 12/2/2021 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-    \Acrit\Core\Helper;
+    \Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
-// Это использовать для всех дополнительных параметров в плагинах, чтобы параметры профиля не пересекались
+// Р­С‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР»СЏ РІСЃРµС… РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РІ РїР»Р°РіРёРЅР°С…, С‡С‚РѕР±С‹ РїР°СЂР°РјРµС‚СЂС‹ РїСЂРѕС„РёР»СЏ РЅРµ РїРµСЂРµСЃРµРєР°Р»РёСЃСЊ
 $strPluginParams = $obPlugin->getPluginParamsInputName();
 $arPluginParams = $obPlugin->getPluginParams();
 
@@ -37,13 +41,13 @@ $obTabControl->BeginCustomField($strPluginParams.'[ALBUMS_TABLE]', $obPlugin::ge
     </tr>
     <tr id="row_VK_GOODS_ALBUMS_TABLE">
         <td width="100%" valign="top" colspan="2">
-            <table class="adm-list-table acrit-exp-tab-albums-table">
+            <table class="adm-list-table data-exp-tab-albums-table">
                 <thead>
                     <tr class="adm-list-table-header">
                         <td class="adm-list-table-cell"><div class="adm-list-table-cell-inner"><?=$obPlugin::getMessage('ALBUMS_TABLE_H1');?></div></td>
                         <td class="adm-list-table-cell"><div class="adm-list-table-cell-inner"><?=$obPlugin::getMessage('ALBUMS_TABLE_H2');?></div></td>
                         <td class="adm-list-table-cell"><div class="adm-list-table-cell-inner"><?=$obPlugin::getMessage('ALBUMS_TABLE_H3');?></div></td>
-                        <?/*<td class="adm-list-table-cell"><div class="adm-list-table-cell-inner">Порядок</div></td>*/?>
+                        <?/*<td class="adm-list-table-cell"><div class="adm-list-table-cell-inner">РџРѕСЂСЏРґРѕРє</div></td>*/?>
                     </tr>
                 </thead>
                 <tbody>

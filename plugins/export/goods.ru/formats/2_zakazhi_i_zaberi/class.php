@@ -1,15 +1,15 @@
 <?
 /**
- * Acrit Core: JSON plugin
+ * Data Core: JSON plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\UniversalPlugin;
+	\Data\Core\Helper,
+	\Data\Core\Json,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\UniversalPlugin;
 
 class GoodsZakaziIZaberi extends UniversalPlugin {
 	

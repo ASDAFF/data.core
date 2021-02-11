@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_OK_GOODS_';
+$strMessPrefix = 'DATA_EXP_OK_GOODS_';
 
 $MESS[$strMessPrefix.'HEADER_FIRST'] = 'Первые действия';
 $MESS[$strMessPrefix.'INTRO'] = 'Прежде всего необходимо авторизовать в <a href="https://ok.ru" target="_blank">ok.ru</a> и создать новую группу, если она еще не создана. При создании группы сразу указывайте полную информацию о группе и о компании.';

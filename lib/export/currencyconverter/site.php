@@ -3,7 +3,7 @@
  * Currency converter class
  */
 
-namespace Acrit\Core\Export\CurrencyConverter;
+namespace Data\Core\Export\CurrencyConverter;
 
 use
 	\Bitrix\Main\Localization\Loc;
@@ -17,7 +17,7 @@ abstract class Site extends Base {
 	 *	Get name of converter
 	 */
 	public static function getName(){
-		return Loc::getMessage('ACRIT_EXP_CURRENCYCONVERTER_SITE_NAME');
+		return Loc::getMessage('DATA_EXP_CURRENCYCONVERTER_SITE_NAME');
 	}
 	
 	/**

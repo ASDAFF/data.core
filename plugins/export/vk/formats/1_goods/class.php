@@ -1,24 +1,28 @@
 <?
 /**
- * Acrit Core: Vk.com plugin
+ * Copyright (c) 12/2/2021 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
+/**
+ * Data Core: Vk.com plugin
  * @documentation https://vk.com/dev/goods_docs
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 require_once __DIR__.'/lib/Image/autoload.php';
 require_once __DIR__.'/lib/Cache/autoload.php';
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Json,
-	\Acrit\Core\Log,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Filter,
+	\Data\Core\Xml,
+	\Data\Core\Json,
+	\Data\Core\Log,
+	\Data\Core\Export\ExportDataTable as ExportData,
 	\Gregwar\Image\Image;
 
 Loc::loadMessages(__FILE__);
@@ -67,7 +71,7 @@ class VkGoods extends Vk {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
@@ -75,7 +79,7 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_ACCESS_TOKEN');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ACCESS_TOKEN]" id="acrit_exp_plugin_vk_access_token" value="<?=$this->arProfile['PARAMS']['ACCESS_TOKEN'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ACCESS_TOKEN]" id="data_exp_plugin_vk_access_token" value="<?=$this->arProfile['PARAMS']['ACCESS_TOKEN'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -84,7 +88,7 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_GROUP_ID');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][GROUP_ID]" id="acrit_exp_plugin_vk_group_id" value="<?=$this->arProfile['PARAMS']['GROUP_ID'];?>" size="30" />
+					<input type="text" name="PROFILE[PARAMS][GROUP_ID]" id="data_exp_plugin_vk_group_id" value="<?=$this->arProfile['PARAMS']['GROUP_ID'];?>" size="30" />
 					<?if(strlen($this->arProfile['PARAMS']['GROUP_ID'])):?>
 						&nbsp;
 						<?=$this->showFileOpenLink('https://vk.com/market-'.$this->arProfile['PARAMS']['GROUP_ID'], static::getMessage('SETTINGS_GROUP_ID_URL'));?>
@@ -97,7 +101,7 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_PROCESS_CREATE_ALBUMS');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="checkbox" name="PROFILE[PARAMS][PROCESS_CREATE_ALBUMS]" id="acrit_exp_plugin_vk_process_create_albums" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_CREATE_ALBUMS']=='Y'?' checked':'';?> />
+					<input type="checkbox" name="PROFILE[PARAMS][PROCESS_CREATE_ALBUMS]" id="data_exp_plugin_vk_process_create_albums" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_CREATE_ALBUMS']=='Y'?' checked':'';?> />
 				</td>
 			</tr>
 			<tr>
@@ -106,7 +110,7 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_PROCESS_DELETE_OTHER');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="checkbox" name="PROFILE[PARAMS][PROCESS_DELETE_OTHER]" id="acrit_exp_plugin_vk_process_delete_other" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_DELETE_OTHER']=='Y'?' checked':'';?> />
+					<input type="checkbox" name="PROFILE[PARAMS][PROCESS_DELETE_OTHER]" id="data_exp_plugin_vk_process_delete_other" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_DELETE_OTHER']=='Y'?' checked':'';?> />
 				</td>
 			</tr>
 			<tr>
@@ -115,7 +119,7 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_PROCESS_DELETE_DUPLICATES');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="checkbox" name="PROFILE[PARAMS][PROCESS_DELETE_DUPLICATES]" id="acrit_exp_plugin_vk_process_delete_duplicates" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_DELETE_DUPLICATES']=='Y'?' checked':'';?> />
+					<input type="checkbox" name="PROFILE[PARAMS][PROCESS_DELETE_DUPLICATES]" id="data_exp_plugin_vk_process_delete_duplicates" value="Y"<?=$this->arProfile['PARAMS']['PROCESS_DELETE_DUPLICATES']=='Y'?' checked':'';?> />
 				</td>
 			</tr>
 			<tr>
@@ -124,7 +128,7 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_PROCESS_LIMIT');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][PROCESS_LIMIT]" id="acrit_exp_plugin_vk_process_run_limit" value="<?=$this->arProfile['PARAMS']['PROCESS_LIMIT']?$this->arProfile['PARAMS']['PROCESS_LIMIT']:0;?>" />
+					<input type="text" name="PROFILE[PARAMS][PROCESS_LIMIT]" id="data_exp_plugin_vk_process_run_limit" value="<?=$this->arProfile['PARAMS']['PROCESS_LIMIT']?$this->arProfile['PARAMS']['PROCESS_LIMIT']:0;?>" />
 				</td>
 			</tr>
 			<tr>
@@ -133,9 +137,9 @@ class VkGoods extends Vk {
 					<?=static::getMessage('SETTINGS_PROCESS_NEXT_POS');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<span style="margin-right: 20px;" id="acrit_exp_plugin_vk_process_next_pos_view"><?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?></span>
-					<input type="hidden" name="PROFILE[PARAMS][PROCESS_NEXT_POS]" id="acrit_exp_plugin_vk_process_next_pos" value="0" />
-					<a href="#" class="adm-btn" id="acrit_exp_plugin_vk_process_next_pos_reset"><?=static::getMessage('SETTINGS_PROCESS_NEXT_POS_RESET');?></a>
+					<span style="margin-right: 20px;" id="data_exp_plugin_vk_process_next_pos_view"><?=$this->arProfile['PARAMS']['PROCESS_NEXT_POS']?$this->arProfile['PARAMS']['PROCESS_NEXT_POS']:0;?></span>
+					<input type="hidden" name="PROFILE[PARAMS][PROCESS_NEXT_POS]" id="data_exp_plugin_vk_process_next_pos" value="0" />
+					<a href="#" class="adm-btn" id="data_exp_plugin_vk_process_next_pos_reset"><?=static::getMessage('SETTINGS_PROCESS_NEXT_POS_RESET');?></a>
 				</td>
 			</tr>
 			<tr>
@@ -151,7 +155,7 @@ class VkGoods extends Vk {
 				</td>
 			</tr>
 			<?/*
-					<tr id="acrit_exp_vk_console">
+					<tr id="data_exp_vk_console">
 						<td width="40%" class="adm-detail-content-cell-l" valign="top">
 							<?=Helper::ShowHint(static::getMessage('SETTINGS_CONSOLE_HINT'));?>
 							<?=static::getMessage('SETTINGS_CONSOLE');?>:
@@ -159,7 +163,7 @@ class VkGoods extends Vk {
 						<td width="60%" class="adm-detail-content-cell-r">
 							<div><textarea placeholder="<?=static::getMessage('SETTINGS_CONSOLE_PLACEHOLDER')?>"></textarea></div>
 							<div><input type="button" value="<?=static::getMessage('SETTINGS_CONSOLE_SEND');?>" /></div>
-							<div id="acrit_exp_vk_console_result"></div>
+							<div id="data_exp_vk_console_result"></div>
 						</td>
 					</tr>
 					*/?>
@@ -1481,7 +1485,7 @@ class VkGoods extends Vk {
 		}
 //		foreach ($arProfile['IBLOCKS'] as $arIblock) {
 //			$intIBlockID = $arIblock['IBLOCK_ID'];
-//			$arFilter = \Acrit\Core\ProfileTable::getFilter($intProfileID, $intIBlockID);
+//			$arFilter = \Data\Core\ProfileTable::getFilter($intProfileID, $intIBlockID);
 //			$res = \CIBlockElement::GetList(['SORT' => 'asc'], $arFilter, false, false, ['ID', 'NAME']);
 //			while ($ob = $res->GetNextElement()) {
 //			    $arItem = $ob->GetFields();

@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -20,7 +20,7 @@ if($intIBlockOffersID) {
 ?>
 
 <select data-role="select-additional-fields" size="14" multiple="multiple" style="height:100%; width:100%;">
-	<optgroup label="<?=Loc::getMessage('ACRIT_EXP_POPUP_ADDITIONAL_FIELDS_IBLOCK_CURRENT');?>">
+	<optgroup label="<?=Loc::getMessage('DATA_EXP_POPUP_ADDITIONAL_FIELDS_IBLOCK_CURRENT');?>">
 		<?foreach($arAvailableFields['properties']['ITEMS'] as $arItem):?>
 			<?
 			$arMore = array(
@@ -33,7 +33,7 @@ if($intIBlockOffersID) {
 		<?endforeach?>
 	</optgroup>
 	<?if($intIBlockParentID):?>
-		<optgroup label="<?=Loc::getMessage('ACRIT_EXP_POPUP_ADDITIONAL_FIELDS_IBLOCK_PARENT');?>">
+		<optgroup label="<?=Loc::getMessage('DATA_EXP_POPUP_ADDITIONAL_FIELDS_IBLOCK_PARENT');?>">
 			<?foreach($arAvailableParentFields['properties']['ITEMS'] as $arItem):?>
 				<?
 				$arMore = array(
@@ -47,7 +47,7 @@ if($intIBlockOffersID) {
 		</optgroup>
 	<?endif?>
 	<?if($intIBlockOffersID):?>
-		<optgroup label="<?=Loc::getMessage('ACRIT_EXP_POPUP_ADDITIONAL_FIELDS_IBLOCK_OFFERS');?>">
+		<optgroup label="<?=Loc::getMessage('DATA_EXP_POPUP_ADDITIONAL_FIELDS_IBLOCK_OFFERS');?>">
 			<?foreach($arAvailableOfferFields['properties']['ITEMS'] as $arItem):?>
 				<?
 				$arMore = array(

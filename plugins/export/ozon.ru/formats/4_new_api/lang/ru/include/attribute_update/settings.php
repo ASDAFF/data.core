@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 $MESS[$strLang.'CATEGORIES_ALTERNATIVE'] = 'Нестандартный режим выбора категорий:';
 	$MESS[$strLang.'CATEGORIES_ALTERNATIVE_DESC'] = 'Отметьте опцию, если хотите изменить режим выбора категорий. При этом категорию необходимо будет указывать в общем списке полей (либо просто значением, либо из свойств товаров).<br/><br/>

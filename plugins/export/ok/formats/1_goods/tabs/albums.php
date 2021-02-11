@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-    \Acrit\Core\Helper;
+    \Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -37,7 +37,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[ALBUMS_TABLE]', $obPlugin::ge
     </tr>
     <tr id="row_OK_GOODS_ALBUMS_TABLE">
         <td width="100%" valign="top" colspan="2">
-            <table class="adm-list-table acrit-exp-tab-albums-table">
+            <table class="adm-list-table data-exp-tab-albums-table">
                 <thead>
                     <tr class="adm-list-table-header">
                         <td class="adm-list-table-cell"><div class="adm-list-table-cell-inner"><?=$obPlugin::getMessage('ALBUMS_TABLE_H1');?></div></td>

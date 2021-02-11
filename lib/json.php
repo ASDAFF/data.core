@@ -3,10 +3,10 @@
  * Class to work with JSON
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class Json extends \Bitrix\Main\Web\Json {
 	

@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: pulscen.ru plugin
+ * Data Core: pulscen.ru plugin
  * @documentation hhttps://www.pulscen.ru/about/site/import-yml
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class PulscenRuYml extends PulscenRu {
 	

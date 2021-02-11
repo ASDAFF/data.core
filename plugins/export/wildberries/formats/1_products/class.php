@@ -1,18 +1,18 @@
 <?
 /**
- * Acrit Core: Wildberries plugin
+ * Data Core: Wildberries plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\ExportDataTable as ExportData;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Log,
+	\Data\Core\Json,
+	\Data\Core\Export\ExportDataTable as ExportData;
 
 Loc::loadMessages(__FILE__);
 
@@ -66,7 +66,7 @@ class WildberriesProducts extends Wildberries {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
@@ -74,7 +74,7 @@ class WildberriesProducts extends Wildberries {
 					<?=static::getMessage('SETTINGS_TOKEN');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][TOKEN]" id="acrit_exp_plugin_wildberries_token" value="<?=$this->arProfile['PARAMS']['TOKEN'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][TOKEN]" id="data_exp_plugin_wildberries_token" value="<?=$this->arProfile['PARAMS']['TOKEN'];?>" size="90" />
 				</td>
 			</tr>
 			<tr>
@@ -83,7 +83,7 @@ class WildberriesProducts extends Wildberries {
 					<?=static::getMessage('SETTINGS_ORDER');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-					<input type="text" name="PROFILE[PARAMS][ORDER]" id="acrit_exp_plugin_wildberries_order" value="<?=$this->arProfile['PARAMS']['ORDER'];?>" size="90" />
+					<input type="text" name="PROFILE[PARAMS][ORDER]" id="data_exp_plugin_wildberries_order" value="<?=$this->arProfile['PARAMS']['ORDER'];?>" size="90" />
 				</td>
 			</tr>
 			<?if ($this->arProfile['PARAMS']['ORDER']):?>

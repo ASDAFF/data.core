@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_BLIZKO_RU_VENDOR_MODEL_';
+$strMessPrefix = 'DATA_EXP_BLIZKO_RU_VENDOR_MODEL_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'blizko.ru (произвольный тип)';

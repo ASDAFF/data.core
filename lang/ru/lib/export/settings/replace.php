@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_REPLACE_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_REPLACE_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Замены в тексте';
 $MESS[$strMessPrefix.'DESC'] = 'Укажите необходимые текстовые замены.<br/>

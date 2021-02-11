@@ -1,1 +1,1 @@
-<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/acrit.core/admin/log.php');?>
+<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/data.core/admin/log.php');?>

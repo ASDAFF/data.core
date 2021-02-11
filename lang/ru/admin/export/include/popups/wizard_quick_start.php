@@ -1,5 +1,5 @@
 <?
-$strLang = 'ACRIT_EXP_POPUP_WIZARD_';
+$strLang = 'DATA_EXP_POPUP_WIZARD_';
 
 $MESS[$strLang.'PLUGINS_HEADER'] = 'Выберите необходимые Вам форматы выгрузки';
 $MESS[$strLang.'PLUGINS_FILTER_PLACEHOLDER'] = 'Фильтр по форматам выгрузки';

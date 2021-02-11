@@ -1,21 +1,21 @@
 <?
 /**
-* Acrit Core: Ebay.com plugin
-* @package acrit.core
-* @copyright 2018 Acrit
+* Data Core: Ebay.com plugin
+* @package data.core
+* @copyright 2018 Data
 * @documentation http://pages.ebay.com/ru/ru-ru/kak-prodavat-na-ebay-spravka/mip-neobhodimie-dannie.html
 */
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Log,
-	\Acrit\Core\Xml;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\HttpRequest,
+	\Data\Core\Export\Filter,
+	\Data\Core\Log,
+	\Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 

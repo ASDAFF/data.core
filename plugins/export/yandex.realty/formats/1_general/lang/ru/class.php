@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 // General
 $MESS[$strLang.'NAME'] = 'Яндекс.Недвижимость';
@@ -574,7 +574,7 @@ $MESS[$strName.'sales-agent.category'] = 'Тип продавца или аре�
 $MESS[$strName.'sales-agent.organization'] = 'Название организации';
 	$MESS[$strHint.'sales-agent.organization'] = 'Название организации.';
 $MESS[$strName.'sales-agent.url'] = 'Сайт агентства или застройщика';
-	$MESS[$strHint.'sales-agent.url'] = 'Сайт агентства или застройщика. Например: <code>https://www.acrit-studio.ru/';
+	$MESS[$strHint.'sales-agent.url'] = 'Сайт агентства или застройщика. Например: <code>https://www.data-studio.ru/';
 $MESS[$strName.'sales-agent.email'] = 'Электронный адрес продавца';
 	$MESS[$strHint.'sales-agent.email'] = 'Электронный адрес продавца.';
 $MESS[$strName.'sales-agent.photo'] = 'Ссылка на фотографию агента или логотип компании';

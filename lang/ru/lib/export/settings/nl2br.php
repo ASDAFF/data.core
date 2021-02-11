@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_NL2BR_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_NL2BR_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Добавить HTML-переносы строк';
 $MESS[$strMessPrefix.'DESC'] = 'Опция позволяет заменить переносы строк на HTML-теги переноса строк &lt;br/&gt; (если быть точнее, данный HTML-тег не заменяет перенос строк, а вставляется перед каждым переносом).<br/><br/>

@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_CDEK_MARKET_YML_';
+$strMessPrefix = 'DATA_EXP_CDEK_MARKET_YML_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'СДЕК.Маркет New';

@@ -1,12 +1,12 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
 	\Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 $strModuleId = $ModuleID = preg_replace('#^.*?/([a-z0-9]+)_([a-z0-9]+).*?$#', '$1.$2', $_SERVER['REQUEST_URI']);
 $strModuleCode = preg_replace('#^(.*?)\.(.*?)$#', '$2', $strModuleId);
 $strModuleUnderscore = preg_replace('#^(.*?)\.(.*?)$#', '$1_$2', $strModuleId);
@@ -29,18 +29,18 @@ $obPost = \Bitrix\Main\Context::getCurrent()->getRequest()->getPostList();
 $arPost = $obPost->toArray();
 
 // Demo
-acritShowDemoExpired($strModuleId);
+dataShowDemoExpired($strModuleId);
 
 // Page title
-$strPageTitle = Loc::getMessage('ACRIT_CORE_PAGE_TITLE_SUPPORT');
+$strPageTitle = Loc::getMessage('DATA_CORE_PAGE_TITLE_SUPPORT');
 
 // Core notice
 if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
-	?><div id="acrit-core-notifier"><?
+	?><div id="data-core-notifier"><?
 		print '<div style="margin-top:15px;"></div>';
 		print \CAdminMessage::ShowMessage(array(
-			'MESSAGE' => \Bitrix\Main\Localization\Loc::getMessage('ACRIT_CORE_CORE_NOTICE', [
+			'MESSAGE' => \Bitrix\Main\Localization\Loc::getMessage('DATA_CORE_CORE_NOTICE', [
 				'#CORE_ID#' => $strCoreId,
 				'#LANG#' => LANGUAGE_ID,
 			]),
@@ -58,10 +58,10 @@ if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
 
 // Demo
-acritShowDemoNotice($strModuleId);
+dataShowDemoNotice($strModuleId);
 
 # Update notifier
-\Acrit\Core\Update::display();
+\Data\Core\Update::display();
 
 // Set page title
 $APPLICATION->SetTitle($strPageTitle);
@@ -70,15 +70,15 @@ $APPLICATION->SetTitle($strPageTitle);
 $arTabs = [
 	[
 		'DIV' => 'idea',
-		'TAB' => Helper::getMessage('ACRIT_CORE_TAB_IDEA_NAME'),
-		'TITLE' => Helper::getMessage('ACRIT_CORE_TAB_IDEA_DESC'),
+		'TAB' => Helper::getMessage('DATA_CORE_TAB_IDEA_NAME'),
+		'TITLE' => Helper::getMessage('DATA_CORE_TAB_IDEA_DESC'),
 	]
 ];
 
-?><div id="acrit_core_idea"><?
+?><div id="data_core_idea"><?
 
 // Start TabControl (via CAdminForm, not CAdminTabControl)
-$obTabControl = new \CAdminForm('AcritExpIdea', $arTabs);
+$obTabControl = new \CAdminForm('DataExpIdea', $arTabs);
 $obTabControl->Begin(array(
 	'FORM_ACTION' => $APPLICATION->GetCurPageParam('', array()),
 ));
@@ -89,13 +89,13 @@ $obTabControl->BeginNextFormTab();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //
-$obTabControl->BeginCustomField('IDEA', Helper::getMessage('ACRIT_CORE_IDEA'));
-$strUrl = 'https://www.acrit-studio.ru/services/idea/';
+$obTabControl->BeginCustomField('IDEA', Helper::getMessage('DATA_CORE_IDEA'));
+$strUrl = 'https://www.data-studio.ru/services/idea/';
 ?>
 <tr class="heading"><td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td></tr>
 <tr>
 	<td colspan="2">
-		<div><?=Helper::getMessage('ACRIT_CORE_IDEA_TEXT', ['#URL#' => $strUrl]);?></div><br/>
+		<div><?=Helper::getMessage('DATA_CORE_IDEA_TEXT', ['#URL#' => $strUrl]);?></div><br/>
 	</td>
 </tr>
 <?

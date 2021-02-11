@@ -1,15 +1,15 @@
 <?
 
 /**
- * Acrit Core: Aport.Ru plugin
+ * Data Core: Aport.Ru plugin
  * @documentation https://www.aport.ru/for_business/placing_price_lines_info
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Export\Plugin;
+		\Data\Core\Helper,
+		\Data\Core\Export\Plugin;
 
 Loc::loadMessages(__FILE__);
 

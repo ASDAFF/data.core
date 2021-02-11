@@ -1,20 +1,20 @@
 <?
 /**
- * Acrit core
- * @package acrit.core
- * @copyright 2018 Acrit
+ * Data core
+ * @package data.core
+ * @copyright 2018 Data
  */
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Application,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Teacher,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Teacher,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -101,7 +101,7 @@ abstract class Plugin {
 			require $strFile;
 			$strResult = ob_get_clean();
 			if(strlen(static::DATE_UPDATED)){
-				$strResult .= PHP_EOL.Helper::getMessage('ACRIT_EXP_DATE_UPDATED', array('#DATE#' => static::DATE_UPDATED));
+				$strResult .= PHP_EOL.Helper::getMessage('DATA_EXP_DATE_UPDATED', array('#DATE#' => static::DATE_UPDATED));
 			}
 			return trim($strResult);
 		}
@@ -233,7 +233,7 @@ abstract class Plugin {
 	 * Get lang message
 	 */
 	public static function getMessage($strLangKey, $arReplace=array()){
-		$strPhrase = 'ACRIT_EXP_'.(static::getCode()).'_'.$strLangKey;
+		$strPhrase = 'DATA_EXP_'.(static::getCode()).'_'.$strLangKey;
 		$strMessage = Helper::getMessage($strPhrase, $arReplace);
 		if(empty($strMessage)){
 			$strClass = get_called_class();
@@ -247,7 +247,7 @@ abstract class Plugin {
 				}
 			}
 			foreach($arClasses as $strClass){
-				$strPhrase = 'ACRIT_EXP_'.($strClass::getCode()).'_'.$strLangKey;
+				$strPhrase = 'DATA_EXP_'.($strClass::getCode()).'_'.$strLangKey;
 				$strMessage = Helper::getMessage($strPhrase, $arReplace);
 				if(!empty($strMessage)){
 					break;
@@ -434,13 +434,13 @@ abstract class Plugin {
 			$arLastExportedItem['STEP'] = intVal($arLastExportedItem['STEP']);
 			ob_start();
 			?>
-				<table class="acrit-exp-plugin-settings" style="width:100%;">
+				<table class="data-exp-plugin-settings" style="width:100%;">
 					<tbody>
 						<tr id="row_STEP_BY_STEP">
 							<td width="40%" class="adm-detail-content-cell-l">
 								<label for="checkbox_STEP_BY_STEP">
-									<?=Helper::ShowHint(Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_HINT'));?>
-									<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP');?>:
+									<?=Helper::ShowHint(Helper::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_HINT'));?>
+									<?=static::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP');?>:
 								</label>
 							</td>
 							<td width="60%" class="adm-detail-content-cell-r">
@@ -451,20 +451,20 @@ abstract class Plugin {
 						</tr>
 						<tr id="row_STEP_BY_STEP_COUNT" style="display:none">
 							<td width="40%" class="adm-detail-content-cell-l">
-								<?=Helper::ShowHint(Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_HINT'));?>
-								<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT');?>:
+								<?=Helper::ShowHint(Helper::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_HINT'));?>
+								<?=static::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT');?>:
 							</td>
 							<td width="60%" class="adm-detail-content-cell-r">
 								<input type="text" name="PROFILE[PARAMS][STEP_BY_STEP_COUNT]" 
 									value="<?=$this->arProfile['PARAMS']['STEP_BY_STEP_COUNT'];?>" size="40" 
-									placeholder="<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_PLACEHOLDER');?>" />
+									placeholder="<?=static::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_COUNT_PLACEHOLDER');?>" />
 							</td>
 						</tr>
 						<?#if(is_array($arLastExportedItem) && is_numeric($arLastExportedItem['STEP'])):?>
 							<tr id="row_STEP_BY_STEP_INDEX">
 								<td width="40%" class="adm-detail-content-cell-l">
-									<?=Helper::showHint(getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX_HINT'));?>:
-									<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX');?>:
+									<?=Helper::showHint(getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX_HINT'));?>:
+									<?=static::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_INDEX');?>:
 								</td>
 								<td width="60%" class="adm-detail-content-cell-r">
 									<span style="vertical-align:middle;" data-role="step-export-index">
@@ -477,12 +477,12 @@ abstract class Plugin {
 									&nbsp;
 									<?if($arLastExportedItem['FINISHED'] == 'Y'):?>
 										<span style="vertical-align:middle;" data-role="step-export-finished">
-											<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_FINISHED');?>
+											<?=static::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_FINISHED');?>
 										</span>
 									<?endif?>
 									&nbsp;
 									<input type="button" data-role="step-export-reset" style="height:25px;"
-										value="<?=static::getMessage('ACRIT_EXP_PLUGIN_FIELD_STEP_BY_STEP_RESET');?>" />
+										value="<?=static::getMessage('DATA_EXP_PLUGIN_FIELD_STEP_BY_STEP_RESET');?>" />
 								</td>
 							</tr>
 						<?#endif?>
@@ -505,15 +505,15 @@ abstract class Plugin {
 			$strFile = $this->getExportFileName();
 		}
 		if($strTitle === false){
-			$strTitle = Helper::getMessage('ACRIT_EXP_FILE_OPEN');
+			$strTitle = Helper::getMessage('DATA_EXP_FILE_OPEN');
 		}
 		elseif($strTitle === true){
 			$strTitle = $strFile;
 		}
 		if(strlen($strFile) && preg_match('#^(http|https)://.*?$#i', $strFile)){
 			?>
-			<a href="<?=$strFile;?>" target="_blank" title="<?=Helper::getMessage('ACRIT_EXP_URL_OPEN_TITLE');?>"
-				class="acrit-exp-file-open-link">
+			<a href="<?=$strFile;?>" target="_blank" title="<?=Helper::getMessage('DATA_EXP_URL_OPEN_TITLE');?>"
+				class="data-exp-file-open-link">
 				<?=$strTitle;?>
 			</a>
 			<?
@@ -524,8 +524,8 @@ abstract class Plugin {
 				$strFileHref = $strFileHref.(strpos($strFileHref, '?') === false ? '?' : '&').time();
 			}
 			?>
-			<a href="<?=$strFileHref;?>" target="_blank" title="<?=Helper::getMessage('ACRIT_EXP_FILE_OPEN_TITLE');?>"
-				class="acrit-exp-file-open-link">
+			<a href="<?=$strFileHref;?>" target="_blank" title="<?=Helper::getMessage('DATA_EXP_FILE_OPEN_TITLE');?>"
+				class="data-exp-file-open-link">
 				<?=$strTitle;?>
 				(<?=\CFile::FormatSize(filesize($_SERVER['DOCUMENT_ROOT'].$strFile));?>)
 			</a>
@@ -748,16 +748,16 @@ abstract class Plugin {
 			$arFieldsAll[] = new Field(array(
 				'CODE' => '_UTM_FIELDS',
 				'SORT' => $intSortStart++,
-				'NAME' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_FIELDS_NAME'),
+				'NAME' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_FIELDS_NAME'),
 				'IS_HEADER' => true,
 			));
 		}
 		$arFieldsAll[] = new Field(array(
 			'CODE' => 'UTM_SOURCE',
 			'DISPLAY_CODE' => 'utm_source',
-			'NAME' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_SOURCE_NAME'),
+			'NAME' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_SOURCE_NAME'),
 			'SORT' => $intSortStart++,
-			'DESCRIPTION' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_SOURCE_DESC'),
+			'DESCRIPTION' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_SOURCE_DESC'),
 			'REQUIRED' => false,
 			'DEFAULT_VALUE' => array(
 				array(
@@ -772,9 +772,9 @@ abstract class Plugin {
 		$arFieldsAll[] = new Field(array(
 			'CODE' => 'UTM_MEDIUM',
 			'DISPLAY_CODE' => 'utm_medium',
-			'NAME' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_MEDIUM_NAME'),
+			'NAME' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_MEDIUM_NAME'),
 			'SORT' => $intSortStart++,
-			'DESCRIPTION' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_MEDIUM_DESC'),
+			'DESCRIPTION' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_MEDIUM_DESC'),
 			'REQUIRED' => false,
 			'DEFAULT_VALUE' => array(
 				array(
@@ -789,9 +789,9 @@ abstract class Plugin {
 		$arFieldsAll[] = new Field(array(
 			'CODE' => 'UTM_CAMPAIGN',
 			'DISPLAY_CODE' => 'utm_campaign',
-			'NAME' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_NAME'),
+			'NAME' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_NAME'),
 			'SORT' => $intSortStart++,
-			'DESCRIPTION' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_DESC'),
+			'DESCRIPTION' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_CAMPAIGN_DESC'),
 			'REQUIRED' => false,
 			'DEFAULT_VALUE' => array(
 				array(
@@ -805,9 +805,9 @@ abstract class Plugin {
 		$arFieldsAll[] = new Field(array(
 			'CODE' => 'UTM_CONTENT',
 			'DISPLAY_CODE' => 'utm_content',
-			'NAME' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_CONTENT_NAME'),
+			'NAME' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_CONTENT_NAME'),
 			'SORT' => $intSortStart++,
-			'DESCRIPTION' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_CONTENT_DESC'),
+			'DESCRIPTION' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_CONTENT_DESC'),
 			'REQUIRED' => false,
 			'DEFAULT_VALUE' => array(
 				array(
@@ -821,9 +821,9 @@ abstract class Plugin {
 		$arFieldsAll[] = new Field(array(
 			'CODE' => 'UTM_TERM',
 			'DISPLAY_CODE' => 'utm_term',
-			'NAME' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_TERM_NAME'),
+			'NAME' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_TERM_NAME'),
 			'SORT' => $intSortStart++,
-			'DESCRIPTION' => Helper::getMessage('ACRIT_EXP_PLUGIN_FIELD_UTM_TERM_DESC'),
+			'DESCRIPTION' => Helper::getMessage('DATA_EXP_PLUGIN_FIELD_UTM_TERM_DESC'),
 			'REQUIRED' => false,
 			'DEFAULT_VALUE' => array(
 				array(
@@ -1263,7 +1263,7 @@ abstract class Plugin {
 			@unlink($strFileReal);
 		}
 		if(!Helper::createDirectoriesForFile($strFileReal)){
-			$strErrorMessage = Helper::getMessage('ACRIT_CORE_ERROR_CREATE_DIRECORY', array(
+			$strErrorMessage = Helper::getMessage('DATA_CORE_ERROR_CREATE_DIRECORY', array(
 				'#DIR#' => Helper::getDirectoryForFile($strFileReal),
 			));
 			return false;
@@ -1273,7 +1273,7 @@ abstract class Plugin {
 		}
 		if(!@rename($strFileTmp, $strFileReal)){
 			@unlink($strFileTmp);
-			$strErrorMessage = Helper::getMessage('ACRIT_CORE_FILE_NO_PERMISSIONS', array(
+			$strErrorMessage = Helper::getMessage('DATA_CORE_FILE_NO_PERMISSIONS', array(
 				'#FILE#' => $strFileReal,
 			));
 			return false;
@@ -1363,10 +1363,10 @@ abstract class Plugin {
 			}
 			if(!empty($arConflictProfilesId)){
 				$arMessages[] = [
-					'TITLE' => Helper::getMessage('ACRIT_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_TITLE', [
+					'TITLE' => Helper::getMessage('DATA_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_TITLE', [
 						'#FILENAME#' => $this->arParams['EXPORT_FILE_NAME'],
 					]),
-					'MESSAGE' => Helper::getMessage('ACRIT_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_DESC', [
+					'MESSAGE' => Helper::getMessage('DATA_EXP_PLUGIN_CHECK_DATA_CONFLICT_FILENAME_DESC', [
 						'#ID#' => implode(', ', $arConflictProfilesId),
 					]),
 					'IS_ERROR' => true,
@@ -1433,13 +1433,13 @@ abstract class Plugin {
 			'CALLBACK_BEFORE' => 'function(options, stepData){
 				nextStepData.elements.each(function(){
 					if(...){
-						this.acritTeacherAccessible = true;
+						this.dataTeacherAccessible = true;
 					}
 				});
 			}',
 	 */
 	public static function getDefaultTeacher(){
-		$strLang = 'ACRIT_EXP_PLUGIN_TEACHER_';
+		$strLang = 'DATA_EXP_PLUGIN_TEACHER_';
 		$strStepNameLang = $strLang.'STEP_NAME_';
 		$strStepDescLang = $strLang.'STEP_DESC_';
 		$arResult = [
@@ -1451,7 +1451,7 @@ abstract class Plugin {
 				'DESCRIPTION' => Helper::getMessage($strLang.'SPLASH_SCREEN_DESCRIPTION'),
 				'CSS' => '',
 			],
-			'TAB_CONTROL' => 'AcritExpProfile',
+			'TAB_CONTROL' => 'DataExpProfile',
 			'CLOSE_WINDOWS' => 'Y',
 			'STEPS' => [
 				'TABS_ALL' => [
@@ -1621,28 +1621,28 @@ abstract class Plugin {
 				],
 				'PREVIEW_IBLOCKS_POPUP' => [
 					'CALLBACK_ELEMENTS' => 'function(options, stepData){
-						return $(".acrit-exp-table-iblocks-preview").closest(".bx-core-window");
+						return $(".data-exp-table-iblocks-preview").closest(".bx-core-window");
 					}',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'structure',
 					'CALLBACK_IN' => 'function(options, currStepData, nextStepData){
-						if(!AcritExpPopupIBlocksPreview.isOpen){
-							AcritExpPopupIBlocksPreview.Open();
+						if(!DataExpPopupIBlocksPreview.isOpen){
+							DataExpPopupIBlocksPreview.Open();
 						}
 						this.handler = this.addHandler(window, "onWindowClose", function(popup){
-							if(popup == AcritExpPopupIBlocksPreview && AcritExpPopupIBlocksPreview.isOpen){
-								this.removeHandler(AcritExpPopupIBlocksPreview, "onWindowClose", this.handler);
+							if(popup == DataExpPopupIBlocksPreview && DataExpPopupIBlocksPreview.isOpen){
+								this.removeHandler(DataExpPopupIBlocksPreview, "onWindowClose", this.handler);
 								this.goNextDelay(10);
 							}
 						});
 					}',
 					'CALLBACK_BEFORE' => 'function(options, stepData){
-						return AcritExpPopupIBlocksPreview.isOpen && !!$(".acrit-exp-table-iblocks-preview").length;
+						return DataExpPopupIBlocksPreview.isOpen && !!$(".data-exp-table-iblocks-preview").length;
 					}',
 					'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 						this.removeHandler(window, "onWindowClose", this.handler);
 						delete this.handler;
-						AcritExpPopupIBlocksPreview.Close();
+						DataExpPopupIBlocksPreview.Close();
 					}',
 				],
 				'SUBTABS' => [
@@ -1669,20 +1669,20 @@ abstract class Plugin {
 					'CALLBACK_IN' => 'function(options, currStepData, nextStepData){
 						//let elements = $.proxy(nextStepData.callbackElements, this)(options, nextStepData);
 						let elements = nextStepData.elements;
-						elements.filter("tr").addClass("acrit_teacher_control_highlighted_absolute");
+						elements.filter("tr").addClass("data_teacher_control_highlighted_absolute");
 						//
 						this.btnSelect = $("input[data-role=\"field-simple--button-select-const\"]", elements);
 						this.btnSelect = this.btnSelect.add($("input[data-role=\"field-simple--value-title\"]"));
 						this.handlerSelect = this.addHandler(this.btnSelect, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupSelectField.isOpen && $(AcritExpPopupSelectField.DIV).is(":visible")){
+								if(DataExpPopupSelectField.isOpen && $(DataExpPopupSelectField.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupSelectField.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupSelectField.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupSelectField.DIV), true, true);
+										this.strokeElement($(DataExpPopupSelectField.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1691,14 +1691,14 @@ abstract class Plugin {
 						this.btnSettingsValue = $("input[data-role=\"field-simple--button-params\"]", elements);
 						this.handlerSettingsValue = this.addHandler(this.btnSettingsValue, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupValueSettings.isOpen && $(AcritExpPopupValueSettings.DIV).is(":visible")){
+								if(DataExpPopupValueSettings.isOpen && $(DataExpPopupValueSettings.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupValueSettings.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupValueSettings.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupValueSettings.DIV), true, true);
+										this.strokeElement($(DataExpPopupValueSettings.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1707,14 +1707,14 @@ abstract class Plugin {
 						this.btnSettingsField = $("input[data-role=\"field--button-params\"]", elements);
 						this.handlerSettingsField = this.addHandler(this.btnSettingsField, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupFieldSettings.isOpen && $(AcritExpPopupFieldSettings.DIV).is(":visible")){
+								if(DataExpPopupFieldSettings.isOpen && $(DataExpPopupFieldSettings.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupFieldSettings.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupFieldSettings.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupFieldSettings.DIV), true, true);
+										this.strokeElement($(DataExpPopupFieldSettings.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1722,15 +1722,15 @@ abstract class Plugin {
 					}',
 					'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 						let elements = currStepData.elements;
-						elements.filter("tr").removeClass("acrit_teacher_control_highlighted_absolute");
+						elements.filter("tr").removeClass("data_teacher_control_highlighted_absolute");
 						//
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSelect);
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSettingsValue);
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSettingsField);
 						//
-						AcritExpPopupSelectField.Close();
-						AcritExpPopupValueSettings.Close();
-						AcritExpPopupFieldSettings.Close();
+						DataExpPopupSelectField.Close();
+						DataExpPopupValueSettings.Close();
+						DataExpPopupFieldSettings.Close();
 					}',
 					'CALLBACK_SKIP' => 'function(options, stepData){
 						return !stepData.elements.length;
@@ -1751,20 +1751,20 @@ abstract class Plugin {
 					'CALLBACK_IN' => 'function(options, currStepData, nextStepData){
 						//let elements = $.proxy(nextStepData.callbackElements, this)(options, nextStepData);
 						let elements = nextStepData.elements;
-						elements.filter("tr").addClass("acrit_teacher_control_highlighted_absolute");
+						elements.filter("tr").addClass("data_teacher_control_highlighted_absolute");
 						//
 						this.btnSelect = $("input[data-role=\"field-simple--button-select-const\"]", elements);
 						this.btnSelect = this.btnSelect.add($("input[data-role=\"field-simple--value-title\"]"));
 						this.handlerSelect = this.addHandler(this.btnSelect, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupSelectField.isOpen && $(AcritExpPopupSelectField.DIV).is(":visible")){
+								if(DataExpPopupSelectField.isOpen && $(DataExpPopupSelectField.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupSelectField.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupSelectField.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupSelectField.DIV), true, true);
+										this.strokeElement($(DataExpPopupSelectField.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1773,14 +1773,14 @@ abstract class Plugin {
 						this.btnSettingsValue = $("input[data-role=\"field-simple--button-params\"]", elements);
 						this.handlerSettingsValue = this.addHandler(this.btnSettingsValue, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupValueSettings.isOpen && $(AcritExpPopupValueSettings.DIV).is(":visible")){
+								if(DataExpPopupValueSettings.isOpen && $(DataExpPopupValueSettings.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupValueSettings.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupValueSettings.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupValueSettings.DIV), true, true);
+										this.strokeElement($(DataExpPopupValueSettings.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1789,14 +1789,14 @@ abstract class Plugin {
 						this.btnSettingsField = $("input[data-role=\"field--button-params\"]", elements);
 						this.handlerSettingsField = this.addHandler(this.btnSettingsField, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupFieldSettings.isOpen && $(AcritExpPopupFieldSettings.DIV).is(":visible")){
+								if(DataExpPopupFieldSettings.isOpen && $(DataExpPopupFieldSettings.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupFieldSettings.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupFieldSettings.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupFieldSettings.DIV), true, true);
+										this.strokeElement($(DataExpPopupFieldSettings.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1804,15 +1804,15 @@ abstract class Plugin {
 					}',
 					'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 						let elements = currStepData.elements;
-						elements.filter("tr").removeClass("acrit_teacher_control_highlighted_absolute");
+						elements.filter("tr").removeClass("data_teacher_control_highlighted_absolute");
 						//
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSelect);
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSettingsValue);
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSettingsField);
 						//
-						AcritExpPopupSelectField.Close();
-						AcritExpPopupValueSettings.Close();
-						AcritExpPopupFieldSettings.Close();
+						DataExpPopupSelectField.Close();
+						DataExpPopupValueSettings.Close();
+						DataExpPopupFieldSettings.Close();
 					}',
 					'CALLBACK_SKIP' => 'function(options, stepData){
 						return !stepData.elements.length;
@@ -1935,14 +1935,14 @@ abstract class Plugin {
 						this.btnSelect = this.btnSelect.add($("input[data-role=\"field-simple--value-title\"]"));
 						this.handlerSelect = this.addHandler(this.btnSelect, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupSelectField.isOpen && $(AcritExpPopupSelectField.DIV).is(":visible")){
+								if(DataExpPopupSelectField.isOpen && $(DataExpPopupSelectField.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupSelectField.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupSelectField.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupSelectField.DIV), true, true);
+										this.strokeElement($(DataExpPopupSelectField.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1951,14 +1951,14 @@ abstract class Plugin {
 						this.btnSettingsValue = $("input[data-role=\"field-simple--button-params\"]", elements);
 						this.handlerSettingsValue = this.addHandler(this.btnSettingsValue, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupValueSettings.isOpen && $(AcritExpPopupValueSettings.DIV).is(":visible")){
+								if(DataExpPopupValueSettings.isOpen && $(DataExpPopupValueSettings.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(elements.add(AcritExpPopupValueSettings.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(elements.add(DataExpPopupValueSettings.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupValueSettings.DIV), true, true);
+										this.strokeElement($(DataExpPopupValueSettings.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -1967,8 +1967,8 @@ abstract class Plugin {
 					'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSelect);
 						this.removeHandler(this.btnSettingsField, "click", this.handlerSettingsValue);
-						AcritExpPopupSelectField.Close();
-						AcritExpPopupValueSettings.Close();
+						DataExpPopupSelectField.Close();
+						DataExpPopupValueSettings.Close();
 					}',
 					'CSS' => '
 						#subtab_general table.adm-list-table {
@@ -2013,20 +2013,20 @@ abstract class Plugin {
 					'TAB' => 'cron',
 				],
 				'RUN_MANUAL' => [
-					'ELEMENTS' => '$("input[data-role=\"run-manual\"], #acrit-exp-button-run")',
+					'ELEMENTS' => '$("input[data-role=\"run-manual\"], #data-exp-button-run")',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CALLBACK_IN' => 'function(options, currStepData, nextStepData){
 						this.handler = this.addHandler(nextStepData.elements, "click", function(popup){
 							let interval = setInterval($.proxy(function(){
-								if(AcritExpPopupExecute.isOpen && $(AcritExpPopupExecute.DIV).is(":visible")){
+								if(DataExpPopupExecute.isOpen && $(DataExpPopupExecute.DIV).is(":visible")){
 									clearInterval(interval);
 									let
-										scrollTop = this.getElementsViewportScrollTop(nextStepData.elements.add(AcritExpPopupExecute.DIV)),
+										scrollTop = this.getElementsViewportScrollTop(nextStepData.elements.add(DataExpPopupExecute.DIV)),
 										animateTime = 100;
 									$("html, body").animate({scrollTop: scrollTop}, animateTime);
 									setTimeout($.proxy(function(){
-										this.strokeElement($(AcritExpPopupExecute.DIV), true, true);
+										this.strokeElement($(DataExpPopupExecute.DIV), true, true);
 									}, this), animateTime);
 								}
 							}, this), 100);
@@ -2034,7 +2034,7 @@ abstract class Plugin {
 					}',
 					'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 						this.removeHandler(currStepData.elements, "click", this.handler);
-						AcritExpPopupExecute.Close();
+						DataExpPopupExecute.Close();
 					}',
 				],
 				'RUN_BACKGROUND' => [
@@ -2043,11 +2043,11 @@ abstract class Plugin {
 					'TAB' => 'cron',
 				],
 				'SERVER_TIME' => [
-					'ELEMENTS' => '$("span[data-role=\"acrit-core-server-time\"]")',
+					'ELEMENTS' => '$("span[data-role=\"data-core-server-time\"]")',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CSS' => '
-						span[data-role="acrit-core-server-time"] {
+						span[data-role="data-core-server-time"] {
 							background:#f5f9f9;
 							padding:4px 10px;
 						}
@@ -2058,7 +2058,7 @@ abstract class Plugin {
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CALLBACK_SKIP' => 'function(options, stepData){
-						return !!$(".acrit-core-cron-cannot-autoset").length;
+						return !!$(".data-core-cron-cannot-autoset").length;
 					}',
 					'CSS' => '
 						div[data-cron-status] > span[data-status] {
@@ -2072,7 +2072,7 @@ abstract class Plugin {
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CALLBACK_SKIP' => 'function(options, stepData){
-						return !!$(".acrit-core-cron-cannot-autoset").length;
+						return !!$(".data-core-cron-cannot-autoset").length;
 					}',
 					'CSS' => '
 						div[data-role="cron_setup_time"] {
@@ -2086,37 +2086,37 @@ abstract class Plugin {
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CALLBACK_SKIP' => 'function(options, stepData){
-						return !!$(".acrit-core-cron-cannot-autoset").length;
+						return !!$(".data-core-cron-cannot-autoset").length;
 					}',
 				],
 				'CRON_CANNOT_AUTO_SET' => [
-					'ELEMENTS' => '$(".acrit-core-cron-cannot-autoset")',
+					'ELEMENTS' => '$(".data-core-cron-cannot-autoset")',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CALLBACK_SKIP' => 'function(options, stepData){
-						return !$(".acrit-core-cron-cannot-autoset").length;
+						return !$(".data-core-cron-cannot-autoset").length;
 					}',
 					'CSS' => '
-						.acrit-core-cron-cannot-autoset {
+						.data-core-cron-cannot-autoset {
 							background:#f5f9f9;
 						}
 					',
 				],
 				'CRON_ONETIME' => [
-					'ELEMENTS' => '$("label[for=\"acrit-core-cron-one-time\"], input[data-role=\"cron-one-time\"] + label")',
+					'ELEMENTS' => '$("label[for=\"data-core-cron-one-time\"], input[data-role=\"cron-one-time\"] + label")',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 					'CALLBACK_SKIP' => 'function(options, stepData){
-						return !!$(".acrit-core-cron-cannot-autoset").length;
+						return !!$(".data-core-cron-cannot-autoset").length;
 					}',
 					'CSS' => '
-						label[for="acrit-core-cron-one-time"] {
+						label[for="data-core-cron-one-time"] {
 							background:#f5f9f9;
 						}
 					',
 				],
 				'CRON_COMMAND' => [
-					'ELEMENTS' => '$(".acrit-core-cron-form-command")',
+					'ELEMENTS' => '$(".data-core-cron-form-command")',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'cron',
 				],
@@ -2127,11 +2127,11 @@ abstract class Plugin {
 					'TAB' => 'log',
 				],
 				'LOG_WRAPPER' => [
-					'ELEMENTS' => '$("#tr_LOG .acrit-exp-log-wrapper")',
+					'ELEMENTS' => '$("#tr_LOG .data-exp-log-wrapper")',
 					'ACCESSIBLE' => 'Y',
 					'TAB' => 'log',
 					'CSS' => '
-						#tr_LOG .acrit-exp-log-wrapper {
+						#tr_LOG .data-exp-log-wrapper {
 							background:#f5f9f9;
 							padding:4px 10px;
 						}
@@ -2153,7 +2153,7 @@ abstract class Plugin {
 					//
 				],
 				'PROFILE_BACKUP' => [
-					'ELEMENTS' => '$(".adm-btn-menu[onclick*=\"/bitrix/admin/acrit_\"]")',
+					'ELEMENTS' => '$(".adm-btn-menu[onclick*=\"/bitrix/admin/data_\"]")',
 					'ACCESSIBLE' => 'Y',
 					'CALLBACK_IN' => 'function(options, prevStepData, currStepData){
 						currStepData.elements.bind("click", $.proxy(function(){

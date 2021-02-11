@@ -1,9 +1,9 @@
 <?
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use 
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class Update{
 	
@@ -28,10 +28,10 @@ class Update{
 						}
 					}
 				}
-				elseif($bCheckCore && $arModuleData['@']['ID'] == ACRIT_CORE){
+				elseif($bCheckCore && $arModuleData['@']['ID'] == DATA_CORE){
 					if(is_array($arModuleData['#']) && is_array($arModuleData['#']['VERSION'])){
 						foreach($arModuleData['#']['VERSION'] as $arVersion){
-							$arAvailableUpdates[ACRIT_CORE][$arVersion['@']['ID']] = $arVersion['#']['DESCRIPTION'][0]['#'];
+							$arAvailableUpdates[DATA_CORE][$arVersion['@']['ID']] = $arVersion['#']['DESCRIPTION'][0]['#'];
 						}
 					}
 				}
@@ -50,7 +50,7 @@ class Update{
 			if(php_sapi_name() == 'cli'){
 				$_SERVER['SERVER_NAME'] = Helper::getOption('main', 'server_name');
 			}
-			$arModulesId = [ACRIT_CORE];
+			$arModulesId = [DATA_CORE];
 			$arResult = \CUpdateClientPartner::getUpdatesList($strError=null, LANGUAGE_ID, 'Y', $arModulesId, ['fullmoduleinfo'=>'Y']);
 			if(!is_array($arResult)){
 				$arResult = [];
@@ -63,10 +63,10 @@ class Update{
 	 *	Display check updates in any our module
 	 */
 	public static function display(){
-		if(Helper::getOption(ACRIT_CORE, 'check_updates') == 'Y'){
-			#\CJSCore::init('acrit-core-update-module');
-			\Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/'.ACRIT_CORE.'/check_updates.js');
-			print '<div id="acrit-module-update-notifier"></div>';
+		if(Helper::getOption(DATA_CORE, 'check_updates') == 'Y'){
+			#\CJSCore::init('data-core-update-module');
+			\Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/'.DATA_CORE.'/check_updates.js');
+			print '<div id="data-module-update-notifier"></div>';
 		}
 	}
 	
@@ -76,7 +76,7 @@ class Update{
 	public static function checkUpdates(){
 		# Delete previous notify messages
 		$strCompare = static::getNotifyTag('');
-		foreach(Helper::getNotifyList(ACRIT_CORE) as $arItem){
+		foreach(Helper::getNotifyList(DATA_CORE) as $arItem){
 			if(stripos($arItem['TAG'], $strCompare) === 0){
 				Helper::deleteNotify($arItem['TAG']);
 			}
@@ -87,7 +87,7 @@ class Update{
 			foreach($arAllUpdates['MODULE'] as $arModuleData){
 				if(is_array($arModuleData['#']) && is_array($arModuleData['#']['VERSION'])){
 					$strModuleId = $arModuleData['@']['ID'];
-					if(preg_match('#^acrit\.(.*?)$#', $strModuleId, $arMatch) && strlen(Helper::getModuleVersion($strModuleId))){
+					if(preg_match('#^data\.(.*?)$#', $strModuleId, $arMatch) && strlen(Helper::getModuleVersion($strModuleId))){
 						$strLastVersion = null;
 						foreach($arModuleData['#']['VERSION'] as $arVersion){
 							$strLastVersion = $arVersion['@']['ID'];
@@ -101,18 +101,18 @@ class Update{
 								'#LANGUAGE_ID#' => LANGUAGE_ID,
 							];
 							if($arModuleData['@']['UPDATE_END'] == 'Y'){
-								$strMessage = Helper::getMessage('ACRIT_CORE_RENEWAL_NOTIFY', $arLang);
+								$strMessage = Helper::getMessage('DATA_CORE_RENEWAL_NOTIFY', $arLang);
 							}
 							else{
-								$strMessage = Helper::getMessage('ACRIT_CORE_UPDATE_NOTIFY', $arLang);
+								$strMessage = Helper::getMessage('DATA_CORE_UPDATE_NOTIFY', $arLang);
 							}
-							Helper::addNotify(ACRIT_CORE, $strMessage, static::getNotifyTag($strModuleId), true);
+							Helper::addNotify(DATA_CORE, $strMessage, static::getNotifyTag($strModuleId), true);
 						}
 					}
 				}
 			}
 		}
-		Helper::setOption(ACRIT_CORE, 'check_updates_last_time', time());
+		Helper::setOption(DATA_CORE, 'check_updates_last_time', time());
 		return true;
 	}
 	
@@ -120,7 +120,7 @@ class Update{
 	 *	Get notify tag for module
 	 */
 	public static function getNotifyTag($strModuleId){
-		return ACRIT_CORE.'_update_for_'.$strModuleId;
+		return DATA_CORE.'_update_for_'.$strModuleId;
 	}
 	
 	/**
@@ -139,13 +139,13 @@ class Update{
 				];
 				$strUrl = $GLOBALS['APPLICATION']->getCurPage(false);
 				if(!in_array($strUrl, $arExclude)){
-					if(Helper::getOption(ACRIT_CORE, 'check_updates_regular') == 'Y'){
-						$intLastTimeCheck = Helper::getOption(ACRIT_CORE, 'check_updates_last_time');
+					if(Helper::getOption(DATA_CORE, 'check_updates_regular') == 'Y'){
+						$intLastTimeCheck = Helper::getOption(DATA_CORE, 'check_updates_last_time');
 						if(!is_numeric($intLastTimeCheck) || $intLastTimeCheck <= 0){
 							$intLastTimeCheck = 0;
 						}
 						if(!$intLastTimeCheck ||(time() - $intLastTimeCheck >= static::UPDATE_INTERVAL)){
-							print '<script src="/bitrix/js/'.ACRIT_CORE.'/check_updates_regular.js"></script>';
+							print '<script src="/bitrix/js/'.DATA_CORE.'/check_updates_regular.js"></script>';
 						}
 					}
 				}

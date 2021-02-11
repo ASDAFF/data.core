@@ -1,28 +1,28 @@
 <?
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-//	\Acrit\Core\Export\ProfileTable as Profile,
-//	\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-//	\Acrit\Core\Export\ProfileFieldTable as ProfileField,
-//	\Acrit\Core\Export\ProfileValueTable as ProfileValue,
-//	\Acrit\Core\Export\ExportDataTable as ExportData,
-//	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
-//	\Acrit\Core\Export\HistoryTable as History,
-	\Acrit\Core\DiscountRecalculation,
-	\Acrit\Core\Log,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Json,
-	\Acrit\Core\Thread;
+	\Data\Core\Helper,
+//	\Data\Core\Export\ProfileTable as Profile,
+//	\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+//	\Data\Core\Export\ProfileFieldTable as ProfileField,
+//	\Data\Core\Export\ProfileValueTable as ProfileValue,
+//	\Data\Core\Export\ExportDataTable as ExportData,
+//	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+//	\Data\Core\Export\HistoryTable as History,
+	\Data\Core\DiscountRecalculation,
+	\Data\Core\Log,
+	\Data\Core\Cli,
+	\Data\Core\Json,
+	\Data\Core\Thread;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class Exporter
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 class Exporter {
@@ -72,10 +72,10 @@ class Exporter {
 	protected function __construct($strModuleId){
 		$strModuleId = toLower($strModuleId);
 		$this->strModuleId = $strModuleId;
-		$this->strModuleCode = preg_replace('#^acrit\.(.*?)$#i', '$1', $strModuleId);
+		$this->strModuleCode = preg_replace('#^data\.(.*?)$#i', '$1', $strModuleId);
 		$this->arArguments = Cli::getCliArguments();
-		if($this->arArguments['debug'] == 'Y' && !defined('ACRIT_EXP_DEBUG')){
-			define('ACRIT_EXP_DEBUG', true);
+		if($this->arArguments['debug'] == 'Y' && !defined('DATA_EXP_DEBUG')){
+			define('DATA_EXP_DEBUG', true);
 		}
 	}
 	
@@ -146,7 +146,7 @@ class Exporter {
 				closedir($resHandle);
 			}
 			catch(\SystemException $obException) {
-				Log::getInstance($this->strModuleId)->add(Log::getMessage('ACRIT_EXP_LOG_SEARCH_PLUGINS_ERROR', array(
+				Log::getInstance($this->strModuleId)->add(Log::getMessage('DATA_EXP_LOG_SEARCH_PLUGINS_ERROR', array(
 					'#TEXT#' => $obException->getMessage(),
 				)));
 			}
@@ -157,7 +157,7 @@ class Exporter {
 			// Search children of Plugin class - it will be our plugins
 			static::$arCachePluginFilename = array();
 			foreach(get_declared_classes() as $strClass) {
-				if(is_subclass_of($strClass, 'Acrit\Core\Crm\Plugin') && $strClass != 'Acrit\Core\Crm\UniversalPlugin') {
+				if(is_subclass_of($strClass, 'Data\Core\Crm\Plugin') && $strClass != 'Data\Core\Crm\UniversalPlugin') {
 					$strClass::setStaticModuleId($this->strModuleId);
 					$strPluginCode = $strClass::getCode();
 					$strClassFilename = Helper::getClassFilename($strClass);
@@ -165,7 +165,7 @@ class Exporter {
 				}
 			}
 			foreach(get_declared_classes() as $strClass) {
-				if(is_subclass_of($strClass, 'Acrit\Core\Crm\Plugin') && $strClass != 'Acrit\Core\Crm\UniversalPlugin') {
+				if(is_subclass_of($strClass, 'Data\Core\Crm\Plugin') && $strClass != 'Data\Core\Crm\UniversalPlugin') {
 					$strPluginCode = $strClass::getCode();
 					Loc::loadMessages(static::$arCachePluginFilename[$strPluginCode]);
 					#
@@ -253,10 +253,10 @@ class Exporter {
 				$bCorruptedPlugin = !is_array($arPlugin) || !strlen($arPlugin['CODE']) || !strlen($arPlugin['NAME'])
 					|| $strPlugin != $arPlugin['CODE'] || is_numeric($strPlugin)
 					|| !strlen($arPlugin['CLASS']) || !class_exists($arPlugin['CLASS'])
-					|| !is_subclass_of($arPlugin['CLASS'], 'Acrit\Core\Crm\Plugin');
+					|| !is_subclass_of($arPlugin['CLASS'], 'Data\Core\Crm\Plugin');
 				if($bCorruptedPlugin) {
 					unset($arPlugins[$strPlugin]);
-					Log::getInstance($this->strModuleId)->add(Loc::getMessage('ACRIT_EXP_LOG_PLUGIN_CORRUPTED', array(
+					Log::getInstance($this->strModuleId)->add(Loc::getMessage('DATA_EXP_LOG_PLUGIN_CORRUPTED', array(
 						'#TEXT#' => print_r($arPlugin, true),
 					)));
 				}
@@ -272,7 +272,7 @@ class Exporter {
 					 *	Fix for some cases, e.g.:
 					 *	$_SERVER['DOCUMENT_ROOT'] is /home/bitrix/ext_www/kiskashop
 					 *	but Reflection determines path of plugins as
-					 *	/home/bitrix/ext_www/core/bitrix/modules/acrit.exportproplus/plugins/yandex.market/class.php
+					 *	/home/bitrix/ext_www/core/bitrix/modules/data.exportproplus/plugins/yandex.market/class.php
 					 *	In fact, that is not within the document root
 					 */
 					$intPos = stripos($strFileClass, '/bitrix/modules/');
@@ -403,7 +403,7 @@ class Exporter {
 			$strPath = Helper::path(realpath($arPath['dirname'].'/../..')).'/'.$arPath['basename'];
 			$strPlugin = array_search($strPath, static::$arCachePluginFilename);
 			if(strlen($strPlugin)){
-				$strLang = 'ACRIT_EXP_'.$strPlugin.'_';
+				$strLang = 'DATA_EXP_'.$strPlugin.'_';
 				$strHead = $strLang.'F_HEAD_';
 				$strName = $strLang.'F_NAME_';
 				$strHint = $strLang.'F_HINT_';
@@ -427,7 +427,7 @@ class Exporter {
 	}
 	
 	/**
-	 *	Get all installed acrit export modules
+	 *	Get all installed data export modules
 	 */
 	public static function getExportModules($bAll=false){
 		$arResult = [];
@@ -438,7 +438,7 @@ class Exporter {
 			'exportproplus',
 		];
 		foreach($arModulesAll as $key => $strModuleId){
-			$arModulesAll[$key] = 'acrit.'.$strModuleId;
+			$arModulesAll[$key] = 'data.'.$strModuleId;
 		}
 		if($bAll){
 			$arResult = $arModulesAll;
@@ -502,10 +502,10 @@ class Exporter {
 					$arProfile = Helper::call($this->strModuleId, 'Profile', 'getProfiles', [$intProfileId]);
 					if(is_array($arProfile) && $arProfile['ONE_TIME'] == 'Y' && Cli::isProfileOnCron($this->strModuleId, $intProfileId, 'export.php')){
 						if(Cli::deleteProfileCron($this->strModuleId, $intProfileId, 'export.php')){
-							Log::getInstance($this->strModuleId)->add(Loc::getMessage('ACRIT_EXP_PROFILE_ONE_TIME_DELETE_SUCCESS'), $intProfileId);
+							Log::getInstance($this->strModuleId)->add(Loc::getMessage('DATA_EXP_PROFILE_ONE_TIME_DELETE_SUCCESS'), $intProfileId);
 						}
 						else{
-							Log::getInstance($this->strModuleId)->add(Loc::getMessage('ACRIT_EXP_PROFILE_ONE_TIME_DELETE_ERROR'), $intProfileId);
+							Log::getInstance($this->strModuleId)->add(Loc::getMessage('DATA_EXP_PROFILE_ONE_TIME_DELETE_ERROR'), $intProfileId);
 						}
 						$obResult = Helper::call($this->strModuleId, 'Profile', 'update', [$intProfileId, [
 							'ONE_TIME' => $arPost['one_time'] == 'Y' ? 'Y' : 'N',
@@ -516,7 +516,7 @@ class Exporter {
 			else {
 				$mDateLocked = Helper::call($this->strModuleId, 'Profile', 'getDateLocked', [$intProfileId]);
 				print 'Profile '.$intProfileId.' is locked ('.$mDateLocked->toString().').'.PHP_EOL;
-				Log::getInstance($this->strModuleId)->add(Loc::getMessage('ACRIT_EXP_PROFILE_LOCKED', array(
+				Log::getInstance($this->strModuleId)->add(Loc::getMessage('DATA_EXP_PROFILE_LOCKED', array(
 					'#DATETIME#' => $mDateLocked->toString(),
 				)), $intProfileId, true);
 			}

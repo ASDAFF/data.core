@@ -1,7 +1,7 @@
 <?
 /**
  *	Required VARIABLES:
-			MODULE_ID (string, 'acrit.processing')
+			MODULE_ID (string, 'data.processing')
 			PROFILE_ID (integer/string, 123 or 'import_modules')
 			CLI_FILE (string, 'run.php')
 			CALLBACK_SETUP (string, 'func_cron_setup')
@@ -10,12 +10,12 @@
 			INLINE_JS (boolean)
 			SHOW_TASKS (boolean)
  */
-namespace Acrit\Processing;
+namespace Data\Processing;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Cli,
+	\Data\Core\Log;
 
 # Params
 $strModuleId = $arVariables['MODULE_ID'];
@@ -41,15 +41,15 @@ if(!strlen($strCliFile)){
 }
 
 # Lang
-$strLang = 'ACRIT_CORE_';
+$strLang = 'DATA_CORE_';
 Helper::loadMessages(__FILE__);
 
 # JS
 $arJs = [
-	'/bitrix/js/'.ACRIT_CORE.'/helper.js',
-	'/bitrix/js/'.ACRIT_CORE.'/moment.min.js',
-	'/bitrix/js/'.ACRIT_CORE.'/cron.js',
-	'/bitrix/js/'.ACRIT_CORE.'/copy_to_clipboard.js',
+	'/bitrix/js/'.DATA_CORE.'/helper.js',
+	'/bitrix/js/'.DATA_CORE.'/moment.min.js',
+	'/bitrix/js/'.DATA_CORE.'/cron.js',
+	'/bitrix/js/'.DATA_CORE.'/copy_to_clipboard.js',
 ];
 if(!$bInlineJs){
 	foreach($arJs as $strJs){
@@ -85,7 +85,7 @@ $arSchedule = $arCli['SCHEDULE'];
 						<label><?=Helper::getMessage($strLang.'CRON_STATUS');?>:</label>
 					</td>
 					<td width="60%" class="adm-detail-content-cell-r">
-						<div class="acrit-core-cron-status">
+						<div class="data-core-cron-status">
 							<div data-cron-status="<?=($bAlreadyInstalled?'Y':'N');?>" data-profile-id="<?=$intProfileID;?>">
 								<span data-status="Y"><?=Helper::getMessage($strLang.'CRON_STATUS_Y');?></span>
 								<span data-status="N"><?=Helper::getMessage($strLang.'CRON_STATUS_N');?></span>
@@ -102,7 +102,7 @@ $arSchedule = $arCli['SCHEDULE'];
 						<?
 						$strDate = date('r');
 						?>
-						<span id="acrit-core-server-time" data-role="acrit-core-server-time" data-date="<?=$strDate;?>"
+						<span id="data-core-server-time" data-role="data-core-server-time" data-date="<?=$strDate;?>"
 							data-days="<?=Helper::getMessage($strLang.'CRON_SERVER_TIME_DAYS');?>"
 							data-months="<?=Helper::getMessage($strLang.'CRON_SERVER_TIME_MONTHS');?>">---</span>
 					</td>
@@ -113,7 +113,7 @@ $arSchedule = $arCli['SCHEDULE'];
 						<label><?=Helper::getMessage($strLang.'CRON_SCHEDULE');?>:</label>
 					</td>
 					<td class="adm-detail-content-cell-r" width="60%">
-						<table class="acrit-core-cron-form-schedule" data-role="acrit-core-cron-schedule">
+						<table class="data-core-cron-form-schedule" data-role="data-core-cron-schedule">
 							<tbody>
 								<tr>
 									<td><?=Helper::getMessage($strLang.'CRON_SCHEDULE_MINUTE');?></td>
@@ -150,7 +150,7 @@ $arSchedule = $arCli['SCHEDULE'];
 						);
 						?>
 						<?foreach($arExamples as $strSchedule => $strName):?>
-							<a href="#" data-role="acrit-core-cron-example" data-schedule="<?=$strSchedule;?>"><?=$strName;?></a><?
+							<a href="#" data-role="data-core-cron-example" data-schedule="<?=$strSchedule;?>"><?=$strName;?></a><?
 								if($strName === end($arExamples)){
 									print '.';
 								}
@@ -165,9 +165,9 @@ $arSchedule = $arCli['SCHEDULE'];
 					<td class="adm-detail-content-cell-l" width="40%"></td>
 					<td class="adm-detail-content-cell-r" width="60%">
 						<input type="button" value="<?=Helper::getMessage($strLang.'CRON_BUTTON_SETUP');?>" class="adm-btn-green"
-							data-role="acrit-core-cron-setup" data-callback="<?=$strCallbackSetup;?>" />
+							data-role="data-core-cron-setup" data-callback="<?=$strCallbackSetup;?>" />
 						<input type="button" value="<?=Helper::getMessage($strLang.'CRON_BUTTON_CLEAR');?>" class="adm-btn"
-							data-role="acrit-core-cron-clear" data-callback="<?=$strCallbackClear;?>"
+							data-role="data-core-cron-clear" data-callback="<?=$strCallbackClear;?>"
 							<?if(!$bAlreadyInstalled):?> disabled="disabled"<?endif?> />
 					</td>
 				</tr>
@@ -178,8 +178,8 @@ $arSchedule = $arCli['SCHEDULE'];
 							<label><?=Helper::getMessage($strLang.'CRON_TASKS');?>:</label>
 						</td>
 						<td class="adm-detail-content-cell-r" data-role="cron-current-tasks-wrapper">
-							<?=Helper::getHtmlObject(ACRIT_CORE, null, 'forms/cron', 'tasks', [
-								'MODULE_ID' => ACRIT_PROCESSING,
+							<?=Helper::getHtmlObject(DATA_CORE, null, 'forms/cron', 'tasks', [
+								'MODULE_ID' => DATA_PROCESSING,
 								'PROFILE_ID' => $strProfileId,
 								'CLI_FILE' => $strCliFile,
 							])?>
@@ -203,23 +203,23 @@ $arSchedule = $arCli['SCHEDULE'];
 			<tr id="tr_CRON_COMMAND">
 				<td class="adm-detail-content-cell-r" colspan="2">
 					<?if($strCommandFull != $strCommandFullNoOutput):?>
-						<div class="acrit-core-cron-form-command-title"><?=Helper::getMessage($strLang.'CRON_TITLE_WITH_OUTPUT');?></div>
+						<div class="data-core-cron-form-command-title"><?=Helper::getMessage($strLang.'CRON_TITLE_WITH_OUTPUT');?></div>
 					<?endif?>
-					<div class="acrit-core-cron-form-command">
-						<code class="acrit-core-cron-command-copy"><?=$strCommandFull;?></code>
-						<a href="javascript:void(0)" class="acrit-core-cron-form-command-copy acrit-inline-link"
-							data-role="acrit-core-cron-command-copy" data-message="<?=Helper::getMessage($strLang.'CRON_COMMAND_COPY_SUCCESS');?>">
+					<div class="data-core-cron-form-command">
+						<code class="data-core-cron-command-copy"><?=$strCommandFull;?></code>
+						<a href="javascript:void(0)" class="data-core-cron-form-command-copy data-inline-link"
+							data-role="data-core-cron-command-copy" data-message="<?=Helper::getMessage($strLang.'CRON_COMMAND_COPY_SUCCESS');?>">
 							<?=Helper::getMessage($strLang.'CRON_COMMAND_COPY');?>
 						</a>
 						<span></span>
 					</div>
 					<br/>
 					<?if($strCommandFull != $strCommandFullNoOutput):?>
-						<div class="acrit-core-cron-form-command-title"><?=Helper::getMessage($strLang.'CRON_TITLE_NO_OUTPUT');?></div>
-						<div class="acrit-core-cron-form-command">
-							<code class="acrit-core-cron-command-copy"><?=$strCommandFullNoOutput;?></code>
-							<a href="javascript:void(0)" class="acrit-core-cron-form-command-copy acrit-inline-link"
-								data-role="acrit-core-cron-command-copy" data-message="<?=Helper::getMessage($strLang.'CRON_COMMAND_COPY_SUCCESS');?>">
+						<div class="data-core-cron-form-command-title"><?=Helper::getMessage($strLang.'CRON_TITLE_NO_OUTPUT');?></div>
+						<div class="data-core-cron-form-command">
+							<code class="data-core-cron-command-copy"><?=$strCommandFullNoOutput;?></code>
+							<a href="javascript:void(0)" class="data-core-cron-form-command-copy data-inline-link"
+								data-role="data-core-cron-command-copy" data-message="<?=Helper::getMessage($strLang.'CRON_COMMAND_COPY_SUCCESS');?>">
 								<?=Helper::getMessage($strLang.'CRON_COMMAND_COPY');?>
 							</a>
 							<span></span>

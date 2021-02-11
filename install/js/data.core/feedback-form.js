@@ -1,12 +1,12 @@
-function acritCoreFeedbackFormDisableControls(disabled){
+function dataCoreFeedbackFormDisableControls(disabled){
 	var controls = [
-		'acrit-core-feedback-form-problem',
-		'acrit-core-feedback-form-name',
-		'acrit-core-feedback-form-email-user',
-		'acrit-core-feedback-form-agree-checkbox',
-		'acrit-core-feedback-form-submit',
-		'acrit-core-feedback-form-transmit',
-		'acrit-core-feedback-form-tech-data',
+		'data-core-feedback-form-problem',
+		'data-core-feedback-form-name',
+		'data-core-feedback-form-email-user',
+		'data-core-feedback-form-agree-checkbox',
+		'data-core-feedback-form-submit',
+		'data-core-feedback-form-transmit',
+		'data-core-feedback-form-tech-data',
 	];
 	for(var i in controls){
 		if(disabled){
@@ -17,38 +17,38 @@ function acritCoreFeedbackFormDisableControls(disabled){
 		}
 	}
 }
-function acritCoreFeedbackFormSubmit(){
-	if(!BX('acrit-core-feedback-form-agree-checkbox').checked){
-		alert(BX('acrit-core-feedback-form-submit').getAttribute('data-agree'));
+function dataCoreFeedbackFormSubmit(){
+	if(!BX('data-core-feedback-form-agree-checkbox').checked){
+		alert(BX('data-core-feedback-form-submit').getAttribute('data-agree'));
 		return false;
 	}
-	acritCoreFeedbackFormDisableControls(true);
+	dataCoreFeedbackFormDisableControls(true);
 	var ajax = BX.ajax.post(
-		'/bitrix/admin/acrit_core_feedback.php?lang=ru&action=feedback_send',
+		'/bitrix/admin/data_core_feedback.php?lang=ru&action=feedback_send',
 		{
-			module: BX('acrit-core-feedback-form-module').value,
-			email_admin: BX('acrit-core-feedback-form-email-admin').value,
-			subject: BX('acrit-core-feedback-form-subject').value,
-			problem: BX('acrit-core-feedback-form-problem').value,
-			name: BX('acrit-core-feedback-form-name').value,
-			email_user: BX('acrit-core-feedback-form-email-user').value,
-			tech: BX('acrit-core-feedback-form-tech-data').value,
+			module: BX('data-core-feedback-form-module').value,
+			email_admin: BX('data-core-feedback-form-email-admin').value,
+			subject: BX('data-core-feedback-form-subject').value,
+			problem: BX('data-core-feedback-form-problem').value,
+			name: BX('data-core-feedback-form-name').value,
+			email_user: BX('data-core-feedback-form-email-user').value,
+			tech: BX('data-core-feedback-form-tech-data').value,
 			url: location.href
 		},
 		function(HTML){
-			acritCoreFeedbackFormDisableControls(false);
+			dataCoreFeedbackFormDisableControls(false);
 			if(HTML == 'Y'){
-				alert(BX('acrit-core-feedback-form-submit').getAttribute('data-success'));
+				alert(BX('data-core-feedback-form-submit').getAttribute('data-success'));
 			}
 			else{
-				alert(BX('acrit-core-feedback-form-submit').getAttribute('data-error'));
+				alert(BX('data-core-feedback-form-submit').getAttribute('data-error'));
 			}
 		}
 	);
 	return false;
 }
-function acritCoreFeedbackFormTransmit(){
-	BX.toggleClass(BX('acrit-core-feedback-form-tech'), 'visible');
+function dataCoreFeedbackFormTransmit(){
+	BX.toggleClass(BX('data-core-feedback-form-tech'), 'visible');
 	return false;
 }
-BX.adminFormTools.modifyCheckbox(BX('acrit-core-feedback-form-agree-checkbox'));
+BX.adminFormTools.modifyCheckbox(BX('data-core-feedback-form-agree-checkbox'));

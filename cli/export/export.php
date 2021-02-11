@@ -1,14 +1,14 @@
 <?php
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
 	\Bitrix\Main\Loader,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Cli,
+	\Data\Core\Log;
 
-define('ACRIT_EXP_CRON', true);
+define('DATA_EXP_CRON', true);
 define('NO_KEEP_STATISTIC', true);
 define('NOT_CHECK_PERMISSIONS', true);
 
@@ -28,7 +28,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_befo
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/interface/init_admin.php');
 set_time_limit(0);
 ignore_user_abort(true);
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 if(Loader::includeModule($strCoreId)) {
 	// Do
 	if(!in_array($strModuleId, Exporter::getExportModules())){
@@ -37,8 +37,8 @@ if(Loader::includeModule($strCoreId)) {
 	}
 	// Check if root
 	if(Cli::isRoot()){
-		Log::getInstance($strCoreId)->add(Loc::getMessage('ACRIT_EXP_ROOT_HALT_CYRILLIC'));
-		print Loc::getMessage('ACRIT_EXP_ROOT_HALT_LATIN').PHP_EOL;
+		Log::getInstance($strCoreId)->add(Loc::getMessage('DATA_EXP_ROOT_HALT_CYRILLIC'));
+		print Loc::getMessage('DATA_EXP_ROOT_HALT_LATIN').PHP_EOL;
 		return;
 	}
 	// Include module

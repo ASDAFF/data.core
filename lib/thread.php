@@ -3,12 +3,12 @@
  *	Class to work with threads
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Cli,
+	\Data\Core\Log;
 
 Helper::loadMessages(__FILE__);
 
@@ -174,7 +174,7 @@ class Thread {
 			fclose($this->pipes[0]);
 		}
 		else{
-			Log::getInstance(ACRIT_CORE)->add('Could not initialize asynchronous call of ['.$this->cmd.'] (see lib/thread.php)');
+			Log::getInstance(DATA_CORE)->add('Could not initialize asynchronous call of ['.$this->cmd.'] (see lib/thread.php)');
 		}
   }
 

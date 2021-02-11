@@ -1,16 +1,16 @@
 <?
 /**
- * Acrit Core: create tables for ozon
+ * Data Core: create tables for ozon
  * @documentation https://docs.ozon.ru/api/seller
  */
 
-namespace Acrit\Core\Export\Plugins\OzonRuHelpers;
+namespace Data\Core\Export\Plugins\OzonRuHelpers;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $arTables = [
-	'acrit_ozon_attribute' => [
+	'data_ozon_attribute' => [
 		'ID' => 'int(11) NOT NULL auto_increment',
 		'CATEGORY_ID' => 'int(11) NOT NULL',
 		'ATTRIBUTE_ID' => 'int(11) NOT NULL',
@@ -28,9 +28,9 @@ $arTables = [
 		'SESSION_ID' => 'VARCHAR(32) NOT NULL',
 		'TIMESTAMP_X' => 'DATETIME NOT NULL',
 		'PRIMARY KEY (ID)',
-		'KEY `ix_perf_acrit_ozon_attribute_1` (`ATTRIBUTE_ID`)',
+		'KEY `ix_perf_data_ozon_attribute_1` (`ATTRIBUTE_ID`)',
 	],
-	'acrit_ozon_attribute_value' => [
+	'data_ozon_attribute_value' => [
 		'ID' => 'int(11) NOT NULL auto_increment',
 		'CATEGORY_ID' => 'int(11) NOT NULL',
 		'ATTRIBUTE_ID' => 'int(11) NOT NULL',
@@ -40,18 +40,18 @@ $arTables = [
 		'SESSION_ID' => 'VARCHAR(32) NOT NULL',
 		'TIMESTAMP_X' => 'DATETIME NOT NULL',
 		'PRIMARY KEY (ID)',
-		'KEY `ix_perf_acrit_ozon_attribute_value_1` (`VALUE_ID`)',
+		'KEY `ix_perf_data_ozon_attribute_value_1` (`VALUE_ID`)',
 	],
-	'acrit_ozon_category' => [
+	'data_ozon_category' => [
 		'ID' => 'int(11) NOT NULL auto_increment',
 		'CATEGORY_ID' => 'int(11) NOT NULL',
 		'NAME' => 'TEXT NOT NULL',
 		'SESSION_ID' => 'VARCHAR(32) NOT NULL',
 		'TIMESTAMP_X' => 'DATETIME NOT NULL',
 		'PRIMARY KEY (ID)',
-		'KEY `ix_perf_acrit_ozon_category_1` (`CATEGORY_ID`)',
+		'KEY `ix_perf_data_ozon_category_1` (`CATEGORY_ID`)',
 	],
-	'acrit_ozon_task' => [
+	'data_ozon_task' => [
 		'ID' => 'int(11) NOT NULL auto_increment',
 		'PROFILE_ID' => 'int(11) NOT NULL',
 		'TASK_ID' => 'int(11) NOT NULL',
@@ -63,7 +63,7 @@ $arTables = [
 		'STATUS_DATETIME' => 'DATETIME DEFAULT NULL',
 		'PRIMARY KEY (ID)',
 	],
-	'acrit_ozon_history' => [
+	'data_ozon_history' => [
 		'ID' => 'int(11) NOT NULL auto_increment',
 		'PROFILE_ID' => 'int(11) NOT NULL',
 		'TASK_ID' => 'int(11) NOT NULL',

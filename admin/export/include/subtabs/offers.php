@@ -1,10 +1,10 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\ValueBase,
-	\Acrit\Core\Export\Filter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\ValueBase,
+	\Data\Core\Export\Filter;
 
 Loc::loadMessages(__FILE__);
 
@@ -35,16 +35,16 @@ if(is_null($arIBlockOffersParams['FILTER'])){
 	<tbody>
 		<tr>
 			<td width="40%">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_MODE');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_OFFERS_MODE_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_MODE');?>:
 			</td>
 			<td width="60%">
 				<?
 				$arOptions = array(
-					'only' => Loc::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_ONLY'),
-					'all' => Loc::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_ALL'),
-					'none' => Loc::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_NONE'),
-					'offers' => Loc::getMessage('ACRIT_EXP_TAB_OFFERS_MODE_OFFERS'),
+					'only' => Loc::getMessage('DATA_EXP_TAB_OFFERS_MODE_ONLY'),
+					'all' => Loc::getMessage('DATA_EXP_TAB_OFFERS_MODE_ALL'),
+					'none' => Loc::getMessage('DATA_EXP_TAB_OFFERS_MODE_NONE'),
+					'offers' => Loc::getMessage('DATA_EXP_TAB_OFFERS_MODE_OFFERS'),
 				);
 				$arOptions = array(
 					'REFERENCE' => array_values($arOptions),
@@ -55,7 +55,7 @@ if(is_null($arIBlockOffersParams['FILTER'])){
 				?>
 			</td>
 		</tr>
-		<tr class="heading"><td colspan="2"><?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_HEADER_FILTER');?></td></tr>
+		<tr class="heading"><td colspan="2"><?=Loc::getMessage('DATA_EXP_TAB_OFFERS_HEADER_FILTER');?></td></tr>
 		<tr>
 			<td colspan="2">
 				<?
@@ -68,40 +68,40 @@ if(is_null($arIBlockOffersParams['FILTER'])){
 				?>
 			</td>
 		</tr>
-		<tr class="heading"><td colspan="2"><?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_HEADER_SORT2');?></td></tr>
+		<tr class="heading"><td colspan="2"><?=Loc::getMessage('DATA_EXP_TAB_OFFERS_HEADER_SORT2');?></td></tr>
 		<tr>
 			<td width="40%" style="padding-top:11px;vertical-align:top;">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_OFFERS_HEADER_SORT2_FIELD_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_HEADER_SORT2_FIELD');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_OFFERS_HEADER_SORT2_FIELD_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_HEADER_SORT2_FIELD');?>:
 			</td>
 			<td width="60%">
-				<div class="acrit-exp-offers-sort-block" data-role="offers-sort--block">
+				<div class="data-exp-offers-sort-block" data-role="offers-sort--block">
 					<?foreach($arSort2Params['FIELD'] as $key => $strField):?>
 						<?
 						$strOther = $arSort2Params['OTHER'][$key];
 						$strOrder = $arSort2Params['ORDER'][$key];
 						?>
-						<div class="acrit-exp-offers-sort-item" data-role="offers-sort--item">
+						<div class="data-exp-offers-sort-item" data-role="offers-sort--item">
 							<select name="iblockparams[<?=$intIBlockID;?>][OFFER_SORT2][FIELD][]" data-role="offers-sort--field">
 								<option value="-"<?if($strField=='-'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_OTHER');?></option>
+									<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_OTHER');?></option>
 								<option value="ID"<?if($strField=='ID'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_ID');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_ID');?>
 								</option>
 								<option value="NAME"<?if($strField=='NAME'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_NAME');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_NAME');?>
 								</option>
 								<option value="ACTIVE_FROM"<?if($strField=='ACTIVE_FROM'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_ACTIVE_FROM');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_ACTIVE_FROM');?>
 								</option>
 								<option value="SORT"<?if($strField=='SORT'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_SORT');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_SORT');?>
 								</option>
 								<option value="TIMESTAMP_X"<?if($strField=='TIMESTAMP_X'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_TIMESTAMP_X');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_TIMESTAMP_X');?>
 								</option>
 								<?if(is_array($arPrices) && !empty($arPrices)):?>
-									<optgroup label="<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_PRICES');?>">
+									<optgroup label="<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_PRICES');?>">
 										<?foreach($arPrices as $arPrice):?>
 											<?$strPrice = 'CATALOG_PRICE_'.$arPrice['ID'];?>
 											<option value="<?=$strPrice?>"<?if($strField==$strPrice):?> selected="selected"<?endif?>>
@@ -115,25 +115,25 @@ if(is_null($arIBlockOffersParams['FILTER'])){
 								value="<?=$strOther;?>" size="25" />
 							<select name="iblockparams[<?=$intIBlockID;?>][OFFER_SORT2][ORDER][]" data-role="offers-sort--order">
 								<option value="ASC"<?if($strOrder=='ASC'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_ORDER_ASC');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_ORDER_ASC');?>
 								</option>
 								<option value="DESC"<?if($strOrder=='DESC'):?> selected="selected"<?endif?>>
-									<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_ORDER_DESC');?>
+									<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_ORDER_DESC');?>
 								</option>
 							</select>
-							<a href="#" class="acrit-exp-offers-sort-delete" data-role="offers-sort--delete">&times;</a>
+							<a href="#" class="data-exp-offers-sort-delete" data-role="offers-sort--delete">&times;</a>
 						</div>
 					<?endforeach?>
 				</div>
-				<input type="button" class="acrit-exp-offers-sort-add" data-role="offers-sort--add"
-					value="<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_SORT2_ADD');?>" />
+				<input type="button" class="data-exp-offers-sort-add" data-role="offers-sort--add"
+					value="<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_SORT2_ADD');?>" />
 			</td>
 		</tr>
-		<tr class="heading"><td colspan="2"><?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_ADDITIONAL_PARAMETERS');?></td></tr>
+		<tr class="heading"><td colspan="2"><?=Loc::getMessage('DATA_EXP_TAB_OFFERS_ADDITIONAL_PARAMETERS');?></td></tr>
 		<tr>
 			<td width="40%" style="padding-top:11px; vertical-align:top;">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_OFFERS_COUNT_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_OFFERS_COUNT');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_OFFERS_COUNT_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_OFFERS_COUNT');?>:
 			</td>
 			<td width="60%">
 				<?

@@ -1,1 +1,1 @@
-<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/acrit.core/admin/check_updates.php');?>
+<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/data.core/admin/check_updates.php');?>

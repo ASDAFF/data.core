@@ -1,19 +1,19 @@
 <p>Данный формат выгрузки предназначен для экспорта товаров в маркетплейс ОЗОН с помощью API.</p>
 
-<div class="acrit-exp-note-compact" style="margin-bottom:15px;">
+<div class="data-exp-note-compact" style="margin-bottom:15px;">
 	<div class="adm-info-message-wrap">
 		<div class="adm-info-message">
 			<b>Внимание! Важная информация без которой Вы не сможете корректно настроить выгрузку!</b><br/>
 			Выбор категорий Ozon - обязателен (два режима - стандартный и нестандартный)!<br/><br/>
 			И <b style="color:maroon">для каждой категории Ozon Вам потребуется заполнить как минимум обязательные атрибуты</b> (они появляются в общем списке полей товаров, внизу, с разделением по категориям). Без этого корректная выгрузка <b style="color:maroon">невозможна</b>!<br/><br/>
-			Больше информации - в <a href="#" data-role="acrit_exp_ozon_decscription_teacher" class="acrit-inline-link">кратком уроке по настройке профиля Ozon</a>.
+			Больше информации - в <a href="#" data-role="data_exp_ozon_decscription_teacher" class="data-inline-link">кратком уроке по настройке профиля Ozon</a>.
 			<script>
-			$('a[data-role="acrit_exp_ozon_decscription_teacher"]').bind('click', function(e){
+			$('a[data-role="data_exp_ozon_decscription_teacher"]').bind('click', function(e){
 				e.preventDefault();
-				if(typeof window.acritTeachers == 'object'){
-					for(let i in window.acritTeachers){
-						if(window.acritTeachers[i].code == 'EXPORT_OZON_NEW_API'){
-							$("#adm-workarea").acritTeacher(window.acritTeachers[i]);
+				if(typeof window.dataTeachers == 'object'){
+					for(let i in window.dataTeachers){
+						if(window.dataTeachers[i].code == 'EXPORT_OZON_NEW_API'){
+							$("#adm-workarea").dataTeacher(window.dataTeachers[i]);
 						}
 					}
 				}

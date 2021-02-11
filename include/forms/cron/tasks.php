@@ -1,11 +1,11 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Cli;
+	\Data\Core\Helper,
+	\Data\Core\Cli;
 
-$strLang = 'ACRIT_CORE_';
+$strLang = 'DATA_CORE_';
 Helper::loadMessages(__FILE__);
 
 $strModuleId = $arVariables['MODULE_ID'];
@@ -32,14 +32,14 @@ foreach($arCurrentTasksAll as $key => $arTask){
 <?if(!empty($arCurrentTasksMatch)):?>
 	<div>
 		<div>
-			<a href="javascript:void(0)" data-role="acrit-core-cron-current-tasks-toggle" class="acrit-inline-link">
+			<a href="javascript:void(0)" data-role="data-core-cron-current-tasks-toggle" class="data-inline-link">
 				<?=Helper::getMessage($strLang.'CRON_TASKS_TOGGLE');?>
 			</a>
 			(<?=count($arCurrentTasksMatch);?>)
 		</div>
-		<div data-role="acrit-core-cron-current-tasks" style="display:none;">
+		<div data-role="data-core-cron-current-tasks" style="display:none;">
 			<?foreach($arCurrentTasksMatch as $arTask):?>
-				<div class="acrit-core-cron-form-command" style="margin-top:4px;">
+				<div class="data-core-cron-form-command" style="margin-top:4px;">
 					<code><?=$arTask['COMMAND_FULL'];?></code>
 				</div>
 			<?endforeach?>

@@ -1,5 +1,5 @@
 <?
-$strLang = 'ACRIT_EXP_UNIVERSAL_PLUGIN_';
+$strLang = 'DATA_EXP_UNIVERSAL_PLUGIN_';
 
 # Settings
 $MESS[$strLang.'SETTINGS_NAME_FILENAME'] = 'Файл выгрузки';

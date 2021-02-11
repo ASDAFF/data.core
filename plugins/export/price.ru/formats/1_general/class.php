@@ -1,16 +1,16 @@
 <?
 /**
- * Acrit Core: Price.ru plugin
+ * Data Core: Price.ru plugin
  * @documentation https://static.price.ru/docs/pricelist_requirements.pdf
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use 
 		\Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Export\Field\Field,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Xml;
+		\Data\Core\Export\Field\Field,
+		\Data\Core\Helper,
+		\Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 

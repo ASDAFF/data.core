@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_TRIM_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_TRIM_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Удаление пробелов';
 $MESS[$strMessPrefix.'DESC'] = 'Данная опция позволяет применить обрезку лишних символов в начале и в конце строк.<br/><br/>

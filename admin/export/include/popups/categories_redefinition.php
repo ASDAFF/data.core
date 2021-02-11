@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition;
+	\Data\Core\Helper,
+	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition;
 	
 
 Loc::loadMessages(__FILE__);
@@ -189,12 +189,12 @@ $bStrictMode = $strMode == CategoryRedefinition::MODE_STRICT;
 ?>
 
 <div>
-	<table class="acrit-exp-table-categories-redefinition">
+	<table class="data-exp-table-categories-redefinition">
 		<thead>
 			<tr>
-				<th><?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORIES_REDEFINITION_COLUMN_ID');?></th>
-				<th><?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORIES_REDEFINITION_COLUMN_OLDNAME');?></th>
-				<th><?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORIES_REDEFINITION_COLUMN_NEWNAME');?></th>
+				<th><?=Loc::getMessage('DATA_EXP_POPUP_CATEGORIES_REDEFINITION_COLUMN_ID');?></th>
+				<th><?=Loc::getMessage('DATA_EXP_POPUP_CATEGORIES_REDEFINITION_COLUMN_OLDNAME');?></th>
+				<th><?=Loc::getMessage('DATA_EXP_POPUP_CATEGORIES_REDEFINITION_COLUMN_NEWNAME');?></th>
 				<?if($bStrictMode):?>
 					<th></th>
 				<?endif?>
@@ -218,7 +218,7 @@ $bStrictMode = $strMode == CategoryRedefinition::MODE_STRICT;
 							title="<?=htmlspecialcharsbx($arCategoryRedefinitionAll[$arSection['ID']]['SECTION_NAME']);?>"
 							data-role="categories-redefinition-text"
 						/>
-						<a href="#" class="acrit-exp-table-categories-redefinition-clear" 
+						<a href="#" class="data-exp-table-categories-redefinition-clear"
 							data-role="categories-redefinition-button-clear">&times;</a>
 					</td>
 					<?if($bStrictMode):?>

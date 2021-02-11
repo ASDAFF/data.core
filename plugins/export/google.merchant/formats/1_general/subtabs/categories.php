@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -21,15 +21,15 @@ Helper::arrayRemoveEmptyValues($arSectionsID);
 	<tbody>
 		<tr id="tr_GOOGLE_CATEGORIES_MODE">
 			<td width="40%">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_GOOGLE_CATEGORIES_MODE_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_GOOGLE_CATEGORIES_MODE');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_GOOGLE_CATEGORIES_MODE_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_GOOGLE_CATEGORIES_MODE');?>:
 			</td>
 			<td>
 				<?
 				$arOptions = array(
-					'russian' => Loc::getMessage('ACRIT_EXP_TAB_GOOGLE_CATEGORIES_MODE_RUSSIAN'),
-					'english' => Loc::getMessage('ACRIT_EXP_TAB_GOOGLE_CATEGORIES_MODE_ENGLISH'),
-					'numeric' => Loc::getMessage('ACRIT_EXP_TAB_GOOGLE_CATEGORIES_MODE_NUMERIC'),
+					'russian' => Loc::getMessage('DATA_EXP_TAB_GOOGLE_CATEGORIES_MODE_RUSSIAN'),
+					'english' => Loc::getMessage('DATA_EXP_TAB_GOOGLE_CATEGORIES_MODE_ENGLISH'),
+					'numeric' => Loc::getMessage('DATA_EXP_TAB_GOOGLE_CATEGORIES_MODE_NUMERIC'),
 				);
 				$arOptions = array(
 					'REFERENCE' => array_values($arOptions),

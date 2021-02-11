@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $strTLang = 'TEACHER_';
 
@@ -15,14 +15,14 @@ $arTeacher = [
 		'DESCRIPTION' => static::getMessage($strTLang.'SPLASH_SCREEN_DESCRIPTION'),
 		'CSS' => '',
 	],
-	'TAB_CONTROL' => 'AcritExpProfile',
+	'TAB_CONTROL' => 'DataExpProfile',
 	'CLOSE_WINDOWS' => 'Y',
 	'STEPS' => [
 		'PLUGIN_SETTINGS' => null,
 		'OZON_AUTH_DATA' => [
-			'ELEMENTS' => '$("input[data-role=\"acrit_exp_ozon_new_client_id\"]")
-				.add("input[data-role=\"acrit_exp_ozon_new_api_key\"]")
-				.add("input[data-role=\"acrit_exp_ozon_new_access_check\"]")',
+			'ELEMENTS' => '$("input[data-role=\"data_exp_ozon_new_client_id\"]")
+				.add("input[data-role=\"data_exp_ozon_new_api_key\"]")
+				.add("input[data-role=\"data_exp_ozon_new_access_check\"]")',
 			'ACCESSIBLE' => 'Y',
 			'TAB' => 'general',
 			'AFTER' => 'FORMAT',
@@ -92,17 +92,17 @@ $arTeacher = [
 		],
 		'OZON_CATEGORY_REDEFINITIONS_POPUP' => [
 			'CALLBACK_ELEMENTS' => 'function(options, stepData){
-				return $(AcritExpPopupCategoriesRedefinition.DIV);
+				return $(DataExpPopupCategoriesRedefinition.DIV);
 			}',
 			'ACCESSIBLE' => 'N',
 			'SUB_TAB' => 'subtab_categories',
 			'CALLBACK_IN' => 'function(options, currStepData, nextStepData){
-				if(!AcritExpPopupCategoriesRedefinition.isOpen){
+				if(!DataExpPopupCategoriesRedefinition.isOpen){
 					$("input[data-role=\"categories-redefinition-button\"]").trigger("click");
 				}
 				this.handler = this.addHandler(window, "onWindowClose", function(popup){
-					if(popup == AcritExpPopupCategoriesRedefinition && AcritExpPopupCategoriesRedefinition.isOpen){
-						this.removeHandler(AcritExpPopupCategoriesRedefinition, "onWindowClose", this.handler);
+					if(popup == DataExpPopupCategoriesRedefinition && DataExpPopupCategoriesRedefinition.isOpen){
+						this.removeHandler(DataExpPopupCategoriesRedefinition, "onWindowClose", this.handler);
 						if(this.goingNext){
 							this.goNextDelay(10);
 						}
@@ -110,7 +110,7 @@ $arTeacher = [
 				});
 			}',
 			'CALLBACK_BEFORE' => 'function(options, stepData){
-				if(AcritExpPopupCategoriesRedefinition.isOpen && !!$(".acrit-exp-table-categories-redefinition").length){
+				if(DataExpPopupCategoriesRedefinition.isOpen && !!$(".data-exp-table-categories-redefinition").length){
 					return true;
 				}
 				return false;
@@ -118,7 +118,7 @@ $arTeacher = [
 			'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 				this.removeHandler(window, "onWindowClose", this.handler);
 				delete this.handler;
-				AcritExpPopupCategoriesRedefinition.Close();
+				DataExpPopupCategoriesRedefinition.Close();
 			}',
 			'AFTER' => 'OZON_CATEGORY_REDEFINITIONS_BUTTON',
 		],
@@ -157,15 +157,15 @@ $arTeacher = [
 		],
 		'OZON_ALLOWED_VALUES_POPUP' => [
 			'CALLBACK_ELEMENTS' => 'function(options, stepData){
-				return $(AcritPopupHint.DIV);
+				return $(DataPopupHint.DIV);
 			}',
 			'ACCESSIBLE' => 'Y',
 			'SUB_TAB' => 'subtab_categories',
 			'CALLBACK_IN' => 'function(options, currStepData, nextStepData){
 				$("tr[data-role=\"field_row\"] span > img[src*=\"icon-warning\"]").first().trigger("click");
 				this.handler = this.addHandler(window, "onWindowClose", function(popup){
-					if(popup == AcritPopupHint && AcritPopupHint.isOpen){
-						this.removeHandler(AcritPopupHint, "onWindowClose", this.handler);
+					if(popup == DataPopupHint && DataPopupHint.isOpen){
+						this.removeHandler(DataPopupHint, "onWindowClose", this.handler);
 						if(this.goingNext){
 							this.goNextDelay(10);
 						}
@@ -173,7 +173,7 @@ $arTeacher = [
 				});
 			}',
 			'CALLBACK_BEFORE' => 'function(options, stepData){
-				if(AcritPopupHint.isOpen && !!$("div[data-role=\"allowed-values-filter-results\"]").length){
+				if(DataPopupHint.isOpen && !!$("div[data-role=\"allowed-values-filter-results\"]").length){
 					return true;
 				}
 				return false;
@@ -181,7 +181,7 @@ $arTeacher = [
 			'CALLBACK_OUT' => 'function(options, currStepData, nextStepData){
 				this.removeHandler(window, "onWindowClose", this.handler);
 				delete this.handler;
-				AcritPopupHint.Close();
+				DataPopupHint.Close();
 			}',
 			'AFTER' => 'OZON_ALLOWED_VALUES',
 		],

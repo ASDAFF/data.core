@@ -1,32 +1,32 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 	
 ?>
 
 <?if($arVariables['POPUP']):?>
-	<div class="acrit-exp-allowed-values-wrapper" data-role="acrit-exp-field-popup-hint">
+	<div class="data-exp-allowed-values-wrapper" data-role="data-exp-field-popup-hint">
 		<table>
 			<tbody>
 				<?if($arVariables['FILTER']):?>
 					<tr>
-						<td class="acrit-exp-allowed-values-filter">
-							<input type="text" placeholder="<?=Helper::getMessage('ACRIT_CORE_FIELD_POPUP_HINT_SEARCH');?>" value=""
-								data-role="acrit-exp-field-popup-hint-search">
+						<td class="data-exp-allowed-values-filter">
+							<input type="text" placeholder="<?=Helper::getMessage('DATA_CORE_FIELD_POPUP_HINT_SEARCH');?>" value=""
+								data-role="data-exp-field-popup-hint-search">
 						</td>
 					</tr>
 				<?endif?>
 				<tr>
-					<td class="acrit-exp-allowed-values-data">
-						<div class="acrit-exp-allowed-values">
+					<td class="data-exp-allowed-values-data">
+						<div class="data-exp-allowed-values">
 							<?if(is_array($arVariables['GROUPS'])):?>
-								<ul class="acrit-exp-allowed-values-<?=($arVariables['LIST'] ? 'list' : 'default');?>"
-									data-role="acrit-exp-field-popup-hint-groups">
+								<ul class="data-exp-allowed-values-<?=($arVariables['LIST'] ? 'list' : 'default');?>"
+									data-role="data-exp-field-popup-hint-groups">
 									<?foreach($arVariables['GROUPS'] as $key1 => $arGroup):?>
 										<li>
-											<div class="acrit-exp-allowed-values-group-title" data-role="acrit-exp-field-popup-hint-group">
+											<div class="data-exp-allowed-values-group-title" data-role="data-exp-field-popup-hint-group">
 												<?=$arGroup['NAME'];?>
 											</div>
 											<ul>
@@ -47,11 +47,11 @@ use
 <?else:?>
 	<?if(is_array($arVariables['GROUPS'])):?>
 		<?#if($arVariables['LIST']):?>
-		<div class="acrit-exp-allowed-values">
-			<ul class="acrit-exp-allowed-values-<?=($arVariables['LIST'] ? 'list' : 'default');?>">
+		<div class="data-exp-allowed-values">
+			<ul class="data-exp-allowed-values-<?=($arVariables['LIST'] ? 'list' : 'default');?>">
 				<?foreach($arVariables['GROUPS'] as $key1 => $arGroup):?>
 					<li>
-						<div class="acrit-exp-allowed-values-group-title">
+						<div class="data-exp-allowed-values-group-title">
 							<?=$arGroup['NAME'];?>
 						</div>
 						<ul>

@@ -1,14 +1,14 @@
 <?
 /**
- * Acrit Core: Custom XML format
+ * Data Core: Custom XML format
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Log,
-	\Acrit\Core\Export\Plugin;
+	\Data\Core\Helper,
+	\Data\Core\Log,
+	\Data\Core\Export\Plugin;
 
 Loc::loadMessages(__FILE__);
 

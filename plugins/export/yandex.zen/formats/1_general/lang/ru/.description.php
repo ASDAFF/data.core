@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_ZEN_';
+$strMessPrefix = 'DATA_EXP_YANDEX_ZEN_';
 
 //
 $MESS[$strMessPrefix.'ABOUT_YANDEXZEN'] = 'О Яндекс.Дзене';

@@ -1,21 +1,18 @@
 <?
 /**
- * Acrit Core: Retargeting VK plugin
- * @package acrit.core
- * @copyright 2019 Acrit
- * @documentation https://vk.com/faq12163
+ * Copyright (c) 12/2/2021 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
  */
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition;
-use Acrit\Core\Export\Filter;
+use Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition;
+use Data\Core\Export\Filter;
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Xml;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 
@@ -89,7 +86,7 @@ class VkRetargeting extends Vk {
 	protected function showDefaultSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;" data-role="settings-<?=static::getCode();?>">
+		<table class="data-exp-plugin-settings" style="width:100%;" data-role="settings-<?=static::getCode();?>">
 			<tbody>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
@@ -98,8 +95,8 @@ class VkRetargeting extends Vk {
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
 					<?\CAdminFileDialog::ShowScript(array(
-						'event' => 'AcritExpPluginXmlFilenameSelect',
-						'arResultDest' => array('FUNCTION_NAME' => 'acrit_exp_plugin_xml_filename_select'),
+						'event' => 'DataExpPluginXmlFilenameSelect',
+						'arResultDest' => array('FUNCTION_NAME' => 'data_exp_plugin_xml_filename_select'),
 						'arPath' => array(),
 						'select' => 'F',
 						'operation' => 'S',
@@ -110,19 +107,19 @@ class VkRetargeting extends Vk {
 						'saveConfig' => true,
 					));?>
 					<script>
-                        function acrit_exp_plugin_xml_filename_select(File,Path,Site){
+                        function data_exp_plugin_xml_filename_select(File,Path,Site){
                             var FilePath = Path+'/'+File;
-                            $('#acrit_exp_plugin_xml_filename').val(FilePath);
+                            $('#data_exp_plugin_xml_filename').val(FilePath);
                         }
 					</script>
-					<table class="acrit-exp-plugin-settings-fileselect">
+					<table class="data-exp-plugin-settings-fileselect">
 						<tbody>
 						<tr>
 							<td><input type="text" name="PROFILE[PARAMS][EXPORT_FILE_NAME]"
-							           id="acrit_exp_plugin_xml_filename"
+							           id="data_exp_plugin_xml_filename"
 							           value="<?=htmlspecialcharsbx($this->arProfile['PARAMS']['EXPORT_FILE_NAME']);?>"
 							           size="40" placeholder="<?=static::getMessage('SETTINGS_FILE_PLACEHOLDER');?>" /></td>
-							<td><input type="button" value="..." onclick="AcritExpPluginXmlFilenameSelect()" /></td>
+							<td><input type="button" value="..." onclick="DataExpPluginXmlFilenameSelect()" /></td>
 							<td>
 								&nbsp;
 								<?=$this->showFileOpenLink();?>
@@ -141,7 +138,7 @@ class VkRetargeting extends Vk {
 	protected function showShopSettings(){
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
@@ -187,7 +184,7 @@ class VkRetargeting extends Vk {
 						'REFERENCE_ID' => array_keys($arCurrenciesId),
 					);
 					print SelectBoxFromArray('PROFILE[PARAMS][CURRENCIES]', $arCurrenciesId,
-						$this->arProfile['PARAMS']['CURRENCIES'], '', 'id="acrit_exp_plugin_currencies"');
+						$this->arProfile['PARAMS']['CURRENCIES'], '', 'id="data_exp_plugin_currencies"');
 					?>
 				</td>
 			</tr>
@@ -195,7 +192,7 @@ class VkRetargeting extends Vk {
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
 					<?=Helper::ShowHint(static::getMessage('SETTINGS_ENCODING_HINT'));?>
-					<label for="acrit_exp_plugin_encoding">
+					<label for="data_exp_plugin_encoding">
 						<b><?=static::getMessage('SETTINGS_ENCODING');?>:</b>
 					</label>
 				</td>
@@ -207,7 +204,7 @@ class VkRetargeting extends Vk {
 						'REFERENCE_ID' => array_keys($arEncodings),
 					);
 					print SelectBoxFromArray('PROFILE[PARAMS][ENCODING]', $arEncodings,
-						$this->arProfile['PARAMS']['ENCODING'], '', 'id="acrit_exp_plugin_encoding"');
+						$this->arProfile['PARAMS']['ENCODING'], '', 'id="data_exp_plugin_encoding"');
 					?>
 				</td>
 			</tr>
@@ -592,7 +589,7 @@ class VkRetargeting extends Vk {
 	public function getSteps(){
 		$arResult = array();
 		$arResult['CHECK'] = array(
-			'NAME' => static::getMessage('ACRIT_EXP_EXPORTER_STEP_CHECK'),
+			'NAME' => static::getMessage('DATA_EXP_EXPORTER_STEP_CHECK'),
 			'SORT' => 10,
 			#'FUNC' => __CLASS__.'::stepCheck',
 			'FUNC' => array($this, 'stepCheck'),
@@ -666,7 +663,7 @@ class VkRetargeting extends Vk {
 			unlink($arSession['XML_FILE']);
 		}
 		if(!Helper::createDirectoriesForFile($arSession['XML_FILE'])){
-			$strMessage = Loc::getMessage('ACRIT_EXP_ERROR_CREATE_DIRECORY', array(
+			$strMessage = Loc::getMessage('DATA_EXP_ERROR_CREATE_DIRECORY', array(
 				'#DIR#' => Helper::getDirectoryForFile($arSession['XML_FILE']),
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);
@@ -678,7 +675,7 @@ class VkRetargeting extends Vk {
 		}
 		if(!@rename($arSession['XML_FILE_TMP'], $arSession['XML_FILE'])){
 			@unlink($arSession['XML_FILE_TMP']);
-			$strMessage = Loc::getMessage('ACRIT_EXP_FILE_NO_PERMISSIONS', array(
+			$strMessage = Loc::getMessage('DATA_EXP_FILE_NO_PERMISSIONS', array(
 				'#FILE#' => $arSession['XML_FILE'],
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);
@@ -820,7 +817,7 @@ class VkRetargeting extends Vk {
 
 		$arData['PROFILE']['PARAMS']['CATEGORIES_REDEFINITION_MODE'] = CategoryRedefinition::MODE_CUSTOM;
 		switch($arData['PROFILE']['PARAMS']['CATEGORIES_REDEFINITION_MODE']){
-			// Режим "Использовать категории торговой площадки"
+			// Р РµР¶РёРј "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°С‚РµРіРѕСЂРёРё С‚РѕСЂРіРѕРІРѕР№ РїР»РѕС‰Р°РґРєРё"
 			case CategoryRedefinition::MODE_STRICT:
 				#
 				$strSeparator = '/';
@@ -885,7 +882,7 @@ class VkRetargeting extends Vk {
 				}
 				#
 				break;
-			// Режим "Использовать категории сайта"
+			// Р РµР¶РёРј "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°С‚РµРіРѕСЂРёРё СЃР°Р№С‚Р°"
 			case CategoryRedefinition::MODE_CUSTOM:
 				# Categories to XML array
 				$arCategoriesXml = array();

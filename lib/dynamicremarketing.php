@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Config\Option,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class DynamicRemarketing
- * @package Acrit\Core
+ * @package Data\Core
  */
 class DynamicRemarketing {
 	
@@ -23,8 +23,8 @@ class DynamicRemarketing {
 		if(!defined('ADMIN_SECTION') || ADMIN_SECTION !== true){
 			if(\Bitrix\Main\Context::getCurrent()->getServer()->getRequestMethod() != 'POST') {
 				if(!\Bitrix\Main\Application::GetInstance()->getContext()->getRequest()->isAjaxRequest()) {
-					$strJsGoogle = trim(Option::get(ACRIT_CORE, 'dynamic_remarketing_google'));
-					$strJsMailru = trim(Option::get(ACRIT_CORE, 'dynamic_remarketing_mailru'));
+					$strJsGoogle = trim(Option::get(DATA_CORE, 'dynamic_remarketing_google'));
+					$strJsMailru = trim(Option::get(DATA_CORE, 'dynamic_remarketing_mailru'));
 					if(strlen($strJsGoogle) || strlen($strJsMailru)) {
 						if(\Bitrix\Main\Loader::includeModule('iblock')){
 							static::$strContent = &$strContent;

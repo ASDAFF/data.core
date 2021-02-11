@@ -1,18 +1,18 @@
 <?
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$obTabControl->AddSection('HEADING_BASIC', Loc::getMessage('ACRIT_CRM_TAB_BASIC_HEADING'));
+$obTabControl->AddSection('HEADING_BASIC', Loc::getMessage('DATA_CRM_TAB_BASIC_HEADING'));
 
 // Code
-$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][source_id]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_SOURCE_ID'));
+$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][source_id]', Loc::getMessage('DATA_CRM_TAB_BASIC_SOURCE_ID'));
 ?>
     <tr id="tr_connect_data_source_id">
         <td>
@@ -20,7 +20,7 @@ $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][source_id]', Loc::getMess
         </td>
         <td>
             <input type="text" name="PROFILE[CONNECT_DATA][source_id]" size="50" maxlength="255" data-role="profile-name"
-                   data-default-name="<?=Loc::getMessage('ACRIT_EXP_FIELD_CODE_DEFAULT');?>"
+                   data-default-name="<?=Loc::getMessage('DATA_EXP_FIELD_CODE_DEFAULT');?>"
 			       <?if($intProfileID):?>data-custom-name="true"<?endif?>
                    value="<?=htmlspecialcharsbx($arProfile['CONNECT_DATA']['source_id']);?>" />
         </td>
@@ -29,7 +29,7 @@ $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][source_id]', Loc::getMess
 $obTabControl->EndCustomField('PROFILE[CONNECT_DATA][source_id]');
 
 // Prefix
-$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][prefix]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_PREFIX'));
+$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][prefix]', Loc::getMessage('DATA_CRM_TAB_BASIC_PREFIX'));
 ?>
     <tr id="tr_connect_data_prefix">
         <td>
@@ -37,7 +37,7 @@ $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][prefix]', Loc::getMessage
         </td>
         <td>
             <input type="text" name="PROFILE[CONNECT_DATA][prefix]" size="50" maxlength="255" data-role="profile-name"
-                   data-default-name="<?=Loc::getMessage('ACRIT_EXP_FIELD_PREFIX_DEFAULT');?>"
+                   data-default-name="<?=Loc::getMessage('DATA_EXP_FIELD_PREFIX_DEFAULT');?>"
 			       <?if($intProfileID):?>data-custom-name="true"<?endif?>
                    value="<?=htmlspecialcharsbx($arProfile['CONNECT_DATA']['prefix']);?>" />
         </td>
@@ -46,7 +46,7 @@ $obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][prefix]', Loc::getMessage
 $obTabControl->EndCustomField('PROFILE[CONNECT_DATA][prefix]');
 
 // Prefix
-$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][category]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_CATEGORY'));
+$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][category]', Loc::getMessage('DATA_CRM_TAB_BASIC_CATEGORY'));
 $list = CrmPortal::getDirections();
 ?>
     <tr id="tr_connect_data_category">
@@ -65,7 +65,7 @@ $list = CrmPortal::getDirections();
 $obTabControl->EndCustomField('PROFILE[CONNECT_DATA][category]');
 
 // Prefix
-$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][responsible]', Loc::getMessage('ACRIT_CRM_TAB_BASIC_RESPONSIBLE'));
+$obTabControl->BeginCustomField('PROFILE[CONNECT_DATA][responsible]', Loc::getMessage('DATA_CRM_TAB_BASIC_RESPONSIBLE'));
 $list = CrmPortal::getUsers();
 ?>
     <tr id="tr_connect_data_responsible">

@@ -1,13 +1,13 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Json,
+	\Data\Core\Log;
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 define('ADMIN_MODULE_NAME', $strCoreId);
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php');
 \Bitrix\Main\Loader::includeModule($strCoreId);
@@ -65,10 +65,10 @@ if($arGet[Log::DOWNLOAD_PARAM] == Log::DOWNLOAD_PARAM_Y){
 }
 
 if($bProfile) {
-	$APPLICATION->SetTitle(Helper::getMessage('ACRIT_EXP_PAGE_TITLE_PROFILE'));
+	$APPLICATION->SetTitle(Helper::getMessage('DATA_EXP_PAGE_TITLE_PROFILE'));
 }
 else {
-	$APPLICATION->SetTitle(Helper::getMessage('ACRIT_EXP_PAGE_TITLE_MODULE'));
+	$APPLICATION->SetTitle(Helper::getMessage('DATA_EXP_PAGE_TITLE_MODULE'));
 }
 $APPLICATION->RestartBuffer();
 Log::getInstance($strModuleID)->showLog($intProfileID, true);

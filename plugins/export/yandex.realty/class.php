@@ -1,12 +1,12 @@
 <?
 /**
- * Acrit Core: Yandex.Realty base plugin
+ * Data Core: Yandex.Realty base plugin
  * @documentation https://yandex.ru/support/realty/requirements/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Export\UniversalPlugin;
+use \Data\Core\Export\UniversalPlugin;
 
 abstract class YandexRealty extends UniversalPlugin {
 	

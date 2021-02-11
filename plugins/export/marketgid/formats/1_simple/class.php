@@ -1,17 +1,17 @@
 <?
 /**
- * Acrit Core: MarketGid plugin
+ * Data Core: MarketGid plugin
  * @documentation https://dashboard.marketgid.com/index/teaser-goods-export-requirements
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 		\Bitrix\Main\EventManager,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Export\Exporter,
-		\Acrit\Core\Xml,
-		\Acrit\Core\Export\Field\Field;
+		\Data\Core\Helper,
+		\Data\Core\Export\Exporter,
+		\Data\Core\Xml,
+		\Data\Core\Export\Field\Field;
 
 Loc::loadMessages(__FILE__);
 

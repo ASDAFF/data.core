@@ -1,14 +1,14 @@
 // Refresh preview
 $.alt('R', function() {
-	if(AcritExpPopupPreview.isOpen){
-		$('#acrit-exp-preview-refresh').trigger('click');
+	if(DataExpPopupPreview.isOpen){
+		$('#data-exp-preview-refresh').trigger('click');
 	}
 	else{
-		if($('#acrit-exp-element-preview-button').length){
-			$('#acrit-exp-element-preview-button').trigger('click');
+		if($('#data-exp-element-preview-button').length){
+			$('#data-exp-element-preview-button').trigger('click');
 		}
 		else{
-			var dropdown = $('a[onclick*="AcritExpPopupPreview.Open"]')[0];
+			var dropdown = $('a[onclick*="DataExpPopupPreview.Open"]')[0];
 			if(dropdown.OPENER){
 				dropdown.OPENER.Open();
 			}
@@ -19,7 +19,7 @@ $.alt('R', function() {
 	}
 });
 //
-function acritExpPreviewProfileSelectTemplate(state) {
+function dataExpPreviewProfileSelectTemplate(state) {
 	if (!state.id) {
 		return state.text;
 	}
@@ -27,14 +27,14 @@ function acritExpPreviewProfileSelectTemplate(state) {
 	return html;
 };
 //
-var AcritExpPopupPreview = new BX.CDialog({
-	ID: 'AcritExpPopupPreview',
+var DataExpPopupPreview = new BX.CDialog({
+	ID: 'DataExpPopupPreview',
 	resizable: true,
 	draggable: true,
 	height: $(window).height() - 123 - 60,
 	width: $(window).width() - 26 - 60,
 });
-AcritExpPopupPreview.Open = function(strModuleId, elementId, profileId){
+DataExpPopupPreview.Open = function(strModuleId, elementId, profileId){
 	this.strModuleId = strModuleId;
 	this.elementId = elementId;
 	// Positioning
@@ -54,30 +54,30 @@ AcritExpPopupPreview.Open = function(strModuleId, elementId, profileId){
 		divPopup.css({left: ($(window).width() - divPopup.width()) / 2, top: ($(window).height() - divPopup.height() + margin) / 2});
 	}, 1);
 	//
-	// $('select', this.PARTS.BUTTONS_CONTAINER).val('').select2(window.acritExpProfileSelectConfig);
+	// $('select', this.PARTS.BUTTONS_CONTAINER).val('').select2(window.dataExpProfileSelectConfig);
 	//
-	this.SetTitle(BX.message('ACRIT_EXP_EVENT_HANDLER_PREVIEW_TITLE') + ' (' + this.strModuleId + ')');
+	this.SetTitle(BX.message('DATA_EXP_EVENT_HANDLER_PREVIEW_TITLE') + ' (' + this.strModuleId + ')');
 	this.Show();
 	this.LoadContent(strModuleId, false, profileId, true);
 }
-AcritExpPopupPreview.LoadContent = function(strModuleId, saveContent, profileId, initial){
+DataExpPopupPreview.LoadContent = function(strModuleId, saveContent, profileId, initial){
 	var thisPopup = this;
 	if(!saveContent) {
-		thisPopup.SetContent(BX.message('ACRIT_EXP_EVENT_HANDLER_PREVIEW_LOADING'));
+		thisPopup.SetContent(BX.message('DATA_EXP_EVENT_HANDLER_PREVIEW_LOADING'));
 	}
 	thisPopup.profileId = profileId;
 	// Set popup buttons
 	thisPopup.SetNavButtons();
 	//
 	/*
-	if(!profileId && window.acritExpPreviewProfileId && window.acritExpPreviewProfileId[thisPopup.strModuleId]){
-		profileId = window.acritExpPreviewProfileId[thisPopup.strModuleId];
+	if(!profileId && window.dataExpPreviewProfileId && window.dataExpPreviewProfileId[thisPopup.strModuleId]){
+		profileId = window.dataExpPreviewProfileId[thisPopup.strModuleId];
 	}
 	*/
 	//
 	BX.showWait();
 	$.ajax({
-		url: '/bitrix/admin/acrit_core_export_preview.php?module='+strModuleId+'&ID='+this.elementId+'&lang='+phpVars.LANGUAGE_ID,
+		url: '/bitrix/admin/data_core_export_preview.php?module='+strModuleId+'&ID='+this.elementId+'&lang='+phpVars.LANGUAGE_ID,
 		type: 'GET',
 		data: {
 			'profile_id': profileId > 0 ? profileId : '',
@@ -106,13 +106,13 @@ AcritExpPopupPreview.LoadContent = function(strModuleId, saveContent, profileId,
 		}
 	});
 }
-AcritExpPopupPreview.SetNavButtons = function(){
+DataExpPopupPreview.SetNavButtons = function(){
 	$('input[type=button]', this.PARTS.BUTTONS_CONTAINER).remove();
 	this.SetButtons(
 		[{
-			'name': BX.message('ACRIT_EXP_EVENT_HANDLER_PREVIEW_REFRESH'),
+			'name': BX.message('DATA_EXP_EVENT_HANDLER_PREVIEW_REFRESH'),
 			'className': 'adm-btn-green',
-			'id': 'acrit-exp-preview-refresh',
+			'id': 'data-exp-preview-refresh',
 			'action': function(){
 				var thisPopup = this.parentWindow,
 					selectProfile = $('select', thisPopup.PARTS.BUTTONS_CONTAINER),
@@ -126,25 +126,25 @@ AcritExpPopupPreview.SetNavButtons = function(){
 				thisPopup.LoadContent(thisPopup.strModuleId, true, profileId);
 			}
 		}, {
-			'name': BX.message('ACRIT_EXP_EVENT_HANDLER_PREVIEW_CLOSE'),
-			'id': 'acrit-exp-preview-close',
+			'name': BX.message('DATA_EXP_EVENT_HANDLER_PREVIEW_CLOSE'),
+			'id': 'data-exp-preview-close',
 			'action': function(){
 				this.parentWindow.Close();
 			}
 		}]
 	)
 }
-AcritExpPopupPreview.SetProfileSelect = function(initial){
+DataExpPopupPreview.SetProfileSelect = function(initial){
 	var thisPopup = this,
 		container = $(this.PARTS.BUTTONS_CONTAINER),
-		selectWrapper = $('.acrit-exp-preview-select', this.PARTS.CONTENT_DATA);
+		selectWrapper = $('.data-exp-preview-select', this.PARTS.CONTENT_DATA);
 	$('select, span', this.PARTS.BUTTONS_CONTAINER).remove();
 	container.append(selectWrapper.html());
 	//
-	window.acritExpProfileSelectConfig = {
-		templateResult: acritExpPreviewProfileSelectTemplate,
-		templateSelection: acritExpPreviewProfileSelectTemplate,
-		//dropdownParent: $('.acrit-exp-preview').first(),
+	window.dataExpProfileSelectConfig = {
+		templateResult: dataExpPreviewProfileSelectTemplate,
+		templateSelection: dataExpPreviewProfileSelectTemplate,
+		//dropdownParent: $('.data-exp-preview').first(),
 		dropdownPosition: 'above',
 		language: phpVars.LANGUAGE_ID
 	}
@@ -154,13 +154,13 @@ AcritExpPopupPreview.SetProfileSelect = function(initial){
 		//thisPopup.profileId = profileId;
 		thisPopup.LoadContent(thisPopup.strModuleId, true, $(this).val());
 	});
-	select.select2($.extend(window.acritExpProfileSelectConfig, {
+	select.select2($.extend(window.dataExpProfileSelectConfig, {
 		dropdownParent: select.parent()
 	}));
 	if(initial){
-		select.parent().addClass('acrit-exp-text-blink');
+		select.parent().addClass('data-exp-text-blink');
 		setTimeout(function(){
-			select.parent().removeClass('acrit-exp-text-blink');
+			select.parent().removeClass('data-exp-text-blink');
 		}, 750);
 	}
 }

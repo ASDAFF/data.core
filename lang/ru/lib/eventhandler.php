@@ -1,3 +1,3 @@
 <?
-$MESS['ACRITMENU_GROUP_NAME_DEFAULT'] = 'Решения "АКРИТ"';
+$MESS['DATAMENU_GROUP_NAME_DEFAULT'] = 'Решения "АКРИТ"';
 ?>

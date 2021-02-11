@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_AUTO_RU_';
+$strMessPrefix = 'DATA_EXP_AUTO_RU_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'auto.ru';

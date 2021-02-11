@@ -1,5 +1,5 @@
 <?php
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 class OdnoklassnikiSDK{
 	const PARAMETER_NAME_ACCESS_TOKEN = "access_token";

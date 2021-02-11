@@ -1,15 +1,15 @@
 <?
 /**
- * Acrit Core: Torg.mail.ru plugin
+ * Data Core: Torg.mail.ru plugin
  * @documentation https://torg.mail.ru/info/122/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 

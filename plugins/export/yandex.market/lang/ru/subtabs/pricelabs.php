@@ -1,5 +1,5 @@
 <?
-$strLang = 'ACRIT_EXP_YANDEX_MARKET_PRICELABS_';
+$strLang = 'DATA_EXP_YANDEX_MARKET_PRICELABS_';
 $strHint = $strLang.'HINT_';
 
 $MESS[$strLang.'PARAMS'] = 'Пользовательские параметры фильтра<br/>(только названия)';

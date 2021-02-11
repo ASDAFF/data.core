@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter;
 
 Loc::loadMessages(__FILE__);
 
@@ -17,7 +17,7 @@ if($bExecute) {
 		if($arProfile['LOCKED']=='Y'){
 			$arJsonResult['Error'] = $bError;
 			$arJsonResult['ShowError'] = true;
-			print Helper::showNote(Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_PROFILE_IS_LOCKED', array(
+			print Helper::showNote(Loc::getMessage('DATA_EXP_POPUP_EXECUTE_PROFILE_IS_LOCKED', array(
 				'#DATETIME#' => $arProfile['DATE_LOCKED']->toString(),
 			)));
 			$bCanContinue = false;

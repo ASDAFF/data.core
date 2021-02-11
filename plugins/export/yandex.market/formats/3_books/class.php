@@ -1,19 +1,19 @@
 <?
 /**
- * Acrit Core: Yandex.Market plugin
+ * Data Core: Yandex.Market plugin
  * @documentation https://yandex.ru/support/partnermarket/export/books.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Xml,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Xml,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition;
 
 Loc::loadMessages(__FILE__);
 

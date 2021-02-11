@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_TURBO_VENDOR_MODEL_';
+$strMessPrefix = 'DATA_EXP_YANDEX_TURBO_VENDOR_MODEL_';
 
 $MESS[$strMessPrefix.'GENERAL_PURPOSE'] = 'Данный формат предназначен для выгрузки товаров в сервис Яндекс.Турбо (используется формат файла YML для Яндекс.маркет).';
 

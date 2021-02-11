@@ -1,8 +1,8 @@
 <?php
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $arCheck = [
 	is_array($arParams['FIELDS']) && !empty($arParams['FIELDS']),

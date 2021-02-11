@@ -1,13 +1,13 @@
 <?
 
-namespace Acrit\Core\Crm;
+namespace Data\Core\Crm;
 
 use Bitrix\Main,
 	Bitrix\Main\Type,
 	Bitrix\Main\Entity,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\SiteTable,
-	Acrit\Core\Helper;
+	Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 

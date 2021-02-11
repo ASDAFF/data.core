@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_EBAY_DISTRIBUTION_';
+$strMessPrefix = 'DATA_EXP_EBAY_DISTRIBUTION_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Ebay (распределение)';

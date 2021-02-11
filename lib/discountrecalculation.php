@@ -1,10 +1,10 @@
 <?
 /**
- * Acrit core
- * @package acrit.core
- * @copyright 2018 Acrit
+ * Data core
+ * @package data.core
+ * @copyright 2018 Data
  */
-namespace Acrit\Core;
+namespace Data\Core;
 
 use \Bitrix\Main\Localization\Loc;
 
@@ -22,7 +22,7 @@ class DiscountRecalculation {
 	 */
 	public static function isEnabled($bForce=false){
 		if(static::$bEnabled === null || $bForce) {
-			static::$bEnabled = \Bitrix\Main\Config\Option::get(ACRIT_CORE, 
+			static::$bEnabled = \Bitrix\Main\Config\Option::get(DATA_CORE, 
 				'discount_recalculation_enabled') == 'Y';
 		}
 		return static::$bEnabled;
@@ -32,7 +32,7 @@ class DiscountRecalculation {
 	 *	Get current prices ID
 	 */
 	public static function getCurrentPricesID(){
-		return array_filter(explode(',', Helper::getOption(ACRIT_CORE, 'discount_recalculation_prices')));
+		return array_filter(explode(',', Helper::getOption(DATA_CORE, 'discount_recalculation_prices')));
 	}
 
 	/**
@@ -50,52 +50,52 @@ class DiscountRecalculation {
 				if(!in_array($arPrice['ID'], $arCurrentPrices)) {
 					continue;
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_value') == 'Y') {
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_value') == 'Y') {
 					$intSort += $intSortIncrement;
 					$arProperties[] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_PRICE_VALUE_NAME', 
+						'NAME' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_PRICE_VALUE_NAME', 
 							array('#PRICE#'=>$arPrice['NAME_LANG'])),
-						'HINT' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
-						'CODE' => 'ACRIT_EXP_PRICE_'.$arPrice['ID'].'_VALUE',
+						'HINT' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
+						'CODE' => 'DATA_EXP_PRICE_'.$arPrice['ID'].'_VALUE',
 						'ACTIVE' => 'Y',
 						'SORT' => $intSort,
 						'PROPERTY_TYPE' => 'N',
 						'COL_COUNT' => '32',
 					);
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_discount') == 'Y') {
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_discount') == 'Y') {
 					$intSort += $intSortIncrement;
 					$arProperties[] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_PRICE_DISCOUNT_NAME', 
+						'NAME' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_PRICE_DISCOUNT_NAME', 
 							array('#PRICE#'=>$arPrice['NAME_LANG'])),
-						'HINT' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
-						'CODE' => 'ACRIT_EXP_PRICE_'.$arPrice['ID'].'_DISCOUNT',
+						'HINT' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
+						'CODE' => 'DATA_EXP_PRICE_'.$arPrice['ID'].'_DISCOUNT',
 						'ACTIVE' => 'Y',
 						'SORT' => $intSort,
 						'PROPERTY_TYPE' => 'N',
 						'COL_COUNT' => '32',
 					);
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_percent') == 'Y') {
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_percent') == 'Y') {
 					$intSort += $intSortIncrement;
 					$arProperties[] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_PRICE_PERCENT_NAME', 
+						'NAME' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_PRICE_PERCENT_NAME', 
 							array('#PRICE#'=>$arPrice['NAME_LANG'])),
-						'HINT' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
-						'CODE' => 'ACRIT_EXP_PRICE_'.$arPrice['ID'].'_PERCENT',
+						'HINT' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
+						'CODE' => 'DATA_EXP_PRICE_'.$arPrice['ID'].'_PERCENT',
 						'ACTIVE' => 'Y',
 						'SORT' => $intSort,
 						'PROPERTY_TYPE' => 'N',
 						'COL_COUNT' => '32',
 					);
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_dates') == 'Y') {
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_dates') == 'Y') {
 					$intSort += $intSortIncrement;
 					$arProperties[] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_DISCOUNT_ACTIVE_FROM_NAME', 
+						'NAME' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_DISCOUNT_ACTIVE_FROM_NAME', 
 							array('#PRICE#'=>$arPrice['NAME_LANG'])),
-						'HINT' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
-						'CODE' => 'ACRIT_EXP_PRICE_'.$arPrice['ID'].'_ACTIVE_FROM',
+						'HINT' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
+						'CODE' => 'DATA_EXP_PRICE_'.$arPrice['ID'].'_ACTIVE_FROM',
 						'ACTIVE' => 'Y',
 						'SORT' => $intSort,
 						'PROPERTY_TYPE' => 'S',
@@ -103,10 +103,10 @@ class DiscountRecalculation {
 					);
 					$intSort += $intSortIncrement;
 					$arProperties[] = array(
-						'NAME' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_DISCOUNT_ACTIVE_TO_NAME', 
+						'NAME' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_DISCOUNT_ACTIVE_TO_NAME', 
 							array('#PRICE#'=>$arPrice['NAME_LANG'])),
-						'HINT' => Loc::getMessage('ACRIT_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
-						'CODE' => 'ACRIT_EXP_PRICE_'.$arPrice['ID'].'_ACTIVE_TO',
+						'HINT' => Loc::getMessage('DATA_EXP_DISCOUNT_RECALCULATION_PROP_HINT'),
+						'CODE' => 'DATA_EXP_PRICE_'.$arPrice['ID'].'_ACTIVE_TO',
 						'ACTIVE' => 'Y',
 						'SORT' => $intSort,
 						'PROPERTY_TYPE' => 'S',
@@ -124,7 +124,7 @@ class DiscountRecalculation {
 				}
 			}
 			else{
-				$arProfileIBlockID = array_filter(explode(',', Helper::getOption(ACRIT_CORE, 
+				$arProfileIBlockID = array_filter(explode(',', Helper::getOption(DATA_CORE, 
 					'discount_recalculation_iblocks')));
 			}
 			# Ищем все торговые каталоги и для всех будем обновлять свойства
@@ -137,7 +137,7 @@ class DiscountRecalculation {
 				$arExistProps = array();
 				$resProp = \CIBlockProperty::GetList(array(), array(
 					'IBLOCK_ID' => $arCatalog['IBLOCK_ID'],
-					'CODE' => 'ACRIT_EXP_PRICE_%',
+					'CODE' => 'DATA_EXP_PRICE_%',
 				));
 				while($arProp = $resProp->getNext(false,false)){
 					$arExistProps[$arProp['CODE']] = $arProp;
@@ -262,18 +262,18 @@ class DiscountRecalculation {
 						}
 					}
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_value') == 'Y') {
-					$arPropValues['ACRIT_EXP_PRICE_'.$intPriceID.'_VALUE'] = $mPriceDiscount;
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_value') == 'Y') {
+					$arPropValues['DATA_EXP_PRICE_'.$intPriceID.'_VALUE'] = $mPriceDiscount;
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_discount') == 'Y') {
-					$arPropValues['ACRIT_EXP_PRICE_'.$intPriceID.'_DISCOUNT'] = $mDiscountValue;
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_discount') == 'Y') {
+					$arPropValues['DATA_EXP_PRICE_'.$intPriceID.'_DISCOUNT'] = $mDiscountValue;
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_percent') == 'Y') {
-					$arPropValues['ACRIT_EXP_PRICE_'.$intPriceID.'_PERCENT'] = $mDiscountPercent;
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_percent') == 'Y') {
+					$arPropValues['DATA_EXP_PRICE_'.$intPriceID.'_PERCENT'] = $mDiscountPercent;
 				}
-				if(Helper::getOption(ACRIT_CORE, 'discount_recalculation_calc_dates') == 'Y') {
-					$arPropValues['ACRIT_EXP_PRICE_'.$intPriceID.'_ACTIVE_FROM'] = $mDiscountActiveFrom;
-					$arPropValues['ACRIT_EXP_PRICE_'.$intPriceID.'_ACTIVE_TO'] = $mDiscountActiveTo;
+				if(Helper::getOption(DATA_CORE, 'discount_recalculation_calc_dates') == 'Y') {
+					$arPropValues['DATA_EXP_PRICE_'.$intPriceID.'_ACTIVE_FROM'] = $mDiscountActiveFrom;
+					$arPropValues['DATA_EXP_PRICE_'.$intPriceID.'_ACTIVE_TO'] = $mDiscountActiveTo;
 				}
 			}
 			\CIBlockElement::SetPropertyValuesEx($intElementID, $arElement['IBLOCK_ID'], $arPropValues);

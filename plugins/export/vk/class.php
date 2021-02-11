@@ -1,17 +1,17 @@
 <?
 /**
- * Acrit Core: Vk.com base plugin
+ * Data Core: Vk.com base plugin
  * @documentation https://vk.com/dev/goods_docs
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Json,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\HttpRequest,
+	\Data\Core\Json,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 

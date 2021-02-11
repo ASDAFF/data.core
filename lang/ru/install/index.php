@@ -1,8 +1,8 @@
 <?
-$MESS['ACRIT_CORE_MODULE_NAME'] = 'АКРИТ: служебные инструменты';
-$MESS['ACRIT_CORE_MODULE_DESC'] = 'Модуль служебных инструментов компании АКРИТ.';
-$MESS['ACRIT_CORE_PARTNER_NAME'] = 'Веб-Студия АКРИТ';
-$MESS['ACRIT_CORE_PARTNER_URI'] = 'https://www.acrit-studio.ru';
-$MESS['ACRIT_CORE_RECOMMENDED'] = 'Рекомендации';
-$MESS['ACRIT_CORE_UNINSTALL_TITLE'] = 'Деинсталляция модуля «'.$MESS['ACRIT_CORE_MODULE_NAME'].'»';
+$MESS['DATA_CORE_MODULE_NAME'] = 'Cлужебные инструменты';
+$MESS['DATA_CORE_MODULE_DESC'] = 'Модуль служебных инструментов';
+$MESS['DATA_CORE_PARTNER_NAME'] = 'ASDAFF';
+$MESS['DATA_CORE_PARTNER_URI'] = 'http://asdaff.github.io/';
+$MESS['DATA_CORE_RECOMMENDED'] = 'Рекомендации';
+$MESS['DATA_CORE_UNINSTALL_TITLE'] = 'Деинсталляция модуля «'.$MESS['DATA_CORE_MODULE_NAME'].'»';
 ?>

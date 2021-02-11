@@ -1,7 +1,7 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 ?>
 <div data-role="categories-update-attributes-category">
 	<?if($bStart):?>

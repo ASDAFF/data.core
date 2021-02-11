@@ -3,15 +3,15 @@
  * Class to work with fields and its values
  */
 
-namespace Acrit\Core\Export\Field;
+namespace Data\Core\Export\Field;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\ValueBase,
-	\Acrit\Core\Export\Field\ValueSimple,
-	\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-	\Acrit\Core\Export\Settings\SettingsBase as Settings;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\ValueBase,
+	\Data\Core\Export\Field\ValueSimple,
+	\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+	\Data\Core\Export\Settings\SettingsBase as Settings;
 
 class Field {
 	
@@ -174,12 +174,12 @@ class Field {
 						'SORT' => $strClass::getSort(),
 						'CLASS' => $strClass,
 					);
-					if(end(\Acrit\Core\Export\Exporter::getInstance($this->strModuleId)->getExportModules(true)) != $this->strModuleId){
+					if(end(\Data\Core\Export\Exporter::getInstance($this->strModuleId)->getExportModules(true)) != $this->strModuleId){
 						unset($arResult['MULTICONDITION']);
 					}
 				}
 			}
-			uasort($arResult, '\Acrit\Core\Helper::sortBySort');
+			uasort($arResult, '\Data\Core\Helper::sortBySort');
 		}
 		#
 		return $arResult;
@@ -635,7 +635,7 @@ class Field {
 		ob_start();
 		?>
 		<?if($this->isHeader()):?>
-			<tr class="heading acrit-exp-fields-table-heading<?if($this->bNormalCase):?> acrit-exp-fields-table-heading-normal-case<?endif?>" data-header="<?=$strFieldCode;?>">
+			<tr class="heading data-exp-fields-table-heading<?if($this->bNormalCase):?> data-exp-fields-table-heading-normal-case<?endif?>" data-header="<?=$strFieldCode;?>">
 				<td colspan="4"><?=$strName;?></td>
 			</tr>
 		<?else:?>
@@ -643,28 +643,28 @@ class Field {
 				data-field-id="<?=$this->getID();?>" data-name="<?=htmlspecialcharsbx($strName);?>"
 				data-multiple="<?=($this->bMultiple ? 'Y' : 'N');?>"
 				<?if($this->isCategoryCustomName()):?>data-category-custom-name="Y"<?endif?>>
-				<td class="adm-list-table-cell acrit-exp-fields-table-field align-right">
+				<td class="adm-list-table-cell data-exp-fields-table-field align-right">
 					<?if($this->isAdditional()):?>
-						<div class="acrit-exp-fields-table-field-name acrit-exp-fields-table-additional-field-name">
+						<div class="data-exp-fields-table-field-name data-exp-fields-table-additional-field-name">
 							<input type="text"
 								value="<?=htmlspecialcharsbx($strName);?>"
 								name="<?=ValueBase::INPUTNAME_DEFAULT;?>[<?=$this->intIBlockID;?>][<?=$strFieldCode;?>][name]"
-								placeholder="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_PLACEHOLDER');?>"
+								placeholder="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_PLACEHOLDER');?>"
 							/>
 							<?if(!$this->bCopyProfileMode):?>
-								<a href="#" class="acrit-exp-fields-table-additional-field-delete" data-role="additional-field-delete"
-									title="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_DELETE_TITLE');?>"
+								<a href="#" class="data-exp-fields-table-additional-field-delete" data-role="additional-field-delete"
+									title="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_ADDITIONAL_FIELD_DELETE_TITLE');?>"
 								>&times;</a>
 							<?endif?>
 						</div>
 					<?else:?>
-						<div class="acrit-exp-fields-table-field-name"><?
+						<div class="data-exp-fields-table-field-name"><?
 							if(strlen($strHint)) {
 								print Helper::showHint($strHint, false, $this->bPopupDescription, $strName);
 							}
 							if(!Helper::isEmpty($mAllowedValues)) {
 								$arAllowedValues = is_array($mAllowedValues) ? $mAllowedValues : [$mAllowedValues];
-								$strPopupTitle = Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_FIELD_ALLOWED_VALUES', [
+								$strPopupTitle = Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_FIELD_ALLOWED_VALUES', [
 									'#FIELD#' => $strName,
 								]);
 								$strAllowedValuesHtml = $this->allowedValuesToHtml($arAllowedValues);
@@ -672,7 +672,7 @@ class Field {
 									$this->bAllowedValuesFilter);
 							}
 							elseif($this->bAllowedValuesCustom){
-								$strPopupTitle = Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_FIELD_ALLOWED_VALUES', [
+								$strPopupTitle = Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_FIELD_ALLOWED_VALUES', [
 									'#FIELD#' => $strName,
 								]);
 								print Helper::showHint($strContent, true, true, $strPopupTitle, $this->getCustomAllowedValuesJs());
@@ -687,7 +687,7 @@ class Field {
 								print $strName;
 							}
 						?></div>
-						<div class="acrit-exp-fields-table-field-code">
+						<div class="data-exp-fields-table-field-code">
 							<?$strDisplayCode = strlen($this->strDisplayCode) ? $this->strDisplayCode : $strFieldCode;?>
 							<?if($strDisplayCode != $strName):?>
 								<code><?=htmlspecialcharsbx($strDisplayCode);?></code>
@@ -695,25 +695,25 @@ class Field {
 						</div>
 					<?endif?>
 					<?if($this->bMultiple):?>
-						<div class="acrit-exp-fields-table-field-is-multiple"
-							title="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_FIELD_IS_MULTIPLE');?>"></div>
+						<div class="data-exp-fields-table-field-is-multiple"
+							title="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_FIELD_IS_MULTIPLE');?>"></div>
 					<?endif?>
 				</td>
-				<td class="adm-list-table-cell acrit-exp-fields-table-type align-right">
+				<td class="adm-list-table-cell data-exp-fields-table-type align-right">
 					<select name="<?=ValueBase::INPUTNAME_DEFAULT;?>[<?=$this->intIBlockID;?>][<?=$strFieldCode;?>][field_type]" data-role="field-type">
 						<?foreach($arValueTypes as $strValueCode => $arValueData):?>
 							<option value="<?=$strValueCode;?>"<?if($strValueCode==$this->strType):?> selected="selected"<?endif?>><?=$arValueData['NAME'];?></option>
 						<?endforeach?>
 					</select>
 				</td>
-				<td class="adm-list-table-cell acrit-exp-fields-table-value align-right" data-role="field-value-cell">
+				<td class="adm-list-table-cell data-exp-fields-table-value align-right" data-role="field-value-cell">
 					<?=$this->displayField();?>
 				</td>
 				<?if(!$this->bHiddenParams):?>
-					<td class="adm-list-table-cell acrit-exp-fields-table-settings align-right">
+					<td class="adm-list-table-cell data-exp-fields-table-settings align-right">
 						<input type="hidden" name="<?=ValueBase::INPUTNAME_DEFAULT;?>[<?=$this->intIBlockID;?>][<?=$strFieldCode;?>][field_params]" value="<?=Helper::compileParams($this->arParams);?>" data-role="field--params" />
-						<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_BUTTON_FIELD_SETTINGS');?>" 
-							title="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_BUTTON_FIELD_SETTINGS_TITLE');?>"
+						<input type="button" value="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_BUTTON_FIELD_SETTINGS');?>" 
+							title="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_BUTTON_FIELD_SETTINGS_TITLE');?>"
 							data-role="field--button-params" />
 					</td>
 				<?endif?>
@@ -741,7 +741,7 @@ class Field {
 				$arGroups[$intGroupIndex]['ITEMS'][$key] = $strItem;
 			}
 		}
-		return Helper::getHtmlObject(ACRIT_CORE, null, 'field_hint', 'default', [
+		return Helper::getHtmlObject(DATA_CORE, null, 'field_hint', 'default', [
 			'GROUPS' => &$arGroups,
 			'POPUP' => $this->bAllowedValuesPopup,
 			'FILTER' => $this->bAllowedValuesFilter,
@@ -770,8 +770,8 @@ class Field {
 					data = {
 						field: '{$this->getCode()}'
 					};
-				acritExpAjax(['plugin_ajax_action', 'allowed_values_custom'], data, function(arJsonResult){
-					AcritPopupHint.SetHtml(arJsonResult.HTML);
+				dataExpAjax(['plugin_ajax_action', 'allowed_values_custom'], data, function(arJsonResult){
+					DataPopupHint.SetHtml(arJsonResult.HTML);
 				});
 			})();
 		";

@@ -1,6 +1,6 @@
 <?
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 $strExample = <<< XML
 <Ads target="Avito.ru" formatVersion="3">
@@ -76,11 +76,11 @@ if(!Helper::isUtf()){
 	$strExample = Helper::convertEncoding($strExample, 'UTF-8', 'CP1251');
 }
 ?>
-<div class="acrit-exp-plugin-example">
+<div class="data-exp-plugin-example">
 	<pre><code class="xml"><?=htmlspecialcharsbx($strExample);?></code></pre>
 </div>
 <script>
-$('.acrit-exp-plugin-example pre code.xml').each(function(i, block) {
+$('.data-exp-plugin-example pre code.xml').each(function(i, block) {
 	highlighElement(block);
 });
 </script>

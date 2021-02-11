@@ -1,15 +1,15 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ExternalIdTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class ExternalIdTable extends Entity\DataManager {
@@ -37,31 +37,31 @@ abstract class ExternalIdTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_IBLOCK_ID'),
 			)),
 			'ELEMENT_ID' => new Entity\StringField('ELEMENT_ID', array(
 				'required' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_ELEMENT_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_ELEMENT_ID'),
 			)),
 			'EXTERNAL_ID' => new Entity\StringField('EXTERNAL_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_EXTERNAL_ID'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_EXTERNAL_ID'),
 			)),
 			'EXTERNAL_STATUS' => new Entity\StringField('EXTERNAL_STATUS', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_EXTERNAL_STATUS'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_EXTERNAL_STATUS'),
 			)),
 			'EXTERNAL_DATA' => new Entity\StringField('EXTERNAL_DATA', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_EXTERNAL_DATA'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_EXTERNAL_DATA'),
 			)),
 			'DATE_CREATED' => new Entity\DatetimeField('DATE_CREATED', array(
-				'title' => Loc::getMessage('ACRIT_EXP_EXTERNAL_FIELD_DATE_CREATED'),
+				'title' => Loc::getMessage('DATA_EXP_EXTERNAL_FIELD_DATE_CREATED'),
 			)),
 		);
 	}

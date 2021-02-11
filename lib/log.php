@@ -4,10 +4,10 @@
  *	@example Log::getInstance($strModuleId)->add('My message', $intProfileId);
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use 
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 
@@ -108,7 +108,7 @@ class Log {
 	 *	Is logging turned on?
 	 */
 	public function isLoggingOn(){
-		$bCoreLogging = Helper::getOption(ACRIT_CORE, 'log_write', '') != 'N';
+		$bCoreLogging = Helper::getOption(DATA_CORE, 'log_write', '') != 'N';
 		$bModuleLogging = Helper::getOption($this->strModuleId, 'log_write', '') != 'N';
 		return $bCoreLogging && $bModuleLogging;
 	}
@@ -117,9 +117,9 @@ class Log {
 	 *	Is debug mode?
 	 */
 	public function isDebugMode(){
-		$bCoreDebug = Helper::getOption(ACRIT_CORE, 'debug_mode', '') == 'Y';
+		$bCoreDebug = Helper::getOption(DATA_CORE, 'debug_mode', '') == 'Y';
 		$bModuleDebug = Helper::getOption($this->strModuleId, 'debug_mode', '') == 'Y';
-		$bCliDebug = defined('ACRIT_EXP_DEBUG') && ACRIT_EXP_DEBUG === true || defined('ACRIT_DEBUG') && ACRIT_DEBUG === true;
+		$bCliDebug = defined('DATA_EXP_DEBUG') && DATA_EXP_DEBUG === true || defined('DATA_DEBUG') && DATA_DEBUG === true;
 		return $bCoreDebug || $bModuleDebug || $bCliDebug;
 	}
 	
@@ -128,10 +128,10 @@ class Log {
 	 */
 	public function getLogMaxSize(){
 		$intResult = 0;
-		$intCoreLogMaxSize = Helper::getOption(ACRIT_CORE, 'log_max_size', 0);
+		$intCoreLogMaxSize = Helper::getOption(DATA_CORE, 'log_max_size', 0);
 		$intModuleLogMaxSize = Helper::getOption($this->strModuleId, 'log_max_size', 0);
-		if(defined('ACRIT_EXP_LOG_MAX_SIZE') && is_numeric(ACRIT_EXP_LOG_MAX_SIZE) && ACRIT_EXP_LOG_MAX_SIZE > 0){
-			$intResult = ACRIT_EXP_LOG_MAX_SIZE;
+		if(defined('DATA_EXP_LOG_MAX_SIZE') && is_numeric(DATA_EXP_LOG_MAX_SIZE) && DATA_EXP_LOG_MAX_SIZE > 0){
+			$intResult = DATA_EXP_LOG_MAX_SIZE;
 		}
 		elseif(is_numeric($intModuleLogMaxSize) && $intModuleLogMaxSize > 0){
 			$intResult = $intModuleLogMaxSize;
@@ -256,7 +256,7 @@ class Log {
 			$arGet[static::DOWNLOAD_PARAM] = static::DOWNLOAD_PARAM_Y;
 		}
 		$arGet['lang'] = LANGUAGE_ID;
-		$strResult = 'acrit_core_log.php?'.http_build_query($arGet);
+		$strResult = 'data_core_log.php?'.http_build_query($arGet);
 		if(!defined('ADMIN_SECTION')){
 			$strResult = '/bitrix/admin/';
 		}
@@ -267,8 +267,8 @@ class Log {
 	 *	Show log
 	 */
 	public function showLog($intProfileId=null, $bFull=false){
-		#\CJSCore::init('acrit-core-log');
-		\Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/'.ACRIT_CORE.'/log.js');
+		#\CJSCore::init('data-core-log');
+		\Bitrix\Main\Page\Asset::getInstance()->addJs('/bitrix/js/'.DATA_CORE.'/log.js');
 		print Helper::getHtmlObject($this->strModuleId, $intProfileId, 'log', ($bFull ? 'full' : 'lite'));
 	}
 	

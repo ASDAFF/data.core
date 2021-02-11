@@ -1,14 +1,14 @@
 <?
 
 /**
- * Acrit Core: TiuRu base plugin
- * @package acrit.core
- * @copyright 2019 Acrit
+ * Data Core: TiuRu base plugin
+ * @package data.core
+ * @copyright 2019 Data
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Helper;
+use \Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 

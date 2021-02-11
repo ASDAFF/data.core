@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_HOTLINE_UA_GENERAL_';
+$strMessPrefix = 'DATA_EXP_HOTLINE_UA_GENERAL_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'hotline.ua';

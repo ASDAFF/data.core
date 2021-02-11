@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_WILDBERRIES_PRODUCTS_';
+$strMessPrefix = 'DATA_EXP_WILDBERRIES_PRODUCTS_';
 
 $MESS[$strMessPrefix.'GET_WILDBERRIES_ACCESS_TITLE'] = 'Порядок действий для выгрузки спецификации';
 $MESS[$strMessPrefix.'GET_WILDBERRIES_ACCESS'] = '

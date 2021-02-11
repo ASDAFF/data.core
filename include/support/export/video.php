@@ -1,11 +1,11 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 ?>
 <?
-$obTabControl->BeginCustomField('VIDEO', Helper::getMessage('ACRIT_EXP_VIDEO_FIELD'));
+$obTabControl->BeginCustomField('VIDEO', Helper::getMessage('DATA_EXP_VIDEO_FIELD'));
 ?>
 <tr class="heading"><td><?=$obTabControl->GetCustomLabelHTML()?></td></tr>
 <tr>

@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 ?>
 
-<div class="acrit-exp-plugin-example">
+<div class="data-exp-plugin-example">
 	<?
 	foreach($arFormats as $strFormat => $strExampleData){
 		$strID = 'x'.uniqid().time();
@@ -26,14 +26,14 @@ namespace Acrit\Core\Export;
 	?>
 </div>
 <script>
-if(!window.acritExpUniversalPluginsExampleComplete){
-	$(document).delegate('#acrit_exp_plugin_settings_export_format', 'change', function(e){
+if(!window.dataExpUniversalPluginsExampleComplete){
+	$(document).delegate('#data_exp_plugin_settings_export_format', 'change', function(e){
 		var format = $(this).val();
-		var shown = $('.acrit-exp-plugin-example [data-format]').hide()
+		var shown = $('.data-exp-plugin-example [data-format]').hide()
 			.filter('[data-format='+format+']').show().length > 0;
 		$('#tr_PLUGIN_EXAMPLE_HEADING').css('display', shown ? 'table-row' : 'none');
 	});
-	window.acritExpUniversalPluginsExampleComplete = true;
+	window.dataExpUniversalPluginsExampleComplete = true;
 }
-$('#acrit_exp_plugin_settings_export_format').trigger('change');
+$('#data_exp_plugin_settings_export_format').trigger('change');
 </script>

@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_OZON_RU_GENERALV2_';
+$strMessPrefix = 'DATA_EXP_OZON_RU_GENERALV2_';
 
 // General
 $MESS[$strMessPrefix . 'RELOAD_STATUS'] = 'Обновить статусы товаров ';

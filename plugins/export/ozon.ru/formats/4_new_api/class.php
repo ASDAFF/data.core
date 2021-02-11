@@ -1,22 +1,22 @@
 <?
 /**
- * Acrit Core: ozon.ru plugin
+ * Data Core: ozon.ru plugin
  * @documentation https://docs.ozon.ru/api/seller
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\UniversalPlugin,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\Api,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\CategoryTable as Category,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\AttributeTable as Attribute,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\AttributeValueTable as AttributeValue,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\TaskTable as Task,
-	\Acrit\Core\Export\Plugins\OzonRuHelpers\HistoryTable as History;
+	\Data\Core\Helper,
+	\Data\Core\Json,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\UniversalPlugin,
+	\Data\Core\Export\Plugins\OzonRuHelpers\Api,
+	\Data\Core\Export\Plugins\OzonRuHelpers\CategoryTable as Category,
+	\Data\Core\Export\Plugins\OzonRuHelpers\AttributeTable as Attribute,
+	\Data\Core\Export\Plugins\OzonRuHelpers\AttributeValueTable as AttributeValue,
+	\Data\Core\Export\Plugins\OzonRuHelpers\TaskTable as Task,
+	\Data\Core\Export\Plugins\OzonRuHelpers\HistoryTable as History;
 	
 
 class OzonRuV2 extends UniversalPlugin {
@@ -329,7 +329,7 @@ class OzonRuV2 extends UniversalPlugin {
 		$strClientId = $arParams['GET']['client_id'];
 		$strApiKey = $arParams['GET']['api_key'];
 		$arJsonRequest = [
-			'offer_id' => '#ACRIT_CHECK#',
+			'offer_id' => '#DATA_CHECK#',
 		];
 		$obApi = new OzonRuHelpers\Api($strClientId, $strApiKey, $this->intProfileId, $this->strModuleId);
 		$arQueryResult = $obApi->execute('/v2/product/info', $arJsonRequest, ['METHOD' => 'POST']);
@@ -347,7 +347,7 @@ class OzonRuV2 extends UniversalPlugin {
 	 *	Update category attritbutes and dictionaries
 	 */
 	protected function ajaxUpdateCategories($arParams, &$arJsonResult){
-		$arSession = &$_SESSION['ACRIT_EXP_OZON_CAT_ATTR_UPDATE'];
+		$arSession = &$_SESSION['DATA_EXP_OZON_CAT_ATTR_UPDATE'];
 		$arPost = &$arParams['POST'];
 		$bStart = false;
 		if($arPost['start'] == 'Y'){

@@ -1,22 +1,22 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\PluginManager,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Field\ValueBase,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Cli,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json,
-	\Acrit\Core\DiscountRecalculation,
-	\Acrit\Core\Teacher,
-	\Acrit\Core\Export\Debug;
+	\Data\Core\Helper,
+	\Data\Core\Export\PluginManager,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Field\ValueBase,
+	\Data\Core\Export\Filter,
+	\Data\Core\Cli,
+	\Data\Core\Log,
+	\Data\Core\Json,
+	\Data\Core\DiscountRecalculation,
+	\Data\Core\Teacher,
+	\Data\Core\Export\Debug;
 
 // Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 $strModuleId = $ModuleID = preg_replace('#^.*?/([a-z0-9]+)_([a-z0-9]+).*?$#', '$1.$2', $_SERVER['REQUEST_URI']);
 $strModuleCode = preg_replace('#^(.*?)\.(.*?)$#', '$2', $strModuleId);
 $strModuleUnderscore = preg_replace('#^(.*?)\.(.*?)$#', '$1_$2', $strModuleId);
@@ -41,22 +41,22 @@ $obPost = \Bitrix\Main\Context::getCurrent()->getRequest()->getPostList();
 $arPost = $obPost->toArray();
 
 // Demo
-acritShowDemoExpired($strModuleId);
+dataShowDemoExpired($strModuleId);
 
 // Core notice
 if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
-	?><div id="acrit-exp-core-notifier"><?
+	?><div id="data-exp-core-notifier"><?
 		print '<div style="margin-top:15px;"></div>';
 		print \CAdminMessage::ShowMessage(array(
-			'MESSAGE' => Loc::getMessage('ACRIT_EXP_CORE_NOTICE', [
+			'MESSAGE' => Loc::getMessage('DATA_EXP_CORE_NOTICE', [
 				'#CORE_ID#' => $strCoreId,
 				'#LANG#' => LANGUAGE_ID,
 			]),
 			'HTML' => true,
 		));
 	?></div><?
-	$APPLICATION->SetTitle(Loc::getMessage('ACRIT_EXP_PAGE_TITLE_DEFAULT'));
+	$APPLICATION->SetTitle(Loc::getMessage('DATA_EXP_PAGE_TITLE_DEFAULT'));
 	die();
 }
 
@@ -67,11 +67,11 @@ if(!\Bitrix\Main\Loader::includeModule($strCoreId)){
 Debug::setModuleId($strModuleId);
 
 // Page title
-$strPageTitle = Loc::getMessage('ACRIT_EXP_PAGE_TITLE_ADD');
+$strPageTitle = Loc::getMessage('DATA_EXP_PAGE_TITLE_ADD');
 
 // CSS
-$APPLICATION->setAdditionalCss('/bitrix/js/'.ACRIT_CORE.'/jquery.select2/dist/css/select2.css');
-$APPLICATION->setAdditionalCss('/bitrix/js/'.ACRIT_CORE.'/filter/style.css');
+$APPLICATION->setAdditionalCss('/bitrix/js/'.DATA_CORE.'/jquery.select2/dist/css/select2.css');
+$APPLICATION->setAdditionalCss('/bitrix/js/'.DATA_CORE.'/filter/style.css');
 Teacher::addCss();
 
 // Get helper data
@@ -79,15 +79,15 @@ $arSites = Helper::getSitesList();
 $arPlugins = Exporter::getInstance($strModuleId)->findPlugins();
 $arPluginsPlain = Exporter::getInstance($strModuleId)->findPlugins(false);
 $arPluginTypes = array(
-	Plugin::TYPE_NATIVE => Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_NATIVE'),
-	Plugin::TYPE_CUSTOM => Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_CUSTOM'),
+	Plugin::TYPE_NATIVE => Loc::getMessage('DATA_EXP_FIELD_PLUGIN_NATIVE'),
+	Plugin::TYPE_CUSTOM => Loc::getMessage('DATA_EXP_FIELD_PLUGIN_CUSTOM'),
 );
 
 // Core (part 2, visual)
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
 
 // Demo
-acritShowDemoNotice($strModuleId);
+dataShowDemoNotice($strModuleId);
 
 // Get delay time
 $fDelayTime = FloatVal(Helper::getOption($strModuleId, 'time_delay'));
@@ -99,58 +99,58 @@ $fDelayTime *= 1000;
 // Text definitions for popup
 ob_start();
 ?><script>
-var acritExpExportTimeDelay = <?=$fDelayTime?>;
-var acritExpModuleVersion = '<?=Helper::getModuleVersion($strModuleId);?>';
-var acritExpCoreVersion = '<?=Helper::getModuleVersion($strCoreId);?>';
+var dataExpExportTimeDelay = <?=$fDelayTime?>;
+var dataExpModuleVersion = '<?=Helper::getModuleVersion($strModuleId);?>';
+var dataExpCoreVersion = '<?=Helper::getModuleVersion($strCoreId);?>';
 BX.message({
 	// General
-	ACRIT_EXP_POPUP_LOADING: '<?=Loc::getMessage('ACRIT_EXP_POPUP_LOADING');?>',
-	ACRIT_EXP_POPUP_SAVE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_SAVE');?>',
-	ACRIT_EXP_POPUP_CLOSE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CLOSE');?>',
-	ACRIT_EXP_POPUP_CANCEL: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CANCEL');?>',
-	ACRIT_EXP_POPUP_REFRESH: '<?=Loc::getMessage('ACRIT_EXP_POPUP_REFRESH');?>',
+	DATA_EXP_POPUP_LOADING: '<?=Loc::getMessage('DATA_EXP_POPUP_LOADING');?>',
+	DATA_EXP_POPUP_SAVE: '<?=Loc::getMessage('DATA_EXP_POPUP_SAVE');?>',
+	DATA_EXP_POPUP_CLOSE: '<?=Loc::getMessage('DATA_EXP_POPUP_CLOSE');?>',
+	DATA_EXP_POPUP_CANCEL: '<?=Loc::getMessage('DATA_EXP_POPUP_CANCEL');?>',
+	DATA_EXP_POPUP_REFRESH: '<?=Loc::getMessage('DATA_EXP_POPUP_REFRESH');?>',
 	//
-	ACRIT_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS: '<?=Loc::getMessage('ACRIT_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS');?>',
-	ACRIT_EXP_IBLOCK_SETTINGS_SAVE_SUCCESS: '<?=Loc::getMessage('ACRIT_EXP_IBLOCK_SETTINGS_SAVE_SUCCESS');?>',
-	ACRIT_EXP_IBLOCK_SETTINGS_SAVE_ERROR: '<?=Loc::getMessage('ACRIT_EXP_IBLOCK_SETTINGS_SAVE_ERROR');?>',
-	ACRIT_EXP_IBLOCK_SETTINGS_CLEAR_CONFIRM: '<?=Loc::getMessage('ACRIT_EXP_IBLOCK_SETTINGS_CLEAR_CONFIRM');?>',
+	DATA_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS: '<?=Loc::getMessage('DATA_EXP_IBLOCK_SETTINGS_SAVE_PROGRESS');?>',
+	DATA_EXP_IBLOCK_SETTINGS_SAVE_SUCCESS: '<?=Loc::getMessage('DATA_EXP_IBLOCK_SETTINGS_SAVE_SUCCESS');?>',
+	DATA_EXP_IBLOCK_SETTINGS_SAVE_ERROR: '<?=Loc::getMessage('DATA_EXP_IBLOCK_SETTINGS_SAVE_ERROR');?>',
+	DATA_EXP_IBLOCK_SETTINGS_CLEAR_CONFIRM: '<?=Loc::getMessage('DATA_EXP_IBLOCK_SETTINGS_CLEAR_CONFIRM');?>',
 	// Popup: SelectField
-	ACRIT_EXP_POPUP_SELECT_FIELD_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_SELECT_FIELD_TITLE');?>',
+	DATA_EXP_POPUP_SELECT_FIELD_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_SELECT_FIELD_TITLE');?>',
 	// Popup: ValueSettings
-	ACRIT_EXP_POPUP_VALUE_SETTINGS_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_VALUE_SETTINGS_TITLE');?>',
+	DATA_EXP_POPUP_VALUE_SETTINGS_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_VALUE_SETTINGS_TITLE');?>',
 	// Popup: FieldSettings
-	ACRIT_EXP_POPUP_FIELD_SETTINGS_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_FIELD_SETTINGS_TITLE');?>',
+	DATA_EXP_POPUP_FIELD_SETTINGS_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_FIELD_SETTINGS_TITLE');?>',
 	// Popup: AdditionalFields
-	ACRIT_EXP_POPUP_ADDITIONAL_FIELDS_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_ADDITIONAL_FIELDS_TITLE');?>',
+	DATA_EXP_POPUP_ADDITIONAL_FIELDS_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_ADDITIONAL_FIELDS_TITLE');?>',
 	// Popup: CategoriesRedefinition
-	ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_TITLE');?>',
-	ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_ALL: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_ALL');?>',
-	ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_CONFIRM: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_CONFIRM');?>',
+	DATA_EXP_POPUP_CATEGORY_REDEFINITION_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_CATEGORY_REDEFINITION_TITLE');?>',
+	DATA_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_ALL: '<?=Loc::getMessage('DATA_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_ALL');?>',
+	DATA_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_CONFIRM: '<?=Loc::getMessage('DATA_EXP_POPUP_CATEGORY_REDEFINITION_CLEAR_CONFIRM');?>',
 	// Popup: CategoriesRedefinitionSelect
-	ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_SELECT_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CATEGORY_REDEFINITION_SELECT_TITLE');?>',
+	DATA_EXP_POPUP_CATEGORY_REDEFINITION_SELECT_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_CATEGORY_REDEFINITION_SELECT_TITLE');?>',
 	// Popup: Execute
-	ACRIT_EXP_POPUP_EXECUTE_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_TITLE');?>',
-	ACRIT_EXP_POPUP_EXECUTE_BUTTON_START: '<?=Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_BUTTON_START');?>',
-	ACRIT_EXP_POPUP_EXECUTE_BUTTON_STOP: '<?=Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_BUTTON_STOP');?>',
-	ACRIT_EXP_POPUP_EXECUTE_STOPPED: '<?=Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_STOPPED');?>',
-	ACRIT_EXP_POPUP_EXECUTE_ERROR: '<?=Loc::getMessage('ACRIT_EXP_POPUP_EXECUTE_ERROR');?>',
+	DATA_EXP_POPUP_EXECUTE_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_EXECUTE_TITLE');?>',
+	DATA_EXP_POPUP_EXECUTE_BUTTON_START: '<?=Loc::getMessage('DATA_EXP_POPUP_EXECUTE_BUTTON_START');?>',
+	DATA_EXP_POPUP_EXECUTE_BUTTON_STOP: '<?=Loc::getMessage('DATA_EXP_POPUP_EXECUTE_BUTTON_STOP');?>',
+	DATA_EXP_POPUP_EXECUTE_STOPPED: '<?=Loc::getMessage('DATA_EXP_POPUP_EXECUTE_STOPPED');?>',
+	DATA_EXP_POPUP_EXECUTE_ERROR: '<?=Loc::getMessage('DATA_EXP_POPUP_EXECUTE_ERROR');?>',
 	// Popup: IBlocks preview
-	ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_TITLE: '<?=Loc::getMessage('ACRIT_EXP_POPUP_IBLOCKS_PREVIEW_TITLE');?>',
+	DATA_EXP_POPUP_IBLOCKS_PREVIEW_TITLE: '<?=Loc::getMessage('DATA_EXP_POPUP_IBLOCKS_PREVIEW_TITLE');?>',
 	// 
-	ACRIT_EXP_ADDITIONAL_FIELD_DELETE_CONFIRM: '<?=Loc::getMessage('ACRIT_EXP_ADDITIONAL_FIELD_DELETE_CONFIRM');?>',
-	ACRIT_EXP_ADDITIONAL_FIELDS_DELETE_ALL_CONFIRM: '<?=Loc::getMessage('ACRIT_EXP_ADDITIONAL_FIELDS_DELETE_ALL_CONFIRM');?>',
+	DATA_EXP_ADDITIONAL_FIELD_DELETE_CONFIRM: '<?=Loc::getMessage('DATA_EXP_ADDITIONAL_FIELD_DELETE_CONFIRM');?>',
+	DATA_EXP_ADDITIONAL_FIELDS_DELETE_ALL_CONFIRM: '<?=Loc::getMessage('DATA_EXP_ADDITIONAL_FIELDS_DELETE_ALL_CONFIRM');?>',
 	// 
-	ACRIT_EXP_UPDATE_CATEGORIES_SUCCESS: '<?=Loc::getMessage('ACRIT_EXP_UPDATE_CATEGORIES_SUCCESS');?>',
-	ACRIT_EXP_UPDATE_CATEGORIES_ERROR: '<?=Loc::getMessage('ACRIT_EXP_UPDATE_CATEGORIES_ERROR');?>',
-	ACRIT_EXP_UPDATE_CATEGORIES_ERROR_NOTE: '<?=Loc::getMessage('ACRIT_EXP_UPDATE_CATEGORIES_ERROR_NOTE');?>',
+	DATA_EXP_UPDATE_CATEGORIES_SUCCESS: '<?=Loc::getMessage('DATA_EXP_UPDATE_CATEGORIES_SUCCESS');?>',
+	DATA_EXP_UPDATE_CATEGORIES_ERROR: '<?=Loc::getMessage('DATA_EXP_UPDATE_CATEGORIES_ERROR');?>',
+	DATA_EXP_UPDATE_CATEGORIES_ERROR_NOTE: '<?=Loc::getMessage('DATA_EXP_UPDATE_CATEGORIES_ERROR_NOTE');?>',
 	//
-	ACRIT_EXP_POPUP_CRON_ERROR: '<?=Loc::getMessage('ACRIT_EXP_POPUP_CRON_ERROR');?>',
-	ACRIT_EXP_AJAX_AUTH_REQUIRED: '<?=Loc::getMessage('ACRIT_EXP_AJAX_AUTH_REQUIRED');?>',
-	ACRIT_EXP_AJAX_CONFIRM_CLEAR_EXPORT_DATA: '<?=Loc::getMessage('ACRIT_EXP_AJAX_CONFIRM_CLEAR_EXPORT_DATA');?>',
+	DATA_EXP_POPUP_CRON_ERROR: '<?=Loc::getMessage('DATA_EXP_POPUP_CRON_ERROR');?>',
+	DATA_EXP_AJAX_AUTH_REQUIRED: '<?=Loc::getMessage('DATA_EXP_AJAX_AUTH_REQUIRED');?>',
+	DATA_EXP_AJAX_CONFIRM_CLEAR_EXPORT_DATA: '<?=Loc::getMessage('DATA_EXP_AJAX_CONFIRM_CLEAR_EXPORT_DATA');?>',
 	// Get file URL
-	ACRIT_EXP_GET_FILE_TITLE: '<?=Helper::getMessage('ACRIT_EXP_GET_FILE_TITLE');?>',
-	ACRIT_EXP_GET_FILE_URL_NO_DOMAIN: '<?=Helper::getMessage('ACRIT_EXP_GET_FILE_URL_NO_DOMAIN');?>',
-	ACRIT_EXP_GET_FILE_URL_NO_FILENAME: '<?=Helper::getMessage('ACRIT_EXP_GET_FILE_URL_NO_FILENAME');?>'
+	DATA_EXP_GET_FILE_TITLE: '<?=Helper::getMessage('DATA_EXP_GET_FILE_TITLE');?>',
+	DATA_EXP_GET_FILE_URL_NO_DOMAIN: '<?=Helper::getMessage('DATA_EXP_GET_FILE_URL_NO_DOMAIN');?>',
+	DATA_EXP_GET_FILE_URL_NO_FILENAME: '<?=Helper::getMessage('DATA_EXP_GET_FILE_URL_NO_FILENAME');?>'
 });
 </script><?
 \Bitrix\Main\Page\Asset::getInstance()->addString(ob_get_clean(), true, \Bitrix\Main\Page\AssetLocation::AFTER_CSS);
@@ -159,22 +159,22 @@ BX.message({
 $strSelect2LangFile = Helper::isUtf() ? 'ru_utf8.js' : 'ru_cp1251.js';
 
 // JS
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.cookie.min.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.textchange.min.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.insertatcaret.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.acrit.tabs.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.acrit.filter.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.acrit.popup.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/jquery.acrit.hotkey.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/filter/script.js');
-\Bitrix\Main\Page\Asset::GetInstance()->addJs('/bitrix/js/'.ACRIT_CORE.'/jquery.select2/dist/js/select2.js');
-\Bitrix\Main\Page\Asset::GetInstance()->addJs('/bitrix/js/'.ACRIT_CORE.'/jquery.select2/'.$strSelect2LangFile);
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/highlightjs/highlight.pack.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/moment.min.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/cron.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/copy_to_clipboard.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/export/profile_edit.js');
-\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.ACRIT_CORE.'/export/profile_edit.hotkeys.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.cookie.min.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.textchange.min.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.insertatcaret.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.data.tabs.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.data.filter.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.data.popup.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/jquery.data.hotkey.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/filter/script.js');
+\Bitrix\Main\Page\Asset::GetInstance()->addJs('/bitrix/js/'.DATA_CORE.'/jquery.select2/dist/js/select2.js');
+\Bitrix\Main\Page\Asset::GetInstance()->addJs('/bitrix/js/'.DATA_CORE.'/jquery.select2/'.$strSelect2LangFile);
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/highlightjs/highlight.pack.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/moment.min.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/cron.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/copy_to_clipboard.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/export/profile_edit.js');
+\Bitrix\Main\Page\Asset::GetInstance()->AddJs('/bitrix/js/'.DATA_CORE.'/export/profile_edit.hotkeys.js');
 Teacher::addJs();
 Filter::addJs();
 
@@ -188,11 +188,11 @@ if($intProfileID>0) {
 		'limit' => 1,
 	];
 	if(Helper::call($strModuleId, 'Profile', 'getList', [$arQuery])->getSelectedRowsCount() == 0){
-		LocalRedirect('/bitrix/admin/acrit_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID);
+		LocalRedirect('/bitrix/admin/data_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID);
 	}
-	$strPageTitle = Loc::getMessage('ACRIT_EXP_PAGE_TITLE_EDIT', array('#ID#' => $intProfileID));
+	$strPageTitle = Loc::getMessage('DATA_EXP_PAGE_TITLE_EDIT', array('#ID#' => $intProfileID));
 }
-$strAdminFormName = 'AcritExpProfile';
+$strAdminFormName = 'DataExpProfile';
 $strTabParam = $strAdminFormName.'_active_tab';
 
 // Backup
@@ -222,7 +222,7 @@ if($arGet['backup'] == 'Y' && $intProfileID > 0){
 // Copy mode?
 $bCopy = $arGet['copy'] == 'Y';
 if($bCopy){
-	$strPageTitle = Loc::getMessage('ACRIT_EXP_PAGE_TITLE_COPY', array('#ID#' => $intProfileID));
+	$strPageTitle = Loc::getMessage('DATA_EXP_PAGE_TITLE_COPY', array('#ID#' => $intProfileID));
 }
 
 // Set page title
@@ -231,7 +231,7 @@ $APPLICATION->SetTitle($strPageTitle);
 // Deleting current profile?
 if($arGet['delete'] == 'Y'){
 	Helper::call($strModuleId, 'Profile', 'delete', [$intProfileID]);
-	LocalRedirect('/bitrix/admin/acrit_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID);
+	LocalRedirect('/bitrix/admin/data_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID);
 }
 
 // Get current iblock
@@ -257,8 +257,8 @@ $arSites = Helper::getSitesList();
 $arPlugins = Exporter::getInstance($strModuleId)->findPlugins();
 $arPluginsPlain = Exporter::getInstance($strModuleId)->findPlugins(false);
 $arPluginTypes = array(
-	Plugin::TYPE_NATIVE => Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_NATIVE'),
-	Plugin::TYPE_CUSTOM => Loc::getMessage('ACRIT_EXP_FIELD_PLUGIN_CUSTOM'),
+	Plugin::TYPE_NATIVE => Loc::getMessage('DATA_EXP_FIELD_PLUGIN_NATIVE'),
+	Plugin::TYPE_CUSTOM => Loc::getMessage('DATA_EXP_FIELD_PLUGIN_CUSTOM'),
 );
 */
 
@@ -273,7 +273,7 @@ foreach($arPluginsPrint as &$arPlugin){
 unset($arPlugin, $arFormat);
 ob_start();
 ?><script>
-window.acritExpPlugins = <?=\CUtil::PhpToJSObject($arPluginsPrint);?>;
+window.dataExpPlugins = <?=\CUtil::PhpToJSObject($arPluginsPrint);?>;
 </script><?
 \Bitrix\Main\Page\Asset::GetInstance()->AddString(ob_get_clean(), true, \Bitrix\Main\Page\AssetLocation::AFTER_CSS);
 unset($arPluginsPrint);
@@ -296,8 +296,8 @@ if($intProfileID) {
 			$strPluginClass = $arProfilePlugin['CLASS'];
 		}
 		else {
-			print Helper::showError(Loc::getMessage('ACRIT_EXP_ERROR_FORMAT_NOT_FOUND_TITLE'), 
-				Loc::getMessage('ACRIT_EXP_ERROR_FORMAT_NOT_FOUND_DETAILS', array(
+			print Helper::showError(Loc::getMessage('DATA_EXP_ERROR_FORMAT_NOT_FOUND_TITLE'), 
+				Loc::getMessage('DATA_EXP_ERROR_FORMAT_NOT_FOUND_DETAILS', array(
 					'#FORMAT#' => $arProfile['FORMAT'],
 				)));
 		}
@@ -409,7 +409,7 @@ if(($bSave || $bApply) && $strRight == 'W'){
 			$strUrl = $APPLICATION->getCurPageParam('ID='.$intProfileID.$strTab, $arClearGetParams);
 		}
 		else {
-			$strUrl = '/bitrix/admin/acrit_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID;
+			$strUrl = '/bitrix/admin/data_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID;
 		}
 		LocalRedirect($strUrl);
 	}
@@ -724,7 +724,7 @@ if(strlen($strAjaxAction)){
 				#$obDateLocked = Profile::getDateLocked($intProfileID);
 				$obDateLocked = Helper::call($strModuleId, 'Profile', 'getDateLocked', [$intProfileID]);
 				$arJsonResult['LockedHtml'] .= '<div style="margin-top:15px;"></div>';
-				$arJsonResult['LockedHtml'] .= Helper::showNote(Loc::getMessage('ACRIT_EXP_LOCK_NOTICE', array(
+				$arJsonResult['LockedHtml'] .= Helper::showNote(Loc::getMessage('DATA_EXP_LOCK_NOTICE', array(
 					'#DATE#' => is_object($obDateLocked) ? $obDateLocked->toString() : '???',
 				)), true, false, true).'<br/>';
 			}
@@ -793,18 +793,18 @@ if(strlen($strAjaxAction)){
 				if($bAdd) {
 					$bResult = Cli::addCronTask($strModuleId, $arCli['COMMAND'], $strSchedule);
 					if($bResult){
-						Log::getInstance($strModuleId)->add(Loc::getMessage('ACRIT_EXP_AJAX_CRON_SETUP_SUCCESS', array(
+						Log::getInstance($strModuleId)->add(Loc::getMessage('DATA_EXP_AJAX_CRON_SETUP_SUCCESS', array(
 							'#COMMAND#' => $arCli['COMMAND'],
 						)), $intProfileID);
 					}
 					else{
-						Log::getInstance($strModuleId)->add(Loc::getMessage('ACRIT_EXP_AJAX_CRON_SETUP_ERROR', array(
+						Log::getInstance($strModuleId)->add(Loc::getMessage('DATA_EXP_AJAX_CRON_SETUP_ERROR', array(
 							'#COMMAND#' => $arCli['COMMAND'],
 						)), $intProfileID);
 					}
 				}
 				else{
-					Log::getInstance($strModuleId)->add(Loc::getMessage('ACRIT_EXP_AJAX_CRON_DELETE_SUCCESS'), $intProfileID);
+					Log::getInstance($strModuleId)->add(Loc::getMessage('DATA_EXP_AJAX_CRON_DELETE_SUCCESS'), $intProfileID);
 				}
 			}
 			#$arJsonResult['IsConfigured'] = Cli::isCronTaskConfigured($strModuleId, $arCli['COMMAND_CLEAR'], $strSchedule);
@@ -827,7 +827,7 @@ if(strlen($strAjaxAction)){
 				$arJsonResult['Success'] = $obResult->isSuccess();
 				if($arJsonResult['Success']){
 					$arJsonResult['SuccessMessage'] = '<span style="color:green;font-weight:bold;">'
-						.Loc::getMessage('ACRIT_EXP_CHANGES_SAVED').'</span>';
+						.Loc::getMessage('DATA_EXP_CHANGES_SAVED').'</span>';
 				}
 				else{
 					$arJsonResult['SuccessMessage'] = '<span style="color:red;font-weight:bold;">Error!</span>';
@@ -859,7 +859,7 @@ if(strlen($strAjaxAction)){
 			$bContinue = \Bitrix\Main\Loader::includeSharewareModule($strModuleId) == \Bitrix\Main\Loader::MODULE_DEMO;
 			$bContinue = false;
 			if(!$bContinue){
-				\Acrit\Core\Update::checkModuleUpdates($strModuleId, $intDateTo, $strLastVersion);
+				\Data\Core\Update::checkModuleUpdates($strModuleId, $intDateTo, $strLastVersion);
 				$bContinue = $intDateTo > time();
 			}
 			if($bContinue) {
@@ -876,7 +876,7 @@ if(strlen($strAjaxAction)){
 				}
 			}
 			else{
-				$arJsonResult['Message'] = 	Helper::showNote(Helper::getMessage('ACRIT_EXP_UPDATE_CATEGORIES_UNAVAILABLE', array(
+				$arJsonResult['Message'] = 	Helper::showNote(Helper::getMessage('DATA_EXP_UPDATE_CATEGORIES_UNAVAILABLE', array(
 					'#DATE#' => date(\CDatabase::DateFormatToPHP(FORMAT_DATE), $intDateTo),
 					'#LINK#' => Helper::getRenewUrl($strModuleId),
 				)), true, false, true);
@@ -954,7 +954,7 @@ if(strlen($strAjaxAction)){
 			#if(Profile::isLocked($arProfile)){
 			if(Helper::call($strModuleId, 'Profile', 'isLocked', [$arProfile])){
 				print '<div style="margin-top:15px;"></div>';
-				print Helper::showNote(Loc::getMessage('ACRIT_EXP_LOCK_NOTICE', array(
+				print Helper::showNote(Loc::getMessage('DATA_EXP_LOCK_NOTICE', array(
 					'#DATE#' => is_object($arProfile['DATE_LOCKED']) ? $arProfile['DATE_LOCKED']->toString() : '???',
 				)), true);
 			}
@@ -977,8 +977,8 @@ if(strlen($strAjaxAction)){
 					'\Bitrix\Main\Application',
 					'\Bitrix\Main\Config\Option',
 				);
-				$arCoreAutoload = &$GLOBALS['ACRIT_CORE_AUTOLOAD_CLASSES'];
-				#$arModuleAutoload = &$GLOBALS['ACRIT_'.toUpper($strModuleCode).'_AUTOLOAD_CLASSES'];
+				$arCoreAutoload = &$GLOBALS['DATA_CORE_AUTOLOAD_CLASSES'];
+				#$arModuleAutoload = &$GLOBALS['DATA_'.toUpper($strModuleCode).'_AUTOLOAD_CLASSES'];
 				foreach($arCoreAutoload as $strClass => $strClassDir){
 					$arClass = explode('\\', $strClass);
 					$strClassBasename = array_pop($arClass); 
@@ -1043,13 +1043,13 @@ if(strlen($strAjaxAction)){
 					$strContent = '<br/>';
 				}
 				$strContent = '<hr/>'.$strContent.'<hr/>';
-				$strContent .= Loc::getMessage('ACRIT_EXP_AJAX_CONSOLE_TIME', array(
+				$strContent .= Loc::getMessage('DATA_EXP_AJAX_CONSOLE_TIME', array(
 					'#TIME#' => number_format(microtime(true)-$fTime, 6, '.', ''),
 				));
 				$arJsonResult['HTML'] = $strContent;
 			}
 			else{
-				$arJsonResult['AccessDenied'] = Loc::getMessage('ACRIT_EXP_ERROR_CONSOLE_ACCESS_DENIED');
+				$arJsonResult['AccessDenied'] = Loc::getMessage('DATA_EXP_ERROR_CONSOLE_ACCESS_DENIED');
 			}
 			break;
 		// Clear profile export data
@@ -1070,7 +1070,7 @@ if(strlen($strAjaxAction)){
 						$arJsonResult['Pid'] = Exporter::run($strModuleId, $intProfileID);
 						if($arJsonResult['Pid'] > 0) {
 							$arJsonResult['Success'] = true;
-							$arJsonResult['SuccessMessage'] = Loc::getMessage('ACRIT_EXP_RUN_BACKGROUND_SUCCESS', array(
+							$arJsonResult['SuccessMessage'] = Loc::getMessage('DATA_EXP_RUN_BACKGROUND_SUCCESS', array(
 								'#PID#' => $arJsonResult['Pid'],
 							));
 							#if(Profile::isLocked($intProfileID)){
@@ -1078,25 +1078,25 @@ if(strlen($strAjaxAction)){
 								#$obDateLocked = Profile::getDateLocked($intProfileID);
 								$obDateLocked = Helper::call($strModuleId, 'Profile', 'getDateLocked', [$intProfileID]);
 								$arJsonResult['LockedHtml'] .= '<div style="margin-top:15px;"></div>';
-								$arJsonResult['LockedHtml'] .= Helper::showNote(Loc::getMessage('ACRIT_EXP_LOCK_NOTICE', array(
+								$arJsonResult['LockedHtml'] .= Helper::showNote(Loc::getMessage('DATA_EXP_LOCK_NOTICE', array(
 									'#DATE#' => is_object($obDateLocked) ? $obDateLocked->toString() : '???',
 								)), true, false, true).'<br/>';
 							}
 						}
 						else{
-							$strError = Loc::getMessage('ACRIT_EXP_RUN_BACKGROUND_ERROR');
+							$strError = Loc::getMessage('DATA_EXP_RUN_BACKGROUND_ERROR');
 						}
 					}
 					else{
-						$strError = Loc::getMessage('ACRIT_EXP_RUN_BACKGROUND_BLOCKED');
+						$strError = Loc::getMessage('DATA_EXP_RUN_BACKGROUND_BLOCKED');
 					}
 				}
 				else {
-					$strError = Loc::getMessage('ACRIT_EXP_RUN_BACKGROUND_INACTIVE');
+					$strError = Loc::getMessage('DATA_EXP_RUN_BACKGROUND_INACTIVE');
 				}
 			}
 			else{
-				$strError = Loc::getMessage('ACRIT_EXP_RUN_BACKGROUND_DISABLED');
+				$strError = Loc::getMessage('DATA_EXP_RUN_BACKGROUND_DISABLED');
 			}
 			if(!$arJsonResult['Success']){
 				$arJsonResult['ErrorMessage'] = $strError;
@@ -1143,7 +1143,7 @@ if(strlen($strAjaxAction)){
 				}
 			}
 			if(!$bFound){
-				$arJsonResult['ErrorMessage'] = Loc::getMessage('ACRIT_EXP_ERROR_FIRST_ELEMENT_IS_NOT_FOUND');
+				$arJsonResult['ErrorMessage'] = Loc::getMessage('DATA_EXP_ERROR_FIRST_ELEMENT_IS_NOT_FOUND');
 			}
 			break;
 		// check_export_filename_unique
@@ -1163,7 +1163,7 @@ if(strlen($strAjaxAction)){
 						if(is_string($strExportFileName) && strlen($strExportFileName)){
 							if(toLower($strExportFileName) == $strExportFilename){
 								$arJsonResult['Unique'] = false;
-								$arJsonResult['UniqueMessage'] = Loc::getMessage('ACRIT_EXP_ERROR_FILENAME_IS_NOT_UNIQUE', [
+								$arJsonResult['UniqueMessage'] = Loc::getMessage('DATA_EXP_ERROR_FILENAME_IS_NOT_UNIQUE', [
 									'#ID#' => $arProfile['ID'],
 									'#FILENAME#' => $arGet['export_filename'],
 								]);
@@ -1206,35 +1206,35 @@ foreach($arTeachers as $strKey => $arTeacher){
 // Context menu
 $arMenu = array();
 $arMenu[] = array(
-	'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_LIST'),
-	'LINK' => 'acrit_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID,
+	'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_LIST'),
+	'LINK' => 'data_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID,
 	'ICON' => 'btn_list',
 );
 if(!empty($arTeachers)){
-	$arJs = ['window.acritTeachers = {};'];
+	$arJs = ['window.dataTeachers = {};'];
 	if(count($arTeachers) > 1){
 		$arHelpMenu = [];
 		foreach($arTeachers as $arTeacher){
 			$strId = randString(16);
-			$arJs[] = sprintf('window.acritTeachers["%s"] = %s;', $strId, $arTeacher['JS']);
+			$arJs[] = sprintf('window.dataTeachers["%s"] = %s;', $strId, $arTeacher['JS']);
 			$arHelpMenu[] = array(
 				'TEXT'	=> $arTeacher['NAME'],
-				'ONCLICK' => sprintf('$("#adm-workarea").acritTeacher(window.acritTeachers["%s"])', $strId),
+				'ONCLICK' => sprintf('$("#adm-workarea").dataTeacher(window.dataTeachers["%s"])', $strId),
 			);
 		}
 		$arMenu[] = array(
-			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_HELP'),
+			'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_HELP'),
 			'MENU' => $arHelpMenu,
 		);
 	}
 	elseif(count($arTeachers) == 1){
 		foreach($arTeachers as $arTeacher){
 			$strId = randString(16);
-			$arJs[] = sprintf('window.acritTeachers["%s"] = %s;', $strId, $arTeacher['JS']);
+			$arJs[] = sprintf('window.dataTeachers["%s"] = %s;', $strId, $arTeacher['JS']);
 			$arMenu[] = array(
-				'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_HELP'),
-				'ICON' => 'acrit-exp-button-teacher',
-				'ONCLICK' => sprintf('$("#adm-workarea").acritTeacher(window.acritTeachers["%s"])', $strId),
+				'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_HELP'),
+				'ICON' => 'data-exp-button-teacher',
+				'ONCLICK' => sprintf('$("#adm-workarea").dataTeacher(window.dataTeachers["%s"])', $strId),
 			);
 		}
 	}
@@ -1246,52 +1246,52 @@ if($intProfileID) {
 	if(!$bCopy){
 		if(is_array($arProfile['PARAMS']) && array_key_exists('EXPORT_FILE_NAME', $arProfile['PARAMS'])){
 			$arMenu[] = array(
-				'TEXT'	=> Loc::getMessage('ACRIT_EXP_GET_FILE_URL'),
-				'ONCLICK' => 'acritExpGetFileUrl();',
-				'ICON' => 'acrit-exp-get-file-url',
+				'TEXT'	=> Loc::getMessage('DATA_EXP_GET_FILE_URL'),
+				'ONCLICK' => 'dataExpGetFileUrl();',
+				'ICON' => 'data-exp-get-file-url',
 			);
 		}
 	}
 	#
 	$arActionsMenu = array();
 	$arActionsMenu[] = array(
-		'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_ADD'),
-		'LINK' => 'acrit_'.$strModuleCodeLower.'_new_edit.php?lang='.LANGUAGE_ID,
+		'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_ADD'),
+		'LINK' => 'data_'.$strModuleCodeLower.'_new_edit.php?lang='.LANGUAGE_ID,
 		'ICON' => 'edit',
 	);
 	if(!$bCopy){
 		$arActionsMenu[] = array(
-			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_COPY'),
-			'LINK' => 'acrit_'.$strModuleCodeLower.'_new_edit.php?ID='.$intProfileID.'&copy=Y&lang='.LANGUAGE_ID,
+			'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_COPY'),
+			'LINK' => 'data_'.$strModuleCodeLower.'_new_edit.php?ID='.$intProfileID.'&copy=Y&lang='.LANGUAGE_ID,
 			'ICON' => 'copy',
 		);
-		$strDeleteUrl = 'acrit_'.$strModuleCodeLower.'_new_edit.php?ID='.$intProfileID.'&delete=Y&lang='.LANGUAGE_ID;
+		$strDeleteUrl = 'data_'.$strModuleCodeLower.'_new_edit.php?ID='.$intProfileID.'&delete=Y&lang='.LANGUAGE_ID;
 		$arActionsMenu[] = array(
-			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_DELETE'),
+			'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_DELETE'),
 			'ICON' => 'delete',
-			'ACTION' => "if(confirm('".Loc::GetMessage("ACRIT_EXP_MENU_DELETE_CONFIRM")."')){window.location='".$strDeleteUrl."';}",
+			'ACTION' => "if(confirm('".Loc::GetMessage("DATA_EXP_MENU_DELETE_CONFIRM")."')){window.location='".$strDeleteUrl."';}",
 		);
 		$arActionsMenu[] = array(
 			'SEPARATOR' => true,
 		);
-		$strBackupUrl = 'acrit_'.$strModuleCodeLower.'_new_edit.php?ID='.$intProfileID.'&backup=Y&lang='.LANGUAGE_ID;
-		$APPLICATION->addHeadString('<script>var acritExpProfileBackupUrl = "'.$strBackupUrl.'";</script>');
+		$strBackupUrl = 'data_'.$strModuleCodeLower.'_new_edit.php?ID='.$intProfileID.'&backup=Y&lang='.LANGUAGE_ID;
+		$APPLICATION->addHeadString('<script>var dataExpProfileBackupUrl = "'.$strBackupUrl.'";</script>');
 		$arActionsMenu[] = array(
-			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_BACKUP'),
+			'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_BACKUP'),
 			'ICON' => 'pack',
 			'LINK' => $strBackupUrl,
 		);
 	}
 	$arMenu[] = array(
-		'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_ACTIONS'),
+		'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_ACTIONS'),
 		'ICON' => 'btn_new',
 		'MENU' => $arActionsMenu,
 	);
 	if(!$bCopy){
 		$arMenu[] = array(
-			'TEXT'	=> Loc::getMessage('ACRIT_EXP_MENU_RUN'),
-			'ICON' => 'acrit-exp-button-run',
-			'ONCLICK' => 'AcritExpPopupExecute.Open();',
+			'TEXT'	=> Loc::getMessage('DATA_EXP_MENU_RUN'),
+			'ICON' => 'data-exp-button-run',
+			'ONCLICK' => 'DataExpPopupExecute.Open();',
 		);
 	}
 }
@@ -1303,24 +1303,24 @@ $arTabs = array();
 $strTabsDir = '/include/tabs';
 $arTabs[] = array(
 	'DIV' => 'general',
-	'TAB' => Loc::getMessage('ACRIT_EXP_TAB_GENERAL_NAME'),
-	'TITLE' => Loc::getMessage('ACRIT_EXP_TAB_GENERAL_DESC'),
+	'TAB' => Loc::getMessage('DATA_EXP_TAB_GENERAL_NAME'),
+	'TITLE' => Loc::getMessage('DATA_EXP_TAB_GENERAL_DESC'),
 	'SORT' => 1,
 	'FILE' => __DIR__.$strTabsDir.'/general.php',
 );
 if($intProfileID && is_object($obPlugin)){
 	$arTabs[] = array(
 		'DIV' => 'structure',
-		'TAB' => Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_NAME'),
-		'TITLE' => Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_DESC'),
+		'TAB' => Loc::getMessage('DATA_EXP_TAB_STRUCTURE_NAME'),
+		'TITLE' => Loc::getMessage('DATA_EXP_TAB_STRUCTURE_DESC'),
 		'SORT' => 10,
 		'FILE' => __DIR__.$strTabsDir.'/structure.php',
 	);
 	if(\Bitrix\Main\Loader::includeModule('currency')) {
 		$arTabs[] = array(
 			'DIV' => 'currency',
-			'TAB' => Loc::getMessage('ACRIT_EXP_TAB_CURRENCY_NAME'),
-			'TITLE' => Loc::getMessage('ACRIT_EXP_TAB_CURRENCY_DESC'),
+			'TAB' => Loc::getMessage('DATA_EXP_TAB_CURRENCY_NAME'),
+			'TITLE' => Loc::getMessage('DATA_EXP_TAB_CURRENCY_DESC'),
 			'SORT' => 20,
 			'FILE' => __DIR__.$strTabsDir.'/currency.php',
 		);
@@ -1328,15 +1328,15 @@ if($intProfileID && is_object($obPlugin)){
 	if(!$bCopy){
 		$arTabs[] = array(
 			'DIV' => 'cron',
-			'TAB' => Loc::getMessage('ACRIT_EXP_TAB_CRON_NAME'),
-			'TITLE' => Loc::getMessage('ACRIT_EXP_TAB_CRON_DESC'),
+			'TAB' => Loc::getMessage('DATA_EXP_TAB_CRON_NAME'),
+			'TITLE' => Loc::getMessage('DATA_EXP_TAB_CRON_DESC'),
 			'SORT' => 30,
 			'FILE' => __DIR__.$strTabsDir.'/cron.php',
 		);
 		$arTabs[] = array(
 			'DIV' => 'log',
-			'TAB' => Loc::getMessage('ACRIT_EXP_TAB_LOG_NAME'),
-			'TITLE' => Loc::getMessage('ACRIT_EXP_TAB_LOG_DESC'),
+			'TAB' => Loc::getMessage('DATA_EXP_TAB_LOG_NAME'),
+			'TITLE' => Loc::getMessage('DATA_EXP_TAB_LOG_DESC'),
 			'SORT' => 40,
 			'FILE' => __DIR__.$strTabsDir.'/log.php',
 		);
@@ -1398,15 +1398,15 @@ foreach($arTabs as $key => $arTab) {
 		$arTabs[$key] = $arTab;
 	}
 }
-usort($arTabs, '\Acrit\Core\Helper::sortBySort');
+usort($arTabs, '\Data\Core\Helper::sortBySort');
 
 # Lock notifier
 if(Helper::getOption($strModuleId, 'check_lock') == 'Y'){
-	?><div id="acrit-exp-lock-notifier"><?
+	?><div id="data-exp-lock-notifier"><?
 		#if(Profile::isLocked($arProfile)){
 		if(Helper::call($strModuleId, 'Profile', 'isLocked', [$arProfile])){
 			print '<div style="margin-top:15px;"></div>';
-			print Helper::showNote(Loc::getMessage('ACRIT_EXP_LOCK_NOTICE', array(
+			print Helper::showNote(Loc::getMessage('DATA_EXP_LOCK_NOTICE', array(
 				'#DATE#' => is_object($arProfile['DATE_LOCKED']) ? $arProfile['DATE_LOCKED']->toString() : '???',
 			)), true).'<br/>';
 		}
@@ -1414,7 +1414,7 @@ if(Helper::getOption($strModuleId, 'check_lock') == 'Y'){
 }
 
 # Update notifier
-\Acrit\Core\Update::display();
+\Data\Core\Update::display();
 
 # XDebug notifier
 Helper::call($strModuleId, 'Profile', 'checkXDebug');
@@ -1442,7 +1442,7 @@ if(!$bCopy && is_array($arProfile) && is_object($obPlugin)){
 	print implode('', $arPluginErrors);
 }
 
-?><div id="acrit_exp_form"><?
+?><div id="data_exp_form"><?
 
 // Show plugin messages
 if(is_object($obPlugin)){
@@ -1450,7 +1450,7 @@ if(is_object($obPlugin)){
 	$obPlugin->showMessages();
 	$strHtml = trim(ob_get_clean());
 	if(strlen($strHtml)){
-		print '<div id="acrit-exp-plugin-messages">'.$strHtml.'</div>';
+		print '<div id="data-exp-plugin-messages">'.$strHtml.'</div>';
 	}
 }
 
@@ -1465,7 +1465,7 @@ $obTabControl->BeginPrologContent();
 // Begin form parameters for JS
 ?>
 <?if($bShowMainNotice):?>
-	<div data-role="main-notice"><?=Helper::showNote(Loc::getMessage('ACRIT_EXP_MAIN_NOTICE_FOR_HINTS'), true);?></div>
+	<div data-role="main-notice"><?=Helper::showNote(Loc::getMessage('DATA_EXP_MAIN_NOTICE_FOR_HINTS'), true);?></div>
 <?endif?>
 <input type="hidden" id="param__profile_id" value="<?=$intProfileID;?>" />
 <input type="hidden" id="param__form_name" value="<?=$strAdminFormName;?>" />
@@ -1487,7 +1487,7 @@ foreach($arTabs as $arTab){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $obTabControl->Buttons(array(
 	'disabled' => false,
-	'back_url' => 'acrit_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID,
+	'back_url' => 'data_'.$strModuleCodeLower.'_new_list.php?lang='.LANGUAGE_ID,
 ));
 $obTabControl->Show();
 

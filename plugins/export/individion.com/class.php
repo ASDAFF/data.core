@@ -1,26 +1,26 @@
 <?
 /**
- * Acrit Core: Individion.com base plugin
+ * Data Core: Individion.com base plugin
  * @documentation https://yandex.ru/support/partnermarket/export/yml.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-		\Acrit\Core\Helper,
-		\Acrit\Core\Export\Plugin,
-		\Acrit\Core\Export\Field\Field,
-		\Acrit\Core\Export\Exporter,
-		\Acrit\Core\HttpRequest,
-		\Acrit\Core\Export\ProfileTable as Profile,
-		\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-		\Acrit\Core\Export\Filter,
-		\Acrit\Core\Export\AdditionalFieldTable as AdditionalField,
-		\Acrit\Core\Export\ExportDataTable as ExportData,
-		\Acrit\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
-		\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
-		\Acrit\Core\Xml,
-		\Acrit\Core\Log;
+		\Data\Core\Helper,
+		\Data\Core\Export\Plugin,
+		\Data\Core\Export\Field\Field,
+		\Data\Core\Export\Exporter,
+		\Data\Core\HttpRequest,
+		\Data\Core\Export\ProfileTable as Profile,
+		\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+		\Data\Core\Export\Filter,
+		\Data\Core\Export\AdditionalFieldTable as AdditionalField,
+		\Data\Core\Export\ExportDataTable as ExportData,
+		\Data\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
+		\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+		\Data\Core\Xml,
+		\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -258,20 +258,20 @@ class IndividionCom extends Plugin
 	{
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;" data-role="settings-<?= static::getCode(); ?>">
+		<table class="data-exp-plugin-settings" style="width:100%;" data-role="settings-<?= static::getCode(); ?>">
 			<tbody>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?= Helper::ShowHint(static::getMessage('SETTINGS_FILE_HINT')); ?>
-						<label for="acrit_exp_plugin_xml_filename">
+						<label for="data_exp_plugin_xml_filename">
 							<b><?= static::getMessage('SETTINGS_FILE'); ?>:</b>
 						</label>
 					</td>
 					<td width="60%" class="adm-detail-content-cell-r">
 						<?
 						\CAdminFileDialog::ShowScript(Array(
-							'event' => 'AcritExpPluginXmlFilenameSelect',
-							'arResultDest' => array('FUNCTION_NAME' => 'acrit_exp_plugin_xml_filename_select'),
+							'event' => 'DataExpPluginXmlFilenameSelect',
+							'arResultDest' => array('FUNCTION_NAME' => 'data_exp_plugin_xml_filename_select'),
 							'arPath' => array(),
 							'select' => 'F',
 							'operation' => 'S',
@@ -283,19 +283,19 @@ class IndividionCom extends Plugin
 						));
 						?>
 						<script>
-							function acrit_exp_plugin_xml_filename_select(File, Path, Site) {
+							function data_exp_plugin_xml_filename_select(File, Path, Site) {
 								var FilePath = Path + '/' + File;
-								$('#acrit_exp_plugin_xml_filename').val(FilePath);
+								$('#data_exp_plugin_xml_filename').val(FilePath);
 							}
 						</script>
-						<table class="acrit-exp-plugin-settings-fileselect">
+						<table class="data-exp-plugin-settings-fileselect">
 							<tbody>
 								<tr>
 									<td><input type="text" name="PROFILE[PARAMS][EXPORT_FILE_NAME]"
-														 id="acrit_exp_plugin_xml_filename" data-role="export-file-name"
+														 id="data_exp_plugin_xml_filename" data-role="export-file-name"
 														 value="<?= htmlspecialcharsbx($this->arProfile['PARAMS']['EXPORT_FILE_NAME']); ?>" size="40"
 														 placeholder="<?= static::getMessage('SETTINGS_FILE_PLACEHOLDER'); ?>" /></td>
-									<td><input type="button" value="..." onclick="AcritExpPluginXmlFilenameSelect()" /></td>
+									<td><input type="button" value="..." onclick="DataExpPluginXmlFilenameSelect()" /></td>
 									<td>
 										&nbsp;
 										<?= $this->showFileOpenLink(); ?>
@@ -311,7 +311,7 @@ class IndividionCom extends Plugin
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?= Helper::ShowHint(static::getMessage('SETTINGS_ENCODING_HINT')); ?>
-						<label for="acrit_exp_plugin_encoding">
+						<label for="data_exp_plugin_encoding">
 							<b><?= static::getMessage('SETTINGS_ENCODING'); ?>:</b>
 						</label>
 					</td>
@@ -322,14 +322,14 @@ class IndividionCom extends Plugin
 							'REFERENCE' => array_values($arEncodings),
 							'REFERENCE_ID' => array_keys($arEncodings),
 						);
-						print SelectBoxFromArray('PROFILE[PARAMS][ENCODING]', $arEncodings, $this->arProfile['PARAMS']['ENCODING'], '', 'id="acrit_exp_plugin_encoding"');
+						print SelectBoxFromArray('PROFILE[PARAMS][ENCODING]', $arEncodings, $this->arProfile['PARAMS']['ENCODING'], '', 'id="data_exp_plugin_encoding"');
 						?>
 					</td>
 				</tr>
 				<tr id="tr_ZIP">
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?= Helper::ShowHint(static::getMessage('SETTINGS_ZIP_HINT')); ?>
-						<label for="acrit_exp_plugin_compress_to_zip">
+						<label for="data_exp_plugin_compress_to_zip">
 							<?= static::getMessage('SETTINGS_ZIP'); ?>:
 						</label>
 					</td>
@@ -337,13 +337,13 @@ class IndividionCom extends Plugin
 						<input name="PROFILE[PARAMS][COMPRESS_TO_ZIP]" type="hidden" value="N"/>
 						<input name="PROFILE[PARAMS][COMPRESS_TO_ZIP]" type="checkbox" value="Y"
 									 <? if ($this->arProfile['PARAMS']['COMPRESS_TO_ZIP'] == 'Y'): ?>checked="checked"<? endif ?>
-									 id="acrit_exp_plugin_compress_to_zip" />
+									 id="data_exp_plugin_compress_to_zip" />
 					</td>
 				</tr>
 				<tr id="tr_DELETE_XML_IF_ZIP">
 					<td width="40%" class="adm-detail-content-cell-l">
 						<?= Helper::ShowHint(static::getMessage('SETTINGS_DELETE_XML_IF_ZIP_HINT')); ?>
-						<label for="acrit_exp_plugin_delete_xml_if_zip">
+						<label for="data_exp_plugin_delete_xml_if_zip">
 							<?= static::getMessage('SETTINGS_DELETE_XML_IF_ZIP'); ?>:
 						</label>
 					</td>
@@ -351,7 +351,7 @@ class IndividionCom extends Plugin
 						<input name="PROFILE[PARAMS][DELETE_XML_IF_ZIP]" type="hidden" value="N"/>
 						<input name="PROFILE[PARAMS][DELETE_XML_IF_ZIP]" type="checkbox" value="Y"
 									 <? if ($this->arProfile['PARAMS']['DELETE_XML_IF_ZIP'] == 'Y'): ?>checked="checked"<? endif ?>
-									 id="acrit_exp_plugin_delete_xml_if_zip" />
+									 id="data_exp_plugin_delete_xml_if_zip" />
 					</td>
 				</tr>
 			</tbody>
@@ -377,7 +377,7 @@ class IndividionCom extends Plugin
 	{
 		ob_start();
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
 				<tr>
 					<td width="40%" class="adm-detail-content-cell-l">
@@ -425,7 +425,7 @@ class IndividionCom extends Plugin
 						<input name="PROFILE[PARAMS][ENABLE_AUTO_DISCOUNTS]" type="hidden" value="N"/>
 						<input name="PROFILE[PARAMS][ENABLE_AUTO_DISCOUNTS]" type="checkbox" value="Y"
 									 <? if ($this->arProfile['PARAMS']['ENABLE_AUTO_DISCOUNTS'] == 'Y'): ?>checked="checked"<? endif ?>
-									 id="acrit_exp_enable_auto_discounts" />
+									 id="data_exp_enable_auto_discounts" />
 					</td>
 				</tr>
 			</tbody>
@@ -1052,7 +1052,7 @@ class IndividionCom extends Plugin
 	{
 		$arResult = array();
 		$arResult['CHECK'] = array(
-			'NAME' => static::getMessage('ACRIT_EXP_EXPORTER_STEP_CHECK'),
+			'NAME' => static::getMessage('DATA_EXP_EXPORTER_STEP_CHECK'),
 			'SORT' => 10,
 			'FUNC' => __CLASS__ . '::stepCheck',
 			'FUNC' => array($this, 'stepCheck'),
@@ -1199,7 +1199,7 @@ class IndividionCom extends Plugin
 		}
 		if (!Helper::createDirectoriesForFile($arSession['XML_FILE']))
 		{
-			$strMessage = Loc::getMessage('ACRIT_EXP_ERROR_CREATE_DIRECORY', array(
+			$strMessage = Loc::getMessage('DATA_EXP_ERROR_CREATE_DIRECORY', array(
 						'#DIR#' => Helper::getDirectoryForFile($arSession['XML_FILE']),
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);
@@ -1213,7 +1213,7 @@ class IndividionCom extends Plugin
 		if (!@rename($arSession['XML_FILE_TMP'], $arSession['XML_FILE']))
 		{
 			@unlink($arSession['XML_FILE_TMP']);
-			$strMessage = Loc::getMessage('ACRIT_EXP_FILE_NO_PERMISSIONS', array(
+			$strMessage = Loc::getMessage('DATA_EXP_FILE_NO_PERMISSIONS', array(
 						'#FILE#' => $arSession['XML_FILE'],
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);
@@ -1260,7 +1260,7 @@ class IndividionCom extends Plugin
 				'#' => $arData['PROFILE']['PARAMS']['SHOP_COMPANY'],
 			),
 			'platform' => array(
-				'#' => Loc::getMessage('ACRIT_EXP_PLATFORM_NAME'),
+				'#' => Loc::getMessage('DATA_EXP_PLATFORM_NAME'),
 			),
 			'version' => array(
 				'#' => SM_VERSION,
@@ -1473,7 +1473,7 @@ class IndividionCom extends Plugin
 
 		switch ($arData['PROFILE']['PARAMS']['CATEGORIES_REDEFINITION_MODE'])
 		{
-			// Режим "Использовать категории торговой площадки"
+			// пїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
 			case CategoryRedefinition::MODE_STRICT:
 				#
 				$strSeparator = '/';
@@ -1547,7 +1547,7 @@ class IndividionCom extends Plugin
 				}
 				#
 				break;
-			// Режим "Использовать категории сайта"
+			// пїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
 			case CategoryRedefinition::MODE_CUSTOM:
 				# Categories to XML array
 				$arCategoriesXml = array();
@@ -2147,7 +2147,7 @@ class IndividionCom extends Plugin
 
 	/**
 	 * 	Get XML tag: <category>
-	 * 	У товара может быть основная категория, которая не попадает в выгрузку, поэтому нужно чтобы лишняя категория не добавлялась в <categories>
+	 * 	пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ <categories>
 	 */
 	/*
 	protected function getXmlTag_Category($arProfile, $arElement)

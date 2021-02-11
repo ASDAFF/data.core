@@ -1,14 +1,14 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Cli,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json,
-	\Acrit\Core\Log;
+	\Data\Core\Cli,
+	\Data\Core\Helper,
+	\Data\Core\Json,
+	\Data\Core\Log;
 
 # Core (part 1)
-$strCoreId = 'acrit.core';
+$strCoreId = 'data.core';
 define('ADMIN_MODULE_NAME', $strCoreId);
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php');
 \Bitrix\Main\Loader::includeModule($strCoreId);
@@ -39,12 +39,12 @@ if(\Bitrix\Main\Loader::includeModule($strModuleId)) {
 					Cli::deleteCronTask($strModuleId, $arCli['COMMAND_SHORT']);
 					$bResult = Cli::addCronTask($strModuleId, $arCli['COMMAND'], $strSchedule);
 					if($bResult){
-						Log::getInstance($strModuleId)->add(Helper::getMessage('ACRIT_EXP_AJAX_CRON_SETUP_SUCCESS', array(
+						Log::getInstance($strModuleId)->add(Helper::getMessage('DATA_EXP_AJAX_CRON_SETUP_SUCCESS', array(
 							'#COMMAND#' => $arCli['COMMAND'],
 						)), $intProfileID);
 					}
 					else{
-						Log::getInstance($strModuleId)->add(Helper::getMessage('ACRIT_EXP_AJAX_CRON_SETUP_ERROR', array(
+						Log::getInstance($strModuleId)->add(Helper::getMessage('DATA_EXP_AJAX_CRON_SETUP_ERROR', array(
 							'#COMMAND#' => $arCli['COMMAND'],
 						)), $intProfileID);
 					}
@@ -53,8 +53,8 @@ if(\Bitrix\Main\Loader::includeModule($strModuleId)) {
 				$arJsonResult['IsConfigured'] = Cli::isCronTaskConfigured($strModuleId, $arCli['COMMAND'], $strSchedule);
 				#
 				if($bShowTasks) {
-					$arJsonResult['CurrentTasks'] = Helper::getHtmlObject(ACRIT_CORE, null, 'forms/cron', 'tasks', [
-						'MODULE_ID' => ACRIT_PROCESSING,
+					$arJsonResult['CurrentTasks'] = Helper::getHtmlObject(DATA_CORE, null, 'forms/cron', 'tasks', [
+						'MODULE_ID' => DATA_PROCESSING,
 						'PROFILE_ID' => 'import_clients',
 						'CLI_FILE' => 'run.php',
 					]);
@@ -67,8 +67,8 @@ if(\Bitrix\Main\Loader::includeModule($strModuleId)) {
 				}
 				#
 				if($bShowTasks) {
-					$arJsonResult['CurrentTasks'] = Helper::getHtmlObject(ACRIT_CORE, null, 'forms/cron', 'tasks', [
-						'MODULE_ID' => ACRIT_PROCESSING,
+					$arJsonResult['CurrentTasks'] = Helper::getHtmlObject(DATA_CORE, null, 'forms/cron', 'tasks', [
+						'MODULE_ID' => DATA_PROCESSING,
 						'PROFILE_ID' => 'import_clients',
 						'CLI_FILE' => 'run.php',
 					]);

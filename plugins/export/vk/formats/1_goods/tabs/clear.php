@@ -1,12 +1,16 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+/**
+ * Copyright (c) 12/2/2021 Created By/Edited By ASDAFF asdaff.asad@yandex.ru
+ */
+
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-    \Acrit\Core\Helper;
+    \Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
-// Ýòî èñïîëüçîâàòü äëÿ âñåõ äîïîëíèòåëüíûõ ïàðàìåòðîâ â ïëàãèíàõ, ÷òîáû ïàðàìåòðû ïðîôèëÿ íå ïåðåñåêàëèñü
+// Ð­Ñ‚Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ Ð´Ð»Ñ Ð²ÑÐµÑ… Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð² Ð² Ð¿Ð»Ð°Ð³Ð¸Ð½Ð°Ñ…, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ Ð½Ðµ Ð¿ÐµÑ€ÐµÑÐµÐºÐ°Ð»Ð¸ÑÑŒ
 $strPluginParams = $obPlugin->getPluginParamsInputName();
 $arPluginParams = $obPlugin->getPluginParams();
 

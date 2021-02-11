@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_TURBO_GENERAL_';
+$strMessPrefix = 'DATA_EXP_YANDEX_TURBO_GENERAL_';
 
 $MESS[$strMessPrefix.'DIRS_STRUCTURE'] = 'Выберите статические страницы';
 	$MESS[$strMessPrefix.'DIRS_STRUCTURE_DESC'] = 'Выберите статические страницы (папки, файлы) для выгрузки в Яндекс.Турбо.<br/><br/>

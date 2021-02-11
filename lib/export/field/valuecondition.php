@@ -3,12 +3,12 @@
  * Class to work with conditional values in fields
  */
 
-namespace Acrit\Core\Export\Field;
+namespace Data\Core\Export\Field;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Filter;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Filter;
 
 class ValueCondition extends ValueBase {
 	
@@ -26,7 +26,7 @@ class ValueCondition extends ValueBase {
 	 *	
 	 */
 	public static function getName(){
-		return Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_NAME');
+		return Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_NAME');
 	}
 	
 	/**
@@ -92,7 +92,7 @@ class ValueCondition extends ValueBase {
 			);
 		}
 		#
-		print '<div style="margin-bottom:2px;"><b>'.Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_BLOCK_HEADER').'</b></div>';
+		print '<div style="margin-bottom:2px;"><b>'.Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_BLOCK_HEADER').'</b></div>';
 		$obFilter = new Filter($this->obField->getModuleId(), $this->intIBlockID);
 		$obFilter->setInputName(static::INPUTNAME_DEFAULT.'['.$this->intIBlockID.']['.$this->strFieldCode.'][field_conditions]');
 		$obFilter->setJson($this->strConditions);
@@ -101,7 +101,7 @@ class ValueCondition extends ValueBase {
 		unset($obFilter);
 		print '<br/>';
 		#
-		print '<div style="margin-bottom:2px;"><b>'.Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_BLOCK_TRUE').'</b></div>';
+		print '<div style="margin-bottom:2px;"><b>'.Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_BLOCK_TRUE').'</b></div>';
 		$obValueSimple = new ValueSimple();
 		$obValueSimple->setMultiple(true);
 		$obValueSimple->setIBlockID($this->intIBlockID);
@@ -113,7 +113,7 @@ class ValueCondition extends ValueBase {
 		unset($obValueSimple);
 		print '<br/>';
 		#
-		print '<div style="margin-bottom:2px;"><b>'.Loc::getMessage('ACRIT_EXP_FIELDVALUE_CONDITION_BLOCK_FALSE').'</b></div>';
+		print '<div style="margin-bottom:2px;"><b>'.Loc::getMessage('DATA_EXP_FIELDVALUE_CONDITION_BLOCK_FALSE').'</b></div>';
 		$obValueSimple = new ValueSimple();
 		$obValueSimple->setMultiple(true);
 		$obValueSimple->setIBlockID($this->intIBlockID);

@@ -1,17 +1,17 @@
 <?
 /**
- * Acrit Core: Plugin for bn.ru
+ * Data Core: Plugin for bn.ru
  * @documentation https://yandex.ru/support/partnermarket/export/yml.html
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
     \Bitrix\Main\EventManager,
-    \Acrit\Core\Helper,
-    \Acrit\Core\Export\Exporter,
-    \Acrit\Core\Export\Field\Field,
-		\Acrit\Core\Xml;
+    \Data\Core\Helper,
+    \Data\Core\Export\Exporter,
+    \Data\Core\Export\Field\Field,
+		\Data\Core\Xml;
 
 Loc::loadMessages(__FILE__);
 
@@ -488,7 +488,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        # информация о сделке
+        # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'PRICE_VALUE',
             'DISPLAY_CODE' => 'price_value',
@@ -550,7 +550,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        # информация о продавце
+        # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'AGENT_NAME',
             'DISPLAY_CODE' => 'agent_name',
@@ -663,7 +663,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        # графическая информация. фото, видео
+        # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'VIDEO',
             'DISPLAY_CODE' => 'Video',
@@ -719,7 +719,7 @@ class BullNedGeneral extends BullNed {
                 'MULTIPLE' => 'multiple',
             ),
         ));
-        # описание
+        # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'SHORT_DESCRIPTION',
             'DISPLAY_CODE' => 'short_description',
@@ -756,7 +756,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        # информация о здании
+        # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'BUILDING_NAME',
             'DISPLAY_CODE' => 'building_name',
@@ -847,7 +847,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        #Информация о жилом помещении
+        #пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'TOTAL_VALUE',
             'DISPLAY_CODE' => 'total_value',
@@ -1208,7 +1208,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        #Информация о загородном объекте
+        #пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'LOT_VALUE',
             'DISPLAY_CODE' => 'lot_value',
@@ -1269,7 +1269,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        #Информация о коммерческом объекте
+        #пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'CEILING_HEIGHT',
             'DISPLAY_CODE' => 'ceiling_height',
@@ -1285,7 +1285,7 @@ class BullNedGeneral extends BullNed {
                 ),
             ),
         ));
-        #Информация о коммерческом объекте
+        #пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         $arResult[] = new Field(array(
             'CODE' => 'CEILING_HEIGHT',
             'DISPLAY_CODE' => 'ceiling_height',

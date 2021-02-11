@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: deal.by plugin
+ * Data Core: deal.by plugin
  * @documentation https://support.deal.by/documents/771
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class DealByYml extends DealBy {
 	

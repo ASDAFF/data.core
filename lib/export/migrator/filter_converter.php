@@ -3,12 +3,12 @@
  * Class for migrate filter from old profiles
  */
 
-namespace Acrit\Core\Export\Migrator;
+namespace Data\Core\Export\Migrator;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Export\Filter,
+	\Data\Core\Json;
 
 /**
  *	
@@ -209,15 +209,15 @@ class FilterConverter {
 			}
 		}
 		elseif(preg_match('#^CondCatPrice_(\d+)$#', $strClassID, $arMatch)){
-			//$strResult = 'PROPERTY_ACRIT_EXP_PRICE_'.$arMatch[1].'_VALUE';
+			//$strResult = 'PROPERTY_DATA_EXP_PRICE_'.$arMatch[1].'_VALUE';
 			$strResult = 'CATALOG_PRICE_'.$arMatch[1];
 		}
 		elseif(preg_match('#^CondCatPrice_(\d+)_WD$#', $strClassID, $arMatch)){
-			//$strResult = 'PROPERTY_ACRIT_EXP_PRICE_'.$arMatch[1].'_VALUE';
+			//$strResult = 'PROPERTY_DATA_EXP_PRICE_'.$arMatch[1].'_VALUE';
 			$strResult = 'CATALOG_PRICE_'.$arMatch[1];
 		}
 		elseif(preg_match('#^CondCatPrice_(\d+)_D$#', $strClassID, $arMatch)){
-			$strResult = 'PROPERTY_ACRIT_EXP_PRICE_'.$arMatch[1].'_DISCOUNT';
+			$strResult = 'PROPERTY_DATA_EXP_PRICE_'.$arMatch[1].'_DISCOUNT';
 		}
 		else{
 			#

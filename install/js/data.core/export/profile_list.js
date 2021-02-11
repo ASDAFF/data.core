@@ -4,7 +4,7 @@
  *	ajaxAction = 'load_structure_iblock';
  *	ajaxAction = ['plugin_ajax_action','get_props_for_additional_fields'];
  */
-function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
+function dataExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hideLoader){
 	var lang = phpVars.LANGUAGE_ID;
 	//
 	if(typeof data == 'string' && data.substr(0,1)=='&'){
@@ -48,12 +48,12 @@ function acritExpAjax(ajaxAction, data, callbackSuccess, callbackError, post, hi
 
 // Module version in nav chain
 $(document).ready(function(){
-	if(acritExpModuleVersion.length > 0 && acritExpCoreVersion.length > 0) {
-		$('a[id^="bx_admin_chain_item_menu_acrit_"]>span').append(' ('+acritExpModuleVersion+' / '+acritExpCoreVersion+')');
+	if(dataExpModuleVersion.length > 0 && dataExpCoreVersion.length > 0) {
+		$('a[id^="bx_admin_chain_item_menu_data_"]>span').append(' ('+dataExpModuleVersion+' / '+dataExpCoreVersion+')');
 	}
 });
 
-function acritExpDoBackup(formId){
+function dataExpDoBackup(formId){
 	var form = $('#form_'+formId);
 	var ID = [];
 	$('td.adm-list-table-checkbox > input[type=checkbox]', form).each(function(){
@@ -68,26 +68,26 @@ function acritExpDoBackup(formId){
 /**
  *	POPUP: Backup/restore
  */
-var AcritExpPopupRestore = new BX.CDialog({
-	ID: 'AcritExpPopupRestore',
-	title: BX.message('ACRIT_EXP_POPUP_RESTORE_TITLE'),
+var DataExpPopupRestore = new BX.CDialog({
+	ID: 'DataExpPopupRestore',
+	title: BX.message('DATA_EXP_POPUP_RESTORE_TITLE'),
 	content: '',
 	resizable: true,
 	draggable: true,
 	height: 290,
 	width: 650
 });
-AcritExpPopupRestore.Open = function(){
+DataExpPopupRestore.Open = function(){
 	this.Show();
 	this.LoadContent();
 }
-AcritExpPopupRestore.LoadContent = function(){
+DataExpPopupRestore.LoadContent = function(){
 	var thisPopup = this;
 	//
-	thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+	thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 	//
 	thisPopup.DisableControls();
-	acritExpAjax('load_popup_backup_restore', '', function(JsonResult){
+	dataExpAjax('load_popup_backup_restore', '', function(JsonResult){
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
@@ -109,64 +109,64 @@ AcritExpPopupRestore.LoadContent = function(){
 		thisPopup.EnableControls();
 	}, true);
 }
-AcritExpPopupRestore.SetNavButtons = function(){
+DataExpPopupRestore.SetNavButtons = function(){
 	$(this.PARTS.BUTTONS_CONTAINER).html('');
 	this.SetButtons(
 		[{
-			'name': BX.message('ACRIT_EXP_POPUP_RESTORE_SAVE'),
+			'name': BX.message('DATA_EXP_POPUP_RESTORE_SAVE'),
 			'className': 'adm-btn-green',
-			'id': 'acrit-exp-popup-backup-restore-start',
+			'id': 'data-exp-popup-backup-restore-start',
 			'action': function(){
 				var thisPopup = this.parentWindow,
 					form = $('form', thisPopup.DIV);
 				if($('input[type=file]', form).val()==''){
-					alert(BX.message('ACRIT_EXP_POPUP_RESTORE_NO_FILE'));
+					alert(BX.message('DATA_EXP_POPUP_RESTORE_NO_FILE'));
 				}
 				else {
 					form.submit();
 				}
 			}
 		}, {
-			'name': BX.message('ACRIT_EXP_POPUP_RESTORE_CLOSE'),
+			'name': BX.message('DATA_EXP_POPUP_RESTORE_CLOSE'),
 			'action': function(){
 				this.parentWindow.Close();
 			}
 		}]
 	)
 }
-AcritExpPopupRestore.DisableControls = function(){
-	$('#acrit-exp-popup-backup-restore-start', this.DIV).attr('disabled', 'disabled');
+DataExpPopupRestore.DisableControls = function(){
+	$('#data-exp-popup-backup-restore-start', this.DIV).attr('disabled', 'disabled');
 	$('input[type=text], input[type=file], input[type=button], select', this.DIV).attr('disabled', 'disabled');
 }
-AcritExpPopupRestore.EnableControls = function(){
-	$('#acrit-exp-popup-backup-restore-start', this.DIV).removeAttr('disabled');
+DataExpPopupRestore.EnableControls = function(){
+	$('#data-exp-popup-backup-restore-start', this.DIV).removeAttr('disabled');
 	$('input[type=text], input[type=file], input[type=button], select', this.DIV).removeAttr('disabled');
 }
 
 /**
  *	POPUP: Wizard quick start
  */
-var AcritExpPopupWizardQuickStart = new BX.CDialog({
-	ID: 'AcritExpPopupWizardQuickStart',
-	title: BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_TITLE'),
+var DataExpPopupWizardQuickStart = new BX.CDialog({
+	ID: 'DataExpPopupWizardQuickStart',
+	title: BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_TITLE'),
 	content: '',
 	resizable: true,
 	draggable: true,
 	height: 360,
 	width: 640
 });
-AcritExpPopupWizardQuickStart.Open = function(){
+DataExpPopupWizardQuickStart.Open = function(){
 	this.Show();
 	this.SetNavButtons(false);
 	this.LoadContent();
 }
-AcritExpPopupWizardQuickStart.LoadContent = function(){
+DataExpPopupWizardQuickStart.LoadContent = function(){
 	var thisPopup = this;
 	//
-	thisPopup.SetContent(BX.message('ACRIT_EXP_POPUP_LOADING'));
+	thisPopup.SetContent(BX.message('DATA_EXP_POPUP_LOADING'));
 	//
 	thisPopup.DisableControls();
-	acritExpAjax('load_popup_wizard_quick_start', '', function(JsonResult){
+	dataExpAjax('load_popup_wizard_quick_start', '', function(JsonResult){
 		// Set popup buttons
 		thisPopup.SetNavButtons();
 		//
@@ -183,49 +183,49 @@ AcritExpPopupWizardQuickStart.LoadContent = function(){
 		$('input[type=checkbox]', thisPopup.PARTS.CONTENT).not('.no-checkbox-styling').each(function(){
 			BX.adminFormTools.modifyCheckbox(this);
 		});
-		$('.acrit_exp_wizard_quick_start_steps').children('[data-step="1"]').show();
+		$('.data_exp_wizard_quick_start_steps').children('[data-step="1"]').show();
 		thisPopup.EnableControls();
 		//
-		var divSteps = $('.acrit_exp_wizard_quick_start_steps');
+		var divSteps = $('.data_exp_wizard_quick_start_steps');
 		//divSteps.attr('data-step-index', '1').attr('data-step-count', divSteps.children().length);
 	}, function(jqXHR){
 		console.log(jqXHR.responseText);
 		thisPopup.EnableControls();
 	}, true);
 }
-AcritExpPopupWizardQuickStart.SetNavButtons = function(visible){
+DataExpPopupWizardQuickStart.SetNavButtons = function(visible){
 	$(this.PARTS.BUTTONS_CONTAINER).html('');
 	if(visible !== false){
 		this.SetButtons(
 			[{
-				'name': BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_PREV'),
+				'name': BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_PREV'),
 				'className': 'adm-btn',
-				'id': 'acrit-exp-popup-wizard-quick-start-prev',
-				'action': AcritExpPopupWizardQuickStart.PrevNextClick
+				'id': 'data-exp-popup-wizard-quick-start-prev',
+				'action': DataExpPopupWizardQuickStart.PrevNextClick
 			}, {
-				'name': BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_NEXT'),
+				'name': BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_NEXT'),
 				'className': 'adm-btn-green',
-				'id': 'acrit-exp-popup-wizard-quick-start-next',
-				'action': AcritExpPopupWizardQuickStart.PrevNextClick
+				'id': 'data-exp-popup-wizard-quick-start-next',
+				'action': DataExpPopupWizardQuickStart.PrevNextClick
 			}]
 		)
-		$('#acrit-exp-popup-wizard-quick-start-prev').attr('disabled', 'disabled');
-		$(this.PARTS.BUTTONS_CONTAINER).append(' &nbsp; &nbsp; <span data-role="acrit_exp_wizard_message"></span>')
+		$('#data-exp-popup-wizard-quick-start-prev').attr('disabled', 'disabled');
+		$(this.PARTS.BUTTONS_CONTAINER).append(' &nbsp; &nbsp; <span data-role="data_exp_wizard_message"></span>')
 	}
 }
-AcritExpPopupWizardQuickStart.DisableControls = function(){
-	$('#acrit-exp-popup-backup-restore-start', this.PARTS.CONTENT_DATA).attr('disabled', 'disabled');
+DataExpPopupWizardQuickStart.DisableControls = function(){
+	$('#data-exp-popup-backup-restore-start', this.PARTS.CONTENT_DATA).attr('disabled', 'disabled');
 	$('input[type=text], input[type=file], input[type=button], select', this.PARTS.CONTENT_DATA)
 		.attr('disabled', 'disabled');
 }
-AcritExpPopupWizardQuickStart.EnableControls = function(){
-	$('#acrit-exp-popup-backup-restore-start', this.PARTS.CONTENT_DATA).removeAttr('disabled');
+DataExpPopupWizardQuickStart.EnableControls = function(){
+	$('#data-exp-popup-backup-restore-start', this.PARTS.CONTENT_DATA).removeAttr('disabled');
 	$('input[type=text], input[type=file], input[type=button], select', this.PARTS.CONTENT_DATA)
 		.removeAttr('disabled');
 }
-AcritExpPopupWizardQuickStart.PrevNextClick = function(){
+DataExpPopupWizardQuickStart.PrevNextClick = function(){
 	let
-		divSteps = $('.acrit_exp_wizard_quick_start_steps'),
+		divSteps = $('.data_exp_wizard_quick_start_steps'),
 		curStep = !isNaN(parseInt(divSteps.attr('data-step'))) ? parseInt(divSteps.attr('data-step')) : 1,
 		isPrev = !!$(this).attr('id').match(/prev$/),
 		isNext = !!$(this).attr('id').match(/next$/),
@@ -235,13 +235,13 @@ AcritExpPopupWizardQuickStart.PrevNextClick = function(){
 		lastStep = parseInt(divSteps.children('[data-step]').last().attr('data-step')),
 		isLastStep = step == lastStep,
 		isFinish = step > lastStep,
-		btnPrev = $('#acrit-exp-popup-wizard-quick-start-prev'),
-		btnNext = $('#acrit-exp-popup-wizard-quick-start-next'),
+		btnPrev = $('#data-exp-popup-wizard-quick-start-prev'),
+		btnNext = $('#data-exp-popup-wizard-quick-start-next'),
 		callbackOut = divCurStep.attr('data-callback-out'),
 		callbackIn = divNextStep.attr('data-callback-in'),
-		spanMessage = $('span[data-role="acrit_exp_wizard_message"]', this.parentWindow.PARTS.BUTTONS_CONTAINER),
-		checkAll = $('input[data-role="acrit_exp_wizard_quick_start_select_all"]'),
-		wizardControls = $('.acrit_exp_wizard_quick_start_steps :input', this.parentWindow.PARTS.BUTTONS_CONTAINER)
+		spanMessage = $('span[data-role="data_exp_wizard_message"]', this.parentWindow.PARTS.BUTTONS_CONTAINER),
+		checkAll = $('input[data-role="data_exp_wizard_quick_start_select_all"]'),
+		wizardControls = $('.data_exp_wizard_quick_start_steps :input', this.parentWindow.PARTS.BUTTONS_CONTAINER)
 			.add(btnPrev).add(btnNext);
 	if(isNext && typeof window[callbackOut] == 'function'){
 		let callbackResult = window[callbackOut](divCurStep, spanMessage);
@@ -269,13 +269,13 @@ AcritExpPopupWizardQuickStart.PrevNextClick = function(){
 	}
 	if(isFinish){
 		wizardControls.attr('disabled', 'disabled');
-		let data = $('.acrit_exp_wizard_quick_start_steps :input').serialize();
-		acritExpAjax('wizard_quick_start_process', data, function(JsonResult){
+		let data = $('.data_exp_wizard_quick_start_steps :input').serialize();
+		dataExpAjax('wizard_quick_start_process', data, function(JsonResult){
 			wizardControls.removeAttr('disabled');
 			if(JsonResult.Success){
 				alert(JsonResult.SuccessMessage);
-				AcritExpPopupWizardQuickStart.Close();
-				AcritExpProfiles.GetAdminList(''); //location.reload();
+				DataExpPopupWizardQuickStart.Close();
+				DataExpProfiles.GetAdminList(''); //location.reload();
 			}
 			else{
 				alert('Error.');
@@ -287,52 +287,52 @@ AcritExpPopupWizardQuickStart.PrevNextClick = function(){
 		}, true);
 	}
 	else if(isLastStep || isFinish){
-		btnNext.val(BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_FINISH'));
+		btnNext.val(BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_FINISH'));
 	}
 	else{
-		btnNext.val(BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_NEXT'));
+		btnNext.val(BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_NEXT'));
 	}
 }
-function acrit_exp_wizard_callback_in_plugins(divStep, spanMessage){
+function data_exp_wizard_callback_in_plugins(divStep, spanMessage){
 	setTimeout(function(){
-		$('input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]', divStep).first().trigger('change');
+		$('input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]', divStep).first().trigger('change');
 	}, 10);
 }
-function acrit_exp_wizard_callback_out_plugins(divStep, spanMessage){
-	let checkboxes = $('input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]:checked', divStep);
+function data_exp_wizard_callback_out_plugins(divStep, spanMessage){
+	let checkboxes = $('input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]:checked', divStep);
 	if(!checkboxes.length){
-		spanMessage.text(BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_NO_PLUGIN'));
+		spanMessage.text(BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_NO_PLUGIN'));
 		return false;
 	}
 }
-function acrit_exp_wizard_callback_out_iblocks(divStep, spanMessage){
-	let checkboxes = $('input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]:checked', divStep);
+function data_exp_wizard_callback_out_iblocks(divStep, spanMessage){
+	let checkboxes = $('input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]:checked', divStep);
 	if(!checkboxes.length){
-		spanMessage.text(BX.message('ACRIT_EXP_POPUP_WIZARD_QUICK_START_NO_PLUGIN'));
+		spanMessage.text(BX.message('DATA_EXP_POPUP_WIZARD_QUICK_START_NO_PLUGIN'));
 		return false;
 	}
 }
-function acrit_exp_wizard_callback_in_iblocks(divStep, spanMessage){
+function data_exp_wizard_callback_in_iblocks(divStep, spanMessage){
 	setTimeout(function(){
-		$('input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]', divStep).first().trigger('change');
+		$('input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]', divStep).first().trigger('change');
 	}, 10);
 }
-function acrit_exp_wizard_callback_out_confirm(divStep, spanMessage){
+function data_exp_wizard_callback_out_confirm(divStep, spanMessage){
 	let
-		site = $('select[data-role="acrit_exp_wizard_quick_start_site"]', divStep).val(),
-		domain = $('input[data-role="acrit_exp_wizard_quick_start_domain"]', divStep).val(),
-		https = $('input[data-role="acrit_exp_wizard_quick_start_https"]', divStep).prop('checked') ? 'Y' : 'N',
-		offersMode = $('select[data-role="acrit_exp_wizard_quick_start_offers_mode"]', divStep).val(),
-		run = $('input[data-role="acrit_exp_wizard_quick_start_run"]', divStep).prop('checked') ? 'Y' : 'N';
+		site = $('select[data-role="data_exp_wizard_quick_start_site"]', divStep).val(),
+		domain = $('input[data-role="data_exp_wizard_quick_start_domain"]', divStep).val(),
+		https = $('input[data-role="data_exp_wizard_quick_start_https"]', divStep).prop('checked') ? 'Y' : 'N',
+		offersMode = $('select[data-role="data_exp_wizard_quick_start_offers_mode"]', divStep).val(),
+		run = $('input[data-role="data_exp_wizard_quick_start_run"]', divStep).prop('checked') ? 'Y' : 'N';
 }
-function acrit_exp_wizard_callback_in_confirm(divStep, spanMessage){
+function data_exp_wizard_callback_in_confirm(divStep, spanMessage){
 	
 }
 
 /**
  *	Select file to <input type="file" />
  */
-$(document).delegate('table.acrit-exp-backup-restore td .file_wrapper input[type=file]', 'change', function(e){
+$(document).delegate('table.data-exp-backup-restore td .file_wrapper input[type=file]', 'change', function(e){
 	var fileName = this.value.match(/[^\/\\]+$/),
 		textInput = $(this).parent().find('input[type=text]');
 	if(fileName==null) {
@@ -356,7 +356,7 @@ $(document).delegate('table.acrit-exp-backup-restore td .file_wrapper input[type
 		else {
 			textInput.val('');
 			this.value = '';
-			alert(BX.message('ACRIT_EXP_POPUP_RESTORE_WRONG_FILE'));
+			alert(BX.message('DATA_EXP_POPUP_RESTORE_WRONG_FILE'));
 		}
 	}
 });
@@ -369,10 +369,10 @@ $(document).delegate('input[data-role="profiles-delete-all"]', 'click', function
 	$('[data-role="restore-status"]').html('');
 	setTimeout(function(){
 		if(confirm($(thisButton).data('confirm'))){
-			acritExpAjax('profiles_delete_all', '', function(JsonResult){
+			dataExpAjax('profiles_delete_all', '', function(JsonResult){
 				$('[data-role="restore-status"]').html(JsonResult.HTML);
-				if(AcritExpProfiles){
-					AcritExpProfiles.GetAdminList('');
+				if(DataExpProfiles){
+					DataExpProfiles.GetAdminList('');
 				}
 			}, function(jqXHR){
 				console.log(jqXHR.responseText);
@@ -397,13 +397,13 @@ $(document).delegate('select[data-role="backup-restore-mode"]', 'change', functi
 /**
  *	Handler form suubmit and load iframe
  */
-$(document).delegate('#acrit-exp-form-backup-restore', 'submit', function(e){
+$(document).delegate('#data-exp-form-backup-restore', 'submit', function(e){
 	$('[data-role="restore-status"]').html('');
 	setTimeout(function(){
-		AcritExpPopupRestore.DisableControls();
+		DataExpPopupRestore.DisableControls();
 	}, 10);
 });
-function acritExpRestoreIFrameLoaded(iframe){
+function dataExpRestoreIFrameLoaded(iframe){
 	var response = $(iframe).contents().find('body').text();
 	if(response.length) {
 		var JsonResult = BX.parseJSON(response);
@@ -412,11 +412,11 @@ function acritExpRestoreIFrameLoaded(iframe){
 			$('[data-role="restore-status"]').html(JsonResult.HTML);
 		}
 		else {
-			alert(BX.message('ACRIT_EXP_POPUP_RESTORE_RESTORE_ERROR'));
+			alert(BX.message('DATA_EXP_POPUP_RESTORE_RESTORE_ERROR'));
 		}
-		AcritExpPopupRestore.EnableControls();
-		if(AcritExpProfiles){
-			AcritExpProfiles.GetAdminList('');
+		DataExpPopupRestore.EnableControls();
+		if(DataExpProfiles){
+			DataExpProfiles.GetAdminList('');
 		}
 	}
 }
@@ -426,16 +426,16 @@ function acritExpRestoreIFrameLoaded(iframe){
  *	Wizard: Quick start
  */
 /* Plugins */
-$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]', 'change', function(){
+$(document).delegate('input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]', 'change', function(){
 	let
-		checkboxesAll = $('input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]'),
-		checkboxesVisible = $('label:visible > input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]'),
+		checkboxesAll = $('input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]'),
+		checkboxesVisible = $('label:visible > input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]'),
 		countAll = checkboxesAll.length,
 		countCheckedAll = checkboxesAll.filter(':checked').length,
 		countVisible = checkboxesVisible.length,
 		countCheckedVisible = checkboxesVisible.filter(':checked').length,
-		checkboxSelectAll = $('input[data-role="acrit_exp_wizard_quick_start_select_all"]'),
-		span = $('span[data-role="acrit_exp_wizard_quick_start_selected"]');
+		checkboxSelectAll = $('input[data-role="data_exp_wizard_quick_start_select_all"]'),
+		span = $('span[data-role="data_exp_wizard_quick_start_selected"]');
 	span.text(countCheckedAll);
 	if(countVisible > 0 && countCheckedVisible == countVisible){
 		checkboxSelectAll.prop('checked', true);
@@ -444,23 +444,23 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_plugin_check
 		checkboxSelectAll.prop('checked', false);
 	}
 });
-$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_select_all"]', 'change', function(e){
+$(document).delegate('input[data-role="data_exp_wizard_quick_start_select_all"]', 'change', function(e){
 	let checked = $(this).prop('checked');
-	$('label:visible > input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]')
+	$('label:visible > input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]')
 		.prop('checked', checked).last().trigger('change');
 });
-$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_plugins_filter"]', 'input', function(e){
+$(document).delegate('input[data-role="data_exp_wizard_quick_start_plugins_filter"]', 'input', function(e){
 	let
 		text = $(this).val().trim().toLowerCase(),
-		plugins = $('div[data-role="acrit_exp_wizard_quick_start_plugin"]'),
-		formats = $('div[data-role="acrit_exp_wizard_quick_start_format"]'),
-		divNothing = $('div[data-role="acrit_exp_wizard_quick_start_plugins_nothing_found"]');
+		plugins = $('div[data-role="data_exp_wizard_quick_start_plugin"]'),
+		formats = $('div[data-role="data_exp_wizard_quick_start_format"]'),
+		divNothing = $('div[data-role="data_exp_wizard_quick_start_plugins_nothing_found"]');
 	if(text.length){
 		plugins.each(function(){
 			let
 				found = false,
 				filtered;
-			$('div[data-role="acrit_exp_wizard_quick_start_format"]', this).each(function(){
+			$('div[data-role="data_exp_wizard_quick_start_format"]', this).each(function(){
 				filtered = $(this).attr('data-filter').toLowerCase().indexOf(text) != -1;
 				$(this).toggle(filtered);
 				found = found || filtered;
@@ -475,7 +475,7 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_plugins_filt
 		plugins.show();
 		formats.show();
 	}
-	$('input[data-role="acrit_exp_wizard_quick_start_plugin_checkbox"]').first().trigger('change');
+	$('input[data-role="data_exp_wizard_quick_start_plugin_checkbox"]').first().trigger('change');
 	if(plugins.filter(':visible').length){
 		divNothing.hide();
 	}
@@ -484,16 +484,16 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_plugins_filt
 	}
 });
 /* IBlocks */
-$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]', 'change', function(){
+$(document).delegate('input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]', 'change', function(){
 	let
-		checkboxesAll = $('input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]'),
-		checkboxesVisible = $('label:visible > input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]'),
+		checkboxesAll = $('input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]'),
+		checkboxesVisible = $('label:visible > input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]'),
 		countAll = checkboxesAll.length,
 		countCheckedAll = checkboxesAll.filter(':checked').length,
 		countVisible = checkboxesVisible.length,
 		countCheckedVisible = checkboxesVisible.filter(':checked').length,
-		checkboxSelectAll = $('input[data-role="acrit_exp_wizard_quick_start_select_all"]'),
-		span = $('span[data-role="acrit_exp_wizard_quick_start_selected"]');
+		checkboxSelectAll = $('input[data-role="data_exp_wizard_quick_start_select_all"]'),
+		span = $('span[data-role="data_exp_wizard_quick_start_selected"]');
 	span.text(countCheckedAll);
 	if(countVisible > 0 && countCheckedVisible == countVisible){
 		checkboxSelectAll.prop('checked', true);
@@ -502,23 +502,23 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblock_check
 		checkboxSelectAll.prop('checked', false);
 	}
 });
-$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_select_all"]', 'change', function(e){
+$(document).delegate('input[data-role="data_exp_wizard_quick_start_select_all"]', 'change', function(e){
 	let checked = $(this).prop('checked');
-	$('label:visible > input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]')
+	$('label:visible > input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]')
 		.prop('checked', checked).last().trigger('change');
 });
-$(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblocks_filter"]', 'input', function(e){
+$(document).delegate('input[data-role="data_exp_wizard_quick_start_iblocks_filter"]', 'input', function(e){
 	let
 		text = $(this).val().trim().toLowerCase(),
-		types = $('div[data-role="acrit_exp_wizard_quick_start_iblock_type"]'),
-		iblocks = $('div[data-role="acrit_exp_wizard_quick_start_iblock"]'),
-		divNothing = $('div[data-role="acrit_exp_wizard_quick_start_iblocks_nothing_found"]');
+		types = $('div[data-role="data_exp_wizard_quick_start_iblock_type"]'),
+		iblocks = $('div[data-role="data_exp_wizard_quick_start_iblock"]'),
+		divNothing = $('div[data-role="data_exp_wizard_quick_start_iblocks_nothing_found"]');
 	if(text.length){
 		types.each(function(){
 			let
 				found = false,
 				filtered;
-			$('div[data-role="acrit_exp_wizard_quick_start_iblock"]', this).each(function(){
+			$('div[data-role="data_exp_wizard_quick_start_iblock"]', this).each(function(){
 				filtered = $(this).attr('data-filter').toLowerCase().indexOf(text) != -1;
 				$(this).toggle(filtered);
 				found = found || filtered;
@@ -533,7 +533,7 @@ $(document).delegate('input[data-role="acrit_exp_wizard_quick_start_iblocks_filt
 		types.show();
 		iblocks.show();
 	}
-	$('input[data-role="acrit_exp_wizard_quick_start_iblock_checkbox"]').first().trigger('change');
+	$('input[data-role="data_exp_wizard_quick_start_iblock_checkbox"]').first().trigger('change');
 	if(types.filter(':visible').length){
 		divNothing.hide();
 	}

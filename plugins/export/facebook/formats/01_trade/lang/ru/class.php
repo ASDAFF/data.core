@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_FACEBOOK_TRADE_';
+$strMessPrefix = 'DATA_EXP_FACEBOOK_TRADE_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'FB каталог товаров';

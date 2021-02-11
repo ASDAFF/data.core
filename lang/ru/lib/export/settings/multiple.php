@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_SETTINGS_MULTIPLE_';
+$strMessPrefix = 'DATA_EXP_SETTINGS_MULTIPLE_';
 
 $MESS[$strMessPrefix.'NAME'] = 'Режим множественных значений';
 $MESS[$strMessPrefix.'DESC'] = 'Выберите режим работы со множественными значениями.<br/><br/>

@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_TIU_RU_';
+$strMessPrefix = 'DATA_EXP_TIU_RU_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'tiu.ru';

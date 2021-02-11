@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_AVITO_BUSINESS_';
+$strMessPrefix = 'DATA_EXP_AVITO_BUSINESS_';
 
 //
 $MESS[$strMessPrefix.'CATEGORY_NAME'] = 'Для бизнеса';

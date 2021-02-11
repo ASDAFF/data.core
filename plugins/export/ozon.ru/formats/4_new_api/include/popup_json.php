@@ -1,17 +1,17 @@
 <?
 /**
- * Acrit Core: create tables for ozon
+ * Data Core: create tables for ozon
  * @documentation https://docs.ozon.ru/api/seller
  */
 
-namespace Acrit\Core\Export\Plugins\OzonRuHelpers;
+namespace Data\Core\Export\Plugins\OzonRuHelpers;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Json,
-	\Acrit\Core\Export\Exporter;
+	\Data\Core\Helper,
+	\Data\Core\Json,
+	\Data\Core\Export\Exporter;
 ?>
-<div id="acrit_exp_ozon_json_preview_popup">
+<div id="data_exp_ozon_json_preview_popup">
 	<?
 	$arSubTabs = [];
 	$arSubTabs[] = [
@@ -22,7 +22,7 @@ use
 		'DIV' => 'json_unformatted', 
 		'TAB' => static::getMessage('TAB_UNFORMATTED'), 
 	];
-	$obTabControl = new \CAdminViewTabControl('AcritExpOzonJsonPreview', $arSubTabs);
+	$obTabControl = new \CAdminViewTabControl('DataExpOzonJsonPreview', $arSubTabs);
 	$obTabControl->begin();
 	$obTabControl->beginNextTab();
 	$arJson = Json::decode($strJson);

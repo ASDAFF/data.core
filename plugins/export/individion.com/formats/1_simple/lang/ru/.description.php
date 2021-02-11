@@ -1,4 +1,4 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_INDIVIDION_COM_SIMPLE_';
+$strMessPrefix = 'DATA_EXP_INDIVIDION_COM_SIMPLE_';
 ?>

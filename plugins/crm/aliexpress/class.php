@@ -1,20 +1,20 @@
 <?
 /**
- * Acrit Core: AliExpress crm integration plugin
+ * Data Core: AliExpress crm integration plugin
  */
 
-namespace Acrit\Core\Crm\Plugins;
+namespace Data\Core\Crm\Plugins;
 
 require_once __DIR__.'/lib/sdk/TopSdk.php';
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Crm\Plugin,
-	\Acrit\Core\Crm\Settings,
-	\Acrit\Core\Crm\Controller,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Json,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Crm\Plugin,
+	\Data\Core\Crm\Settings,
+	\Data\Core\Crm\Controller,
+	\Data\Core\HttpRequest,
+	\Data\Core\Json,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -62,26 +62,26 @@ class AliExpress extends Plugin {
 	public function getContactFields() {
 		$list = [];
 		$list['user'] = [
-			'title' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CONTACT_TITLE'),
+			'title' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_CONTACT_TITLE'),
 		];
 		$list['user']['items'][] = [
 			'id' => 'first_name',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CONTACT_FIRST_NAME'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_CONTACT_FIRST_NAME'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list['user']['items'][] = [
 			'id' => 'last_name',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CONTACT_LAST_NAME'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_CONTACT_LAST_NAME'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list['user']['items'][] = [
 			'id' => 'login_id',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CONTACT_LOGIN_ID'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_CONTACT_LOGIN_ID'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list['user']['items'][] = [
 			'id' => 'country',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CONTACT_COUNTRY'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_CONTACT_COUNTRY'),
 			'direction' => self::SYNC_STOC,
 		];
 		return $list;
@@ -95,47 +95,47 @@ class AliExpress extends Plugin {
 		$list = [];
 		$list[] = [
 			'id' => 'PLACE_ORDER_SUCCESS',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_PLACE_ORDER_SUCCESS'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_PLACE_ORDER_SUCCESS'),
 		];
 		$list[] = [
 			'id' => 'PAYMENT_PROCESSING',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_PAYMENT_PROCESSING'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_PAYMENT_PROCESSING'),
 		];
 		$list[] = [
 			'id' => 'RISK_CONTROL',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_RISK_CONTROL'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_RISK_CONTROL'),
 		];
 		$list[] = [
 			'id' => 'RISK_CONTROL_HOLD',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_RISK_CONTROL_HOLD'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_RISK_CONTROL_HOLD'),
 		];
 		$list[] = [
 			'id' => 'WAIT_SELLER_EXAMINE_MONEY',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_WAIT_SELLER_EXAMINE_MONEY'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_WAIT_SELLER_EXAMINE_MONEY'),
 		];
 		$list[] = [
 			'id' => 'SELLER_PART_SEND_GOODS',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_SELLER_PART_SEND_GOODS'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_SELLER_PART_SEND_GOODS'),
 		];
 		$list[] = [
 			'id' => 'WAIT_SELLER_SEND_GOODS',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_WAIT_SELLER_SEND_GOODS'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_WAIT_SELLER_SEND_GOODS'),
 		];
 		$list[] = [
 			'id' => 'WAIT_BUYER_ACCEPT_GOODS',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_WAIT_BUYER_ACCEPT_GOODS'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_WAIT_BUYER_ACCEPT_GOODS'),
 		];
 		$list[] = [
 			'id' => 'FINISH',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_FINISH'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_FINISH'),
 		];
 		$list[] = [
 			'id' => 'IN_CANCEL',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_IN_CANCEL'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_IN_CANCEL'),
 		];
 		$list[] = [
 			'id' => 'ARCHIVE',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_STATUSES_ARCHIVE'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_STATUSES_ARCHIVE'),
 		];
 		return $list;
 	}
@@ -148,57 +148,57 @@ class AliExpress extends Plugin {
 		$list = [];
 		$list[] = [
 			'id' => 'gmt_create',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_GMT_CREATE'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_GMT_CREATE'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'over_time_left',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_OVER_TIME_LEFT'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_OVER_TIME_LEFT'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'logistics_amount',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_LOGISTICS_AMOUNT'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_LOGISTICS_AMOUNT'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'logistics_status',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_LOGISTICS_STATUS'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_LOGISTICS_STATUS'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_country',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_COUNTRY'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_COUNTRY'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_province',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_PROVINCE'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_PROVINCE'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_city',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_CITY'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_CITY'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_detail_address',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_DETAIL_ADDRESS'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_DETAIL_ADDRESS'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_zip',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_ZIP'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_ZIP'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_phone',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_PHONE'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_PHONE'),
 			'direction' => self::SYNC_STOC,
 		];
 		$list[] = [
 			'id' => 'receipt_address_contact_person',
-			'name' => Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_CONTACT_PERSON'),
+			'name' => Loc::getMessage('DATA_CRM_PLUGIN_ALI_FIELDS_RECEIPT_ADDRESS_CONTACT_PERSON'),
 			'direction' => self::SYNC_STOC,
 		];
 		return $list;
@@ -221,26 +221,26 @@ class AliExpress extends Plugin {
 //		Controller::setProfile($this->arProfile['ID']);
 //		Controller::syncOrderToDeal($order);
 		?>
-		<table class="acrit-exp-plugin-settings" style="width:100%;">
+		<table class="data-exp-plugin-settings" style="width:100%;">
 			<tbody>
-            <tr class="heading" id="tr_HEADING_CONNECT"><td colspan="2"><?=Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_SETTINGS_HEADING');?></td></tr>
+            <tr class="heading" id="tr_HEADING_CONNECT"><td colspan="2"><?=Loc::getMessage('DATA_CRM_PLUGIN_ALI_SETTINGS_HEADING');?></td></tr>
 			<tr>
 				<td width="40%" class="adm-detail-content-cell-l">
-					<?=Helper::ShowHint(Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_SETTINGS_TOKEN_HINT'));?>
-					<?=Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_SETTINGS_TOKEN');?>:
+					<?=Helper::ShowHint(Loc::getMessage('DATA_CRM_PLUGIN_ALI_SETTINGS_TOKEN_HINT'));?>
+					<?=Loc::getMessage('DATA_CRM_PLUGIN_ALI_SETTINGS_TOKEN');?>:
 				</td>
 				<td width="60%" class="adm-detail-content-cell-r">
-                    <div id="acrit-module-update-notifier">
-                        <div class="acrit-exp-note-compact">
+                    <div id="data-module-update-notifier">
+                        <div class="data-exp-note-compact">
                             <div class="adm-info-message-wrap">
-                                <div class="adm-info-message"><?=Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_SETTINGS_TOKEN_HELP');?></div>
+                                <div class="adm-info-message"><?=Loc::getMessage('DATA_CRM_PLUGIN_ALI_SETTINGS_TOKEN_HELP');?></div>
                             </div>
                         </div>
                     </div>
-                    <p><a href="<?=$this->getTokenLink();?>" target="_blank"><?=Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_SETTINGS_GET_TOKEN');?></a></p>
+                    <p><a href="<?=$this->getTokenLink();?>" target="_blank"><?=Loc::getMessage('DATA_CRM_PLUGIN_ALI_SETTINGS_GET_TOKEN');?></a></p>
                     <input type="text" name="PROFILE[CONNECT_CRED][token]" size="50" maxlength="255" data-role="connect-cred-token"
                            value="<?=htmlspecialcharsbx($this->arProfile['CONNECT_CRED']['token']);?>" />
-                    <a class="adm-btn" data-role="connection-check"><?=Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_SETTINGS_CHECK_TOKEN');?></a>
+                    <a class="adm-btn" data-role="connection-check"><?=Loc::getMessage('DATA_CRM_PLUGIN_ALI_SETTINGS_CHECK_TOKEN');?></a>
                     <p id="check_msg"></p>
 				</td>
 			</tr>
@@ -284,11 +284,11 @@ class AliExpress extends Plugin {
 		$resp = $c->execute($req, $token);
 		$resp = json_decode(json_encode($resp), true);
 		if ($resp['code']) {
-			$message = Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CHECK_ERROR') . $resp['msg'] . ' [' . $resp['code'] . ']';
+			$message = Loc::getMessage('DATA_CRM_PLUGIN_ALI_CHECK_ERROR') . $resp['msg'] . ' [' . $resp['code'] . ']';
 		}
 		else {
 			$result = true;
-			$message = Loc::getMessage('ACRIT_CRM_PLUGIN_ALI_CHECK_SUCCESS');
+			$message = Loc::getMessage('DATA_CRM_PLUGIN_ALI_CHECK_SUCCESS');
 		}
 	    return $result;
 	}

@@ -1,15 +1,15 @@
 <?
 /**
- * Acrit Core: Google merchant base plugin
+ * Data Core: Google merchant base plugin
  * @documentation https://support.google.com/merchants/answer/7052112?hl=ru
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 

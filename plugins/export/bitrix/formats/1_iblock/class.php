@@ -1,19 +1,19 @@
 <?
 /**
- * Acrit Core: Bitrix plugin
+ * Data Core: Bitrix plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Log,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\Plugins\BitrixRest as BitrixRest,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Log,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\Plugins\BitrixRest as BitrixRest,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 
@@ -74,7 +74,7 @@ class BitrixIblock extends Bitrix {
 			#$obClass = new \ReflectionClass('BitrixRest');
 			#var_dump($obClass->getFileName());
 			#die();
-			$arFList = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.fields.get', ['ENTITY' => $this->arProfile['PARAMS']['IBLOCK_ID']], $intProfileID);
+			$arFList = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.fields.get', ['ENTITY' => $this->arProfile['PARAMS']['IBLOCK_ID']], $intProfileID);
 			// Additional fields
 			if (is_array($arFList) && !empty($arFList)) {
 				$arFList['FIELDS_INFO']['IBLOCK_SECTION_NAME']         = $arFList['IBLOCK_SECTION_ID'];
@@ -298,7 +298,7 @@ class BitrixIblock extends Bitrix {
 		// Fields data
 		$arFieldsInfo = array();
 		if ($arData['PROFILE']['PARAMS']['IBLOCK_ID']) {
-			$arFList = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.fields.get', ['ENTITY' => $arData['PROFILE']['PARAMS']['IBLOCK_ID']], $intProfileID);
+			$arFList = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.fields.get', ['ENTITY' => $arData['PROFILE']['PARAMS']['IBLOCK_ID']], $intProfileID);
 			// Additional fields
 			if (is_array($arFList) && !empty($arFList)) {
 				$arFList['FIELDS_INFO']['IBLOCK_SECTION_NAME']         = $arFList['IBLOCK_SECTION_ID'];
@@ -360,7 +360,7 @@ class BitrixIblock extends Bitrix {
 							'NAME' => $arItemData['FIELDS_INFO_NAME'],
 						],
 					];
-					$arRemoteList = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.item.get', $arParams, $intProfileID);
+					$arRemoteList = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.item.get', $arParams, $intProfileID);
 //					Log::getInstance($this->strModuleId)->add('$arRemoteList: ' . print_r($arRemoteList, true), $intProfileID);
 					$intRemoteItemID = $arRemoteList[0]['ID'];
 					if ($intRemoteItemID) {
@@ -373,9 +373,9 @@ class BitrixIblock extends Bitrix {
 							$arFields['IBLOCK_SECTION_ID'] = $this->stepExport_findRemoteSection($intProfileID, $arFields['IBLOCK_SECTION_NAME'], $arRemoteItem);
 						}
 //						Log::getInstance($this->strModuleId)->add('$arFields: ' . print_r($arFields, true), $intProfileID);
-						$res = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.item.update', $arFields, $intProfileID, false);
+						$res = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.item.update', $arFields, $intProfileID, false);
 						if ($res['error'] == 'ERROR_CORE') {
-//							Log::getInstance($this->strModuleId)->add('acrit_iblock.item.update: ' . $res['error_description'], $intProfileID);
+//							Log::getInstance($this->strModuleId)->add('data_iblock.item.update: ' . $res['error_description'], $intProfileID);
 						}
 					}
 					else {
@@ -386,9 +386,9 @@ class BitrixIblock extends Bitrix {
 							$arFields['IBLOCK_SECTION_ID'] = $this->stepExport_findRemoteSection($intProfileID, $arFields['IBLOCK_SECTION_NAME']);
 						}
 //						Log::getInstance($this->strModuleId)->add('$arFields: ' . print_r($arFields, true), $intProfileID);
-						$res = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.item.add', $arFields, $intProfileID, false);
+						$res = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.item.add', $arFields, $intProfileID, false);
 						if ($res['error'] == 'ERROR_CORE') {
-//							Log::getInstance($this->strModuleId)->add('acrit_iblock.item.add: ' . $res['error_description'], $intProfileID);
+//							Log::getInstance($this->strModuleId)->add('data_iblock.item.add: ' . $res['error_description'], $intProfileID);
 						}
 					}
 				}
@@ -514,7 +514,7 @@ class BitrixIblock extends Bitrix {
 				'NAME' => $strSectionName,
 			],
 		];
-		$arRemoteSections = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.section.get', $arParams, $intProfileID);
+		$arRemoteSections = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.section.get', $arParams, $intProfileID);
 //		Log::getInstance($this->strModuleId)->add('$arRemoteSections ' . print_r($arRemoteSections, true), $intProfileID);
 		// Get exist section
 		if (!empty($arRemoteSections)) {
@@ -530,7 +530,7 @@ class BitrixIblock extends Bitrix {
 				//'CODE' => $code,
 				'NAME' => $strSectionName,
 			);
-			$intRemSectionID = BitrixRest::executeMethod($this->strModuleId, 'acrit_iblock.section.add', $arParams, $intProfileID);
+			$intRemSectionID = BitrixRest::executeMethod($this->strModuleId, 'data_iblock.section.add', $arParams, $intProfileID);
 //			Log::getInstance($this->strModuleId)->add('$intRemSectionID ' . print_r($intRemSectionID, true), $intProfileID);
 		}
 		return $intRemSectionID;

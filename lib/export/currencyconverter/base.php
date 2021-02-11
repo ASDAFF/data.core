@@ -3,7 +3,7 @@
  * Base currency converter class
  */
 
-namespace Acrit\Core\Export\CurrencyConverter;
+namespace Data\Core\Export\CurrencyConverter;
 
 use
 	\Bitrix\Main\Localization\Loc;
@@ -69,7 +69,7 @@ abstract class Base {
 					$arResult[$strCode] = $arItem;
 				}
 			}
-			uasort($arResult, '\Acrit\Core\Helper::sortBySort');
+			uasort($arResult, '\Data\Core\Helper::sortBySort');
 		}
 		#
 		return $arResult;

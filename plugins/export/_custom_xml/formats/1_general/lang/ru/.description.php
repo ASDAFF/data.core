@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_CUSTOM_XML_GENERAL_';
+$strMessPrefix = 'DATA_EXP_CUSTOM_XML_GENERAL_';
 
 //
 $MESS[$strMessPrefix.'P_DESCRIPTION'] = '

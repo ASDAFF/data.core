@@ -1,9 +1,9 @@
-if (!window.acritExpGoodsJsonInitialized) {
-	window.acritExpGoodsJsonInitialized = true;
+if (!window.dataExpGoodsJsonInitialized) {
+	window.dataExpGoodsJsonInitialized = true;
 	
-	$(document).delegate('select[data-role="acrit-exp-goods-json-storage-switcher"]', 'change', function(e){
-		var rowInternal = $('table.acrit-exp-goods-storage-directory-internal').closest('tr').hide(),
-			rowExternal = $('table.acrit-exp-goods-storage-directory-external').closest('tr').hide();
+	$(document).delegate('select[data-role="data-exp-goods-json-storage-switcher"]', 'change', function(e){
+		var rowInternal = $('table.data-exp-goods-storage-directory-internal').closest('tr').hide(),
+			rowExternal = $('table.data-exp-goods-storage-directory-external').closest('tr').hide();
 		if($(this).val() == 'external'){
 			rowExternal.show();
 		}
@@ -12,21 +12,21 @@ if (!window.acritExpGoodsJsonInitialized) {
 		}
 	});
 	
-	function acritExpGoodsJsonTriggers(){
-		$('select[data-role="acrit-exp-goods-json-storage-switcher"]').trigger('change');
+	function dataExpGoodsJsonTriggers(){
+		$('select[data-role="data-exp-goods-json-storage-switcher"]').trigger('change');
 	}
 	
 }
 
 // On load
 setTimeout(function(){
-	acritExpGoodsJsonTriggers();
+	dataExpGoodsJsonTriggers();
 }, 500);
 $(document).ready(function(){
-	acritExpGoodsJsonTriggers();
+	dataExpGoodsJsonTriggers();
 });
 
 // On current IBlock change
 BX.addCustomEvent('onLoadStructureIBlock', function(a){
-	acritExpGoodsJsonTriggers();
+	dataExpGoodsJsonTriggers();
 });

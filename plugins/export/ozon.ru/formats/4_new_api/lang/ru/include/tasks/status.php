@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(__FILE__, $strLang, $strHead, $strName, $strHint);
 
 $MESS[$strLang.'STATUS_PENDING'] = 'В очереди: <b style="color:maroon;">%d</b>. ';
 $MESS[$strLang.'STATUS_IMPORTED'] = 'Импортировано: <b style="color:green;">%d</b>. ';

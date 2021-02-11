@@ -1,10 +1,10 @@
 <?
 /**
- * Acrit Core: Yandex.Realty plugin
+ * Data Core: Yandex.Realty plugin
  * @documentation http://support.prom.ua/documents/844
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 class PromUaXml extends PromUa {
 	

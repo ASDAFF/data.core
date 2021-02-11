@@ -3,14 +3,14 @@
  * Base class to work with values in fields
  */
 
-namespace Acrit\Core\Export\Field;
+namespace Data\Core\Export\Field;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Highloadblock\HighloadBlockTable as HighloadBlock,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Export\Settings\SettingsBase as Settings,
-	\Acrit\Core\Export\CurrencyConverter\Base as CurrencyConverterBase;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Export\Settings\SettingsBase as Settings,
+	\Data\Core\Export\CurrencyConverter\Base as CurrencyConverterBase;
 
 abstract class ValueBase {
 	
@@ -56,7 +56,7 @@ abstract class ValueBase {
 	 */
 	public static function getMessage($strKey){
 		$strCode = static::getCode();
-		$strKey = 'ACRIT_EXP_FIELDVALUE_'.$strCode.'_'.$strKey;
+		$strKey = 'DATA_EXP_FIELDVALUE_'.$strCode.'_'.$strKey;
 		return Loc::getMessage($strKey);
 	}
 	
@@ -174,7 +174,7 @@ abstract class ValueBase {
 		ob_start();
 		$arSettings = Settings::getListForFields($obField, $arParams);
 		?>
-		<table class="acrit-exp-field-settings">
+		<table class="data-exp-field-settings">
 			<tbody>
 				<?foreach($arSettings as $strGroupCode => $arGroup):?>
 					<?if(count($arSettings)>1):?>
@@ -211,7 +211,7 @@ abstract class ValueBase {
 		ob_start();
 		$arSettings = Settings::getListForValues($obField, $arParams);
 		?>
-		<table class="acrit-exp-field-settings">
+		<table class="data-exp-field-settings">
 			<tbody>
 				<?foreach($arSettings as $strGroupCode => $arGroup):?>
 					<?if(count($arSettings)>1):?>
@@ -824,9 +824,9 @@ abstract class ValueBase {
 		$strCurrencyClass = 'CustomCurrencyLang';
 		if(is_null(static::$bCurrencyModule)){
 			static::$bCurrencyModule = \Bitrix\Main\Loader::includeModule('currency');
-			if(static::$bCurrencyModule && !class_exists('\Acrit\Core\Export\\'.$strCurrencyClass)){
+			if(static::$bCurrencyModule && !class_exists('\Data\Core\Export\\'.$strCurrencyClass)){
 				$strClassPhp = '
-					namespace Acrit\Core\Export;
+					namespace Data\Core\Export;
 					class '.$strCurrencyClass.' extends \CCurrencyLang {
 						public static function isAllowUseHideZero(){
 							return true;
@@ -887,8 +887,8 @@ abstract class ValueBase {
 		}
 		
 		if(static::$bCurrencyModule){
-			if(class_exists('\Acrit\Core\Export\\'.$strCurrencyClass)){
-				$mCallback = array('\Acrit\Core\Export\\'.$strCurrencyClass, 'CurrencyFormat');
+			if(class_exists('\Data\Core\Export\\'.$strCurrencyClass)){
+				$mCallback = array('\Data\Core\Export\\'.$strCurrencyClass, 'CurrencyFormat');
 				return call_user_func($mCallback, $fPrice, $strCurrency, true);
 			}
 			else{

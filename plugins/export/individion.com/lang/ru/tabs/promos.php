@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_INDIVIDION_COM_MARKET_';
+$strMessPrefix = 'DATA_EXP_INDIVIDION_COM_MARKET_';
 
 //
 $MESS[$strMessPrefix . 'EXPORT_GIFTS'] = 'Выгружать подарки';

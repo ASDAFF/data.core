@@ -1,18 +1,18 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-	\Acrit\Core\Export\ProfileValueTable as ProfileValue,
-	\Acrit\Core\Export\Field\Valuebase;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+	\Data\Core\Export\ProfileValueTable as ProfileValue,
+	\Data\Core\Export\Field\Valuebase;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class ProfileFieldFeature
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 class ProfileFieldFeature {

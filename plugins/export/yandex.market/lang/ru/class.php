@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_YANDEX_MARKET_';
+$strMessPrefix = 'DATA_EXP_YANDEX_MARKET_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Яндекс.Маркет';
@@ -214,7 +214,7 @@ $MESS[$strMessPrefix.'CATEGORIES_EMPTY_ANSWER'] = 'Ошибка получени
 $MESS[$strMessPrefix.'CATEGORIES_ARE_EMPTY'] = 'Загруженный файл #URL# не содержит категорий. Попробуйте еще раз.';
 $MESS[$strMessPrefix.'ERROR_SAVING_CATEGORIES_TMP'] = 'Ошибка сохранения файла с категориями: #FILE#. Проверьте наличие доступа для записи в этот файл.';
 $MESS[$strMessPrefix.'GIFT_DOES_NOT_HAVE_PICTURE'] = 'Товар-подарок (ID=#ID#) не имеет изображения. Необходимо загрузить изображение в поле «Детальная картинка» или «Картинка для анонса».';
-$MESS[$strMessPrefix.'ACRIT_EXP_ERROR_CREATE_DIRECTORY'] = 'Ошибка создания раздела (#DIR#) для сохранения файла выгрузки. Проверьте права доступа.';
-$MESS[$strMessPrefix.'ACRIT_EXP_FILE_NO_PERMISSIONS'] = 'Ошибка сохранения файла выгрузки (#FILE#). Проверьте права доступа.';
+$MESS[$strMessPrefix.'DATA_EXP_ERROR_CREATE_DIRECTORY'] = 'Ошибка создания раздела (#DIR#) для сохранения файла выгрузки. Проверьте права доступа.';
+$MESS[$strMessPrefix.'DATA_EXP_FILE_NO_PERMISSIONS'] = 'Ошибка сохранения файла выгрузки (#FILE#). Проверьте права доступа.';
 
 ?>

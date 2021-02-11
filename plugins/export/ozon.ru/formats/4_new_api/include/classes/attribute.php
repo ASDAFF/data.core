@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: ozon.ru sql
+ * Data Core: ozon.ru sql
  * @documentation https://docs.ozon.ru/api/seller
  */
 
-namespace Acrit\Core\Export\Plugins\OzonRuHelpers;
+namespace Data\Core\Export\Plugins\OzonRuHelpers;
 
 use
-	\Acrit\Core\Helper,
+	\Data\Core\Helper,
 	\Bitrix\Main\Entity;
 
 Helper::loadMessages(__FILE__);
@@ -20,7 +20,7 @@ class AttributeTable extends Entity\DataManager {
 	 * @return string
 	 */
 	public static function getTableName(){
-		return 'acrit_ozon_attribute';
+		return 'data_ozon_attribute';
 	}
 	
 	/**
@@ -29,7 +29,7 @@ class AttributeTable extends Entity\DataManager {
 	 * @return array
 	 */
 	public static function getMap() {
-		\Acrit\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../../../class.php'), $strLang, $strHead, 
+		\Data\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../../../class.php'), $strLang, $strHead, 
 			$strName, $strHint);
 		return array(
 			'ID' => new Entity\IntegerField('ID', array(

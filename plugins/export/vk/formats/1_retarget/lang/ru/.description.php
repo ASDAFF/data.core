@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_VK_RETARGETING_';
+$strMessPrefix = 'DATA_EXP_VK_RETARGETING_';
 
 //
 

@@ -1,22 +1,22 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\ProfileIBlockTable as ProfileIBlock,
-	\Acrit\Core\Export\ProfileFieldTable as ProfileField,
-	\Acrit\Core\Export\ProfileValueTable as ProfileValue,
-	\Acrit\Core\Export\AdditionalFieldTable as AdditionalField,
-	\Acrit\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
-	\Acrit\Core\Export\ExportDataTable as ExportData,
-	\Acrit\Core\Export\HistoryTable as History;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\ProfileIBlockTable as ProfileIBlock,
+	\Data\Core\Export\ProfileFieldTable as ProfileField,
+	\Data\Core\Export\ProfileValueTable as ProfileValue,
+	\Data\Core\Export\AdditionalFieldTable as AdditionalField,
+	\Data\Core\Export\CategoryRedefinitionTable as CategoryRedefinition,
+	\Data\Core\Export\ExportDataTable as ExportData,
+	\Data\Core\Export\HistoryTable as History;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class Backup
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class Backup {
@@ -46,8 +46,8 @@ abstract class Backup {
 	 */
 	public static function getModes(){
 		return array(
-			static::MODE_DEFAULT => Loc::getMessage('ACRIT_EXP_BACKUP_MODE_'.ToUpper(static::MODE_DEFAULT)),
-			static::MODE_EXACT => Loc::getMessage('ACRIT_EXP_BACKUP_MODE_'.ToUpper(static::MODE_EXACT)),
+			static::MODE_DEFAULT => Loc::getMessage('DATA_EXP_BACKUP_MODE_'.ToUpper(static::MODE_DEFAULT)),
+			static::MODE_EXACT => Loc::getMessage('DATA_EXP_BACKUP_MODE_'.ToUpper(static::MODE_EXACT)),
 		);
 	}
 	
@@ -352,7 +352,7 @@ abstract class Backup {
 		if(is_array($arParams) && !empty($arParams)){
 			if(stripos($arParams['EXPORT_FILE_NAME'], static::MODULE_ID) === false){ // if found substring, skip replacing!!
 				$strFilename = &$arParams['EXPORT_FILE_NAME'];
-				$strFilename = preg_replace('#acrit\.([a-z0-9]+)#', static::MODULE_ID, $strFilename);
+				$strFilename = preg_replace('#data\.([a-z0-9]+)#', static::MODULE_ID, $strFilename);
 				$arProfileFields['PARAMS'] = serialize($arParams);
 			}
 		}

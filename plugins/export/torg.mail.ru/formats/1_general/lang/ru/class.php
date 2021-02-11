@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_TORG_MAIL_RU_GENERAL_';
+$strMessPrefix = 'DATA_EXP_TORG_MAIL_RU_GENERAL_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = 'Товары@mail.ru';

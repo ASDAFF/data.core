@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -35,7 +35,7 @@ while($arHistory = $resProfileHistory->fetch()){
 }
 
 # Nav object
-$obNav = new \Bitrix\Main\UI\AdminPageNavigation('acrit-exp-nav-history');
+$obNav = new \Bitrix\Main\UI\AdminPageNavigation('data-exp-nav-history');
 $arQuery = [
 	'filter' => $arHistoryFilter,
 ];
@@ -78,57 +78,57 @@ while($arUser = $resUsers->getNext()){
 <div data-role="profile-history-wrapper">
 	<div>
 		<input type="button" data-role="profile-history-refresh"
-			value="<?=Loc::getMessage('ACRIT_EXP_TAB_LOG_HISTORY_REFRESH');?>" />
+			value="<?=Loc::getMessage('DATA_EXP_TAB_LOG_HISTORY_REFRESH');?>" />
 	</div>
 	<br/>
 	<?if(!empty($arProfileHistoryAll)):?>
-		<table class="adm-list-table acrit-exp-table-history">
+		<table class="adm-list-table data-exp-table-history">
 			<thead>
 				<tr class="adm-list-table-header">
 					<td class="adm-list-table-cell" rowspan="2">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_DATE_START');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_DATE_START');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" rowspan="2">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_DATE_END');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_DATE_END');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:40px;" rowspan="2">
 						<div class="adm-list-table-cell-inner" style="text-align:center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_ELEMENTS_COUNT');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_ELEMENTS_COUNT');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:120px;" colspan="2">
 						<div class="adm-list-table-cell-inner" style="text-align:center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_SUCCESS');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_SUCCESS');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:120px;" colspan="2">
 						<div class="adm-list-table-cell-inner" style="text-align:center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_ERRORS');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_ERRORS');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:80px;" rowspan="2">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_TIME');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_TIME');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:100px;" rowspan="2">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_TYPE');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_TYPE');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:100px;" rowspan="2">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_USER_ID');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_USER_ID');?>
 						</div>
 					</td>
 					<?/*
 					<td class="adm-list-table-cell" style="width:100px;" rowspan="2">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_IP');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_IP');?>
 						</div>
 					</td>
 					*/?>
@@ -136,22 +136,22 @@ while($arUser = $resUsers->getNext()){
 				<tr class="adm-list-table-header">
 					<td class="adm-list-table-cell" style="width:60px;">
 						<div class="adm-list-table-cell-inner align-center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_ELEMENTS');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_ELEMENTS');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:60px;">
 						<div class="adm-list-table-cell-inner align-center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_OFFERS');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_OFFERS');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:60px;">
 						<div class="adm-list-table-cell-inner align-center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_ELEMENTS');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_ELEMENTS');?>
 						</div>
 					</td>
 					<td class="adm-list-table-cell" style="width:60px;">
 						<div class="adm-list-table-cell-inner align-center">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_OFFERS');?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_OFFERS');?>
 						</div>
 					</td>
 				</tr>
@@ -167,7 +167,7 @@ while($arUser = $resUsers->getNext()){
 								$bMultithreading = $arProfileHistory['MULTITHREADING'] == 'Y';
 								$intThreads = is_numeric($arProfileHistory['THREADS']) ? $arProfileHistory['THREADS'] : '---';
 								$intElementsPerThread = is_numeric($arProfileHistory['ELEMENTS_PER_THREAD']) ? $arProfileHistory['ELEMENTS_PER_THREAD'] : '---';
-								$strHint = Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_'.($arProfileHistory['AUTO'] == 'Y' ? 'CRON' : 'MANUAL').'_HINT', array(
+								$strHint = Loc::getMessage('DATA_EXP_PROFILE_HISTORY_'.($arProfileHistory['AUTO'] == 'Y' ? 'CRON' : 'MANUAL').'_HINT', array(
 									'#COMMAND#' => strlen($strCommand) ? '<pre style="white-space:normal; word-break:break-all;">'.htmlspecialcharsbx($strCommand).'</pre>' : '???',
 									'#MULTITHREADING#' => Loc::getMessage('MAIN_'.($bMultithreading ? 'YES' : 'NO')),
 									'#THREADS#' => $intThreads,
@@ -201,7 +201,7 @@ while($arUser = $resUsers->getNext()){
 							<?=Helper::formatElapsedTime($arProfileHistory['TIME_TOTAL']);?>
 						</td>
 						<td class="adm-list-table-cell">
-							<?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_AUTO_'.($arProfileHistory['AUTO']=='Y'?'Y':'N'));?>
+							<?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_AUTO_'.($arProfileHistory['AUTO']=='Y'?'Y':'N'));?>
 						</td>
 						<td class="adm-list-table-cell">
 							<?if($arProfileHistory['USER_ID']):?>
@@ -219,10 +219,10 @@ while($arUser = $resUsers->getNext()){
 		</table>
 		<?/**/?>
 		<script>
-		AcritExpHistoryTable = {
+		DataExpHistoryTable = {
 			GetAdminList: function(url){
 				if(params = url.match(/page-(\d+)-size-(\d+)/)){
-					acritExpUpdateHistory(params[1], params[2]);
+					dataExpUpdateHistory(params[1], params[2]);
 				}
 			}
 		}
@@ -243,7 +243,7 @@ while($arUser = $resUsers->getNext()){
 				"TITLE" => "",
 				"PAGE_WINDOW" => 10,
 				"SHOW_ALWAYS" => "Y",
-				"TABLE_ID" => "AcritExpHistoryTable",
+				"TABLE_ID" => "DataExpHistoryTable",
 			),
 			false,
 			array(
@@ -254,8 +254,8 @@ while($arUser = $resUsers->getNext()){
 		?>
 		<?/**/?>
 		<div style="clear:both"></div>
-		<?/*<p><?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_LIMIT', array('#LIMIT#' => $intHistoryLimit));?></p>*/?>
+		<?/*<p><?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_LIMIT', array('#LIMIT#' => $intHistoryLimit));?></p>*/?>
 	</div>
 <?else:?>
-	<p><?=Loc::getMessage('ACRIT_EXP_PROFILE_HISTORY_EMPTY');?></p>
+	<p><?=Loc::getMessage('DATA_EXP_PROFILE_HISTORY_EMPTY');?></p>
 <?endif?>

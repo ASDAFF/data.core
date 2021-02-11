@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_BITRIX_';
+$strMessPrefix = 'DATA_EXP_BITRIX_';
 
 // General
 $MESS[$strMessPrefix.'NAME'] = '1С-Битрикс';

@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../class.php'), $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../class.php'), $strLang, $strHead, $strName, $strHint);
 
 // General
 $MESS[$strLang.'ERROR_PREVIEW_ARRAY'] = 'Посмотреть подробные данные об ошибке';

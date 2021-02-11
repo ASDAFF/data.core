@@ -1,4 +1,4 @@
-jQuery.fn.acritExpTabs = function (conf) {
+jQuery.fn.dataExpTabs = function (conf) {
 	
 	var config = jQuery.extend({
 		selected:	1, 				// Which tab is initially selected (hash overrides this)
@@ -70,7 +70,7 @@ jQuery.fn.acritExpTabs = function (conf) {
 
 				// Update the hash
 				if (config.use_hash) {
-					acritExpTabsUpdateHash(link.attr('href'));
+					dataExpTabsUpdateHash(link.attr('href'));
 				}
 
 				return false;
@@ -98,7 +98,7 @@ jQuery.fn.acritExpTabs = function (conf) {
 };
 
 // http://stackoverflow.com/questions/1489624/modifying-document-location-hash-without-page-scrolling#answer-1489802
-function acritExpTabsUpdateHash (hash) {
+function dataExpTabsUpdateHash (hash) {
 	hash = hash.replace( /^#/, '' );
 	var fx, node = $( '#' + hash );
 	if ( node.length ) {

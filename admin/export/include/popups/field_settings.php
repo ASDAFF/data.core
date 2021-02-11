@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field;
 
 Loc::loadMessages(__FILE__);
 
@@ -15,7 +15,7 @@ $strFieldCode = $arPost['field_code'];
 $strFieldType = $arPost['field_type'];
 $strFieldName = $arPost['field_name'];
 
-print Helper::showNote(Loc::getMessage('ACRIT_EXP_POPUP_FIELD_SETTINGS_NOTICE'), true).'<br/>';
+print Helper::showNote(Loc::getMessage('DATA_EXP_POPUP_FIELD_SETTINGS_NOTICE'), true).'<br/>';
 ?>
 
 <form action="<?=POST_FORM_ACTION_URI;?>" method="post" data-role="popup-form">
@@ -40,7 +40,7 @@ if(strlen($strFieldType)) {
 #$intAdditionalFieldID = AdditionalField::getIdFromCode($strFieldCode);
 $intAdditionalFieldID = Helper::call($strModuleId, 'AdditionalField', 'getIdFromCode', [$strFieldCode]);
 if($intAdditionalFieldID){
-	print Helper::showHeading(Loc::getMessage('ACRIT_EXP_ADDITIONAL_FIELDS_ATTRIBUTES'));
+	print Helper::showHeading(Loc::getMessage('DATA_EXP_ADDITIONAL_FIELDS_ATTRIBUTES'));
 	$arAttributes = $arPost['ADDITIONAL_ATTRIBUTES'];
 	if(!is_array($arAttributes)){
 		$arAttributes = array();
@@ -55,12 +55,12 @@ if($intAdditionalFieldID){
 	array_unshift($arAttributes['VALUE'], '');
 	?>
 		<div>
-			<table class="acrit-exp-table-additional-attributes">
+			<table class="data-exp-table-additional-attributes">
 				<tfoot>
 					<tr>
 						<td colspan="3">
 							<input type="button" data-role="additional-attributes--add" 
-								value="<?=Loc::getMessage('ACRIT_EXP_ADDITIONAL_FIELDS_ATTRIBUTES_ADD');?>" />
+								value="<?=Loc::getMessage('DATA_EXP_ADDITIONAL_FIELDS_ATTRIBUTES_ADD');?>" />
 						</td>
 					</tr>
 				</tfoot>
@@ -68,7 +68,7 @@ if($intAdditionalFieldID){
 					<?$bFirst = true;?>
 					<?foreach($arAttributes['NAME'] as $key => $strAttrName):?>
 						<?$strAttrValue = $arAttributes['VALUE'][$key];?>
-						<tr<?if($bFirst):?> class="acrit-exp-table-additional-attributes-pattern" style="display:none" data-noserialize="Y" data-role="additional-attributes--pattern"<?endif?>>
+						<tr<?if($bFirst):?> class="data-exp-table-additional-attributes-pattern" style="display:none" data-noserialize="Y" data-role="additional-attributes--pattern"<?endif?>>
 							<td>
 								<input type="text" name="ADDITIONAL_ATTRIBUTES[NAME][]" value="<?=htmlspecialcharsbx($strAttrName);?>" size="20" />
 							</td>
@@ -76,15 +76,15 @@ if($intAdditionalFieldID){
 								<input type="text" name="ADDITIONAL_ATTRIBUTES[VALUE][]" value="<?=htmlspecialcharsbx($strAttrValue);?>" size="50" />
 							</td>
 							<td>
-								<a href="#" title="<?=Loc::getMessage('ACRIT_EXP_ADDITIONAL_FIELDS_ATTRIBUTES_DELETE');?>"
-									class="acrit-exp-table-additional-attributes-delete"
+								<a href="#" title="<?=Loc::getMessage('DATA_EXP_ADDITIONAL_FIELDS_ATTRIBUTES_DELETE');?>"
+									class="data-exp-table-additional-attributes-delete"
 									data-role="additional-attributes--delete">&times;</a>
 							</td>
 						</tr>
 						<?$bFirst = false;?>
 					<?endforeach?>
-					<tr class="acrit-exp-table-additional-attributes-nothing" style="display:none" data-role="additional-attributes--nothing">
-						<td colspan="3"><?=Loc::getMessage('ACRIT_EXP_ADDITIONAL_FIELDS_ATTRIBUTES_EMPTY');?></td>
+					<tr class="data-exp-table-additional-attributes-nothing" style="display:none" data-role="additional-attributes--nothing">
+						<td colspan="3"><?=Loc::getMessage('DATA_EXP_ADDITIONAL_FIELDS_ATTRIBUTES_EMPTY');?></td>
 					</tr>
 				</tbody>
 			</table>

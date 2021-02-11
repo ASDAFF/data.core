@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: Aliexpress.com base plugin
+ * Data Core: Aliexpress.com base plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Export\UniversalPlugin,
-	\Acrit\Core\Helper;
+	\Data\Core\Export\UniversalPlugin,
+	\Data\Core\Helper;
 
 abstract class AliexpressCom extends UniversalPlugin {
 	

@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_APORT_RU_';
+$strMessPrefix = 'DATA_EXP_APORT_RU_';
 
 //
 $MESS[$strMessPrefix . 'INFO'] = 'Документация по выгрузке';

@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -11,7 +11,7 @@ $bCatalogModule = \Bitrix\Main\Loader::includeModule('catalog');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Block for tags management
-$obTabControl->BeginCustomField('PROFILE[IBLOCK_MANAGE]', Loc::getMessage('ACRIT_EXP_IBLOCKS_MANAGE'));
+$obTabControl->BeginCustomField('PROFILE[IBLOCK_MANAGE]', Loc::getMessage('DATA_EXP_IBLOCKS_MANAGE'));
 ?><tr class="heading" id="tr_IBLOCKS_MANAGE_HEADING">
 		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
 	</tr>
@@ -19,25 +19,25 @@ $obTabControl->BeginCustomField('PROFILE[IBLOCK_MANAGE]', Loc::getMessage('ACRIT
 		<td colspan="2">
 			<div>
 				<?if(!$bCopy):?>
-					<div class="acrit-exp-button-preview-iblocks">
-						<input type="button" value="<?=Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_PREVIEW');?>"
+					<div class="data-exp-button-preview-iblocks">
+						<input type="button" value="<?=Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_PREVIEW');?>"
 							data-role="preview-iblocks" />
 					</div>
 				<?endif?>
 				<div id="field_IBLOCK_title">
-					<span><?=Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_TITLE');?></span>
+					<span><?=Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_TITLE');?></span>
 					<span style="vertical-align:middle">
-						<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_TITLE_HINT'));?>
+						<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_TITLE_HINT'));?>
 					</span>
 					&nbsp;
 				</div>
 				<div id="field_IBLOCK_value" style="position:relative;">
-					<div class="acrit-exp-select-wrapper">
+					<div class="data-exp-select-wrapper">
 						<select id="field_IBLOCK"<?if($arProfile['LAST_IBLOCK_ID']):?> data-loaded="Y"<?endif?>>
 							<?require __DIR__.'/_structure_iblock_select.php';?>
 						</select>
 						<a href="#" id="field_IBLOCK_clear" data-role="iblock-settings-clear"
-							title="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_BUTTON_CLEAR');?>"></a>
+							title="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_BUTTON_CLEAR');?>"></a>
 					</div>
 					<?if($bCatalogModule):?>
 						<div id="field_IBLOCK_just_catalogs">
@@ -45,10 +45,10 @@ $obTabControl->BeginCustomField('PROFILE[IBLOCK_MANAGE]', Loc::getMessage('ACRIT
 								<input type="hidden" name="PROFILE[PARAMS][SHOW_JUST_CATALOGS]" value="N" />
 								<input type="checkbox" name="PROFILE[PARAMS][SHOW_JUST_CATALOGS]" value="Y" data-role="show-just-catalogs"
 									<?if($arProfile['PARAMS']['SHOW_JUST_CATALOGS']=='Y'):?>checked="checked"<?endif?>/>
-								<?=Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_SHOW_JUST_CATALOGS');?>
+								<?=Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_SHOW_JUST_CATALOGS');?>
 							</label>
 							<span style="margin-left:-4px;vertical-align:middle">
-								<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_STRUCTURE_IBLOCK_SHOW_JUST_CATALOGS_HINT'));?>
+								<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_STRUCTURE_IBLOCK_SHOW_JUST_CATALOGS_HINT'));?>
 							</span>
 						</div>
 					<?endif?>
@@ -74,9 +74,9 @@ $obTabControl->BeginCustomField('PROFILE[IBLOCK_MANAGE]', Loc::getMessage('ACRIT
 						<script>
 							var initialTab = $('#view_tab_<?=$arProfile['LAST_SETTINGS_TAB'];?>');
 							if(initialTab.length) {
-								window.acritExpInitialSettingsTabClick = true;
+								window.dataExpInitialSettingsTabClick = true;
 								initialTab.trigger('click');
-								window.acritExpInitialSettingsTabClick = false;
+								window.dataExpInitialSettingsTabClick = false;
 							}
 						</script>
 					<?endif?>

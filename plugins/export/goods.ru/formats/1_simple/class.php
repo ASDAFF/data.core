@@ -1,17 +1,17 @@
 <?
 
 /**
- * Acrit Core: GoodsRu plugin
- * @package acrit.core
- * @copyright 2019 Acrit
+ * Data Core: GoodsRu plugin
+ * @package data.core
+ * @copyright 2019 Data
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
-use \Acrit\Core\Helper,
-		\Acrit\Core\Xml,
-		\Acrit\Core\HttpRequest,
-		\Acrit\Core\Export\Field\Field,
+use \Data\Core\Helper,
+		\Data\Core\Xml,
+		\Data\Core\HttpRequest,
+		\Data\Core\Export\Field\Field,
 		\PhpOffice\PhpSpreadsheet\Spreadsheet,
 		\PhpOffice\PhpSpreadsheet\Writer\Xlsx,
 		\PhpOffice\PhpSpreadsheet\IOFactory,

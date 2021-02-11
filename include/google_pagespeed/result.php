@@ -1,13 +1,13 @@
 <?php
-namespace Acrit\Core\Seo;
+namespace Data\Core\Seo;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Seo\GooglePageSpeedV5;
+	\Data\Core\Helper,
+	\Data\Core\Seo\GooglePageSpeedV5;
 
 Helper::loadMessages();
 
-$strLang = 'ACRIT_SEO_GOOGLE_PAGESPEED_';
+$strLang = 'DATA_SEO_GOOGLE_PAGESPEED_';
 
 $arGooglePageSpeedResult = &$arParams['GOOGLE_PAGESPEED_RESULT'];
 $arLighthouse = &$arParams['GOOGLE_PAGESPEED_RESULT']['lighthouseResult'];
@@ -44,41 +44,41 @@ foreach($arResult['audits'] as $strCategory => &$arCategory){
 }
 unset($arCategory);
 ?>
-<div class="acrit_seo_google_pagespeed_results">
+<div class="data_seo_google_pagespeed_results">
 	<?foreach($arResult['audits'] as $strCategory => $arCategory):?>
-		<div class="acrit_seo_google_pagespeed_category">
+		<div class="data_seo_google_pagespeed_category">
 			<?=Helper::showHeading($arCategory['title_score'], true);?>
 			<?foreach($arCategory['items'] as $arGroup):?>
-				<div class="acrit_seo_google_pagespeed_group" data-id="<?=$arGroup['id'];?>">
-					<div class="acrit_seo_google_pagespeed_group_title"><?=$arGroup['title'];?></div>
-					<div class="acrit_seo_google_pagespeed_group_description"><?=$arGroup['description'];?></div>
+				<div class="data_seo_google_pagespeed_group" data-id="<?=$arGroup['id'];?>">
+					<div class="data_seo_google_pagespeed_group_title"><?=$arGroup['title'];?></div>
+					<div class="data_seo_google_pagespeed_group_description"><?=$arGroup['description'];?></div>
 					<?foreach($arSubgroups as $strSubgroupType => $arSubgroup):?>
 						<?if(is_array($arGroup[$strSubgroupType]) && !empty($arGroup[$strSubgroupType])):?>
 							<?$bSingleSubgroup = count(array_intersect(array_keys($arSubgroups), array_keys($arGroup))) == 1;?>
-							<div class="acrit_seo_google_pagespeed_group_data
-								acrit_seo_google_pagespeed_group_data_<?=$strSubgroupType;?>">
+							<div class="data_seo_google_pagespeed_group_data
+								data_seo_google_pagespeed_group_data_<?=$strSubgroupType;?>">
 								<?if(!$bSingleSubgroup):?>
-									<div class="acrit_seo_google_pagespeed_group_toggle_wrapper">
-										<a href="#" class="acrit-inline-link" data-role="acrit_seo_google_pagespeed_group_toggle">
+									<div class="data_seo_google_pagespeed_group_toggle_wrapper">
+										<a href="#" class="data-inline-link" data-role="data_seo_google_pagespeed_group_toggle">
 											<?=$arSubgroup['TITLE'];?>
 										</a>
 									</div>
 								<?endif?><?//!$bSingleSubgroup?>
-								<div class="acrit_seo_google_pagespeed_audits"
+								<div class="data_seo_google_pagespeed_audits"
 									<?if($arSubgroup['COLLAPSED'] && !$bSingleSubgroup):?> style="display:none;"<?endif?>>
 									<?foreach($arGroup[$strSubgroupType] as $arAudit):?>
-										<div class="acrit_seo_google_pagespeed_audit" data-id="<?=$arAudit['id'];?>">
-											<div class="acrit_seo_google_pagespeed_audit_title">
-												<a href="#" class="acrit-inline-link" data-role="acrit_seo_google_pagespeed_audit_toggle">
+										<div class="data_seo_google_pagespeed_audit" data-id="<?=$arAudit['id'];?>">
+											<div class="data_seo_google_pagespeed_audit_title">
+												<a href="#" class="data-inline-link" data-role="data_seo_google_pagespeed_audit_toggle">
 													<?=$arAudit['title'];?>
 												</a>
 											</div>
-											<div class="acrit_seo_google_pagespeed_audit_details">
-												<div class="acrit_seo_google_pagespeed_audit_decription">
+											<div class="data_seo_google_pagespeed_audit_details">
+												<div class="data_seo_google_pagespeed_audit_decription">
 													<?=Helper::showNote($arAudit['description'], true);?>
 												</div>
 												<?if($arAudit['details']['type'] == 'opportunity'):?>
-													<table class="acrit_seo_google_pagespeed_audit_opportunity">
+													<table class="data_seo_google_pagespeed_audit_opportunity">
 														<thead>
 															<tr>
 																<?foreach($arAudit['details']['headings'] as $arHeader):?>
@@ -101,12 +101,12 @@ unset($arCategory);
 																						$arItem[$arHeader['key']], $strFilename);
 																					break;
 																				case 'bytes':
-																					?><div class="acrit_seo_google_pagespeed_audit_opportunity_right"><?
+																					?><div class="data_seo_google_pagespeed_audit_opportunity_right"><?
 																					print Helper::formatSize($arItem[$arHeader['key']]);
 																					?></div><?
 																					break;
 																				case 'timespanMs':
-																					?><div class="acrit_seo_google_pagespeed_audit_opportunity_right"><?
+																					?><div class="data_seo_google_pagespeed_audit_opportunity_right"><?
 																					print number_format($arItem[$arHeader['key']]/1000, 2, '.', '').' s';
 																					?></div><?
 																					break;
@@ -122,7 +122,7 @@ unset($arCategory);
 														</tbody>
 													</table>
 												<?elseif($arAudit['details']['type'] == 'table'):?>
-													<table class="acrit_seo_google_pagespeed_audit_table">
+													<table class="data_seo_google_pagespeed_audit_table">
 														<thead>
 															<tr>
 																<?foreach($arAudit['details']['headings'] as $arHeader):?>
@@ -151,12 +151,12 @@ unset($arCategory);
 																					}
 																					break;
 																				case 'bytes':
-																					?><div class="acrit_seo_google_pagespeed_audit_table_right"><?
+																					?><div class="data_seo_google_pagespeed_audit_table_right"><?
 																					print Helper::formatSize($arItem[$arHeader['key']]);
 																					?></div><?
 																					break;
 																				case 'ms':
-																					?><div class="acrit_seo_google_pagespeed_audit_table_right"><?
+																					?><div class="data_seo_google_pagespeed_audit_table_right"><?
 																					print $arItem[$arHeader['key']].' s';
 																					?></div><?
 																					break;

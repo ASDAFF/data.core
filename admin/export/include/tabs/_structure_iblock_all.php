@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Field\Field;
+	\Data\Core\Helper,
+	\Data\Core\Export\Field\Field;
 
 Loc::loadMessages(__FILE__);
 
@@ -11,7 +11,7 @@ Loc::loadMessages(\Bitrix\Main\Loader::getDocumentRoot().'/bitrix/modules/'.$str
 	.'/admin/new/include/tabs/structure.php');
 
 if(!is_object($obPlugin)) {
-	print Helper::showError(Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_PLUGIN_NOT_SELECTED'));
+	print Helper::showError(Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_PLUGIN_NOT_SELECTED'));
 	return;
 }
 
@@ -23,7 +23,7 @@ if($intIBlockID > 0){
 		$strIBlockName = $arIBlock['NAME'];
 	}
 }
-print Helper::showHeading(Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_TITLE', array(
+print Helper::showHeading(Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_TITLE', array(
 	'#IBLOCK_ID#' => $intIBlockID,
 	'#IBLOCK_NAME#' => $strIBlockName,
 )));
@@ -77,68 +77,68 @@ if($intIBlockOffersID){
 				if(strpos($arTab['DIV'], 'subtab_') !== 0) {
 					$arTab['DIV'] = 'subtab_'.$arTab['DIV'];
 				}
-				$arAdditionalSubTabs[$key]['ONSELECT'] = 'acritExpSettingsChangeTab(this);';
+				$arAdditionalSubTabs[$key]['ONSELECT'] = 'dataExpSettingsChangeTab(this);';
 				$arAdditionalSubTabs[$key]['SORT'] = is_numeric($arTab['SORT']) ? $arTab['SORT'] : 100;
 			}
 			# Prepare additional tabs
 			$arSubTabs = array();
 			$arSubTabs['product'] = array(
 				'DIV' => 'fields_product',
-				'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_PRODUCT'),
-				'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_PRODUCT_DESC'),
-				'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+				'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_PRODUCT'),
+				'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_PRODUCT_DESC'),
+				'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 				'SORT' => 10,
 				'FILE' => __DIR__.'/_structure_iblock_main.php',
 			);
 			if($intIBlockOffersID) {
 				$arSubTabs['offer'] = array(
 					'DIV' => 'fields_offer',
-					'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_OFFER'),
-					'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_OFFER_DESC'),
-					'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+					'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_OFFER'),
+					'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_FIELDS_OFFER_DESC'),
+					'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 					'SORT' => 20,
 					'FILE' => __DIR__.'/_structure_iblock_offers.php',
 				);
 			}
 			$arSubTabs['general'] = array(
 				'DIV' => 'subtab_general',
-				'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_GENERAL'),
-				'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_GENERAL_DESC'),
-				'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+				'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_GENERAL'),
+				'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_GENERAL_DESC'),
+				'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 				'SORT' => 30,
 				'FILE' => __DIR__.'/../subtabs/general.php',
 			);
 			$arSubTabs['categories'] = array(
 				'DIV' => 'subtab_categories',
-				'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_CATEGORIES'),
-				'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_CATEGORIES_DESC'),
-				'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+				'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_CATEGORIES'),
+				'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_CATEGORIES_DESC'),
+				'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 				'SORT' => 40,
 				'FILE' => __DIR__.'/../subtabs/categories.php',
 			);
 			$arSubTabs['filter'] = array(
 				'DIV' => 'subtab_filter',
-				'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_FILTER'),
-				'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_FILTER_DESC'),
-				'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+				'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_FILTER'),
+				'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_FILTER_DESC'),
+				'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 				'SORT' => 50,
 				'FILE' => __DIR__.'/../subtabs/filter.php',
 			);
 			if($intIBlockOffersID) {
 				$arSubTabs['offers'] = array(
 					'DIV' => 'subtab_offers',
-					'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_OFFERS'),
-					'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_OFFERS_DESC'),
-					'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+					'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_OFFERS'),
+					'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_OFFERS_DESC'),
+					'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 					'SORT' => 60,
 					'FILE' => __DIR__.'/../subtabs/offers.php',
 				);
 			}
 			$arSubTabs['console'] = array(
 				'DIV' => 'subtab_console',
-				'TAB' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_CONSOLE'),
-				'TITLE' => GetMessage('ACRIT_EXP_STRUCTURE_IBLOCK_SUBTAB_CONSOLE_DESC'),
-				'ONSELECT' => 'acritExpSettingsChangeTab(this);',
+				'TAB' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_CONSOLE'),
+				'TITLE' => GetMessage('DATA_EXP_STRUCTURE_IBLOCK_SUBTAB_CONSOLE_DESC'),
+				'ONSELECT' => 'dataExpSettingsChangeTab(this);',
 				'SORT' => 1000000,
 				'FILE' => __DIR__.'/../subtabs/console.php',
 				'CONSOLE' => true,
@@ -151,7 +151,7 @@ if($intIBlockOffersID){
 					$arSubTabs[] = $arTab;
 				}
 			}
-			usort($arSubTabs, 'Acrit\Core\Helper::sortBySort');
+			usort($arSubTabs, 'Data\Core\Helper::sortBySort');
 			// Display tabs
 			$obSubTabControl = new \CAdminViewTabControl('ProfileIBlockSubTabs', $arSubTabs);
 			$obSubTabControl->Begin();
@@ -170,10 +170,10 @@ if($intIBlockOffersID){
 
 	<?if(!$bCopy):?>
 		<div>
-			<input type="button" class="adm-btn-green" value="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_BUTTON_SAVE');?>" data-role="iblock-settings-save" />
+			<input type="button" class="adm-btn-green" value="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_BUTTON_SAVE');?>" data-role="iblock-settings-save" />
 			<span data-role="iblock-settings-save-progress"></span>
 			<span data-role="iblock-settings-save-result"></span>
-			<input type="button" class="adm-btn" value="<?=Loc::getMessage('ACRIT_EXP_STRUCTURE_IBLOCK_BUTTON_CLEAR');?>" data-role="iblock-settings-clear" style="float:right;" />
+			<input type="button" class="adm-btn" value="<?=Loc::getMessage('DATA_EXP_STRUCTURE_IBLOCK_BUTTON_CLEAR');?>" data-role="iblock-settings-clear" style="float:right;" />
 		</div>
 	<?endif?>
 

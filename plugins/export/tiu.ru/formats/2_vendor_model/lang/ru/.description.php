@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_TIU_RU_VENDOR_MODEL_';
+$strMessPrefix = 'DATA_EXP_TIU_RU_VENDOR_MODEL_';
 
 //
 $MESS[$strMessPrefix.'USEFUL_LINKS'] = 'Полезные ссылки:';

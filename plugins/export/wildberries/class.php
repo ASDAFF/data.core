@@ -1,18 +1,18 @@
 <?
 /**
- * Acrit Core: Wildberries plugin
+ * Data Core: Wildberries plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Plugin,
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\HttpRequest,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Log,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Export\Plugin,
+	\Data\Core\Export\Field\Field,
+	\Data\Core\HttpRequest,
+	\Data\Core\Export\Filter,
+	\Data\Core\Log,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 

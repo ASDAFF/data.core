@@ -1,10 +1,10 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\Field\ValueBase;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\Field\ValueBase;
 
 Loc::loadMessages(__FILE__);
 
@@ -21,11 +21,11 @@ $obSortFieldOffers->setValue($arSavedValue);
 
 <table class="adm-list-table">
 	<tbody>
-		<tr class="heading"><td colspan="2"><?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_HEADER_SORT');?></td></tr>
+		<tr class="heading"><td colspan="2"><?=Loc::getMessage('DATA_EXP_TAB_GENERAL_HEADER_SORT');?></td></tr>
 		<tr>
 			<td width="40%" style="padding-top:11px; vertical-align:top;">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_DATA_ELEMENTS_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_DATA_ELEMENTS');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_DATA_ELEMENTS_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_DATA_ELEMENTS');?>:
 			</td>
 			<td width="60%">
 				<div data-role="sort-field" data-iblock-id="<?=$intIBlockID;?>"  data-name="<?=$obSortFieldElements->getName();?>" data-field="<?=$obSortFieldElements->getCode();?>" data-type="FIELD">
@@ -38,8 +38,8 @@ $obSortFieldOffers->setValue($arSavedValue);
 		<?if($intIBlockOffersID):?>
 			<tr>
 				<td width="40%" style="padding-top:11px; vertical-align:top;">
-					<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_DATA_OFFERS_HINT'));?>
-					<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_DATA_OFFERS');?>:
+					<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_DATA_OFFERS_HINT'));?>
+					<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_DATA_OFFERS');?>:
 				</td>
 				<td width="60%">
 					<div data-role="sort-field" data-iblock-id="<?=$intIBlockOffersID;?>" data-name="<?=$obSortFieldOffers->getName();?>" data-field="<?=$obSortFieldOffers->getCode();?>" data-type="FIELD">
@@ -52,17 +52,17 @@ $obSortFieldOffers->setValue($arSavedValue);
 		<?endif?>
 		<tr>
 			<td width="40%">
-				<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_ORDER_HINT'));?>
-				<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_ORDER');?>:
+				<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_ORDER_HINT'));?>
+				<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_ORDER');?>:
 			</td>
 			<td width="60%">
 				<div>
 					<select name="PROFILE[PARAMS][SORT_ORDER]" data-role="iblock-sort-field">
 						<option value="ASC"<?if($arProfile['PARAMS']['SORT_ORDER']=='ASC'):?> selected="selected"<?endif?>>
-							<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_ORDER_ASC');?>
+							<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_ORDER_ASC');?>
 						</option>
 						<option value="DESC"<?if($arProfile['PARAMS']['SORT_ORDER']=='DESC'):?> selected="selected"<?endif?>>
-							<?=Loc::getMessage('ACRIT_EXP_TAB_GENERAL_SORT_ORDER_DESC');?>
+							<?=Loc::getMessage('DATA_EXP_TAB_GENERAL_SORT_ORDER_DESC');?>
 						</option>
 					</select>
 				</div>

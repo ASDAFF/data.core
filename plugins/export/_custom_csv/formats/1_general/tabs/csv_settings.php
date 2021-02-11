@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -13,7 +13,7 @@ if(is_null($arProfile['PARAMS']['CUSTOM_CSV_FIELDS'])){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // CSV structure for custom CSV
-$obTabControl->BeginCustomField('PROFILE[CUSTOM_CSV_STRUCTURE]', Loc::getMessage('ACRIT_EXP_CSV_FIELD'));
+$obTabControl->BeginCustomField('PROFILE[CUSTOM_CSV_STRUCTURE]', Loc::getMessage('DATA_EXP_CSV_FIELD'));
 ?>
 	<tr class="heading">
 		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
@@ -21,21 +21,21 @@ $obTabControl->BeginCustomField('PROFILE[CUSTOM_CSV_STRUCTURE]', Loc::getMessage
 	<tr id="tr_CUSTOM_CSV_FIELDS">
 		<td colspan="2">
 			<div data-role="csv-structure-wrapper">
-				<textarea class="acrit-exp-custom-csv-structure" name="PROFILE[PARAMS][CUSTOM_CSV_FIELDS]"
-					placeholder="<?=Loc::getMessage('ACRIT_EXP_CSV_FIELD_PLACEHOLDER');?>" style="height:200px"><?
+				<textarea class="data-exp-custom-csv-structure" name="PROFILE[PARAMS][CUSTOM_CSV_FIELDS]"
+					placeholder="<?=Loc::getMessage('DATA_EXP_CSV_FIELD_PLACEHOLDER');?>" style="height:200px"><?
 					print htmlspecialcharsbx($arProfile['PARAMS']['CUSTOM_CSV_FIELDS']);
 				?></textarea>
 			</div>
-			<?=Helper::showNote(Loc::getMessage('ACRIT_EXP_CSV_FIELDS_NOTICE'));?>
+			<?=Helper::showNote(Loc::getMessage('DATA_EXP_CSV_FIELDS_NOTICE'));?>
 		</td>
 	</tr>
 	<tr class="heading">
-		<td colspan="2"><?=Loc::getMessage('ACRIT_EXP_CSV_ADDITIONAL_SETTINGS');?></td>
+		<td colspan="2"><?=Loc::getMessage('DATA_EXP_CSV_ADDITIONAL_SETTINGS');?></td>
 	</tr>
 	<tr>
 		<td width="40%">
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_CSV_SEPARATOR_HINT'));?>
-			<label for="acrit-exp-csv-separator"><?=Loc::getMessage('ACRIT_EXP_CSV_SEPARATOR');?>:</label>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_CSV_SEPARATOR_HINT'));?>
+			<label for="data-exp-csv-separator"><?=Loc::getMessage('DATA_EXP_CSV_SEPARATOR');?>:</label>
 		</td>
 		<td width="60%">
 			<?
@@ -54,8 +54,8 @@ $obTabControl->BeginCustomField('PROFILE[CUSTOM_CSV_STRUCTURE]', Loc::getMessage
 	</tr>
 	<tr>
 		<td width="40%">
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_CSV_LINE_TYPE_HINT'));?>
-			<label for="acrit-exp-csv-add-header"><?=Loc::getMessage('ACRIT_EXP_CSV_LINE_TYPE');?>:</label>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_CSV_LINE_TYPE_HINT'));?>
+			<label for="data-exp-csv-add-header"><?=Loc::getMessage('DATA_EXP_CSV_LINE_TYPE');?>:</label>
 		</td>
 		<td width="60%">
 			<?
@@ -74,43 +74,43 @@ $obTabControl->BeginCustomField('PROFILE[CUSTOM_CSV_STRUCTURE]', Loc::getMessage
 	</tr>
 	<tr>
 		<td width="40%">
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_CSV_ADD_HEADER_HINT'));?>
-			<label for="acrit-exp-csv-add-header"><?=Loc::getMessage('ACRIT_EXP_CSV_ADD_HEADER');?>:</label>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_CSV_ADD_HEADER_HINT'));?>
+			<label for="data-exp-csv-add-header"><?=Loc::getMessage('DATA_EXP_CSV_ADD_HEADER');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="hidden" value="N" name="PROFILE[PARAMS][CUSTOM_CSV_ADD_HEADER]" />
-			<input type="checkbox" value="Y" name="PROFILE[PARAMS][CUSTOM_CSV_ADD_HEADER]" id="acrit-exp-csv-add-header"
+			<input type="checkbox" value="Y" name="PROFILE[PARAMS][CUSTOM_CSV_ADD_HEADER]" id="data-exp-csv-add-header"
 				<?if($arProfile['PARAMS']['CUSTOM_CSV_ADD_HEADER']!='N'):?>checked="checked"<?endif?> 
 				data-role="custom-csv-add-header" />
 		</td>
 	</tr>
 	<tr>
 		<td width="40%">
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_CSV_EXTRA_QUOTES_HINT'));?>
-			<label for="acrit-exp-csv-extra-quotes"><?=Loc::getMessage('ACRIT_EXP_CSV_EXTRA_QUOTES');?>:</label>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_CSV_EXTRA_QUOTES_HINT'));?>
+			<label for="data-exp-csv-extra-quotes"><?=Loc::getMessage('DATA_EXP_CSV_EXTRA_QUOTES');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="hidden" value="N" name="PROFILE[PARAMS][CUSTOM_CSV_EXTRA_QUOTES]" />
-			<input type="checkbox" value="Y" name="PROFILE[PARAMS][CUSTOM_CSV_EXTRA_QUOTES]" id="acrit-exp-csv-extra-quotes"
+			<input type="checkbox" value="Y" name="PROFILE[PARAMS][CUSTOM_CSV_EXTRA_QUOTES]" id="data-exp-csv-extra-quotes"
 				<?if($arProfile['PARAMS']['CUSTOM_CSV_EXTRA_QUOTES']!='N'):?>checked="checked"<?endif?> 
 				data-role="custom-csv-extra-quotes" />
 		</td>
 	</tr>
 	<tr>
 		<td width="40%">
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_CSV_ADD_UTM_HINT'));?>
-			<label for="acrit-exp-csv-add-utm"><?=Loc::getMessage('ACRIT_EXP_CSV_ADD_UTM');?>:</label>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_CSV_ADD_UTM_HINT'));?>
+			<label for="data-exp-csv-add-utm"><?=Loc::getMessage('DATA_EXP_CSV_ADD_UTM');?>:</label>
 		</td>
 		<td width="60%">
 			<input type="hidden" value="N" name="PROFILE[PARAMS][CUSTOM_CSV_ADD_UTM]" />
-			<input type="checkbox" value="Y" name="PROFILE[PARAMS][CUSTOM_CSV_ADD_UTM]" id="acrit-exp-csv-add-utm"
+			<input type="checkbox" value="Y" name="PROFILE[PARAMS][CUSTOM_CSV_ADD_UTM]" id="data-exp-csv-add-utm"
 				<?if($arProfile['PARAMS']['CUSTOM_CSV_ADD_UTM']=='Y'):?>checked="checked"<?endif?> 
 				data-role="custom-csv-utm-toggle" />
 		</td>
 	</tr>
 	<tr id="tr_CUSTOM_CSV_FIELDS">
 		<td colspan="2">
-			<?=Helper::showNote(Loc::getMessage('ACRIT_EXP_CSV_MS_EXCEL_NOTICE'));?>
+			<?=Helper::showNote(Loc::getMessage('DATA_EXP_CSV_MS_EXCEL_NOTICE'));?>
 		</td>
 	</tr>
 <?

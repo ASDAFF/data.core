@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Log;
+	\Data\Core\Helper,
+	\Data\Core\Log;
 
 Loc::loadMessages(__FILE__);
 
@@ -17,14 +17,14 @@ if(!strlen($strLogPreview)){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Log
-$obTabControl->BeginCustomField('PROFILE[LOG]', Loc::getMessage('ACRIT_EXP_TAB_LOG_LOG'));
+$obTabControl->BeginCustomField('PROFILE[LOG]', Loc::getMessage('DATA_EXP_TAB_LOG_LOG'));
 ?>
 	<tr class="heading" id="tr_LOG_HEADING">
 		<td colspan="2"><?=$obTabControl->GetCustomLabelHTML()?></td>
 	</tr>
 	<tr id="tr_LOG">
 		<td>
-			<div class="acrit-exp-log-wrapper">
+			<div class="data-exp-log-wrapper">
 				<div data-role="profile-log-export-file-name-hidden" style="display:none">
 					<?if(is_object($obPlugin)):?>
 						<?=$obPlugin->showFileOpenLink(false, true);?>
@@ -38,7 +38,7 @@ $obTabControl->BeginCustomField('PROFILE[LOG]', Loc::getMessage('ACRIT_EXP_TAB_L
 $obTabControl->EndCustomField('PROFILE[LOG]');
 
 // History
-$obTabControl->BeginCustomField('PROFILE[HISTORY]', Loc::getMessage('ACRIT_EXP_TAB_LOG_HISTORY'));
+$obTabControl->BeginCustomField('PROFILE[HISTORY]', Loc::getMessage('DATA_EXP_TAB_LOG_HISTORY'));
 ?>
 	<tr>
 		<td colspan="2"><br/></td>

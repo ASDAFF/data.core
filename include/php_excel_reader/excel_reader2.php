@@ -65,7 +65,7 @@ define('SIZE_POS', 0x78);
 define('IDENTIFIER_OLE', pack("CCCCCCCC",0xd0,0xcf,0x11,0xe0,0xa1,0xb1,0x1a,0xe1));
 
 
-function acrit_exp_GetInt4d($data, $pos) {
+function data_exp_GetInt4d($data, $pos) {
 	$value = ord($data[$pos]) | (ord($data[$pos+1])	<< 8) | (ord($data[$pos+2]) << 16) | (ord($data[$pos+3]) << 24);
 	if ($value>=4294967294) {
 		$value=-2;
@@ -74,13 +74,13 @@ function acrit_exp_GetInt4d($data, $pos) {
 }
 
 // http://uk.php.net/manual/en/function.getdate.php
-function acrit_exp_gmgetdate($ts = null){
+function data_exp_gmgetdate($ts = null){
 	$k = array('seconds','minutes','hours','mday','wday','mon','year','yday','weekday','month',0);
-	return(acrit_exp_array_comb($k,explode(":",gmdate('s:i:G:j:w:n:Y:z:l:F:U',is_null($ts)?time():$ts))));
+	return(data_exp_array_comb($k,explode(":",gmdate('s:i:G:j:w:n:Y:z:l:F:U',is_null($ts)?time():$ts))));
 	} 
 
 // Added for PHP4 compatibility
-function acrit_exp_array_comb($array1, $array2) {
+function data_exp_array_comb($array1, $array2) {
 	$out = array();
 	foreach ($array1 as $key => $value) {
 		$out[$value] = $array2[$key];
@@ -88,11 +88,11 @@ function acrit_exp_array_comb($array1, $array2) {
 	return $out;
 }
 
-function acrit_exp_value($data,$pos) {
+function data_exp_value($data,$pos) {
 	return ord($data[$pos]) | ord($data[$pos+1])<<8;
 }
 
-function acrit_exp_substr($Value, $Start, $Length) {
+function data_exp_substr($Value, $Start, $Length) {
 	if (defined('BX_UTF')&&BX_UTF===true) {
 		return mb_substr($Value, $Start, $Length, 'windows-1251');
 	} else {
@@ -115,15 +115,15 @@ class OLERead {
 			$this->error = 1;
 			return false;
    		}
-   		if (acrit_exp_substr($this->data, 0, 8) != IDENTIFIER_OLE) {
+   		if (data_exp_substr($this->data, 0, 8) != IDENTIFIER_OLE) {
 			$this->error = 1;
 			return false;
    		}
-		$this->numBigBlockDepotBlocks = acrit_exp_GetInt4d($this->data, NUM_BIG_BLOCK_DEPOT_BLOCKS_POS);
-		$this->sbdStartBlock = acrit_exp_GetInt4d($this->data, SMALL_BLOCK_DEPOT_BLOCK_POS);
-		$this->rootStartBlock = acrit_exp_GetInt4d($this->data, ROOT_START_BLOCK_POS);
-		$this->extensionBlock = acrit_exp_GetInt4d($this->data, EXTENSION_BLOCK_POS);
-		$this->numExtensionBlocks = acrit_exp_GetInt4d($this->data, NUM_EXTENSION_BLOCK_POS);
+		$this->numBigBlockDepotBlocks = data_exp_GetInt4d($this->data, NUM_BIG_BLOCK_DEPOT_BLOCKS_POS);
+		$this->sbdStartBlock = data_exp_GetInt4d($this->data, SMALL_BLOCK_DEPOT_BLOCK_POS);
+		$this->rootStartBlock = data_exp_GetInt4d($this->data, ROOT_START_BLOCK_POS);
+		$this->extensionBlock = data_exp_GetInt4d($this->data, EXTENSION_BLOCK_POS);
+		$this->numExtensionBlocks = data_exp_GetInt4d($this->data, NUM_EXTENSION_BLOCK_POS);
 
 		$bigBlockDepotBlocks = array();
 		$pos = BIG_BLOCK_DEPOT_BLOCKS_POS;
@@ -133,7 +133,7 @@ class OLERead {
 		}
 
 		for ($i = 0; $i < $bbdBlocks; $i++) {
-			$bigBlockDepotBlocks[$i] = acrit_exp_GetInt4d($this->data, $pos);
+			$bigBlockDepotBlocks[$i] = data_exp_GetInt4d($this->data, $pos);
 			$pos += 4;
 		}
 
@@ -143,13 +143,13 @@ class OLERead {
 			$blocksToRead = min($this->numBigBlockDepotBlocks - $bbdBlocks, BIG_BLOCK_SIZE / 4 - 1);
 
 			for ($i = $bbdBlocks; $i < $bbdBlocks + $blocksToRead; $i++) {
-				$bigBlockDepotBlocks[$i] = acrit_exp_GetInt4d($this->data, $pos);
+				$bigBlockDepotBlocks[$i] = data_exp_GetInt4d($this->data, $pos);
 				$pos += 4;
 			}
 
 			$bbdBlocks += $blocksToRead;
 			if ($bbdBlocks < $this->numBigBlockDepotBlocks) {
-				$this->extensionBlock = acrit_exp_GetInt4d($this->data, $pos);
+				$this->extensionBlock = data_exp_GetInt4d($this->data, $pos);
 			}
 		}
 
@@ -162,7 +162,7 @@ class OLERead {
 			$pos = ($bigBlockDepotBlocks[$i] + 1) * BIG_BLOCK_SIZE;
 			//echo "pos = $pos";
 			for ($j = 0 ; $j < BIG_BLOCK_SIZE / 4; $j++) {
-				$this->bigBlockChain[$index] = acrit_exp_GetInt4d($this->data, $pos);
+				$this->bigBlockChain[$index] = data_exp_GetInt4d($this->data, $pos);
 				$pos += 4 ;
 				$index++;
 			}
@@ -177,7 +177,7 @@ class OLERead {
 		while ($sbdBlock != -2) {
 		  $pos = ($sbdBlock + 1) * BIG_BLOCK_SIZE;
 		  for ($j = 0; $j < BIG_BLOCK_SIZE / 4; $j++) {
-			$this->smallBlockChain[$index] = acrit_exp_GetInt4d($this->data, $pos);
+			$this->smallBlockChain[$index] = data_exp_GetInt4d($this->data, $pos);
 			$pos += 4;
 			$index++;
 		  }
@@ -198,7 +198,7 @@ class OLERead {
 		$data = '';
 		while ($block != -2)  {
 			$pos = ($block + 1) * BIG_BLOCK_SIZE;
-			$data = $data.acrit_exp_substr($this->data, $pos, BIG_BLOCK_SIZE);
+			$data = $data.data_exp_substr($this->data, $pos, BIG_BLOCK_SIZE);
 			$block = $this->bigBlockChain[$block];
 		}
 		return $data;
@@ -207,11 +207,11 @@ class OLERead {
 	function __readPropertySets(){
 		$offset = 0;
 		while ($offset < strlen($this->entry)) {
-			$d = acrit_exp_substr($this->entry, $offset, PROPERTY_STORAGE_BLOCK_SIZE);
+			$d = data_exp_substr($this->entry, $offset, PROPERTY_STORAGE_BLOCK_SIZE);
 			$nameSize = ord($d[SIZE_OF_NAME_POS]) | (ord($d[SIZE_OF_NAME_POS+1]) << 8);
 			$type = ord($d[TYPE_POS]);
-			$startBlock = acrit_exp_GetInt4d($d, START_BLOCK_POS);
-			$size = acrit_exp_GetInt4d($d, SIZE_POS);
+			$startBlock = data_exp_GetInt4d($d, START_BLOCK_POS);
+			$size = data_exp_GetInt4d($d, SIZE_POS);
 			$name = '';
 			for ($i = 0; $i < $nameSize ; $i++) {
 				$name .= $d[$i];
@@ -242,7 +242,7 @@ class OLERead {
 			$pos = 0;
 			while ($block != -2) {
 	  			  $pos = $block * SMALL_BLOCK_SIZE;
-				  $streamData .= acrit_exp_substr($rootdata, $pos, SMALL_BLOCK_SIZE);
+				  $streamData .= data_exp_substr($rootdata, $pos, SMALL_BLOCK_SIZE);
 				  $block = $this->smallBlockChain[$block];
 			}
 			return $streamData;
@@ -258,7 +258,7 @@ class OLERead {
 			$pos = 0;
 			while ($block != -2) {
 			  $pos = ($block + 1) * BIG_BLOCK_SIZE;
-			  $streamData .= acrit_exp_substr($this->data, $pos, BIG_BLOCK_SIZE);
+			  $streamData .= data_exp_substr($this->data, $pos, BIG_BLOCK_SIZE);
 			  $block = $this->bigBlockChain[$block];
 			}
 			return $streamData;
@@ -836,7 +836,7 @@ class Spreadsheet_Excel_Reader {
 	function read16bitstring($data, $start) {
 		$len = 0;
 		while (ord($data[$start + $len]) + ord($data[$start + $len + 1]) > 0) $len++;
-		return acrit_exp_substr($data, $start, $len);
+		return data_exp_substr($data, $start, $len);
 	}
 	
 	// ADDED by Matt Kruse for better formatting
@@ -1007,10 +1007,10 @@ class Spreadsheet_Excel_Reader {
 		$pos = 0;
 		$data = $this->data;
 
-		$code = acrit_exp_value($data,$pos);
-		$length = acrit_exp_value($data,$pos+2);
-		$version = acrit_exp_value($data,$pos+4);
-		$acrit_exp_substreamType = acrit_exp_value($data,$pos+6);
+		$code = data_exp_value($data,$pos);
+		$length = data_exp_value($data,$pos+2);
+		$version = data_exp_value($data,$pos+4);
+		$data_exp_substreamType = data_exp_value($data,$pos+6);
 
 		$this->version = $version;
 
@@ -1019,27 +1019,27 @@ class Spreadsheet_Excel_Reader {
 			return false;
 		}
 
-		if ($acrit_exp_substreamType != SPREADSHEET_EXCEL_READER_WORKBOOKGLOBALS){
+		if ($data_exp_substreamType != SPREADSHEET_EXCEL_READER_WORKBOOKGLOBALS){
 			return false;
 		}
 
 		$pos += $length + 4;
 
-		$code = acrit_exp_value($data,$pos);
-		$length = acrit_exp_value($data,$pos+2);
+		$code = data_exp_value($data,$pos);
+		$length = data_exp_value($data,$pos+2);
 
 		while ($code != SPREADSHEET_EXCEL_READER_TYPE_EOF) {
 			switch ($code) {
 				case SPREADSHEET_EXCEL_READER_TYPE_SST:
 					$spos = $pos + 4;
 					$limitpos = $spos + $length;
-					$uniqueStrings = $this->_acrit_exp_GetInt4d($data, $spos+4);
+					$uniqueStrings = $this->_data_exp_GetInt4d($data, $spos+4);
 					$spos += 8;
 					for ($i = 0; $i < $uniqueStrings; $i++) {
 						// Read in the number of characters
 						if ($spos == $limitpos) {
-							$opcode = acrit_exp_value($data,$spos);
-							$conlength = acrit_exp_value($data,$spos+2);
+							$opcode = data_exp_value($data,$spos);
+							$conlength = data_exp_value($data,$spos+2);
 							if ($opcode != 0x3c) {
 								return -1;
 							}
@@ -1058,31 +1058,31 @@ class Spreadsheet_Excel_Reader {
 
 						if ($richString) {
 							// Read in the crun
-							$formattingRuns = acrit_exp_value($data,$spos);
+							$formattingRuns = data_exp_value($data,$spos);
 							$spos += 2;
 						}
 
 						if ($extendedString) {
 							// Read in cchExtRst
-							$extendedRunLength = $this->_acrit_exp_GetInt4d($data, $spos);
+							$extendedRunLength = $this->_data_exp_GetInt4d($data, $spos);
 							$spos += 4;
 						}
 
 						$len = ($asciiEncoding)? $numChars : $numChars*2;
 						if ($spos + $len < $limitpos) {
-							$retstr = acrit_exp_substr($data, $spos, $len);
+							$retstr = data_exp_substr($data, $spos, $len);
 							$spos += $len;
 						}
 						else{
 							// found countinue
-							$retstr = acrit_exp_substr($data, $spos, $limitpos - $spos);
+							$retstr = data_exp_substr($data, $spos, $limitpos - $spos);
 							$bytesRead = $limitpos - $spos;
 							$charsLeft = $numChars - (($asciiEncoding) ? $bytesRead : ($bytesRead / 2));
 							$spos = $limitpos;
 
 							while ($charsLeft > 0){
-								$opcode = acrit_exp_value($data,$spos);
-								$conlength = acrit_exp_value($data,$spos+2);
+								$opcode = data_exp_value($data,$spos);
+								$conlength = data_exp_value($data,$spos+2);
 								if ($opcode != 0x3c) {
 									return -1;
 								}
@@ -1092,13 +1092,13 @@ class Spreadsheet_Excel_Reader {
 								$spos += 1;
 								if ($asciiEncoding && ($option == 0)) {
 									$len = min($charsLeft, $limitpos - $spos); // min($charsLeft, $conlength);
-									$retstr .= acrit_exp_substr($data, $spos, $len);
+									$retstr .= data_exp_substr($data, $spos, $len);
 									$charsLeft -= $len;
 									$asciiEncoding = true;
 								}
 								elseif (!$asciiEncoding && ($option != 0)) {
 									$len = min($charsLeft * 2, $limitpos - $spos); // min($charsLeft, $conlength);
-									$retstr .= acrit_exp_substr($data, $spos, $len);
+									$retstr .= data_exp_substr($data, $spos, $len);
 									$charsLeft -= $len/2;
 									$asciiEncoding = false;
 								}
@@ -1119,7 +1119,7 @@ class Spreadsheet_Excel_Reader {
 									}
 									$retstr = $newstr;
 									$len = min($charsLeft * 2, $limitpos - $spos); // min($charsLeft, $conlength);
-									$retstr .= acrit_exp_substr($data, $spos, $len);
+									$retstr .= data_exp_substr($data, $spos, $len);
 									$charsLeft -= $len/2;
 									$asciiEncoding = false;
 								}
@@ -1149,33 +1149,33 @@ class Spreadsheet_Excel_Reader {
 				case SPREADSHEET_EXCEL_READER_TYPE_NAME:
 					break;
 				case SPREADSHEET_EXCEL_READER_TYPE_FORMAT:
-					$indexCode = acrit_exp_value($data,$pos+4);
+					$indexCode = data_exp_value($data,$pos+4);
 					if ($version == SPREADSHEET_EXCEL_READER_BIFF8) {
-						$numchars = acrit_exp_value($data,$pos+6);
+						$numchars = data_exp_value($data,$pos+6);
 						if (ord($data[$pos+8]) == 0){
-							$formatString = acrit_exp_substr($data, $pos+9, $numchars);
+							$formatString = data_exp_substr($data, $pos+9, $numchars);
 						} else {
-							$formatString = acrit_exp_substr($data, $pos+9, $numchars*2);
+							$formatString = data_exp_substr($data, $pos+9, $numchars*2);
 						}
 					} else {
 						$numchars = ord($data[$pos+6]);
-						$formatString = acrit_exp_substr($data, $pos+7, $numchars*2);
+						$formatString = data_exp_substr($data, $pos+7, $numchars*2);
 					}
 					$this->formatRecords[$indexCode] = $formatString;
 					break;
 				case SPREADSHEET_EXCEL_READER_TYPE_FONT:
-						$height = acrit_exp_value($data,$pos+4);
-						$option = acrit_exp_value($data,$pos+6);
-						$color = acrit_exp_value($data,$pos+8);
-						$weight = acrit_exp_value($data,$pos+10);
+						$height = data_exp_value($data,$pos+4);
+						$option = data_exp_value($data,$pos+6);
+						$color = data_exp_value($data,$pos+8);
+						$weight = data_exp_value($data,$pos+10);
 						$under  = ord($data[$pos+14]);
 						$font = "";
 						// Font name
 						$numchars = ord($data[$pos+18]);
 						if ((ord($data[$pos+19]) & 1) == 0){
-						    $font = acrit_exp_substr($data, $pos+20, $numchars);
+						    $font = data_exp_substr($data, $pos+20, $numchars);
 						} else {
-						    $font = acrit_exp_substr($data, $pos+20, $numchars*2);
+						    $font = data_exp_substr($data, $pos+20, $numchars*2);
 						    $font =  $this->_encodeUTF16($font); 
 						}
 						$this->fontRecords[] = array(
@@ -1298,7 +1298,7 @@ class Spreadsheet_Excel_Reader {
 					$this->nineteenFour = (ord($data[$pos+4]) == 1);
 					break;
 				case SPREADSHEET_EXCEL_READER_TYPE_BOUNDSHEET:
-						$rec_offset = $this->_acrit_exp_GetInt4d($data, $pos+4);
+						$rec_offset = $this->_data_exp_GetInt4d($data, $pos+4);
 						$rec_typeFlag = ord($data[$pos+8]);
 						$rec_visibilityFlag = ord($data[$pos+9]);
 						$rec_length = ord($data[$pos+10]);
@@ -1306,12 +1306,12 @@ class Spreadsheet_Excel_Reader {
 						if ($version == SPREADSHEET_EXCEL_READER_BIFF8){
 							$chartype =  ord($data[$pos+11]);
 							if ($chartype == 0){
-								$rec_name	= acrit_exp_substr($data, $pos+12, $rec_length);
+								$rec_name	= data_exp_substr($data, $pos+12, $rec_length);
 							} else {
-								$rec_name	= $this->_encodeUTF16(acrit_exp_substr($data, $pos+12, $rec_length*2));
+								$rec_name	= $this->_encodeUTF16(data_exp_substr($data, $pos+12, $rec_length*2));
 							}
 						}elseif ($version == SPREADSHEET_EXCEL_READER_BIFF7){
-								$rec_name	= acrit_exp_substr($data, $pos+11, $rec_length);
+								$rec_name	= data_exp_substr($data, $pos+11, $rec_length);
 						}
 					$this->boundsheets[] = array('name'=>$rec_name,'offset'=>$rec_offset);
 					break;
@@ -1341,13 +1341,13 @@ class Spreadsheet_Excel_Reader {
 		$length = ord($data[$spos+2]) | ord($data[$spos+3])<<8;
 
 		$version = ord($data[$spos + 4]) | ord($data[$spos + 5])<<8;
-		$acrit_exp_substreamType = ord($data[$spos + 6]) | ord($data[$spos + 7])<<8;
+		$data_exp_substreamType = ord($data[$spos + 6]) | ord($data[$spos + 7])<<8;
 
 		if (($version != SPREADSHEET_EXCEL_READER_BIFF8) && ($version != SPREADSHEET_EXCEL_READER_BIFF7)) {
 			return -1;
 		}
 
-		if ($acrit_exp_substreamType != SPREADSHEET_EXCEL_READER_WORKSHEET){
+		if ($data_exp_substreamType != SPREADSHEET_EXCEL_READER_WORKSHEET){
 			return -2;
 		}
 		$spos += $length + 4;
@@ -1391,7 +1391,7 @@ class Spreadsheet_Excel_Reader {
 				case SPREADSHEET_EXCEL_READER_TYPE_RK2:
 					$row = ord($data[$spos]) | ord($data[$spos+1])<<8;
 					$column = ord($data[$spos+2]) | ord($data[$spos+3])<<8;
-					$rknum = $this->_acrit_exp_GetInt4d($data, $spos + 6);
+					$rknum = $this->_data_exp_GetInt4d($data, $spos + 6);
 					$numValue = $this->_GetIEEE754($rknum);
 					$info = $this->_getCellDetails($spos,$numValue,$column);
 					$this->addcell($row, $column, $info['string'],$info);
@@ -1400,7 +1400,7 @@ class Spreadsheet_Excel_Reader {
 					$row		= ord($data[$spos]) | ord($data[$spos+1])<<8;
 					$column	 = ord($data[$spos+2]) | ord($data[$spos+3])<<8;
 					$xfindex	= ord($data[$spos+4]) | ord($data[$spos+5])<<8;
-					$index  = $this->_acrit_exp_GetInt4d($data, $spos + 6);
+					$index  = $this->_data_exp_GetInt4d($data, $spos + 6);
 					$this->addcell($row, $column, $this->sst[$index], array('xfIndex'=>$xfindex) );
 					break;
 				case SPREADSHEET_EXCEL_READER_TYPE_MULRK:
@@ -1410,7 +1410,7 @@ class Spreadsheet_Excel_Reader {
 					$columns	= $colLast - $colFirst + 1;
 					$tmppos = $spos+4;
 					for ($i = 0; $i < $columns; $i++) {
-						$numValue = $this->_GetIEEE754($this->_acrit_exp_GetInt4d($data, $tmppos + 2));
+						$numValue = $this->_GetIEEE754($this->_data_exp_GetInt4d($data, $tmppos + 2));
 						$info = $this->_getCellDetails($tmppos-4,$numValue,$colFirst + $i + 1);
 						$tmppos += 6;
 						$this->addcell($row, $colFirst + $i, $info['string'], $info);
@@ -1419,7 +1419,7 @@ class Spreadsheet_Excel_Reader {
 				case SPREADSHEET_EXCEL_READER_TYPE_NUMBER:
 					$row	= ord($data[$spos]) | ord($data[$spos+1])<<8;
 					$column = ord($data[$spos+2]) | ord($data[$spos+3])<<8;
-					$tmp = unpack("ddouble", acrit_exp_substr($data, $spos + 6, 8)); // It machine machine dependent
+					$tmp = unpack("ddouble", data_exp_substr($data, $spos + 6, 8)); // It machine machine dependent
 					if ($this->isDate($spos)) {
 						$numValue = $tmp['double'];
 					}
@@ -1455,7 +1455,7 @@ class Spreadsheet_Excel_Reader {
 						$this->addcell($row, $column, '');
 					} else {
 						// result is a number, so first 14 bytes are just like a _NUMBER record
-						$tmp = unpack("ddouble", acrit_exp_substr($data, $spos + 6, 8)); // It machine machine dependent
+						$tmp = unpack("ddouble", data_exp_substr($data, $spos + 6, 8)); // It machine machine dependent
 							  if ($this->isDate($spos)) {
 								$numValue = $tmp['double'];
 							  }
@@ -1492,11 +1492,11 @@ class Spreadsheet_Excel_Reader {
 						}
 						if ($extendedString) {
 							// Read in cchExtRst
-							$extendedRunLength =$this->_acrit_exp_GetInt4d($this->data, $xpos);
+							$extendedRunLength =$this->_data_exp_GetInt4d($this->data, $xpos);
 							$xpos += 4;
 						}
 						$len = ($asciiEncoding)?$numChars : $numChars*2;
-						$retstr =acrit_exp_substr($data, $xpos, $len);
+						$retstr =data_exp_substr($data, $xpos, $len);
 						$xpos += $len;
 						$retstr = ($asciiEncoding)? $retstr : $this->_encodeUTF16($retstr);
 					}
@@ -1505,7 +1505,7 @@ class Spreadsheet_Excel_Reader {
 						$xpos = $spos;
 						$numChars =ord($data[$xpos]) | (ord($data[$xpos+1]) << 8);
 						$xpos += 2;
-						$retstr =acrit_exp_substr($data, $xpos, $numChars);
+						$retstr =data_exp_substr($data, $xpos, $numChars);
 					}
 					$this->addcell($previousRow, $previousCol, $retstr);
 					break;
@@ -1534,7 +1534,7 @@ class Spreadsheet_Excel_Reader {
 				case SPREADSHEET_EXCEL_READER_TYPE_LABEL:
 					$row	= ord($data[$spos]) | ord($data[$spos+1])<<8;
 					$column = ord($data[$spos+2]) | ord($data[$spos+3])<<8;
-					$this->addcell($row, $column, acrit_exp_substr($data, $spos + 8, ord($data[$spos + 6]) | ord($data[$spos + 7])<<8));
+					$this->addcell($row, $column, data_exp_substr($data, $spos + 8, ord($data[$spos + 6]) | ord($data[$spos + 7])<<8));
 					break;
 				case SPREADSHEET_EXCEL_READER_TYPE_EOF:
 					$cont = false;
@@ -1556,7 +1556,7 @@ class Spreadsheet_Excel_Reader {
 						if (($flags & 0x14) == 0x14 ) {   // has a description
 							$uloc += 4;
 							$descLen = ord($this->data[$spos + 32]) | ord($this->data[$spos + 33]) << 8;
-							$udesc = acrit_exp_substr($this->data, $spos + $uloc, $descLen * 2);
+							$udesc = data_exp_substr($this->data, $spos + $uloc, $descLen * 2);
 							$uloc += 2 * $descLen;
 						}
 						$ulink = $this->read16bitstring($this->data, $spos + $uloc + 20);
@@ -1630,7 +1630,7 @@ class Spreadsheet_Excel_Reader {
 				// Convert numeric value into a date
 				$utcDays = floor($numValue - ($this->nineteenFour ? SPREADSHEET_EXCEL_READER_UTCOFFSETDAYS1904 : SPREADSHEET_EXCEL_READER_UTCOFFSETDAYS));
 				$utcValue = ($utcDays) * SPREADSHEET_EXCEL_READER_MSINADAY;
-				$dateinfo = acrit_exp_gmgetdate($utcValue);
+				$dateinfo = data_exp_gmgetdate($utcValue);
 
 				$raw = $numValue;
 				$fractionalDay = $numValue - floor($numValue) + .0000001; // The .0000001 is to fix for php/excel fractional diffs
@@ -1673,8 +1673,8 @@ class Spreadsheet_Excel_Reader {
 
 
 	function createNumber($spos) {
-		$rknumhigh = $this->_acrit_exp_GetInt4d($this->data, $spos + 10);
-		$rknumlow = $this->_acrit_exp_GetInt4d($this->data, $spos + 6);
+		$rknumhigh = $this->_data_exp_GetInt4d($this->data, $spos + 10);
+		$rknumlow = $this->_data_exp_GetInt4d($this->data, $spos + 6);
 		$sign = ($rknumhigh & 0x80000000) >> 31;
 		$exp =  ($rknumhigh & 0x7ff00000) >> 20;
 		$mantissa = (0x100000 | ($rknumhigh & 0x000fffff));
@@ -1737,7 +1737,7 @@ class Spreadsheet_Excel_Reader {
 		return $result;
 	}
 
-	function _acrit_exp_GetInt4d($data, $pos) {
+	function _data_exp_GetInt4d($data, $pos) {
 		$value = ord($data[$pos]) | (ord($data[$pos+1]) << 8) | (ord($data[$pos+2]) << 16) | (ord($data[$pos+3]) << 24);
 		if ($value>=4294967294) {
 			$value=-2;

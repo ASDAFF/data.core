@@ -1,4 +1,4 @@
-$.fn.acritPopup = function(options, sender) {
+$.fn.dataPopup = function(options, sender) {
 	
 	var defaults = {
 		animation: 'fadeAndPop', //fade, fadeAndPop, none
@@ -21,18 +21,18 @@ $.fn.acritPopup = function(options, sender) {
 
 		var top = this.modalTop,
 			locked = false,
-			modalBG = modal.next('.acrit-modal-bg');
+			modalBG = modal.next('.data-modal-bg');
 		
 		top_real = top + $(document).scrollTop();
 
 		if(modalBG.length == 0) {
-			modalBG = $('<div/>').addClass('acrit-modal-bg').insertAfter(modal);
+			modalBG = $('<div/>').addClass('data-modal-bg').insertAfter(modal);
 		}
 
 		// Entrance Animations
-		modal.bind('acrit:open', function () {
-			modalBG.unbind('click.modalAcritEvent');
-			$('.' + options.dismissmodalclass).unbind('click.modalAcritEvent');
+		modal.bind('data:open', function () {
+			modalBG.unbind('click.modalDataEvent');
+			$('.' + options.dismissmodalclass).unbind('click.modalDataEvent');
 			if(!locked) {
 				lockModal();
 				if(options.animation == 'fadeAndPop') {
@@ -62,11 +62,11 @@ $.fn.acritPopup = function(options, sender) {
 					window[modal.data('callbackshow')](modal, modal.find('.content').first(), modal.find('.buttons').first(), modal.find('.data').first(), sender);
 				}
 			}
-			modal.unbind('acrit:open');
+			modal.unbind('data:open');
 		}); 	
 
 		// Closing Animation
-		modal.bind('acrit:close', function () {
+		modal.bind('data:close', function () {
 			if(!locked) {
 				lockModal();
 				if(options.animation == 'fadeAndPop') {
@@ -99,11 +99,11 @@ $.fn.acritPopup = function(options, sender) {
 					window[modal.data('callbackclose')](modal, modal.find('.content').first(), modal.find('.buttons').first(), modal.find('.data').first(), sender);
 				}
 			}
-			modal.unbind('acrit:close');
+			modal.unbind('data:close');
 		});     
 
 		// Set vertical align
-		modal.bind('acrit:align', function () {
+		modal.bind('data:align', function () {
 			modal.delay(options.animationspeed/2).animate({
 				'top': ($(document).scrollTop() + ($(window).height() - modal.height()) / 2),
 				'opacity' : 1
@@ -111,21 +111,21 @@ $.fn.acritPopup = function(options, sender) {
 		});
 
 		//Open Modal Immediately
-		modal.trigger('acrit:open');
+		modal.trigger('data:open');
 
 		//Close Modal Listeners
-		var closeButton = $('.' + options.dismissmodalclass).bind('click.modalAcritEvent', function () {
-			modal.trigger('acrit:close')
+		var closeButton = $('.' + options.dismissmodalclass).bind('click.modalDataEvent', function () {
+			modal.trigger('data:close')
 		});
 
 		if(options.closeonbackgroundclick) {
 			modalBG.css({'cursor':'pointer'})
-			modalBG.bind('click.modalAcritEvent', function () {
-			modal.trigger('acrit:close')
+			modalBG.bind('click.modalDataEvent', function () {
+			modal.trigger('data:close')
 			});
 		}
 		$('body').keyup(function(e) {
-			if(e.which===27){ modal.trigger('acrit:close'); } // 27 is the keycode for the Escape key
+			if(e.which===27){ modal.trigger('data:close'); } // 27 is the keycode for the Escape key
 		});
 
 		function unlockModal() { 
@@ -140,8 +140,8 @@ $.fn.acritPopup = function(options, sender) {
 }
 
 /* Popups */
-$(document).delegate('[data-acrit-modal]', 'click', function(e){
+$(document).delegate('[data-data-modal]', 'click', function(e){
 	e.preventDefault();
-	var modalLocation = $(this).attr('data-acrit-modal');
-	$('#'+modalLocation).acritPopup($(this).data(), $(this));
+	var modalLocation = $(this).attr('data-data-modal');
+	$('#'+modalLocation).dataPopup($(this).data(), $(this));
 });

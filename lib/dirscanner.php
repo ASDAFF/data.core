@@ -1,8 +1,8 @@
 <?php
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class DirScanner {
 	

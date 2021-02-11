@@ -1,14 +1,14 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Exporter,
-	\Acrit\Core\Export\Debug;
+	\Data\Core\Helper,
+	\Data\Core\Export\Exporter,
+	\Data\Core\Export\Debug;
 
 // Core (part 1)
 define('ADMIN_MODULE_NAME', htmlspecialchars($_GET['module']));
-define('ACRIT_CORE_EXPORT_PREVIEW', true);
+define('DATA_CORE_EXPORT_PREVIEW', true);
 require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php');
 IncludeModuleLangFile(__FILE__);
 $arGet = \Bitrix\Main\Context::getCurrent()->getRequest()->getQueryList()->toArray();
@@ -22,12 +22,12 @@ if($APPLICATION->GetGroupRight($strModuleId) == 'D'){
 }
 
 // Core
-if(!\Bitrix\Main\Loader::includeModule('acrit.core')){
+if(!\Bitrix\Main\Loader::includeModule('data.core')){
 	require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php');
-	?><div id="acrit-exp-core-notifier"><?
+	?><div id="data-exp-core-notifier"><?
 		print '<div style="margin-top:15px;"></div>';
 		print \CAdminMessage::ShowMessage(array(
-			'MESSAGE' => Loc::getMessage('ACRIT_EXP_CORE_NOTICE'),
+			'MESSAGE' => Loc::getMessage('DATA_EXP_CORE_NOTICE'),
 			'HTML' => true,
 		));
 	?></div><?
@@ -41,7 +41,7 @@ if(!\Bitrix\Main\Loader::includeModule('acrit.core')){
 Debug::setModuleId($strModuleId);
 
 $bSkipIncludeProlog = true;
-require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/'.ACRIT_CORE.'/install/demo.php');
+require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/'.DATA_CORE.'/install/demo.php');
 
 $arPluginsPlain = Exporter::getInstance($strModuleId)->findPlugins(false);
 
@@ -64,7 +64,7 @@ foreach($arProfiles as $arProfile){
 	}
 }
 if(!$bActiveProfilesFound){
-	print Helper::showNote(Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_NO_ACTIVE_PROFILES', [
+	print Helper::showNote(Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_NO_ACTIVE_PROFILES', [
 		'#MODULE_CODE#' => $strModuleCode,
 	]));
 	return;
@@ -87,12 +87,12 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 ?>
 
 <style>
-.acrit-exp-preview > table > tbody > tr > td > hr:last-child {
+.data-exp-preview > table > tbody > tr > td > hr:last-child {
 	display:none;
 }
 </style>
 
-<div class="acrit-exp-preview">
+<div class="data-exp-preview">
 	<?if(is_array($arProcessResult) && is_array($arProcessResult['PROFILES'])):?>
 		<table class="adm-list-table">
 			<thead>
@@ -103,17 +103,17 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 					</th>
 					<th class="adm-list-table-cell" style="width:1px;">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_ID');?>
+							<?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_ID');?>
 						</div>
 					</th>
 					<th class="adm-list-table-cell">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_PROFILE');?>
+							<?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_PROFILE');?>
 						</div>
 					</th>
 					<th class="adm-list-table-cell" style="width:80px;">
 						<div class="adm-list-table-cell-inner">
-							<?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_TIME');?>
+							<?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_TIME');?>
 						</div>
 					</th>
 				</tr>
@@ -140,7 +140,7 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 							<?=$arProfile['ID'];?>
 						</td>
 						<td class="adm-list-table-cell">
-							<div class="acrit-exp-preview-profile-title">
+							<div class="data-exp-preview-profile-title">
 								<?if(strlen($arPlugin['ICON_BASE64'])):?>
 									<img src="<?=$arPlugin['ICON_BASE64'];?>" alt="" />
 								<?endif?>
@@ -158,7 +158,7 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 								<?endforeach?>
 							<?endif?>
 							<?if(!is_array($arPlugin)):?>
-								<?=Helper::showError(Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_FORMAT_NOT_FOUND', array(
+								<?=Helper::showError(Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_FORMAT_NOT_FOUND', array(
 									'#MODULE_CODE#' => $strModuleCode,
 									'#PROFILE_ID#' => $arProfile['ID'],
 								)));?>
@@ -184,14 +184,14 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 	<?endif?>
 </div>
 <?if(isset($arProcessResult['_TIME_FULL']) || isset($arProcessResult['_TIME_GET_DATA'])):?>
-	<div class="acrit-exp-preview-time-full">
+	<div class="data-exp-preview-time-full">
 		<?if(isset($arProcessResult['_TIME_GET_DATA'])):?>
-			<?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_TIME_GET_DATA', array(
+			<?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_TIME_GET_DATA', array(
 				'#TIME_GET_DATA#' => number_format($arProcessResult['_TIME_GET_DATA'], 4, '.', ''),
 			));?><br/>
 		<?endif?>
 		<?if(isset($arProcessResult['_TIME_FULL'])):?>
-			<?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_TIME_FULL', array(
+			<?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_TIME_FULL', array(
 				'#TIME_FULL#' => number_format($arProcessResult['_TIME_FULL'], 4, '.', ''),
 			));?><br/>
 		<?endif?>
@@ -200,30 +200,30 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 
 <?// Legend ?>
 <div>
-	<div><b><?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_LEGEND_TITLE');?></b></div>
+	<div><b><?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_LEGEND_TITLE');?></b></div>
 	<table>
 		<tbody>
 			<tr>
 				<td><img src="/bitrix/themes/.default/images/lamp/grey.gif" alt="" width="14" height="14" /></td>
-				<td><?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_LEGEND_GRAY');?></td>
+				<td><?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_LEGEND_GRAY');?></td>
 			</tr>
 			<tr>
 				<td><img src="/bitrix/themes/.default/images/lamp/yellow.gif" alt="" width="14" height="14" /></td>
-				<td><?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_LEGEND_YELLOW');?></td>
+				<td><?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_LEGEND_YELLOW');?></td>
 			</tr>
 			<tr>
 				<td><img src="/bitrix/themes/.default/images/lamp/green.gif" alt="" width="14" height="14" /></td>
-				<td><?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_LEGEND_GREEN');?></td>
+				<td><?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_LEGEND_GREEN');?></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 <br/>
 
-<div class="acrit-exp-preview-select" style="display:none">
-	<span class="acrit-exp-select-wrapper" style="float:right;margin:3px 0 0 3px;">
+<div class="data-exp-preview-select" style="display:none">
+	<span class="data-exp-select-wrapper" style="float:right;margin:3px 0 0 3px;">
 		<select style="padding-right:60px;">
-			<option value=""><?=Loc::getMessage('ACRIT_EXP_EXPORT_PREVIEW_PROFILE_ALL');?></option>
+			<option value=""><?=Loc::getMessage('DATA_EXP_EXPORT_PREVIEW_PROFILE_ALL');?></option>
 			<?foreach($arProfiles as $arProfile):?>
 				<?if($arProfile['ACTIVE'] == 'Y'):?>
 					<option value="<?=$arProfile['ID'];?>" data-icon="<?=$arPluginsPlain[$arProfile['PLUGIN']]['ICON_BASE64'];?>"
@@ -236,9 +236,9 @@ $arProcessResult = is_array($arProcessResult) ? $arProcessResult : array();
 	</span>
 </div>
 
-<script src="/bitrix/js/<?=ACRIT_CORE;?>/highlightjs/highlight.pack.js"></script>
+<script src="/bitrix/js/<?=DATA_CORE;?>/highlightjs/highlight.pack.js"></script>
 <script>
-$('.acrit-exp-preview pre code').each(function(i, block) {
+$('.data-exp-preview pre code').each(function(i, block) {
 	highlighElement(block);
 });
 </script>

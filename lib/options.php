@@ -3,10 +3,10 @@
  *	Class to work with options.php
  */
 
-namespace Acrit\Core;
+namespace Data\Core;
 
 use 
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Helper::loadMessages(__FILE__);
 
@@ -55,8 +55,8 @@ class Options {
 		$this->obTabControl = new \CAdminTabControl(str_replace('.', '_', $strModuleId).'_tab_control', $arTabs);
 		#
 		\CUtil::initJSCore(['ajax', 'jquery', 'jquery2']);
-		$APPLICATION->AddHeadScript('/bitrix/js/'.ACRIT_CORE.'/helper.js');
-		$APPLICATION->AddHeadScript('/bitrix/js/'.ACRIT_CORE.'/options.js');
+		$APPLICATION->AddHeadScript('/bitrix/js/'.DATA_CORE.'/helper.js');
+		$APPLICATION->AddHeadScript('/bitrix/js/'.DATA_CORE.'/options.js');
 		# Hack
 		$obEventHandler = new EventHandler;
 		unset($obEventHandler);
@@ -106,7 +106,7 @@ class Options {
 	/**
 	 *	Prepare options (include from file in /include/options/)
 	 *	It all depends on start slash:
-	 *	[ test/test.php]: /bitrix/modules/acrit.core/include/options/
+	 *	[ test/test.php]: /bitrix/modules/data.core/include/options/
 	 *	[/test/test.php]: /bitrix/modules/{$this->strModuleId}/include/options/
 	 */
 	public function prepareOptions($arOptions){
@@ -320,7 +320,7 @@ class Options {
 	 *	Display options block
 	 */
 	public function displayOptions($arOptions){
-		print Helper::getHtmlObject(ACRIT_CORE, null, 'options', '.template/default', [
+		print Helper::getHtmlObject(DATA_CORE, null, 'options', '.template/default', [
 			'MODULE_ID' => $this->strModuleId,
 			'OPTIONS' => $arOptions,
 			'THIS' => $this,
@@ -331,7 +331,7 @@ class Options {
 	 *	Display single option
 	 */
 	public function displaySingleOption($arOption, $bWithTable=false){
-		print Helper::getHtmlObject(ACRIT_CORE, null, 'options', '.template/single', [
+		print Helper::getHtmlObject(DATA_CORE, null, 'options', '.template/single', [
 			'MODULE_ID' => $this->strModuleId,
 			'OPTION' => $arOption,
 			'WITH_TABLE' => $bWithTable ? 'Y' : 'N',
@@ -351,9 +351,9 @@ class Options {
 		if(strlen($this->arGet['back_url_settings'])){
 			$arQuery['back_url_settings'] = $this->arGet['back_url_settings'];
 		}
-		\Acrit\Core\Update::display();
+		\Data\Core\Update::display();
 		?>
-		<form method="post" action="<?=$APPLICATION->GetCurPage();?>?<?=http_build_query($arQuery);?>" data-acrit-form="Y">
+		<form method="post" action="<?=$APPLICATION->GetCurPage();?>?<?=http_build_query($arQuery);?>" data-data-form="Y">
 		<?
 		print bitrix_sessid_post();
 		$this->obTabControl->begin();

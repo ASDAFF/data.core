@@ -1,19 +1,19 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile,
-	\Acrit\Core\Export\ProfileFieldTable as ProfileField,
-	\Acrit\Core\Export\ProfileValueTable as ProfileValue,
-	\Acrit\Core\Export\Field\Field;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile,
+	\Data\Core\Export\ProfileFieldTable as ProfileField,
+	\Data\Core\Export\ProfileValueTable as ProfileValue,
+	\Data\Core\Export\Field\Field;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class AdditionalFieldTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class AdditionalFieldTable extends Entity\DataManager {
@@ -43,22 +43,22 @@ abstract class AdditionalFieldTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_ADDITIONAL_FIELDS_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_ADDITIONAL_FIELDS_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_ADDITIONAL_FIELDS_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_ADDITIONAL_FIELDS_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_ADDITIONAL_FIELDS_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_ADDITIONAL_FIELDS_IBLOCK_ID'),
 			)),
 			'NAME' => new Entity\StringField('NAME', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_ADDITIONAL_FIELDS_NAME'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_ADDITIONAL_FIELDS_NAME'),
 			)),
 			'UNIT' => new Entity\StringField('UNIT', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_ADDITIONAL_FIELDS_UNIT'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_ADDITIONAL_FIELDS_UNIT'),
 			)),
 			'DEFAULT_FIELD' => new Entity\StringField('DEFAULT_FIELD', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_ADDITIONAL_FIELDS_DEFAULT_FIELD'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_ADDITIONAL_FIELDS_DEFAULT_FIELD'),
 			)),
 		);
 	}

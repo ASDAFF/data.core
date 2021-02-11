@@ -1,6 +1,6 @@
 <?
 
-$strMessPrefix = 'ACRIT_EXP_BLIZKO_RU_';
+$strMessPrefix = 'DATA_EXP_BLIZKO_RU_';
 
 // General
 $MESS[$strMessPrefix . 'NAME'] = 'blizko.ru';

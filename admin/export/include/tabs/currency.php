@@ -1,9 +1,9 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\CurrencyConverter\Base as CurrencyConverterBase;
+	\Data\Core\Helper,
+	\Data\Core\Export\CurrencyConverter\Base as CurrencyConverterBase;
 
 Loc::loadMessages(__FILE__);
 
@@ -20,17 +20,17 @@ $arProfileParams = $arProfile['PARAMS'];
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Convert to currency
-$obTabControl->BeginCustomField('PROFILE[PARAMS][CURRENCY][TARGET_CURRENCY]', Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_TARGET_CURRENCY'));
+$obTabControl->BeginCustomField('PROFILE[PARAMS][CURRENCY][TARGET_CURRENCY]', Loc::getMessage('DATA_EXP_TAB_CURRENCIES_TARGET_CURRENCY'));
 ?>
 	<tr id="tr_CURRENCY_TARGET_CURRENCY">
 		<td width="40%" class="adm-detail-content-cell-l">
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_TARGET_CURRENCY_HINT'));?>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_CURRENCIES_TARGET_CURRENCY_HINT'));?>
 			<label for="field_CURRENCY_TARGET_CURRENCY"><?=$obTabControl->GetCustomLabelHTML()?><label>
 		</td>
-		<td width="60%" class="adm-detail-content-cell-r acrit-exp-select-wrapper">
+		<td width="60%" class="adm-detail-content-cell-r data-exp-select-wrapper">
 			<select name="PROFILE[PARAMS][CURRENCY][TARGET_CURRENCY]" id="field_CURRENCY_TARGET_CURRENCY">
 				<option value="">
-					<?=Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_CURRENCY_CONVERT_NO');?>
+					<?=Loc::getMessage('DATA_EXP_TAB_CURRENCIES_CURRENCY_CONVERT_NO');?>
 				</option>
 				<?foreach($arCurrencyAll as $strCurrency => $arCurrency):?>
 					<?if(in_array($strCurrency, $arPluginCurrency)):?>
@@ -48,14 +48,14 @@ $obTabControl->BeginCustomField('PROFILE[PARAMS][CURRENCY][TARGET_CURRENCY]', Lo
 $obTabControl->EndCustomField('PROFILE[PARAMS][CURRENCY][TARGET_CURRENCY]');
 
 // Rates source
-$obTabControl->BeginCustomField('PROFILE[PARAMS][CURRENCY][RATES_SOURCE]', Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_CURRENCY_RATES_SOURCE'));
+$obTabControl->BeginCustomField('PROFILE[PARAMS][CURRENCY][RATES_SOURCE]', Loc::getMessage('DATA_EXP_TAB_CURRENCIES_CURRENCY_RATES_SOURCE'));
 ?>
 	<tr id="tr_CURRENCY_RATES_SOURCE">
 		<td>
-			<?=Helper::showHint(Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_CURRENCY_RATES_SOURCE_HINT'));?>
+			<?=Helper::showHint(Loc::getMessage('DATA_EXP_TAB_CURRENCIES_CURRENCY_RATES_SOURCE_HINT'));?>
 			<label for="field_CURRENCY_RATES_SOURCE"><?=$obTabControl->GetCustomLabelHTML()?><label>
 		</td>
-		<td class="acrit-exp-select-wrapper">
+		<td class="data-exp-select-wrapper">
 			<select name="PROFILE[PARAMS][CURRENCY][RATES_SOURCE]" id="field_CURRENCY_RATES_SOURCE">
 				<?foreach($arConverters as $strConverter => $arConverter):?>
 					<option value="<?=$strConverter;?>"<?if($arProfileParams['CURRENCY']['RATES_SOURCE']==$strConverter):?> selected="selected"<?endif?>>
@@ -70,7 +70,7 @@ $obTabControl->EndCustomField('PROFILE[PARAMS][CURRENCY][RATES_SOURCE]');
 
 /*
 // Price correct
-$obTabControl->BeginCustomField('PROFILE[PARAMS][PRICE_CORRECT]', Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_PRICE_CORRECT'));
+$obTabControl->BeginCustomField('PROFILE[PARAMS][PRICE_CORRECT]', Loc::getMessage('DATA_EXP_TAB_CURRENCIES_PRICE_CORRECT'));
 ?>
 	<tr class="heading"><td colspan="2"><?=$obTabControl->GetCustomLabelHTML();?></td></tr>
 	<?foreach($arPriceAll as $arPrice):?>
@@ -90,7 +90,7 @@ $obTabControl->BeginCustomField('PROFILE[PARAMS][PRICE_CORRECT]', Loc::getMessag
 				<?=$arPrice['NAME_LANG'];?> [<?=$arPrice['ID'];?>, <?=$arPrice['NAME'];?>]:
 			</td>
 			<td width="60%">
-				<table class="acrit-exp-table-price-correct">
+				<table class="data-exp-table-price-correct">
 					<tbody>
 						<?$bFirst=true;?>
 						<?foreach(array_merge(array(''),$arPriceCorrect['VALUE']) as $key => $strValue):?>
@@ -103,30 +103,30 @@ $obTabControl->BeginCustomField('PROFILE[PARAMS][PRICE_CORRECT]', Loc::getMessag
 							}
 							?>
 							<tr>
-								<td class="acrit-exp-table-price-correct-value">
+								<td class="data-exp-table-price-correct-value">
 									<input type="text" size="6" placeholder="+10%" value="<?=$strValue;?>"
 										name="PROFILE[PARAMS][PRICE_CORRECT][<?=$arPrice['ID'];?>][VALUE][]" />
 								</td>
-								<td class="acrit-exp-table-price-correct-text-2">
-									<?=Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_PRICE_CORRECT_TEXT_2');?>
+								<td class="data-exp-table-price-correct-text-2">
+									<?=Loc::getMessage('DATA_EXP_TAB_CURRENCIES_PRICE_CORRECT_TEXT_2');?>
 								</td>
-								<td class="acrit-exp-table-price-correct-from">
+								<td class="data-exp-table-price-correct-from">
 									<input type="text" size="6" placeholder="0" value="<?=$strFrom;?>"
 										name="PROFILE[PARAMS][PRICE_CORRECT][<?=$arPrice['ID'];?>][FROM][]" />
 								</td>
-								<td class="acrit-exp-table-price-correct-text-3">
-									<?=Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_PRICE_CORRECT_TEXT_3');?>
+								<td class="data-exp-table-price-correct-text-3">
+									<?=Loc::getMessage('DATA_EXP_TAB_CURRENCIES_PRICE_CORRECT_TEXT_3');?>
 								</td>
-								<td class="acrit-exp-table-price-correct-to">
+								<td class="data-exp-table-price-correct-to">
 									<input type="text" size="6" placeholder="1000" value="<?=$strTo;?>"
 										name="PROFILE[PARAMS][PRICE_CORRECT][<?=$arPrice['ID'];?>][TO][]" />
 								</td>
-								<td class="acrit-exp-table-price-correct-add">
-									<input type="button" value="+" title="<?=Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_PRICE_CORRECT_ADD');?>"
+								<td class="data-exp-table-price-correct-add">
+									<input type="button" value="+" title="<?=Loc::getMessage('DATA_EXP_TAB_CURRENCIES_PRICE_CORRECT_ADD');?>"
 										data-role="price-correct-add" />
 								</td>
-								<td class="acrit-exp-table-price-correct-delete">
-									<a href="#" title="<?=Loc::getMessage('ACRIT_EXP_TAB_CURRENCIES_PRICE_CORRECT_DELETE');?>"
+								<td class="data-exp-table-price-correct-delete">
+									<a href="#" title="<?=Loc::getMessage('DATA_EXP_TAB_CURRENCIES_PRICE_CORRECT_DELETE');?>"
 										data-role="price-correct-delete"
 									>&times;</a>
 								</td>

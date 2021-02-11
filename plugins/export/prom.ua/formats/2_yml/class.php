@@ -1,13 +1,13 @@
 <?
 /**
- * Acrit Core: Prom.ua plugin
+ * Data Core: Prom.ua plugin
  * @documentation http://support.prom.ua/documents/844
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 class PromUaYml extends PromUa {
 	

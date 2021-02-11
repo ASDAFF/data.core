@@ -1,8 +1,8 @@
 <?
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper;
+	\Data\Core\Helper;
 
 Loc::loadMessages(__FILE__);
 
@@ -35,7 +35,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_PROMOCODES]', $obPlugi
 ?>
 <tr id="row_YANDEX_MARKET_EXPORT_PROMOCODES">
 	<td width="40%" valign="top">
-		<label for="acrit_exp_yandex_market_export_promocodes">
+		<label for="data_exp_yandex_market_export_promocodes">
 			<?=Helper::showHint($obPlugin::getMessage('EXPORT_PROMOCODES_DESC'));?>
 			<?=$obTabControl->GetCustomLabelHTML() ?>:
 		</label>
@@ -43,7 +43,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_PROMOCODES]', $obPlugi
 	<td width="60%">
 		<label>
 			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCODES]" value="Y"
-				id="acrit_exp_yandex_market_export_promocodes"
+				id="data_exp_yandex_market_export_promocodes"
 				<?if($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES'] == 'Y'): ?>checked="checked"<?endif?>
 				<?if(!$bCanExportPromocodes):?>disabled="disabled"<?endif?>/>
 			<?if(!$bCanExportPromocodes):?>
@@ -55,7 +55,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_PROMOCODES]', $obPlugi
 <?if($bCanExportPromocodes):?>
 	<tr id="row_YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS">
 		<td width="40%" valign="top">
-			<label for="acrit_exp_yandex_market_export_promocodes_fields">
+			<label for="data_exp_yandex_market_export_promocodes_fields">
 				<?=Helper::showHint($obPlugin::getMessage('EXPORT_PROMOCODES_RULES_DESC'));?>
 				<?=$obPlugin::getMessage('EXPORT_PROMOCODES_RULES');?>
 			</label>
@@ -63,7 +63,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_PROMOCODES]', $obPlugi
 		<td width="60%">
 			<label>
 				<select name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS][]" multiple="multiple"
-					id="acrit_exp_yandex_market_export_promocodes_fields">
+					id="data_exp_yandex_market_export_promocodes_fields">
 					<?foreach($arDiscounts as $arDiscount):?>
 						<?$bSelected = is_array($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS']) && 
 							in_array($arDiscount['ID'], $arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCODES_FIELDS']);?>
@@ -83,7 +83,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_SPECIAL_PRICE]', $obPl
 ?>
 <tr id="row_YANDEX_MARKET_EXPORT_SPECIAL_PRICE">
 	<td width="40%" valign="top">
-		<label for="acrit_exp_yandex_market_export_special_price">
+		<label for="data_exp_yandex_market_export_special_price">
 			<?=Helper::showHint($obPlugin::getMessage('EXPORT_SPECIAL_PRICE_DESC'));?>
 			<?=$obTabControl->GetCustomLabelHTML() ?>:
 		</label>
@@ -91,7 +91,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_SPECIAL_PRICE]', $obPl
 	<td width="60%">
 		<label>
 			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_SPECIAL_PRICE]" value="Y"
-				id="acrit_exp_yandex_market_export_special_price"
+				id="data_exp_yandex_market_export_special_price"
 				<?if($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_SPECIAL_PRICE'] == 'Y'): ?>checked="checked"<?endif?>/>
 		</label>
 	</td>
@@ -104,7 +104,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_PROMOCARD]', $obPlugin
 ?>
 <tr id="row_YANDEX_MARKET_EXPORT_PROMOCARD">
 	<td width="40%" valign="top">
-		<label for="acrit_exp_yandex_market_export_promocard">
+		<label for="data_exp_yandex_market_export_promocard">
 			<?=Helper::showHint($obPlugin::getMessage('EXPORT_PROMOCARD_DESC'));?>
 			<?=$obTabControl->GetCustomLabelHTML() ?>:
 		</label>
@@ -112,7 +112,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_PROMOCARD]', $obPlugin
 	<td width="60%">
 		<label>
 			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_PROMOCARD]" value="Y"
-				id="acrit_exp_yandex_market_export_promocard"
+				id="data_exp_yandex_market_export_promocard"
 				<?if($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_PROMOCARD'] == 'Y'): ?>checked="checked"<?endif?>/>
 		</label>
 	</td>
@@ -125,7 +125,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_N_PLUS_M]', $obPlugin:
 ?>
 <tr id="row_YANDEX_MARKET_EXPORT_N_PLUS_M">
 	<td width="40%" valign="top">
-		<label for="acrit_exp_yandex_market_export_n_plus_m">
+		<label for="data_exp_yandex_market_export_n_plus_m">
 			<?=Helper::showHint($obPlugin::getMessage('EXPORT_N_PLUS_M_DESC'));?>
 			<?=$obTabControl->GetCustomLabelHTML() ?>:
 		</label>
@@ -133,7 +133,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_N_PLUS_M]', $obPlugin:
 	<td width="60%">
 		<label>
 			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_N_PLUS_M]" value="Y"
-				id="acrit_exp_yandex_market_export_n_plus_m"
+				id="data_exp_yandex_market_export_n_plus_m"
 				<?if($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_N_PLUS_M'] == 'Y'): ?>checked="checked"<?endif?>/>
 		</label>
 	</td>
@@ -146,7 +146,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_GIFTS]', $obPlugin::ge
 ?>
 <tr id="row_YANDEX_MARKET_EXPORT_GIFTS">
 	<td width="40%" valign="top">
-		<label for="acrit_exp_yandex_market_export_gifts">
+		<label for="data_exp_yandex_market_export_gifts">
 			<?=Helper::showHint($obPlugin::getMessage('EXPORT_GIFTS_DESC'));?>
 			<?=$obTabControl->GetCustomLabelHTML() ?>:
 		</label>
@@ -154,7 +154,7 @@ $obTabControl->BeginCustomField($strPluginParams.'[EXPORT_GIFTS]', $obPlugin::ge
 	<td width="60%">
 		<label>
 			<input type="checkbox" name="PROFILE[PARAMS][YANDEX_MARKET_EXPORT_GIFTS]" value="Y"
-				id="acrit_exp_yandex_market_export_gifts"
+				id="data_exp_yandex_market_export_gifts"
 				<?if($arProfile['PARAMS']['YANDEX_MARKET_EXPORT_GIFTS'] == 'Y'): ?>checked="checked"<?endif?>/>
 		</label>
 	</td>

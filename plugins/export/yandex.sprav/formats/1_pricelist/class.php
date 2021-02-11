@@ -1,16 +1,16 @@
 <?
 /**
- * Acrit Core: Yandex.Spravochnik plugin
+ * Data Core: Yandex.Spravochnik plugin
  * @https://yandex.ru/sprav/1530227/edit/price-lists/
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use 
-	\Acrit\Core\Export\Field\Field,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Xml;
+	\Data\Core\Export\Field\Field,
+	\Data\Core\Helper,
+	\Data\Core\Export\Filter,
+	\Data\Core\Xml;
 
 Helper::loadMessages(__FILE__);
 

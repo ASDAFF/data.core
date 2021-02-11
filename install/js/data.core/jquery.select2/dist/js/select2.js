@@ -4777,7 +4777,7 @@ S2.define('select2/defaults',[
              SingleSelection, MultipleSelection, Placeholder, AllowClear,
              SelectionSearch, EventRelay,
 
-             Utils, Translation, DIACRITICS,
+             Utils, Translation, DIDATAICS,
 
              SelectData, ArrayData, AjaxData, Tags, Tokenizer,
              MinimumInputLength, MaximumInputLength, MaximumSelectionLength,
@@ -4999,7 +4999,7 @@ S2.define('select2/defaults',[
     function stripDiacritics (text) {
       // Used 'uni range + named function' from http://jsperf.com/diacritics/18
       function match(a) {
-        return DIACRITICS[a] || a;
+        return DIDATAICS[a] || a;
       }
 
       return text.replace(/[^\u0000-\u007E]/g, match);

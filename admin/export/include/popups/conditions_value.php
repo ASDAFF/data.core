@@ -1,10 +1,10 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\Filter,
-	\Acrit\Core\Json;
+	\Data\Core\Helper,
+	\Data\Core\Export\Filter,
+	\Data\Core\Json;
 
 Loc::loadMessages(__FILE__);
 
@@ -236,12 +236,12 @@ if($bAjaxSelectItems){
 <?if(strlen($strType)):?>
 	<?if(is_array($arCurrentLogic)):?>
 		<input type="hidden" data-role="allow-save" />
-		<div class="acrit-exp-field-select-wrapper acrit-exp-select-wrapper" id="acrit-exp-field-select-wrapper" style="padding-top:0;">
+		<div class="data-exp-field-select-wrapper data-exp-select-wrapper" id="data-exp-field-select-wrapper" style="padding-top:0;">
 			<?$bMultiple = in_array($strCurrentLogic, array('IN_LIST', 'NOT_IN_LIST'));?>
 			<?// TYPE = L ?>
 			<?if($strType=='L' && $arCurrentField['IS_PROPERTY']):?>
 				<?$arItems = Filter::getPropertyItems_L($arCurrentValue, $arCurrentField);?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-l" 
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-l"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -249,14 +249,14 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-l',
+					'SELECT_ID' => 'data-exp-field-select-l',
 					'CUSTOM_ACTION' => 'load_items_l',
 				);
 				?>
 			<?// TYPE = E ?>
 			<?elseif($strType=='E' && $arCurrentField['IS_PROPERTY']):?>
 				<?$arItems = Filter::getPropertyItems_E($arCurrentValue, $arCurrentField);?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-e" 
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-e"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -264,14 +264,14 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-e',
+					'SELECT_ID' => 'data-exp-field-select-e',
 					'CUSTOM_ACTION' => 'load_items_e',
 				);
 				?>
 			<?// TYPE = G ?>
 			<?elseif($strType=='G' && $arCurrentField['IS_PROPERTY']):?>
 				<?$arItems = Filter::getPropertyItems_G($arCurrentValue, $arCurrentField);?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-g" 
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-g"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -279,14 +279,14 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-g',
+					'SELECT_ID' => 'data-exp-field-select-g',
 					'CUSTOM_ACTION' => 'load_items_g',
 				);
 				?>
 			<?// TYPE = S:directory ?>
 			<?elseif($strType=='S' && $arCurrentField['IS_PROPERTY'] && $strUserType=='directory'):?>
 				<?$arItems = Filter::getPropertyItems_S_directory($arCurrentValue, $arCurrentField);?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-s-directory" 
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-s-directory"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -294,14 +294,14 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-s-directory',
+					'SELECT_ID' => 'data-exp-field-select-s-directory',
 					'CUSTOM_ACTION' => 'load_items_s_directory',
 				);
 				?>
 			<?// TYPE = S:_Currency ?>
 			<?elseif($strType=='S' && $strUserType=='_Currency'):?>
 				<?$arCurrencies = Helper::getCurrencyList();?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-currency" 
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-currency"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arCurrencies as $strCurrency => $arCurrency):?>
 						<option value="<?=$strCurrency;?>"<?if(in_array($strCurrency, $arCurrentValue)):?> selected="selected"<?endif?>>[<?=$strCurrency;?>] <?=$arCurrency['FULL_NAME'];?></option>
@@ -309,13 +309,13 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-currency',
+					'SELECT_ID' => 'data-exp-field-select-currency',
 				);
 				?>
 			<?// TYPE = N:_ID_LIST ?>
 			<?elseif($strType=='N' && $strUserType=='_ID_LIST'):?>
 				<?$arItems = Filter::getPropertyItems_E($arCurrentValue, array());?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-n-id-list" data-just-id="Y"
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-n-id-list" data-just-id="Y"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -323,7 +323,7 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-n-id-list',
+					'SELECT_ID' => 'data-exp-field-select-n-id-list',
 					'CUSTOM_ACTION' => 'load_items_n_id_list',
 				);
 				?>
@@ -331,7 +331,7 @@ if($bAjaxSelectItems){
 			<?elseif($strType=='N' && $strUserType=='_SectionId'):?>
 				<?$bMultiple = in_array($strCurrentLogic, array('IN_LIST', 'NOT_IN_LIST'));?>
 				<?$arItems = Filter::getPropertyItems_G($arCurrentValue, $arCurrentField);?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-g" 
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-g"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -339,13 +339,13 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-g',
+					'SELECT_ID' => 'data-exp-field-select-g',
 					'CUSTOM_ACTION' => 'load_sections',
 				);
 				?>
 				<?/*
 				<?$arItems = Filter::getPropertyItems_E($arCurrentValue, array());?>
-				<select name="value" class="acrit-exp-field-select-list" id="acrit-exp-field-select-n-id-list" data-just-id="Y"
+				<select name="value" class="data-exp-field-select-list" id="data-exp-field-select-n-id-list" data-just-id="Y"
 					data-role="entity-select-value"<?if($bMultiple):?> multiple="multiple"<?endif?>>
 					<?foreach($arItems as $strID => $strName):?>
 						<option value="<?=$strID;?>" selected="selected"><?=$strName;?></option>
@@ -353,7 +353,7 @@ if($bAjaxSelectItems){
 				</select>
 				<?
 				$arSelect2 = array(
-					'SELECT_ID' => 'acrit-exp-field-select-n-id-list',
+					'SELECT_ID' => 'data-exp-field-select-n-id-list',
 					'CUSTOM_ACTION' => 'load_items_n_id_list',
 				);
 				?>
@@ -370,7 +370,7 @@ if($bAjaxSelectItems){
 						}
 						$arDatetimeFilterValues = Filter::getDatetimeFilterValues($strUserType=='DateTime');
 						?>
-						<div class="acrit-exp-select-wrapper">
+						<div class="data-exp-select-wrapper">
 							<input type="hidden" name="value" value="<?=$strCurrentValue;?>" data-role="entity-select-value-hidden"/><br/>
 							<input type="text" value="<?=$strCurrentValue;?>" data-role="datetime-for-the-last"/>
 							<select data-role="datetime-for-the-last">
@@ -397,17 +397,17 @@ if($bAjaxSelectItems){
 							}).keydown(function(e){
 								if(e.keyCode==13) {
 									$(this).trigger('change');
-									$('#acrit_exp_conditions_save').trigger('click');
+									$('#data_exp_conditions_save').trigger('click');
 								}
 							}).trigger('change').filter('input[type="text"]').focus();
 						</script>
 					<?else:?>
-						<div id="acrit-ext-field-select-date">
+						<div id="data-ext-field-select-date">
 							<?=\CAdminCalendar::CalendarDate('value', $strCurrentValue, 15, $strUserType=='DateTime'?true:false);?>
 						</div>
 					<?endif?>
 					<script>
-					$('#acrit-ext-field-select-date input[type=text]').attr('data-role', 'entity-select-value');
+					$('#data-ext-field-select-date input[type=text]').attr('data-role', 'entity-select-value');
 					</script>
 				<?elseif($bMultiple):?>
 					<?
@@ -418,14 +418,14 @@ if($bAjaxSelectItems){
 					}
 					?>
 					<div>
-						<table class="acrit-exp-field-select-text-multiple" data-role="entity-select-value-multiple">
+						<table class="data-exp-field-select-text-multiple" data-role="entity-select-value-multiple">
 							<tbody>
 								<?foreach($arCurrentValue as $strValue):?>
 									<tr>
 										<td>
-											<input type="text" name="value" class="acrit-exp-field-select-text" data-role="entity-select-value"
+											<input type="text" name="value" class="data-exp-field-select-text" data-role="entity-select-value"
 												value="<?=htmlspecialcharsbx($strValue);?>"
-												placeholder="<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_PLACEHOLDER_TEXT');?>"/>
+												placeholder="<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_PLACEHOLDER_TEXT');?>"/>
 										</td>
 										<td>
 											<a href="javascript:void(0)" title="Delete" data-role="entity-select-value-multiple-delete">&times;</a>
@@ -437,12 +437,12 @@ if($bAjaxSelectItems){
 					</div>
 					<div>
 						<input type="button" data-role="entity-select-value-multiple-add"
-							value="<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_TEXT_ADD');?>" />
+							value="<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_TEXT_ADD');?>" />
 					</div>
 				<?else:?>
-					<input type="text" name="value" class="acrit-exp-field-select-text" data-role="entity-select-value"
+					<input type="text" name="value" class="data-exp-field-select-text" data-role="entity-select-value"
 						value="<?=htmlspecialcharsbx($strCurrentValue);?>"
-						placeholder="<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_PLACEHOLDER_TEXT');?>"/>
+						placeholder="<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_PLACEHOLDER_TEXT');?>"/>
 				<?endif?>
 			<?endif?>
 			<?if(is_array($arSelect2)):?>
@@ -472,9 +472,9 @@ if($bAjaxSelectItems){
 							cache: false
 						},
 					<?endif?>
-					dropdownParent: $('#acrit-exp-field-select-wrapper').closest('.bx-core-adm-dialog-content'),
+					dropdownParent: $('#data-exp-field-select-wrapper').closest('.bx-core-adm-dialog-content'),
 					dropdownPosition: 'below',
-					placeholder: '<?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_PLACEHOLDER_LIST');?>',
+					placeholder: '<?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_PLACEHOLDER_LIST');?>',
 					language: '<?=LANGUAGE_ID;?>'
 				}).bind('select2:select', function (e) {
 					setTimeout(function(){
@@ -493,8 +493,8 @@ if($bAjaxSelectItems){
 		<input type="hidden" data-role="filter-title" value="" />
 		<input type="hidden" data-role="filter-value" value="" />
 	<?else:?>
-		<p><?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_NO_LOGIC');?></p>
+		<p><?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_NO_LOGIC');?></p>
 	<?endif?>
 <?else:?>
-	<p><?=Loc::getMessage('ACRIT_EXP_CONDITIONS_POPUP_FIELD_NO_FIELD');?></p>
+	<p><?=Loc::getMessage('DATA_EXP_CONDITIONS_POPUP_FIELD_NO_FIELD');?></p>
 <?endif?>

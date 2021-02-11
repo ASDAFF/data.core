@@ -1,6 +1,6 @@
 <?
-$MESS['ACRIT_EXP_STRUCTURE_IBLOCK_SELECT_EMPTY'] = '--- выберите инфоблок ---';
-$MESS['ACRIT_EXP_STRUCTURE_IBLOCK_SELECT_MULTIPLE_NOTICE'] = '<b>Внимание!</b> В данном профиле настроено сразу несколько инфоблоков (всего настроено инфоблоков: #COUNT#). <a href="javascript:void(0)" class="acrit-inline-link" data-role="iblock-multiple-notice-toggle">Подробнее</a>
+$MESS['DATA_EXP_STRUCTURE_IBLOCK_SELECT_EMPTY'] = '--- выберите инфоблок ---';
+$MESS['DATA_EXP_STRUCTURE_IBLOCK_SELECT_MULTIPLE_NOTICE'] = '<b>Внимание!</b> В данном профиле настроено сразу несколько инфоблоков (всего настроено инфоблоков: #COUNT#). <a href="javascript:void(0)" class="data-inline-link" data-role="iblock-multiple-notice-toggle">Подробнее</a>
 <div data-role="iblock-multiple-notice-container" style="display:none;">
 	<p>Выгрузка в данном профиле осуществляется сразу из всех выбранных инфоблоков, причем каждый инфоблок имеет собственные настройки.</p>
 	<ul>

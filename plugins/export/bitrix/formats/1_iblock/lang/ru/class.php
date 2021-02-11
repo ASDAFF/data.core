@@ -1,5 +1,5 @@
 <?
-$strMessPrefix = 'ACRIT_EXP_BITRIX_IBLOCK_';
+$strMessPrefix = 'DATA_EXP_BITRIX_IBLOCK_';
 
 // General
 

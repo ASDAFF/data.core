@@ -1,5 +1,5 @@
 <?
-\Acrit\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../class.php'), $strLang, $strHead, $strName, $strHint);
+\Data\Core\Export\Exporter::getLangPrefix(realpath(__DIR__.'/../class.php'), $strLang, $strHead, $strName, $strHint);
 $strTLang = $strLang.'TEACHER_'; // Teacher lang general
 $strTSNLang = $strTLang.'STEP_NAME_'; // Lang for step name
 $strTSDLang = $strTLang.'STEP_DESC_'; // Lang for step description

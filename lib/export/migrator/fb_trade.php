@@ -3,9 +3,9 @@
  * Class for migrate profiles from old export module's core
  */
 
-namespace Acrit\Core\Export\Migrator;
+namespace Data\Core\Export\Migrator;
 
-use \Acrit\Core\Helper;
+use \Data\Core\Helper;
 
 /**
  *	

@@ -1,22 +1,22 @@
 <?
 /**
- * Acrit Core: Auto.ru plugin
+ * Data Core: Auto.ru plugin
  */
 
-namespace Acrit\Core\Export\Plugins;
+namespace Data\Core\Export\Plugins;
 
 use \Bitrix\Main\Localization\Loc,
 		\Bitrix\Main\EventManager,
-		\Acrit\Core\Helper,
-		\Acrit\Core\HttpRequest,
-		\Acrit\Core\Log,
-		\Acrit\Core\Xml,
-		\Acrit\Core\Export\Plugin,
-		\Acrit\Core\Export\Field\Field,
-		\Acrit\Core\Export\Filter,
-		\Acrit\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
-		\Acrit\Core\Export\Exporter,
-		\Acrit\Core\Export\ExportDataTable as ExportData;
+		\Data\Core\Helper,
+		\Data\Core\HttpRequest,
+		\Data\Core\Log,
+		\Data\Core\Xml,
+		\Data\Core\Export\Plugin,
+		\Data\Core\Export\Field\Field,
+		\Data\Core\Export\Filter,
+		\Data\Core\Export\CurrencyConverter\Base as CurrencyConverterBase,
+		\Data\Core\Export\Exporter,
+		\Data\Core\Export\ExportDataTable as ExportData;
 
 Loc::loadMessages(__FILE__);
 
@@ -398,7 +398,7 @@ class AutoRuParts extends AutoRu
 	{
 		$arResult = array();
 		$arResult['CHECK'] = array(
-			'NAME' => static::getMessage('ACRIT_EXP_EXPORTER_STEP_CHECK'),
+			'NAME' => static::getMessage('DATA_EXP_EXPORTER_STEP_CHECK'),
 			'SORT' => 10,
 			#'FUNC' => __CLASS__ . '::stepCheck',
 			'FUNC' => array($this, 'stepCheck'),
@@ -489,7 +489,7 @@ class AutoRuParts extends AutoRu
 		}
 		if (!Helper::createDirectoriesForFile($arSession['XML_FILE']))
 		{
-			$strMessage = Loc::getMessage('ACRIT_EXP_ERROR_CREATE_DIRECORY', array(
+			$strMessage = Loc::getMessage('DATA_EXP_ERROR_CREATE_DIRECORY', array(
 						'#DIR#' => Helper::getDirectoryForFile($arSession['XML_FILE']),
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);
@@ -503,7 +503,7 @@ class AutoRuParts extends AutoRu
 		if (!@rename($arSession['XML_FILE_TMP'], $arSession['XML_FILE']))
 		{
 			@unlink($arSession['XML_FILE_TMP']);
-			$strMessage = Loc::getMessage('ACRIT_EXP_FILE_NO_PERMISSIONS', array(
+			$strMessage = Loc::getMessage('DATA_EXP_FILE_NO_PERMISSIONS', array(
 						'#FILE#' => $arSession['XML_FILE'],
 			));
 			Log::getInstance($this->strModuleId)->add($strMessage);

@@ -1,5 +1,5 @@
 <?
-$strLang = 'ACRIT_CORE_';
+$strLang = 'DATA_CORE_';
 
 # Buttons
 $MESS[$strLang.'CRON_TASKS_TOGGLE'] = 'Посмотреть';

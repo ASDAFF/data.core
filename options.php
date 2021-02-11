@@ -1,10 +1,10 @@
 <?
-namespace Acrit\Core;
+namespace Data\Core;
 
 use
-	\Acrit\Core\Helper,
-	\Acrit\Core\Log,
-	\Acrit\Core\Options;
+	\Data\Core\Helper,
+	\Data\Core\Log,
+	\Data\Core\Options;
 
 # Include module
 $strModuleId = pathinfo(__DIR__, PATHINFO_BASENAME);
@@ -21,8 +21,8 @@ if($strRight < 'R'){
 $arTabs = [
 	[
 		'DIV' => 'general',
-		'TAB' => Helper::getMessage('ACRIT_CORE_TAB_GENERAL_NAME'),
-		'TITLE' => Helper::getMessage('ACRIT_CORE_TAB_GENERAL_DESC'),
+		'TAB' => Helper::getMessage('DATA_CORE_TAB_GENERAL_NAME'),
+		'TITLE' => Helper::getMessage('DATA_CORE_TAB_GENERAL_DESC'),
 		'OPTIONS' => [
 			'core/php.php',
 			'core/log.php',
@@ -35,8 +35,8 @@ $arTabs = [
 		],
 	], [
 		'DIV' => 'log',
-		'TAB' => Helper::getMessage('ACRIT_CORE_TAB_LOG_NAME'),
-		'TITLE' => Helper::getMessage('ACRIT_CORE_TAB_LOG_DESC'),
+		'TAB' => Helper::getMessage('DATA_CORE_TAB_LOG_NAME'),
+		'TITLE' => Helper::getMessage('DATA_CORE_TAB_LOG_DESC'),
 		'CALLBACK' => function($obOptions, $arTab){
 			?>
 				<tr>

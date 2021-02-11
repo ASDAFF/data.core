@@ -1,17 +1,17 @@
 <?
-namespace Acrit\Core\Export;
+namespace Data\Core\Export;
 
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Entity,
 	\Bitrix\Main\EventManager,
-	\Acrit\Core\Helper,
-	\Acrit\Core\Export\ProfileTable as Profile;
+	\Data\Core\Helper,
+	\Data\Core\Export\ProfileTable as Profile;
 
 Loc::loadMessages(__FILE__);
 
 /**
  * Class CategoryCustomNameTable
- * @package Acrit\Core\Export
+ * @package Data\Core\Export
  */
 
 abstract class CategoryCustomNameTable extends Entity\DataManager {
@@ -39,22 +39,22 @@ abstract class CategoryCustomNameTable extends Entity\DataManager {
 			'ID' => new Entity\IntegerField('ID', array(
 				'primary' => true,
 				'autocomplete' => true,
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_CUSTOM_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_CUSTOM_ID'),
 			)),
 			'PROFILE_ID' => new Entity\IntegerField('PROFILE_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_CUSTOM_PROFILE_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_CUSTOM_PROFILE_ID'),
 			)),
 			'IBLOCK_ID' => new Entity\IntegerField('IBLOCK_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_CUSTOM_IBLOCK_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_CUSTOM_IBLOCK_ID'),
 			)),
 			'CATEGORY_NAME' => new Entity\TextField('CATEGORY_NAME', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_CUSTOM_SECTION_NAME'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_CUSTOM_SECTION_NAME'),
 			)),
 			'CATEGORY_ID' => new Entity\IntegerField('CATEGORY_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_CUSTOM_CATEGORY_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_CUSTOM_CATEGORY_ID'),
 			)),
 			'CATEGORY_PARENT_ID' => new Entity\IntegerField('CATEGORY_PARENT_ID', array(
-				'title' => Loc::getMessage('ACRIT_EXP_PROFILE_CATEGORY_CUSTOM_CATEGORY_PARENT_ID'),
+				'title' => Loc::getMessage('DATA_EXP_PROFILE_CATEGORY_CUSTOM_CATEGORY_PARENT_ID'),
 			)),
 		);
 	}
