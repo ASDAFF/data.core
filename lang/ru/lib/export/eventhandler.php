@@ -1,7 +1,7 @@
 <?
-$MESS['DATA_MENU_NAME'] = 'Веб-студия "АКРИТ"';
-$MESS['DATAMENU_GROUPNAME_DEFAULT'] = 'Решения "АКРИТ"';
-$MESS['DATA_MENU_TITLE'] = 'Веб-студия "АКРИТ"';
+$MESS['DATA_MENU_NAME'] = 'DATA"';
+$MESS['DATAMENU_GROUPNAME_DEFAULT'] = 'Работа с данными"';
+$MESS['DATA_MENU_TITLE'] = 'DATA';
 
 #
 $MESS['DATA_EXP_EVENT_HANDLER_PREVIEW_BUTTON'] = 'Предпросмотр экспорта';

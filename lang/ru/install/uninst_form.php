@@ -1,26 +1,4 @@
 <?
-$MESS ['data.uninst_fb_REASON'] = 'Укажите, пожалуйста, причину удаления модуля:';
-$MESS ['data.uninst_fb_REASON_REINSTALL'] = 'Переустановка модуля';
-$MESS ['data.uninst_fb_REASON_SETTINGS'] = 'Не удалось разобраться с настройками модуля';
-$MESS ['data.uninst_fb_REASON_ERRORS'] = 'Обнаружены ошибки в работе модуля';
-$MESS ['data.uninst_fb_REASON_NOTWORK'] = 'Модуль не работает';
-$MESS ['data.uninst_fb_REASON_FUNCTIONAL'] = 'Модуль не решает необходимые мне задачи';
-$MESS ['data.uninst_fb_REASON_DEMOEND'] = 'Закончился демо-период модуля, приобретать не планирую';
-$MESS ['data.uninst_fb_REASON_ANOTHER_MODULE'] = 'Использую другой модуль с аналогичным функционалом';
-$MESS ['data.uninst_fb_REASON_ANOTHER'] = 'Другая причина';
-$MESS ['data.uninst_fb_REASON_NOTE'] = 'Ваша причина удаления';
-$MESS ['data.uninst_fb_SUPPORT'] = 'Обращались ли Вы в службу поддержки модуля (<a href="https://www.data-studio.ru/support/?show_wizard=Y" target="_blank">https://www.data-studio.ru/support/?show_wizard=Y</a>)?';
-$MESS ['data.uninst_fb_SUPPORT_YES'] = 'Да';
-$MESS ['data.uninst_fb_SUPPORT_NO'] = 'Нет';
-$MESS ['data.uninst_fb_CALLBACK'] = 'Согласны ли Вы на ответное письмо службы контроля качества?';
-$MESS ['data.uninst_fb_CALLBACK_YES'] = 'Да';
-$MESS ['data.uninst_fb_CALLBACK_NO'] = 'Нет';
-$MESS ['data.uninst_fb_AGREE'] = 'Согласны ли Вы на обработку персональных данных?';
-$MESS ['data.uninst_fb_AGREE_YES'] = 'Да, удалить модуль и отправить данную форму';
-$MESS ['data.uninst_fb_AGREE_NO'] = 'Нет, только удалить модуль';
-$MESS ['data.uninst_fb_TEXT_1'] = 'Мы очень трепетно относимся к каждому клиенту и нам крайне важно знать о любых сложностях, которые могли возникнуть в процессе эксплуатации нашего решения. Будем признательны за обратную связь.';
-$MESS ['data.uninst_fb_TEXT_2'] = 'По любым вопросам, связанным с работой модуля Вы можете обращаться по адресу <a href="https://www.data-studio.ru/support/?show_wizard=Y" target="_blank">https://www.data-studio.ru/support/?show_wizard=Y</a>. Помощь в установке и настройке модуля мы всегда предоставляем бесплатно.';
-$MESS ['data.uninst_fb_PERSONAL'] = 'Так же в письме будет передан ваш e-mail (#EMAIL#) и адрес сайта (#SITE#).';
 $MESS ['data.uninst_fb_DEL'] = 'Удалить модуль';
 $MESS ['data.uninst_fb_ERROR'] = 'Ошибка!';
 $MESS ['data.uninst_fb_ERROR_TEXT'] = 'Не указана причина удаления модуля';
