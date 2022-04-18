@@ -1,0 +1,19 @@
+{
+    "name": "asdaff/data.core",
+    "description": "Cлужебные инструменты",
+    "type": "bitrix-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ASDAFF",
+            "email": "asdaff.asad@yandex.ru"
+        }
+    ],
+    "extra": {
+        "installer-name": "data.core"
+    },
+    "require": {
+        "php": ">=7.0",
+        "composer/installers": "~1"
+    }
+}
